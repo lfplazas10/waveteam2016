@@ -139,6 +139,44 @@ La descripción del API REST se presenta a continuación:
 
 ## Entidad Citas:
 
+
+La comunicación entre el cliente y el servidos se realiza intercambiando objetos JSON que siguen el siguiente formato
+
+```javascript
+[
+      {
+         "id" : 1             /* Tipo Long */
+         "Fecha_cita" : ''    /* Tipo Date */
+         "Hora_cita" : ''     /* Tipo Long */
+         "Medico_cita" : ''   /* Tipo Medico */
+         "Paciente_cita" : '' /* Tipo Paciente */
+      }
+]
+```
+
+Si se solicita una lista de las citas en el calendario, el servidor retorna dichos objetos en el siguiente formato:
+
+```javascript
+[
+      {
+         "id" : 1             /* Tipo Long */
+         "Fecha_cita" : ''    /* Tipo Date */
+         "Hora_cita" : ''     /* Tipo Long */
+         "Medico_cita" : ''   /* Tipo Medico */
+         "Paciente_cita" : '' /* Tipo Paciente */
+      }, {
+         "id" : 2             /* Tipo Long */
+         "Fecha_cita" : ''    /* Tipo Date */
+         "Hora_cita" : ''     /* Tipo Long */
+         "Medico_cita" : ''   /* Tipo Medico */
+         "Paciente_cita" : '' /* Tipo Paciente */
+      } /*... otros pacientes */
+]
+```
+
+
+
+
 ### Servicios Rest:
 
 |   Método   |   URL      |     Acción                                            |   Parámetros     |    Cuerpo    |    Retorno                               |
