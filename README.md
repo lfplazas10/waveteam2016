@@ -185,10 +185,10 @@ Para una solicitud de lista de consultorios, se seguirá el siguiente formato:
 |Método| URI             |Acción|Parámetros|Cuerpo|Retorno|
 |:----:|:---------------:|:----:|:--------:|:----:|:-----:|
 |GET   |/consultorios    |Lista los registros de Consultorio (READ)|   |   |Colección de registros de Consultorio|
-|GET   |/consultorios/:id|Obtener los atributos de un Consultorio (READ)|@PathParam id: Identificador del registro|   | Atributos del Consultorio|
+|GET   |/consultorios/:id|Obtener los atributos de un Consultorio (READ)|**@PathParam id:** Identificador del registro|   | Atributos del Consultorio|
 |POST  |/consultorios    |Crea un nuevo Consultorio (CREATE)|   |Atributos del Consultorio que se creará|Consultorio creado (con id)|
-|PUT   |/consultorios/:id|Actualiza un Consultorio (UPDATE)|@PathParam id: Identificador del registro|Objeto JSON del Consultorio|Consultorio actualizado|
-|DELETE|/consultorios/:id|Borra un Consultorio (DELETE)|@PathParam id: Identificador del registro|   |   |
+|PUT   |/consultorios/:id|Actualiza un Consultorio (UPDATE)|**@PathParam id:** Identificador del registro|Objeto JSON del Consultorio|Consultorio actualizado|
+|DELETE|/consultorios/:id|Borra un Consultorio (DELETE)|**@PathParam id:** Identificador del registro|   |   |
 
 
 ## Entidad Citas:
