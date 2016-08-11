@@ -116,7 +116,7 @@ La descripción del API REST se presenta a continuación:
 | POST | /pacientes | Crea una nueva instancia de la entidad Paciente (CREATE) | | Atributos de la instancia de Paciente a crear | Instancia de City creada, incluyendo su nuevo ID |
 | DELETE | /pacientes/:id | Borra instancia de Paciente en el servidor (DELETE) | @PathParam id: Identificador del registro | | |
 
-### La clase PacienteResource entrá entonces los siguientes métodos.
+### La clase PacienteResource tendrá entonces los siguientes métodos.
 
 | Método | Descripción |
 |:----------|:----------|
