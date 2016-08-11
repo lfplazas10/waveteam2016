@@ -242,5 +242,65 @@ Si se solicita una lista de las citas en el calendario, el servidor retorna dich
 |   DELETE   | /Citas/:id | Borra una cita según su ID                            |ID: id de la cita |              |Se borra la cita de la lista (cancela)    |
 
 
+## Entidad Especialidad
+
+La comunicación entre el cliente y el servidor se realiza intercambiando objetos JSON que siguen el siguiente formato:
+
+```javascript
+{
+    "id" : 1                         /* Tipo Long */
+    "nombre" : ''                    /* Tipo String */
+    "instrumentacion" : ''           /* Tipo String */
+    "doctores" :  		     /* Tipo Doctor*/
+}
+```
+Si se solicita una lista de las especialidades, el servidor retorna dichos objetos en el siguiente formato:
+
+```javascript
+[
+      {
+         "id" : 1                     /* Tipo Long */
+         "nombre" : ''                /* Tipo String */
+         "instrumentacion" : ''       /* Tipo String */
+         "doctores" :  		      /* Tipo Doctor*/
+      }, {
+          "id" : 2                     /* Tipo Long */
+         "nombre" : ''                /* Tipo String */
+         "instrumentacion" : ''       /* Tipo String */
+         "doctores" :  		      /* Tipo Doctor*/
+      } /*... otras especialidades */
+]
+```
+### Servicios Rest:
+
+Al ejecutarlo en su propia máquina, el recurso REST estará disponible en:
+
+ • xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+ 
+La descripción del API REST se presenta a continuación:
+
+|   Método   |   URL      |     Acción                                            |   Parámetros     |    Cuerpo    |    Retorno                               |
+|:-----------|:-----------|:------------------------------------------------------|:-----------------|:-------------|:-----------------------------------------|
+|    GET     | /Especialidades     | Da la lista de especialidades(READ)  |    |   |Colección de las especialidades del hospital   |
+|    GET     | /Especialidades/:id | Da los parámetros de una especialidad (READ)|**@PathParam id:** id de la especialidad |     |Atributos de la especialidad  |
+|    POST    | /Especialidades     | Crea una nueva especialidad segun la información suministrada(CREATE)|    | Atributos    |Nueva especialidad creada  |
+|   DELETE   | /Especialidades/:id | Borra una especialidad según su ID (DELETE) |**@PathParam id:** id de la especialidad |      |Se borra la especialidad de la lista  |
 
 
+### La clase EspecialidadResource tendrá entonces los siguientes métodos.
+
+| Método | Descripción |
+|:----------|:----------|
+| List<EspecialidadDTO> getEspecialidades() | Retorna la lista de especialidades |
+| EspecialidadDTO getEspecialidad(Long id) | Retorna la especialidad identificada con este id |
+| EspecialidadDTO createEspecialidad(EspecialidadDTO especialidad) | Crea una especialidad con la información enviada como parámetro |
+| void deleteEspecialidad(Long id) | Borra la especialidad identificada con este id|
+
+### Anotaciones para indicar el verbo HTTP
+
+| Anotación | Métodos | Descripción |
+|:----------|:----------|:----------|
+| **@GET** | List<EspecialidadDTO> getEspecialidades() | Retorna la lista de especialidades |
+| **@GET** | EspecialidadDTO getEspecialidad(Long id) | Retorna la especialidad identificada con este id |
+| **@POST** | EspecialidadDTO createEspecialidad(EspecialidadDTO especialidad) | Crea una especialidad con la información enviada como parámetro |
+| **@DELETE** | void deleteEspecialidad(Long id) | Borra la especialidad identificado con este id|
