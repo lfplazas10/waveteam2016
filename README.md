@@ -143,7 +143,7 @@ El formato utilizado para un recurso de tipo "consultorio" es:
 ```javascript
 {
 	"Nombre": 202,                         /*Integer*/
-	"Horario": 8.00am-6.00pm,              /*String*/
+	"Horario": '8.00am-6.00pm',            /*String*/
 	"Atención urgencias":No,               /*Boolean*/
 	"Unidad Cuidados Intensivos (UCI)": Sí /*Boolean*/
 	/*Otros atributos*/
@@ -160,17 +160,17 @@ Para una solicitud de lista de consultorios, se seguirá el siguiente formato:
 	"consultorios":[
 			{
 				"Nombre": 202,                         /*Integer*/
-				"Horario": 8.00am-6.00pm,              /*String*/
+				"Horario": '8.00am-6.00pm',            /*String*/
 				"Atención urgencias":Sí,               /*Boolean*/
 				"Unidad Cuidados Intensivos (UCI)": Sí /*Boolean*/
 			}, {
 				"Nombre": 315",
-				"Horario": 8.00am-6.00pm,              /*String*/
+				"Horario": '8.00am-6.00pm',            /*String*/
 				"Atención urgencias":No,               /*Boolean*/
 				"Unidad Cuidados Intensivos (UCI)": No /*Boolean*/
 			}, {
 				"Nombre: 100",
-				"Horario": 24 horas,              	   /*String*/
+				"Horario": '24 horas',                 /*String*/
 				"Atención urgencias":Sí,               /*Boolean*/
 				"Unidad Cuidados Intensivos (UCI)": No /*Boolean*/
 			} /*Etc*/
