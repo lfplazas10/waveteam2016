@@ -16,3 +16,7 @@ Este modelo conceptual está sujeto a cambios.
 |Rogelio García    |r.garcia11@uniandes.edu.co   |Desarrollador |
 |Daniela Mariño    |d.marino10@uniandes.edu.co   |Especialista  |
 |Juan Lizarazo     |jm.lizarazo10@uniandes.edu.co|Cita          |
+
+
+#Documentación del API:
+
