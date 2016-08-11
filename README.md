@@ -38,16 +38,16 @@ Si se solicta al servidor una lista de médcios, el servidor retorna un arreglo 
  ```javascript
 [ 
   	{
-   	 "name" : 'Carlos Valderrama'       /* Tipo String */
-   	 "cédula" : 542382304,    		   /* Tipo Long */
-   	 "especialidad" : 'Oftalmólogo'     /* Tipo String */
-   	 "consultorio" : 3,  			   /* Tipo Long */
+   	 "name" : 'Carlos Valderrama'		/* Tipo String */
+   	 "cédula" : 542382304,			/* Tipo Long */
+   	 "especialidad" : 'Oftalmólogo'		/* Tipo String */
+   	 "consultorio" : 3,			/* Tipo Long */
 	},
 	{
-   	 "name" : 'James Rodriguez'       /* Tipo String */
-   	 "cédula" : 548393222,    		   /* Tipo Long */
-  	 "especialidad" : 'Cardiólogo'     /* Tipo String */
-  	 "consultorio" : 23,  			   /* Tipo Long */
+   	 "name" : 'James Rodriguez'       	/* Tipo String */
+   	 "cédula" : 548393222,			/* Tipo Long */
+  	 "especialidad" : 'Cardiólogo'		/* Tipo String */
+  	 "consultorio" : 23,			/* Tipo Long */
 	}
 ]
 ```
