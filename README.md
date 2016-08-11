@@ -1,4 +1,4 @@
-# WaveTeam
+﻿# WaveTeam
 
 #Modelo conceptual
 
@@ -14,7 +14,7 @@ Este modelo conceptual está sujeto a cambios.
 |Luis Felipe Plazas|lf.plazas10@uniandes.edu.co  |Médico             |
 |John Ardila       |je.ardila1501@uniandes.edu.co|Paciente           |
 |Rogelio García    |r.garcia11@uniandes.edu.co   |Consultorio        |
-|Daniela Mariño    |d.marino10@uniandes.edu.co   |Especialista       |
+|Daniela Mariño    |d.marino10@uniandes.edu.co   |Especialidad       |
 |Juan Lizarazo     |jm.lizarazo10@uniandes.edu.co|Cita               |
 
 
@@ -191,57 +191,6 @@ Para una solicitud de lista de consultorios, se seguirá el siguiente formato:
 |DELETE|/consultorios/:id|Borra un Consultorio (DELETE)|**@PathParam id:** Identificador del registro|   |   |
 
 
-## Entidad Citas:
-
-
-La comunicación entre el cliente y el servidos se realiza intercambiando objetos JSON que siguen el siguiente formato
-
-```javascript
-[
-      {
-         "id" : 1             /* Tipo Long */
-         "Fecha_cita" : ''    /* Tipo Date */
-         "Hora_cita" : ''     /* Tipo Long */
-         "Medico_cita" : ''   /* Tipo Medico */
-         "Paciente_cita" : '' /* Tipo Paciente */
-      }
-]
-```
-
-Si se solicita una lista de las citas en el calendario, el servidor retorna dichos objetos en el siguiente formato:
-
-```javascript
-[
-      {
-         "id" : 1             /* Tipo Long */
-         "Fecha_cita" : ''    /* Tipo Date */
-         "Hora_cita" : ''     /* Tipo Long */
-         "Medico_cita" : ''   /* Tipo Medico */
-         "Paciente_cita" : '' /* Tipo Paciente */
-      }, {
-         "id" : 2             /* Tipo Long */
-         "Fecha_cita" : ''    /* Tipo Date */
-         "Hora_cita" : ''     /* Tipo Long */
-         "Medico_cita" : ''   /* Tipo Medico */
-         "Paciente_cita" : '' /* Tipo Paciente */
-      } /*... otros pacientes */
-]
-```
-
-
-
-
-### Servicios Rest:
-
-|   Método   |   URL      |     Acción                                            |   Parámetros     |    Cuerpo    |    Retorno                               |
-|:-----------|:-----------|:------------------------------------------------------|:-----------------|:-------------|:-----------------------------------------|
-|    GET     | /citas     | Da la lista de citas                                  |                  |              |Colección de las citas en el calendario   |
-|    GET     | /citas/:id | Da los parámetros de una cita en la lista             |ID: id de la cita |              |Médico asignado a la cita consultada      |
-|    POST    | /Citas     | Crea una nueva cita segun la información suministrada |                  | Atributos    |Nueva cita creada                         |
-|    END     | /Citas/:id | Da por terminada la cita por el medico y/o la fecha   |ID: id de la cita |              |Se termina la cita correctamente          |
-|   DELETE   | /Citas/:id | Borra una cita según su ID                            |ID: id de la cita |              |Se borra la cita de la lista (cancela)    |
-
-
 ## Entidad Especialidad
 
 La comunicación entre el cliente y el servidor se realiza intercambiando objetos JSON que siguen el siguiente formato:
@@ -304,3 +253,58 @@ La descripción del API REST se presenta a continuación:
 | **@GET** | EspecialidadDTO getEspecialidad(Long id) | Retorna la especialidad identificada con este id |
 | **@POST** | EspecialidadDTO createEspecialidad(EspecialidadDTO especialidad) | Crea una especialidad con la información enviada como parámetro |
 | **@DELETE** | void deleteEspecialidad(Long id) | Borra la especialidad identificado con este id|
+
+
+
+
+## Entidad Citas:
+
+
+La comunicación entre el cliente y el servidos se realiza intercambiando objetos JSON que siguen el siguiente formato
+
+```javascript
+[
+      {
+         "id" : 1             /* Tipo Long */
+         "Fecha_cita" : ''    /* Tipo Date */
+         "Hora_cita" : ''     /* Tipo Long */
+         "Medico_cita" : ''   /* Tipo Medico */
+         "Paciente_cita" : '' /* Tipo Paciente */
+      }
+]
+```
+
+Si se solicita una lista de las citas en el calendario, el servidor retorna dichos objetos en el siguiente formato:
+
+```javascript
+[
+      {
+         "id" : 1             /* Tipo Long */
+         "Fecha_cita" : ''    /* Tipo Date */
+         "Hora_cita" : ''     /* Tipo Long */
+         "Medico_cita" : ''   /* Tipo Medico */
+         "Paciente_cita" : '' /* Tipo Paciente */
+      }, {
+         "id" : 2             /* Tipo Long */
+         "Fecha_cita" : ''    /* Tipo Date */
+         "Hora_cita" : ''     /* Tipo Long */
+         "Medico_cita" : ''   /* Tipo Medico */
+         "Paciente_cita" : '' /* Tipo Paciente */
+      } /*... otros pacientes */
+]
+```
+
+
+
+
+### Servicios Rest:
+
+|   Método   |   URL      |     Acción                                            |   Parámetros     |    Cuerpo    |    Retorno                               |
+|:-----------|:-----------|:------------------------------------------------------|:-----------------|:-------------|:-----------------------------------------|
+|    GET     | /citas     | Da la lista de citas                                  |                  |              |Colección de las citas en el calendario   |
+|    GET     | /citas/:id | Da los parámetros de una cita en la lista             |ID: id de la cita |              |Médico asignado a la cita consultada      |
+|    POST    | /Citas     | Crea una nueva cita segun la información suministrada |                  | Atributos    |Nueva cita creada                         |
+|    END     | /Citas/:id | Da por terminada la cita por el medico y/o la fecha   |ID: id de la cita |              |Se termina la cita correctamente          |
+|   DELETE   | /Citas/:id | Borra una cita según su ID                            |ID: id de la cita |              |Se borra la cita de la lista (cancela)    |
+
+
