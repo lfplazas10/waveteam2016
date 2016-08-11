@@ -164,12 +164,12 @@ Para una solicitud de lista de consultorios, se seguirá el siguiente formato:
 				"Atención urgencias":Sí,               /*Boolean*/
 				"Unidad Cuidados Intensivos (UCI)": Sí /*Boolean*/
 			}, {
-				"Nombre": 315",
+				"Nombre": 315,
 				"Horario": '8.00am-6.00pm',            /*String*/
 				"Atención urgencias":No,               /*Boolean*/
 				"Unidad Cuidados Intensivos (UCI)": No /*Boolean*/
 			}, {
-				"Nombre: 100",
+				"Nombre": 100,
 				"Horario": '24 horas',                 /*String*/
 				"Atención urgencias":Sí,               /*Boolean*/
 				"Unidad Cuidados Intensivos (UCI)": No /*Boolean*/
