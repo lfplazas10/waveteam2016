@@ -140,7 +140,7 @@ La descripción del API REST se presenta a continuación:
 
 El formato utilizado para un recurso de tipo "consultorio" es:
 
-´´´javascript
+```javascript
 {
 	"Nombre": 202,                         /*Integer*/
 	"Horario": 8:00am-6:00pm,              /*String*/
@@ -148,14 +148,14 @@ El formato utilizado para un recurso de tipo "consultorio" es:
 	"Unidad Cuidados Intensivos (UCI)": Sí /*Boolean*/
 	/*Otros atributos*/
 }
-´´´
+```
 
 Donde "102" es también la ubicación del consultorio; el primer dígito es el piso
 y los otros dos ubican el consultorio en el piso.
 
 Para una solicitud de lista de consultorios, se seguirá el siguiente formato:
 
-´´´javascript
+```javascript
 {
 	"consultorios":[
 			{
@@ -177,7 +177,7 @@ Para una solicitud de lista de consultorios, se seguirá el siguiente formato:
 	]
 	
 }
-´´´
+```
 
 
 ###Servicios REST
