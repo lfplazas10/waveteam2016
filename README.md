@@ -20,7 +20,7 @@ Este modelo conceptual está sujeto a cambios.
 
 #Documentación del API:
 
-### Entidad Médico
+## Entidad Médico
 
 La comunicación entre el cliente y el servidor se realiza intercambiando objetos JSON que siguen el siguiente formato:
 
