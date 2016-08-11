@@ -119,6 +119,7 @@ La descripción del API REST se presenta a continuación:
 ### La clase PacienteResource entrá entonces los siguientes métodos.
 
 | Método | Descripción |
+|:----------|:----------|
 | List<PacienteDTO> getPacientes() | Retorna la lista de pacientes |
 | PacienteDTO getPaciente(Long id) | Retorna el paciente identificado con este id |
 | PacienteDTO createPaciente(PacienteDTO paciente) | Crea un Paciente con la información enviada como parámetro |
@@ -128,6 +129,7 @@ La descripción del API REST se presenta a continuación:
 ### Anotaciones para indicar el verbo HTTP
 
 | Anotación | Métodos | Descripción |
+|:----------|:----------|:----------|
 | @GET | List<PacienteDTO> getPacientes() | Retorna la lista de pacientes |
 | @GET | PacienteDTO getPaciente(Long id) | Retorna el paciente identificado con este id |
 | @POST | PacienteDTO createPaciente(PacienteDTO paciente) | Crea un Paciente con la información enviada como parámetro |
