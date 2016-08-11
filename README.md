@@ -9,13 +9,13 @@ Este modelo conceptual está sujeto a cambios.
 
 #Lista de integrantes y las clases a desarrollar:
 
-|Nombre            |Correo Uniandes              |Clase a desarrollar   |
-|:-----------------|:----------------------------|:------------|
-|Luis Felipe Plazas|lf.plazas10@uniandes.edu.co  |Médico        |
-|John Ardila       |je.ardila1501@uniandes.edu.co|Paciente      |
-|Rogelio García    |r.garcia11@uniandes.edu.co   |Desarrollador |
-|Daniela Mariño    |d.marino10@uniandes.edu.co   |Especialista  |
-|Juan Lizarazo     |jm.lizarazo10@uniandes.edu.co|Cita          |
+|Nombre            |Correo Uniandes              |Clase a desarrollar|
+|:-----------------|:----------------------------|:------------------|
+|Luis Felipe Plazas|lf.plazas10@uniandes.edu.co  |Médico             |
+|John Ardila       |je.ardila1501@uniandes.edu.co|Paciente           |
+|Rogelio García    |r.garcia11@uniandes.edu.co   |Consultorio        |
+|Daniela Mariño    |d.marino10@uniandes.edu.co   |Especialista       |
+|Juan Lizarazo     |jm.lizarazo10@uniandes.edu.co|Cita               |
 
 
 #Documentación del API:
@@ -135,6 +135,60 @@ La descripción del API REST se presenta a continuación:
 | **@POST** | PacienteDTO createPaciente(PacienteDTO paciente) | Crea un Paciente con la información enviada como parámetro |
 | **@PUT** | PacienteDTO updatePaciente(Long id, PacienteDTO paciente) | Actualiza la información del paciete identificado con este id |
 | **@DELETE** | void deletePaciente(Long id) | Borra el paciente identificado con este id|
+
+##Entidad Consultorio
+
+El formato utilizado para un recurso de tipo "consultorio" es:
+
+´´´javascript
+{
+	"Nombre": 202,                         /*Integer*/
+	"Horario": 8:00am-6:00pm,              /*String*/
+	"Atención urgencias":No,               /*Boolean*/
+	"Unidad Cuidados Intensivos (UCI)": Sí /*Boolean*/
+	/*Otros atributos*/
+}
+´´´
+
+Donde "102" es también la ubicación del consultorio; el primer dígito es el piso
+y los otros dos ubican el consultorio en el piso.
+
+Para una solicitud de lista de consultorios, se seguirá el siguiente formato:
+
+´´´javascript
+{
+	"consultorios":[
+			{
+				"Nombre": 202,                         /*Integer*/
+				"Horario": 8:00am-6:00pm,              /*String*/
+				"Atención urgencias":Sí,               /*Boolean*/
+				"Unidad Cuidados Intensivos (UCI)": Sí /*Boolean*/
+			}, {
+				"Nombre": 315"
+				"Horario": 8:00am-6:00pm,              /*String*/
+				"Atención urgencias":No,               /*Boolean*/
+				"Unidad Cuidados Intensivos (UCI)": No /*Boolean*/
+			}, {
+				"Nombre: 100"
+				"Horario": 24 horas,              	   /*String*/
+				"Atención urgencias":Sí,               /*Boolean*/
+				"Unidad Cuidados Intensivos (UCI)": No /*Boolean*/
+			} /*Etc*/
+	]
+	
+}
+´´´
+
+
+###Servicios REST
+
+|Método| URI             |Acción|Parámetros|Cuerpo|Retorno|
+|:----:|:---------------:|:----:|:--------:|:----:|:-----:|
+|GET   |/consultorios    |Lista los registros de Consultorio (READ)|   |   |Colección de registros de Consultorio|
+|GET   |/consultorios/:id|Obtener los atributos de un Consultorio (READ)|@PathParam id: Identificador del registro|   | Atributos del Consultorio|
+|POST  |/consultorios    |Crea un nuevo Consultorio (CREATE)|   |Atributos del Consultorio que se creará|Consultorio creado (con id)|
+|PUT   |/consultorios/:id|Actualiza un Consultorio (UPDATE)|@PathParam id: Identificador del registro|Objeto JSON del Consultorio|Consultorio actualizado|
+|DELETE|/consultorios/:id|Borra un Consultorio (DELETE)|@PathParam id: Identificador del registro|   |   |
 
 
 ## Entidad Citas:
