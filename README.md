@@ -64,11 +64,80 @@ Método|URI|Acción|Parámetros|Cuerpo|Retorno
 **PUT**|/doctors/*:cedula*|Actualiza una instancia de la entidad Médico (UPDATE)|**@PathParam cédula**: Identificador del registro|Objeto JSON de Médico|Instancia de Médico actualizada
 **DELETE**|/doctors/*:cedula*|Borra instancia de Médico en el servidor (DELETE)|**@PathParam cédula**: Identificador del registro||
 
+## Entidad Paciente
+
+La comunicación entre el cliente y el servidor se realiza intercambiando objetos JSON que siguen el siguiente formato:
+
+```javascript
+{
+	"id" : 1,		/* Tipo Long */
+	"name" : ''		/* Tipo String */
+	"edad" : ''		/* Tipo int */
+	"sexo" : ''		/* Tipo String */
+	"tipoSangre" : ''	/* Tipo String */
+	"eps" : '' 		/* Tipo String */
+}
+```
+
+Si se solicta la servidor una lista de pacientes, el servidor retorna un arreglo de esos objetos siguiendo el siguiente formato:
+
+```javascript
+[
+  {
+    "id" : 1,		/* Tipo Long */
+    "name" : ''		/* Tipo String */
+    "edad" : ''		/* Tipo int */
+    "sexo" : ''		/* Tipo String */
+    "tipoSangre" : ''	/* Tipo String */
+    "eps" : '' 		/* Tipo String */
+  }, {
+    "id" : 2,		/* Tipo Long */
+    "name" : ''		/* Tipo String */
+    "edad" : ''		/* Tipo int */
+    "sexo" : ''		/* Tipo String */
+    "tipoSangre" : ''	/* Tipo String */
+  } /* ... otros pacientes */
+]
+```
+
+### Servicio REST
+
+Al ejecutarlo en su propia máquina, el recurso REST estará disponible en:
+
+ • xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+La descripción del API REST se presenta a continuación:
+
+| Método | URI | Acción | Parámetros | Cuerpo | Retorno |
+|:----------|:----------|:----------|:----------|:----------|:----------|
+| GET | /pacientes | Lista de los registros de Paciente (READ) | | | Colección de registros de Paciente|
+| GET | /pacientes/:id | Obtiene los atributos de una instancia de Paciente (READ) que tiene indicado id | @PathParam id: Identificador de registro | | Atributos de la instancia de Paciente |
+| PUT | /pacientes/:id | Actualiza la instancia de la entidad Paciente (UPDATE) | @PathParam id: Identificador de registro | Objeto JSON de Paciente | Instancia de Paciente actualizada |
+| POST | /pacientes | Crea una nueva instancia de la entidad Paciente (CREATE) | | Atributos de la instancia de Paciente a crear | Instancia de City creada, incluyendo su nuevo ID |
+| DELETE | /pacientes/:id | Borra instancia de Paciente en el servidor (DELETE) | @PathParam id: Identificador del registro | | |
+
+### La clase PacienteResource entrá entonces los siguientes métodos.
+
+| Método | Descripción |
+| List<PacienteDTO> getPacientes() | Retorna la lista de pacientes |
+| PacienteDTO getPaciente(Long id) | Retorna el paciente identificado con este id |
+| PacienteDTO createPaciente(PacienteDTO paciente) | Crea un Paciente con la información enviada como parámetro |
+| PacienteDTO updatePaciente(Long id, PacienteDTO paciente) | Actualiza la información del paciete identificado con este id |
+| void deletePaciente(Long id) | Borra el paciente identificado con este id|
+
+### Anotaciones para indicar el verbo HTTP
+
+| Anotación | Métodos | Descripción |
+| @GET | List<PacienteDTO> getPacientes() | Retorna la lista de pacientes |
+| @GET | PacienteDTO getPaciente(Long id) | Retorna el paciente identificado con este id |
+| @POST | PacienteDTO createPaciente(PacienteDTO paciente) | Crea un Paciente con la información enviada como parámetro |
+| @PUT | PacienteDTO updatePaciente(Long id, PacienteDTO paciente) | Actualiza la información del paciete identificado con este id |
+| @DELETE | void deletePaciente(Long id) | Borra el paciente identificado con este id|
 
 
-#Servicios Rest:
+## Entidad Citas:
 
-Citas:
+### Servicios Rest:
 
 |   Método   |   URL      |     Acción                                            |   Parámetros     |    Cuerpo    |    Retorno                               |
 |:-----------|:-----------|:------------------------------------------------------|:-----------------|:-------------|:-----------------------------------------|
