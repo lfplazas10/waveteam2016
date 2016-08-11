@@ -110,11 +110,11 @@ La descripción del API REST se presenta a continuación:
 
 | Método | URI | Acción | Parámetros | Cuerpo | Retorno |
 |:----------|:----------|:----------|:----------|:----------|:----------|
-| GET | /pacientes | Lista de los registros de Paciente (READ) | | | Colección de registros de Paciente|
-| GET | /pacientes/:id | Obtiene los atributos de una instancia de Paciente (READ) que tiene indicado id | @PathParam id: Identificador de registro | | Atributos de la instancia de Paciente |
-| PUT | /pacientes/:id | Actualiza la instancia de la entidad Paciente (UPDATE) | @PathParam id: Identificador de registro | Objeto JSON de Paciente | Instancia de Paciente actualizada |
-| POST | /pacientes | Crea una nueva instancia de la entidad Paciente (CREATE) | | Atributos de la instancia de Paciente a crear | Instancia de City creada, incluyendo su nuevo ID |
-| DELETE | /pacientes/:id | Borra instancia de Paciente en el servidor (DELETE) | @PathParam id: Identificador del registro | | |
+| **GET** | /pacientes | Lista de los registros de Paciente (READ) | | | Colección de registros de Paciente|
+| **GET** | /pacientes/:id | Obtiene los atributos de una instancia de Paciente (READ) que tiene indicado id | **@PathParam id**: Identificador de registro | | Atributos de la instancia de Paciente |
+| **PUT** | /pacientes/:id | Actualiza la instancia de la entidad Paciente (UPDATE) | **@PathParam id**: Identificador de registro | Objeto JSON de Paciente | Instancia de Paciente actualizada |
+| **POST** | /pacientes | Crea una nueva instancia de la entidad Paciente (CREATE) | | Atributos de la instancia de Paciente a crear | Instancia de City creada, incluyendo su nuevo ID |
+| **DELETE** | /pacientes/:id | Borra instancia de Paciente en el servidor (DELETE) | **@PathParam id**: Identificador del registro | | |
 
 ### La clase PacienteResource tendrá entonces los siguientes métodos.
 
@@ -130,11 +130,11 @@ La descripción del API REST se presenta a continuación:
 
 | Anotación | Métodos | Descripción |
 |:----------|:----------|:----------|
-| @GET | List<PacienteDTO> getPacientes() | Retorna la lista de pacientes |
-| @GET | PacienteDTO getPaciente(Long id) | Retorna el paciente identificado con este id |
-| @POST | PacienteDTO createPaciente(PacienteDTO paciente) | Crea un Paciente con la información enviada como parámetro |
-| @PUT | PacienteDTO updatePaciente(Long id, PacienteDTO paciente) | Actualiza la información del paciete identificado con este id |
-| @DELETE | void deletePaciente(Long id) | Borra el paciente identificado con este id|
+| **@GET** | List<PacienteDTO> getPacientes() | Retorna la lista de pacientes |
+| **@GET** | PacienteDTO getPaciente(Long id) | Retorna el paciente identificado con este id |
+| **@POST** | PacienteDTO createPaciente(PacienteDTO paciente) | Crea un Paciente con la información enviada como parámetro |
+| **@PUT** | PacienteDTO updatePaciente(Long id, PacienteDTO paciente) | Actualiza la información del paciete identificado con este id |
+| **@DELETE** | void deletePaciente(Long id) | Borra el paciente identificado con este id|
 
 
 ## Entidad Citas:
