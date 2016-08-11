@@ -11,7 +11,7 @@ Este modelo conceptual está sujeto a cambios.
 
 |Nombre            |Correo Uniandes              |Clase a desarrollar|
 |:-----------------|:----------------------------|:------------------|
-|Luis Felipe Plazas|lf.plazas10@uniandes.edu.co  |Médico             |
+|Luis Felipe Plazas (*)|lf.plazas10@uniandes.edu.co  |Médico             |
 |John Ardila       |je.ardila1501@uniandes.edu.co|Paciente           |
 |Rogelio García    |r.garcia11@uniandes.edu.co   |Consultorio        |
 |Daniela Mariño    |d.marino10@uniandes.edu.co   |Especialidad       |
