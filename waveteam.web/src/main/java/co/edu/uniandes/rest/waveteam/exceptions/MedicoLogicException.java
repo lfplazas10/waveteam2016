@@ -8,7 +8,7 @@ public class MedicoLogicException extends Exception {
 	/**
 	 * versión usada en la serialización de la clase
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L; 
 
 	/**
 	 * Constructor por defecto
