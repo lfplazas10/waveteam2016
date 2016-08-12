@@ -40,7 +40,7 @@ public class PacienteResource {
      */
     @GET
     public List<MedicoDTO> getCities() throws MedicoLogicException {
-        return cityLogic.getCities();
+        return cityLogic.getDoctors();
     }
 
    
@@ -54,7 +54,7 @@ public class PacienteResource {
      */
     @POST
     public MedicoDTO createCity(MedicoDTO city) throws MedicoLogicException {
-        return cityLogic.createCity(city);
+        return cityLogic.createDoctor(city);
     }
 
   

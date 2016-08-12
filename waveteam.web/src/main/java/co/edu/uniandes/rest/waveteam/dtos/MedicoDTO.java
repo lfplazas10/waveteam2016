@@ -1,36 +1,52 @@
 /*
- * CityDTO
- * Objeto de transferencia de datos de Ciudades.
- * Los DTO especifican los mensajes que se envían entre el cliente y el servidor.
+ * MedicoDTO
+ * Objeto de transferencia de datos de Médicos.
  */
 package co.edu.uniandes.rest.waveteam.dtos;
 
 /**
  * Objeto de transferencia de datos de Ciudades.
+ *
  * @author Asistente
  */
 public class MedicoDTO {
+
     private Long id;
     private String name;
+    private String especialidad;
+    private Long consultorio;
 
     /**
      * Constructor por defecto
      */
     public MedicoDTO() {
-	}
+
+    }
+
+    public MedicoDTO(Long id, String name, String especialidad, Long consultorio) {
+        this.id = id;
+        this.name = name;
+        this.especialidad = especialidad;
+        this.consultorio = consultorio;
+    }
+
+    public String getEspecialidad() {
+        return especialidad;
+    }
+
+    public void setEspecialidad(String especialidad) {
+        this.especialidad = especialidad;
+    }
+
+    public Long getConsultorio() {
+        return consultorio;
+    }
+
+    public void setConsultorio(Long consultorio) {
+        this.consultorio = consultorio;
+    }
 
     /**
-     * Constructor con parámetros.
-     * @param id identificador de la ciudad
-     * @param name nombre de la ciudad
-     */
-    public MedicoDTO(Long id, String name) {
-		super();
-		this.id = id;
-		this.name = name;
-	}
-
-	/**
      * @return the id
      */
     public Long getId() {
@@ -57,12 +73,12 @@ public class MedicoDTO {
     public void setName(String name) {
         this.name = name;
     }
-    
+
     /**
      * Convierte el objeto a una cadena
      */
     @Override
     public String toString() {
-    	return "{ id : " + getId() + ", name : \"" + getName() + "\" }" ;  
+        return "{ id : " + getId() + ", name : \"" + getName() + "\" }";
     }
 }

@@ -1,0 +1,7 @@
+/Users/felipeplazas/Downloads/waveteam.web/src/main/java/co/edu/uniandes/rest/waveteam/dtos/MedicoDTO.java
+/Users/felipeplazas/Downloads/waveteam.web/src/main/java/co/edu/uniandes/rest/waveteam/exceptions/MedicoLogicException.java
+/Users/felipeplazas/Downloads/waveteam.web/src/main/java/co/edu/uniandes/rest/waveteam/mocks/MedicoLogicMock.java
+/Users/felipeplazas/Downloads/waveteam.web/src/main/java/co/edu/uniandes/rest/waveteam/mappers/MedicoLogicExceptionMapper.java
+/Users/felipeplazas/Downloads/waveteam.web/src/main/java/co/edu/uniandes/rest/waveteam/resources/RestConfig.java
+/Users/felipeplazas/Downloads/waveteam.web/src/main/java/co/edu/uniandes/rest/waveteam/resources/MedicoResource.java
+/Users/felipeplazas/Downloads/waveteam.web/src/main/java/co/edu/uniandes/rest/waveteam/resources/PacienteResource.java

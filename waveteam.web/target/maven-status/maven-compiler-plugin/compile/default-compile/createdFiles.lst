@@ -1,0 +1,7 @@
+co/edu/uniandes/rest/waveteam/resources/PacienteResource.class
+co/edu/uniandes/rest/waveteam/resources/RestConfig.class
+co/edu/uniandes/rest/waveteam/resources/MedicoResource.class
+co/edu/uniandes/rest/waveteam/mappers/MedicoLogicExceptionMapper.class
+co/edu/uniandes/rest/waveteam/mocks/MedicoLogicMock.class
+co/edu/uniandes/rest/waveteam/exceptions/MedicoLogicException.class
+co/edu/uniandes/rest/waveteam/dtos/MedicoDTO.class

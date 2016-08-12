@@ -1,7 +1,7 @@
 package co.edu.uniandes.rest.waveteam.mocks;
 
 /**
- * Mock del recurso Ciudades (Mock del servicio REST)
+ * Mock del recurso Medicos (Mock del servicio REST)
  *
  * @author Asistente
  */
@@ -16,91 +16,142 @@ import co.edu.uniandes.rest.waveteam.exceptions.MedicoLogicException;
 
 /*
  * CityLogicMock
- * Mock del recurso Ciudades (Mock del servicio REST)
+ * Mock del recurso Medicos (Mock del servicio REST)
  */
 public class MedicoLogicMock {
 
     // objeto para presentar logs de las operaciones
     private final static Logger logger = Logger.getLogger(MedicoLogicMock.class.getName());
 
-    // listado de ciudades
-    private static ArrayList<MedicoDTO> cities;
+    private static ArrayList<MedicoDTO> doctors;
 
     /**
      * Constructor. Crea los datos de ejemplo.
      */
     public MedicoLogicMock() {
 
-        if (cities == null) {
-            cities = new ArrayList<>();
-            cities.add(new MedicoDTO(1L, "Bogota"));
-            cities.add(new MedicoDTO(2L, "Cali"));
-            cities.add(new MedicoDTO(3L, "Medellin"));
+        if (doctors == null) {
+            doctors = new ArrayList<>();
+            doctors.add(new MedicoDTO(1L, "Pedro Pablo Jaramillo", "Cardiólogo", 301L));
+            doctors.add(new MedicoDTO(2L, "Jairo Aristizabal", "Neumólogo", 305L));
+            doctors.add(new MedicoDTO(3L, "Fernando Vallejo", "Traumatólogo", 320L));
         }
 
         // indica que se muestren todos los mensajes
         logger.setLevel(Level.INFO);
 
         // muestra información 
-        logger.info("Inicializa la lista de ciudades");
-        logger.info("ciudades" + cities);
+        logger.info("Inicializa la lista de doctores");
+        logger.info("Doctores: " + doctors);
     }
 
     /**
-     * Obtiene el listado de personas.
+     * Obtiene el listado de doctores.
      *
-     * @return lista de ciudades
+     * @return lista de doctores
      * @throws MedicoLogicException cuando no existe la lista en memoria
      */
-    public List<MedicoDTO> getCities() throws MedicoLogicException {
-        if (cities == null) {
-            logger.severe("Error interno: lista de ciudades no existe.");
-            throw new MedicoLogicException("Error interno: lista de ciudades no existe.");
+    public List<MedicoDTO> getDoctors() throws MedicoLogicException {
+        if (doctors == null) {
+            logger.severe("Error interno: lista de doctores no existe.");
+            throw new MedicoLogicException("Error interno: lista de doctores no existe.");
         }
 
-        logger.info("retornando todas las ciudades");
-        return cities;
+        logger.info("Retornando todos los doctores");
+        return doctors;
+    }
+
+    public MedicoDTO getDoctor(Long id) throws MedicoLogicException {
+        if (doctors == null) {
+            logger.severe("Error interno: lista de doctores no existe.");
+            throw new MedicoLogicException("Error interno: lista de doctores no existe.");
+        }
+
+        for (MedicoDTO doctor : doctors) {
+            if (Objects.equals(id, doctor.getId())) {
+                logger.info("Retornando al doctor con ID " + id);
+                return doctor;
+            }
+        }
+        logger.info("No se encontro doctor con ese ID");
+        throw new MedicoLogicException("No existe doctor con ese ID");
+    }
+
+    public MedicoDTO updateDoctor(Long id, MedicoDTO updatedCity) throws MedicoLogicException {
+        if (doctors == null) {
+            logger.severe("Error interno: lista de doctores no existe.");
+            throw new MedicoLogicException("Error interno: lista de doctores no existe.");
+        }
+
+        boolean found = false;
+        if (updatedCity.getId() != null) {
+            for (MedicoDTO doctor : doctors) {
+                if (Objects.equals(id, doctor.getId())) {
+                    logger.info("Actualizando informacion del doctor con");
+                    doctor.setId(updatedCity.getId());
+                    doctor.setName(updatedCity.getName());
+                    doctor.setConsultorio(updatedCity.getConsultorio());
+                    doctor.setEspecialidad(updatedCity.getEspecialidad());
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) {
+                logger.severe("No se encontro doctor con ese ID");
+                throw new MedicoLogicException("No existe doctor con ese ID");
+            }
+
+        } else {
+            logger.severe("El ID dado es nulo");
+            throw new MedicoLogicException("El id es nulo");
+
+        }
+        logger.info("Retornando el doctor actualizado");
+        return updatedCity;
     }
 
     /**
-     * Agrega una ciudad a la lista.
+     * Agrega un medico a la lista.
      *
-     * @param newCity ciudad a adicionar
-     * @throws MedicoLogicException cuando ya existe una ciudad con el id
+     * @param newDoctor doctor a adicionar
+     * @throws MedicoLogicException cuando ya existe un doctor con el id
      * suministrado
-     * @return ciudad agregada
+     * @return doctor agregado
      */
-    public MedicoDTO createCity(MedicoDTO newCity) throws MedicoLogicException {
-        logger.info("recibiendo solicitud de agregar ciudad " + newCity);
+    public MedicoDTO createDoctor(MedicoDTO newDoctor) throws MedicoLogicException {
+        logger.info("Recibiendo solicitud de agregar doctor " + newDoctor);
 
-        // la nueva ciudad tiene id ?
-        if (newCity.getId() != null) {
-            // busca la ciudad con el id suministrado
-            for (MedicoDTO city : cities) {
-                // si existe una ciudad con ese id
-                if (Objects.equals(city.getId(), newCity.getId())) {
-                    logger.severe("Ya existe una ciudad con ese id");
-                    throw new MedicoLogicException("Ya existe una ciudad con ese id");
+        if (newDoctor.getId() != null) {
+            for (MedicoDTO doctor : doctors) {
+                if (Objects.equals(doctor.getId(), newDoctor.getId())) {
+                    logger.severe("Ya existe un doctor con ese id");
+                    throw new MedicoLogicException("Ya existe un doctor con ese id");
                 }
             }
 
-            // la nueva ciudad no tiene id ? 
         } else {
-
-            // genera un id para la ciudad
-            logger.info("Generando id paa la nueva ciudad");
-            long newId = 1;
-            for (MedicoDTO city : cities) {
-                if (newId <= city.getId()) {
-                    newId = city.getId() + 1;
-                }
-            }
-            newCity.setId(newId);
+            logger.severe("El ID suministrado es nulo");
+            throw new MedicoLogicException("Debe suministrar un ID válido");
         }
 
-        // agrega la ciudad
-        logger.info("agregando ciudad " + newCity);
-        cities.add(newCity);
-        return newCity;
+        logger.info("Agregando doctor " + newDoctor);
+        doctors.add(newDoctor);
+        return newDoctor;
+    }
+    
+    public void deleteDoctor(Long id) throws MedicoLogicException{
+        if (doctors == null) {
+            logger.severe("Error interno: lista de doctores no existe.");
+            throw new MedicoLogicException("Error interno: lista de doctores no existe.");
+        }
+        for (MedicoDTO doctor : doctors) {
+            if (Objects.equals(id, doctor.getId())) {
+                logger.info("Borrando el doctor con ID "+id);
+                doctors.remove(doctor);
+                return;
+            }
+        }
+        logger.info("No se encontro doctor con ese ID");
+        throw new MedicoLogicException("No existe doctor con ese ID");
     }
 }

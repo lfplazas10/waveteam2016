@@ -1,61 +1,85 @@
 /*
- * CityResource.java
- * Clase que representa el recurso "/cities"
- * Implementa varios métodos para manipular las ciudades
+ * MedicoResource.java
+ * Clase que representa el recurso "/doctors"
+ * Implementa varios métodos para manipular los doctores
  */
 package co.edu.uniandes.rest.waveteam.resources;
 
 import co.edu.uniandes.rest.waveteam.dtos.MedicoDTO;
 import co.edu.uniandes.rest.waveteam.exceptions.MedicoLogicException;
 import co.edu.uniandes.rest.waveteam.mocks.MedicoLogicMock;
-
 import java.util.List;
-
-
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 /**
- * Clase que implementa el recurso REST correspondiente a "cities".
+ * Clase que implementa el recurso REST correspondiente a "doctors".
  *
  * Note que la aplicación (definida en RestConfig.java) define la ruta "/api" y
- * este recurso tiene la ruta "cities". Al ejecutar la aplicación, el recurse
- * será accesibe a través de la ruta "/api/cities"
+ * este recurso tiene la ruta "doctors". Al ejecutar la aplicación, el recurse
+ * será accesibe a través de la ruta "/api/doctors"
  *
- * @author Asistente
+ * @author Luis Felipe Plazas
  */
-@Path("cities")
+@Path("doctors")
 @Produces("application/json")
+@Consumes("application/json")
 public class MedicoResource {
 
     MedicoLogicMock cityLogic = new MedicoLogicMock();
 
     /**
-     * Obtiene el listado de ciudades.
+     * Obtiene el listado de médicos.
      *
-     * @return lista de ciudades
+     * @return lista de médicos
      * @throws MedicoLogicException excepción retornada por la lógica
      */
     @GET
-    public List<MedicoDTO> getCities() throws MedicoLogicException {
-        return cityLogic.getCities();
+    public List<MedicoDTO> getDoctors() throws MedicoLogicException {
+        return cityLogic.getDoctors();
     }
 
-   
+    @GET
+    @Path("{id: \\d+}")
+    public MedicoDTO getDoctor(@PathParam("id") Long id) throws MedicoLogicException {
+        return cityLogic.getDoctor(id);
+    }
+
     /**
-     * Agrega una ciudad
+     * 
+     * @param id
+     * @param doctor
+     * @return
+     * @throws MedicoLogicException 
+     */
+    @PUT
+    @Path("{id: \\d+}")
+    public MedicoDTO updateDoctor(@PathParam("id") Long id, MedicoDTO doctor) throws MedicoLogicException {
+        return cityLogic.updateDoctor(id, doctor);
+    }
+
+    /**
+     * Agrega un médico
      *
-     * @param city ciudad a agregar
-     * @return datos de la ciudad a agregar
-     * @throws MedicoLogicException cuando ya existe una ciudad con el id
-     * suministrado
+     * @param doctor
+     * @return doctor2 Datos del médico agregado
+     * @throws MedicoLogicException cuando ya existe un médico con la cédula
+     * suministrada
      */
     @POST
-    public MedicoDTO createCity(MedicoDTO city) throws MedicoLogicException {
-        return cityLogic.createCity(city);
+    public MedicoDTO createDoctor(MedicoDTO doctor) throws MedicoLogicException {
+        return cityLogic.createDoctor(doctor);
     }
 
-  
+    @DELETE
+    @Path("{id: \\d+}")
+    public void deleteDoctor(@PathParam("id") Long id) throws MedicoLogicException {
+        cityLogic.deleteDoctor(id);
+    }
 }
