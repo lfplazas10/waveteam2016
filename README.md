@@ -282,6 +282,7 @@ Si se solicita una lista de las citas en el calendario, el servidor retorna dich
          "id" : 1             /* Tipo Long */
          "Fecha_cita" : ''    /* Tipo Date */
          "Hora_cita" : ''     /* Tipo Long */
+         "Duracion_cita:''    /* Tipo int*/
          "Medico_cita" : ''   /* Tipo Medico */
          "Paciente_cita" : '' /* Tipo Paciente */
       }, {
