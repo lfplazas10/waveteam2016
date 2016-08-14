@@ -268,6 +268,7 @@ La comunicación entre el cliente y el servidos se realiza intercambiando objeto
          "id" : 1             /* Tipo Long */
          "Fecha_cita" : ''    /* Tipo Date */
          "Hora_cita" : ''     /* Tipo Long */
+         "Duracion_cita" : '' /* Tipo int */
          "Medico_cita" : ''   /* Tipo Medico */
          "Paciente_cita" : '' /* Tipo Paciente */
       }
@@ -282,13 +283,14 @@ Si se solicita una lista de las citas en el calendario, el servidor retorna dich
          "id" : 1             /* Tipo Long */
          "Fecha_cita" : ''    /* Tipo Date */
          "Hora_cita" : ''     /* Tipo Long */
-         "Duracion_cita:''    /* Tipo int*/
+         "Duracion_cita":''    /* Tipo int*/
          "Medico_cita" : ''   /* Tipo Medico */
          "Paciente_cita" : '' /* Tipo Paciente */
       }, {
          "id" : 2             /* Tipo Long */
          "Fecha_cita" : ''    /* Tipo Date */
          "Hora_cita" : ''     /* Tipo Long */
+         "Duracion_cita" : '' /* Tipo int */
          "Medico_cita" : ''   /* Tipo Medico */
          "Paciente_cita" : '' /* Tipo Paciente */
       } /*... otros pacientes */
