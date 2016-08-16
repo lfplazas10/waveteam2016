@@ -198,9 +198,11 @@ La comunicación entre el cliente y el servidor se realiza intercambiando objeto
 ```javascript
 {
     "id" : 1                         /* Tipo Long */
-    "nombre" : ''                    /* Tipo String */
-    "instrumentacion" : ''           /* Tipo String */
-    "doctores" :  		     /* Tipo Doctor*/
+    "nombre" : 'Pediatria'           /* Tipo String */
+    "gruposEdad" : '0-18'            /* Tipo String*/
+    "tipo" : 'clinica'               /* tipo String*/
+    "doctores" : 		     /* Tipo Doctor*/
+    "consultorios" : 		     /* Tipo Consultorio*/
 }
 ```
 Si se solicita una lista de las especialidades, el servidor retorna dichos objetos en el siguiente formato:
@@ -208,15 +210,19 @@ Si se solicita una lista de las especialidades, el servidor retorna dichos objet
 ```javascript
 [
       {
-         "id" : 1                     /* Tipo Long */
-         "nombre" : ''                /* Tipo String */
-         "instrumentacion" : ''       /* Tipo String */
-         "doctores" :  		      /* Tipo Doctor*/
+         "id" : 1                         /* Tipo Long */
+         "nombre" : 'Pediatria'           /* Tipo String */
+         "gruposEdad" : '0-18'            /* Tipo String*/
+         "tipo" : 'clinica'               /* tipo String*/
+         "doctores" : 		          /* Tipo Doctor*/
+         "consultorios" : 	          /* Tipo Consultorio*/
       }, {
-          "id" : 2                     /* Tipo Long */
-         "nombre" : ''                /* Tipo String */
-         "instrumentacion" : ''       /* Tipo String */
-         "doctores" :  		      /* Tipo Doctor*/
+         "id" : 2                         /* Tipo Long */
+         "nombre" : 'Neurocirugia'        /* Tipo String */
+         "gruposEdad" : '0-95'            /* Tipo String*/
+         "tipo" : 'quirurgica'            /* tipo String*/
+         "doctores" : 		          /* Tipo Doctor*/
+         "consultorios" : 	          /* Tipo Consultorio*/
       } /*... otras especialidades */
 ]
 ```
@@ -233,28 +239,8 @@ La descripción del API REST se presenta a continuación:
 |    GET     | /Especialidades     | Da la lista de especialidades(READ)  |    |   |Colección de las especialidades del hospital   |
 |    GET     | /Especialidades/:id | Da los parámetros de una especialidad (READ)|**@PathParam id:** id de la especialidad |     |Atributos de la especialidad  |
 |    POST    | /Especialidades     | Crea una nueva especialidad segun la información suministrada(CREATE)|    | Atributos    |Nueva especialidad creada  |
+|   PUT   | /Especialidades/:id|Actualiza una especialidad (UPDATE)|**@PathParam id:** id de la especialidad | Objeto JSON de la especialidad|Se actualiza la especialidad |
 |   DELETE   | /Especialidades/:id | Borra una especialidad según su ID (DELETE) |**@PathParam id:** id de la especialidad |      |Se borra la especialidad de la lista  |
-
-
-### La clase EspecialidadResource tendrá entonces los siguientes métodos.
-
-| Método | Descripción |
-|:----------|:----------|
-| List<EspecialidadDTO> getEspecialidades() | Retorna la lista de especialidades |
-| EspecialidadDTO getEspecialidad(Long id) | Retorna la especialidad identificada con este id |
-| EspecialidadDTO createEspecialidad(EspecialidadDTO especialidad) | Crea una especialidad con la información enviada como parámetro |
-| void deleteEspecialidad(Long id) | Borra la especialidad identificada con este id|
-
-### Anotaciones para indicar el verbo HTTP
-
-| Anotación | Métodos | Descripción |
-|:----------|:----------|:----------|
-| **@GET** | List<EspecialidadDTO> getEspecialidades() | Retorna la lista de especialidades |
-| **@GET** | EspecialidadDTO getEspecialidad(Long id) | Retorna la especialidad identificada con este id |
-| **@POST** | EspecialidadDTO createEspecialidad(EspecialidadDTO especialidad) | Crea una especialidad con la información enviada como parámetro |
-| **@DELETE** | void deleteEspecialidad(Long id) | Borra la especialidad identificado con este id|
-
-
 
 
 ## Entidad Citas:
