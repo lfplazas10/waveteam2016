@@ -7,6 +7,7 @@ co\edu\uniandes\rest\waveteam\exceptions\ConsultorioLogicException.class
 co\edu\uniandes\rest\waveteam\mappers\MedicoLogicExceptionMapper.class
 co\edu\uniandes\rest\waveteam\mocks\EspecialidadLogicMock.class
 co\edu\uniandes\rest\waveteam\dtos\ConsultorioDTO.class
+co\edu\uniandes\rest\waveteam\mappers\ConsultorioLogicExceptionMapper.class
 co\edu\uniandes\rest\waveteam\dtos\EspecialidadDTO.class
 co\edu\uniandes\rest\waveteam\mocks\ConsultorioLogicMock.class
 co\edu\uniandes\rest\waveteam\resources\RestConfig.class
