@@ -36,7 +36,7 @@ public class EspecialidadResource {
      * @throws EspecialidadLogicException excepción retornada por la lógica
      */
     @GET
-    public List<EspecialidadDTO> getDoctors() throws EspecialidadLogicException {
+    public List<EspecialidadDTO> getEspecialidades() throws EspecialidadLogicException {
         return espLogic.getEspecialidades();
     }
 
