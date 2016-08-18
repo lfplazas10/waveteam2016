@@ -11,6 +11,7 @@ package co.edu.uniandes.rest.waveteam.mocks;
  */
 import co.edu.uniandes.rest.waveteam.dtos.CitaDTO;
 import co.edu.uniandes.rest.waveteam.dtos.MedicoDTO;
+import co.edu.uniandes.rest.waveteam.dtos.PatientDTO;
 import co.edu.uniandes.rest.waveteam.exceptions.CitaLogicException;
 import java.util.ArrayList;
 import java.util.List;
