@@ -17,16 +17,16 @@ public class CitaDTO {
     private Long id;
     private Date fecha;
     private Long hora;
-    private Long duracion;
+    private int duracion;
     private MedicoDTO medico;
-    private PacienteDTO paciente;
+    private PatientDTO paciente;
     
     
     public CitaDTO(){
         
     }
     
-    public CitaDTO(Long id, Date fecha, Long hora, Long duracion, MedicoDTO medico, PatientDTO paciente){
+    public CitaDTO(Long id, Date fecha, Long hora, int duracion, MedicoDTO medico, PatientDTO paciente){
         this.id = id;
         this.fecha = fecha;
         this.hora = hora;
@@ -65,11 +65,11 @@ public class CitaDTO {
     }
     
     
-    public Long getDuracion(){
+    public int getDuracion(){
         return duracion;
     }
     
-    public void setDuracion(Long duracion){
+    public void setDuracion(int duracion){
         this.duracion = duracion;
     }
     
@@ -96,7 +96,12 @@ public class CitaDTO {
     
     @Override
     public String toString(){
-        return "{ id : " + getId() + ", " + "\n" + "fecha : " + getFecha() + ", "+"\n" + "hora : " + getFecha() + ", "+"\n"+ "duracion : " + getDuracion() + ", " + "\n"+ " medico : " + medico.toString() + ", " + "\n" + "paciente : " + paciente.toString() + " }";
+        return "id : " + id +
+                ", fecha : " + fecha + 
+                ", hora : " +hora + 
+                ", duracion : " + duracion + 
+                ",  medico : " + medico.toString() + 
+                ", paciente : " + paciente.toString() ;
     }
     
     
