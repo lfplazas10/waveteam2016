@@ -13,6 +13,8 @@ import co.edu.uniandes.rest.waveteam.dtos.CitaDTO;
 import co.edu.uniandes.rest.waveteam.dtos.MedicoDTO;
 import co.edu.uniandes.rest.waveteam.dtos.PatientDTO;
 import co.edu.uniandes.rest.waveteam.exceptions.CitaLogicException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -29,14 +31,21 @@ public class AppLogicMock {
     private final static Logger logger = Logger.getLogger(AppLogicMock.class.getName());    
 
     private static ArrayList<CitaDTO> citas;
+    private Long a = 2L;
     
     
-    public AppLogicMock(){
+    public AppLogicMock() throws ParseException{
         
         if(citas==null){
             citas = new ArrayList<>();
-            citas.add(new CitaDTO("1", new Date(), "0700", "30", new MedicoDTO(), new PacienteDTO()));
-            citas.add(new CitaDTO("2", new Date(), "0900", "15", new MedicoDTO(), new PacienteDTO()));
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            Date d = sdf.parse("17/08/2016");
+            Date e = sdf.parse("18/8/2016");
+            Date f = sdf.parse("19/8/2016");
+            
+            citas.add(new CitaDTO(1L, d, 700L, 30, new MedicoDTO(1L, "Pedro Pablo Jaramillo", "Cardiólogo", 301L), new PatientDTO(1L, "Pepe Pombo", 35 , "macho", "A-", "SaludCoop")));
+            citas.add(new CitaDTO(2L, e, 900L, 15, new MedicoDTO(2L, "Jairo Aristizabal", "Neumólogo", 305L), new PatientDTO(2L, "Magdalena Mejia", 28 , "hembra", "o+", "CafeSalud")));
+            citas.add(new CitaDTO(3L, f, 1100L, 40, new MedicoDTO(3L, "Fernando Vallejo", "Traumatólogo", 320L), new PatientDTO(3L, "Silvio Salgar", 52 , "macho", "b-", "SonrisaSalud")));
         }    
         
         
@@ -69,11 +78,11 @@ public class AppLogicMock {
         
         for(CitaDTO cita : citas){
             
-            if(id.equals(cita.getId())){
-            } else {
-                logger.info("Retornando cita con ID: " + id);
+            if(Objects.equals(id, cita.getId())){
+                logger.info("Retornando la cita con id: " + id);
                 return cita;
-            }
+            
+        }
         }
         logger.info("No se encontró una cita con ese ID");        
         throw new CitaLogicException("No se encontró una cita con ese ID");
@@ -82,69 +91,71 @@ public class AppLogicMock {
     }
     
     
-    public CitaDTO updateCita(Long id, CitaDTO nueva) throws CitaLogicException{
+    
+    public CitaDTO updateCita(Long id, CitaDTO nueva) throws CitaLogicException
+    {
       if(citas==null){
             logger.severe("Error obteniendo citas, la lista no está inicializada");
             throw new CitaLogicException("Error obteniendo citas, la lista no está inicializada");
             
-        }
-      boolean encontrado = false;
-      if(nueva.getId()!=null){
-          for(CitaDTO cita : citas){
+        }      
+      
+        for(CitaDTO cita : citas){
            
-              if(id.equals(cita.getId())){
+            if(Objects.equals(id, cita.getId())){
                
-                  logger.info("Actualizando la inforamcion de la cita con id: ");
-                  cita.setId(nueva.getId());
-                  cita.setFecha((nueva.getFecha()));
-                  cita.setHora(nueva.getHora());
-                  cita.setDuracion(nueva.getDuracion());
-                  cita.setMedico(nueva.getMedico());
-                  cita.setPaciente(nueva.getPaciente());
-                  encontrado = true;
-                  break;
+                logger.info("Actualizando la informacion de la cita con id: ");
+                cita.setId(nueva.getId());
+                cita.setFecha((nueva.getFecha()));
+                cita.setHora(nueva.getHora());
+                cita.setDuracion(nueva.getDuracion());
+                cita.setMedico(nueva.getMedico());
+                cita.setPaciente(nueva.getPaciente());
+               
+                return cita;
               }
           }
-          if(!encontrado){
+          
            
-              logger.severe("No se encontró una cita con el ID solicitado");
-              throw new CitaLogicException("No se encontró una cita con el ID solicitado");
-          }
+            logger.severe("No se encontró una cita con el ID solicitado");
+            throw new CitaLogicException("No se encontró una cita con el ID solicitado");
+          
       }
-          else{
-           
-              logger.severe("Error con el id ingresado");
-              throw new CitaLogicException("Error con el id ingresado");
-          }
+         
           
           
-        logger.info("Retornando el octor actualizado");
-        return nueva;
-    
-        
-    }
+      
     
     
     public CitaDTO crearCita(CitaDTO nueva) throws CitaLogicException {
         
         logger.info("Se trata de agregar una nueva cita: " + nueva);
         
-        if(nueva.getId()!=null){
-            for(CitaDTO cita : citas){
-                if(cita.getId().equals(nueva.getId())){
-                    logger.severe("Una cita con ese id ya existe en la lista");
-                    throw new CitaLogicException("Una cita con ese id ya existe en la lista");
+        if(citas==null){
+            
+              
+            logger.severe("La lista de citas no existe");
+            throw new CitaLogicException("La lista de citas no existe");
+                
+            
+        }
+        else if(nueva.getId()==null){
+            logger.severe("El ID no es valido");
+            throw new CitaLogicException("Debe ingresar un ID válido");
+        }
+        else{
+            for (CitaDTO cita : citas) {
+                if (Objects.equals(nueva.getId(), cita.getId())) {
+                    logger.info("Ya hay un consultorio con ID " + nueva.getId());
+                    throw new CitaLogicException("Debe ingresar un id válido.");
                 }
             }
-        }
-        else {
-            logger.severe("El ID suministrado no es coherente");
-            throw new CitaLogicException("El ID suministrado no es coherente");
-        }
+        
         
         logger.info("Creando la cita " + nueva);
         citas.add(nueva);
         return nueva;
+        }
         
     }
     
