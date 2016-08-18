@@ -6,6 +6,7 @@
 package co.edu.uniandes.rest.waveteam.dtos;
 
 import java.util.Date;
+import co.edu.uniandes.rest.waveteam.dtos.PatientDTO;
 
 /**
  *
@@ -25,7 +26,7 @@ public class CitaDTO {
         
     }
     
-    public CitaDTO(Long id, Date fecha, Long hora, Long duracion, MedicoDTO medico, PacienteDTO paciente){
+    public CitaDTO(Long id, Date fecha, Long hora, Long duracion, MedicoDTO medico, PatientDTO paciente){
         this.id = id;
         this.fecha = fecha;
         this.hora = hora;
@@ -82,12 +83,12 @@ public class CitaDTO {
     }
     
     
-    public PacienteDTO getPaciente(){
+    public PatientDTO getPaciente(){
         return paciente;
     }
     
     
-    public void setPaciente(PacienteDTO paciente){
+    public void setPaciente(PatientDTO paciente){
         this.paciente = paciente;
     }
     
