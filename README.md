@@ -292,8 +292,8 @@ Si se solicita una lista de las citas en el calendario, el servidor retorna dich
 |:-----------|:-----------|:------------------------------------------------------|:-----------------|:-------------|:-----------------------------------------|
 |    GET     | /citas     | Da la lista de citas                                  |                  |              |Colección de las citas en el calendario   |
 |    GET     | /citas/:id | Da los parámetros de una cita en la lista             |ID: id de la cita |              |Médico asignado a la cita consultada      |
+|    PUT    | /Citas     | actualiza una cita segun la información suministrada | ID: id de la cita, Param: parametros de la nueva cita                 |     |Cita actualizada       |
 |    POST    | /Citas     | Crea una nueva cita segun la información suministrada |                  | Atributos    |Nueva cita creada                         |
-|    END     | /Citas/:id | Da por terminada la cita por el medico y/o la fecha   |ID: id de la cita |              |Se termina la cita correctamente          |
 |   DELETE   | /Citas/:id | Borra una cita según su ID                            |ID: id de la cita |              |Se borra la cita de la lista (cancela)    |
 
 
