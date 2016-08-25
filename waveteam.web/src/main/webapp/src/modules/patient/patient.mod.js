@@ -5,4 +5,4 @@
  */
 
 
-var mod = ng.module("citiesModule", ["ui-router"]);
+var mod = ng.module("patientModule", ["ui-router"]);
