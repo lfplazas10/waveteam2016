@@ -4,5 +4,4 @@
  * and open the template in the editor.
  */
 
-
-var mod = ng.module("citasModule", ["ngMessages"]);
+var mod = ng.module("consultorioModule", ['ui-router']);
