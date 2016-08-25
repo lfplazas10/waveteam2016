@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-var app = angular.module('mainApp', ["doctorsModule", "patientModule", "especialidadModule", "consultorioModule", "citaModule"]);
+var app = angular.module('mainApp', ["doctorModule", "patientModule", "especialidadModule", "consultorioModule", "citaModule"]);
 
 app.config(function ($stateProvider, $urlRouterProvider, $compileProvider){
     
