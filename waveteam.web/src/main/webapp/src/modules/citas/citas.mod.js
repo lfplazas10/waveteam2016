@@ -5,4 +5,4 @@
  */
 
 
-var mod = ng.module("citasModule", ["ngMessages"]);
+var mod = ng.module("citasModule", ["ui-router"]);
