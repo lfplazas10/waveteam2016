@@ -5,3 +5,4 @@
  */
 
 
+var mod = ng.module("doctorModule", ["ui-router"]);
