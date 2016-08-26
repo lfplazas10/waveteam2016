@@ -96,12 +96,13 @@ public class CitaDTO {
     
     @Override
     public String toString(){
-        return "id : " + id +
+        return "{" + "id : " + id +
                 ", fecha : " + fecha + 
                 ", hora : " +hora + 
                 ", duracion : " + duracion + 
                 ",  medico : " + medico.toString() + 
-                ", paciente : " + paciente.toString() ;
+                ", paciente : " + paciente.toString()
+                + "}";
     }
     
     
