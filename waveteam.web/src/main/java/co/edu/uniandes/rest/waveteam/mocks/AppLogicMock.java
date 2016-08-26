@@ -43,9 +43,9 @@ public class AppLogicMock {
             Date e = sdf.parse("18/8/2016");
             Date f = sdf.parse("19/8/2016");
             
-            citas.add(new CitaDTO(1L, d, 700L, 30, new MedicoDTO(1L, "Pedro Pablo Jaramillo", "Cardiólogo", 301L), new PatientDTO(1L, "Pepe Pombo", 35 , "macho", "A-", "SaludCoop")));
-            citas.add(new CitaDTO(2L, e, 900L, 15, new MedicoDTO(2L, "Jairo Aristizabal", "Neumólogo", 305L), new PatientDTO(2L, "Magdalena Mejia", 28 , "hembra", "o+", "CafeSalud")));
-            citas.add(new CitaDTO(3L, f, 1100L, 40, new MedicoDTO(3L, "Fernando Vallejo", "Traumatólogo", 320L), new PatientDTO(3L, "Silvio Salgar", 52 , "macho", "b-", "SonrisaSalud")));
+            citas.add(new CitaDTO(1L, "17/08/2016", 700L, 30, new MedicoDTO(1L, "Pedro Pablo Jaramillo", "Cardiólogo", 301L), new PatientDTO(1L, "Pepe Pombo", 35 , "macho", "A-", "SaludCoop")));
+            citas.add(new CitaDTO(2L, "18/8/2016", 900L, 15, new MedicoDTO(2L, "Jairo Aristizabal", "Neumólogo", 305L), new PatientDTO(2L, "Magdalena Mejia", 28 , "hembra", "o+", "CafeSalud")));
+            citas.add(new CitaDTO(3L, "19/8/2016", 1100L, 40, new MedicoDTO(3L, "Fernando Vallejo", "Traumatólogo", 320L), new PatientDTO(3L, "Silvio Salgar", 52 , "macho", "b-", "SonrisaSalud")));
         }    
         
         

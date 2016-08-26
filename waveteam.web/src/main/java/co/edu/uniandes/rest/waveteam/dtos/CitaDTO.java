@@ -15,7 +15,7 @@ import co.edu.uniandes.rest.waveteam.dtos.PatientDTO;
 public class CitaDTO {
     
     private Long id;
-    private Date fecha;
+    private String fecha;
     private Long hora;
     private int duracion;
     private MedicoDTO medico;
@@ -26,7 +26,7 @@ public class CitaDTO {
         
     }
     
-    public CitaDTO(Long id, Date fecha, Long hora, int duracion, MedicoDTO medico, PatientDTO paciente){
+    public CitaDTO(Long id, String fecha, Long hora, int duracion, MedicoDTO medico, PatientDTO paciente){
         this.id = id;
         this.fecha = fecha;
         this.hora = hora;
@@ -46,11 +46,11 @@ public class CitaDTO {
         this.id = id;
     }
     
-    public Date getFecha(){
+    public String getFecha(){
         return fecha;
     }
     
-    public void setFecha(Date fecha){
+    public void setFecha(String fecha){
         this.fecha = fecha;
     }
     
