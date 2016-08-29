@@ -8,7 +8,7 @@ package co.edu.uniandes.rest.waveteam.resources;
 
 import co.edu.uniandes.rest.waveteam.dtos.CitaDTO;
 import co.edu.uniandes.rest.waveteam.exceptions.CitaLogicException;
-import co.edu.uniandes.rest.waveteam.mocks.AppLogicMock;
+import co.edu.uniandes.rest.waveteam.mocks.CitaLogicMock;
 
 import java.text.ParseException;
 import java.util.List;
@@ -34,11 +34,11 @@ import javax.ws.rs.Produces;
 @Consumes("application/json")
 public class CitaResource {
     
-    AppLogicMock citaLogic;
+    CitaLogicMock citaLogic = new CitaLogicMock();
 
-    public CitaResource() throws ParseException {
-        this.citaLogic = new AppLogicMock();
-    }
+ //   public CitaResource() throws ParseException {
+   //     this.citaLogic = new AppLogicMock();
+  //  }
     
     /**
      * Obtiene el listado de citas
@@ -46,7 +46,7 @@ public class CitaResource {
      * @return lista de citas
      */
     @GET
-    public List getAppointments() throws CitaLogicException{
+    public List<CitaDTO> getCitas() throws CitaLogicException{
         return citaLogic.getCitas();
     }
     
