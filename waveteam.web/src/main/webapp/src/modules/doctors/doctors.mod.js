@@ -6,3 +6,20 @@
 
 
 var mod = ng.module("doctorModule", ["ui-router"]);
+
+mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
+$stateProvider
+        .state('doctors', {
+            url:"/doctors",
+            templateUrl: basePath+"doctors.html",
+        })
+         .state('doctors.smthng', {
+            url:"/doctors",
+            templateUrl: basePath+"doctors.html",
+            controller: function ($scope){
+                
+            }
+        });
+        
+
+}]);

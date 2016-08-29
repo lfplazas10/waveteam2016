@@ -47,6 +47,7 @@
             
             <!-- Ejecuta "bower install" durante la compilación         -->
             <!-- NOTA: bower debe estar en el PATH de los computadores -->
+            
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
