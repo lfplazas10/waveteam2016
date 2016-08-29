@@ -26,22 +26,19 @@ import java.util.Date;
  *
  * @author jm.lizarazo10
  */
-public class AppLogicMock {
+public class CitaLogicMock {
     
-    private final static Logger logger = Logger.getLogger(AppLogicMock.class.getName());    
+    private final static Logger logger = Logger.getLogger(CitaLogicMock.class.getName());    
 
     private static ArrayList<CitaDTO> citas;
     private Long a = 2L;
     
     
-    public AppLogicMock() throws ParseException{
+    public CitaLogicMock(){
         
         if(citas==null){
             citas = new ArrayList<>();
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-            Date d = sdf.parse("17/08/2016");
-            Date e = sdf.parse("18/8/2016");
-            Date f = sdf.parse("19/8/2016");
+            
             
             citas.add(new CitaDTO(1L, "17/08/2016", 700L, 30,1L , 1L));
             citas.add(new CitaDTO(2L, "18/8/2016", 900L,15, 2L, 2L));
