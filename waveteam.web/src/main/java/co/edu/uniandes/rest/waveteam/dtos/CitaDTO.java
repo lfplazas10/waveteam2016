@@ -18,21 +18,21 @@ public class CitaDTO {
     private String fecha;
     private Long hora;
     private int duracion;
-    private MedicoDTO medico;
-    private PatientDTO paciente;
+    private Long idMedico;
+    private Long idPaciente;
     
     
     public CitaDTO(){
         
     }
     
-    public CitaDTO(Long id, String fecha, Long hora, int duracion, MedicoDTO medico, PatientDTO paciente){
+    public CitaDTO(Long id, String fecha, Long hora, int duracion, Long medico, Long paciente){
         this.id = id;
         this.fecha = fecha;
         this.hora = hora;
         this.duracion = duracion;
-        this.medico = medico;
-        this.paciente = paciente; 
+        this.idMedico = medico;
+        this.idPaciente = paciente; 
         
     }
     
@@ -74,22 +74,22 @@ public class CitaDTO {
     }
     
     
-    public MedicoDTO getMedico(){
-        return medico;
+    public Long getMedico(){
+        return idMedico;
     }
     
-    public void setMedico(MedicoDTO medico){
-        this.medico = medico;
-    }
-    
-    
-    public PatientDTO getPaciente(){
-        return paciente;
+    public void setMedico(Long medico){
+        this.idMedico = medico;
     }
     
     
-    public void setPaciente(PatientDTO paciente){
-        this.paciente = paciente;
+    public Long getPaciente(){
+        return idPaciente;
+    }
+    
+    
+    public void setPaciente(Long paciente){
+        this.idPaciente = paciente;
     }
     
     
@@ -100,8 +100,8 @@ public class CitaDTO {
                 ", fecha : " + fecha + 
                 ", hora : " +hora + 
                 ", duracion : " + duracion + 
-                ",  medico : " + medico.toString() + 
-                ", paciente : " + paciente.toString()
+                ",  medico : " + idMedico + 
+                ", paciente : " + idPaciente
                 + "}";
     }
     
