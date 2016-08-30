@@ -12,7 +12,7 @@ mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $u
         var basePath = 'src/modules/citas'; 
         $urlRouterProvider.otherwise("/listaCitas");
         $stateProvider.state('listaCitas', {
-            url: "/listaCitas",
+            url: 'listaCitas',
             views: {
                 'mainView': {
                     controller: 'citasCtrl',

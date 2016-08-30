@@ -20,15 +20,16 @@ and open the template in the editor.
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="actual in citas">
-                <td>{{actual.getId()}}</td>
-                <td>{{actual.getFecha()}}</td>
-                <td>{{actual.getHora()}}</td>
-                <td>{{actual.getDuracion()}}</td>
-                <td>{{actual.getMedico()}}</td>
-                <td>{{actual.getPaciente()}}</td>
+            <tr ng-repeat="x in citas">
+                <td>{{x.getId()}}</td>
+                <td>{{x.getFecha()}}</td>
+                <td>{{x.getHora()}}</td>
+                <td>{{x.getDuracion()}}</td>
+                <td>{{x.getMedico()}}</td>
+                <td>{{x.getPaciente()}}</td>
                 <td>
                     <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm" ng-click="ctrl.deleteRecord(record)"><span class="glyphicon glyphicon-minus"></span> Eliminar</button>
+                    <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="cityEdit({cityId: record.id})"><span class="glyphicon glyphicon-edit"></span> Edit</button>
                 </td>
             </tr>
         </tbody>
