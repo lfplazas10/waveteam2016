@@ -7,6 +7,8 @@
     var mod = ng.module("consultorioModule", ['ui-router']);
 
     mod.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider){
+        var basePath = 'src/modules/consultorio/';
+        $urlRouterProvider.otherwise("/");
         $stateProvider.state('getConsultorios',{
             url:"/consultorios",
             views: {
