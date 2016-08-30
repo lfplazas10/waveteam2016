@@ -4,8 +4,9 @@
  * and open the template in the editor.
  */
 
-
+(function (ng) {
 var mod = ng.module("citasModule", ["ui-router"]);
+mod.constant("citasContext", "api/citas");
 
 mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
         $stateProvider.state('listaCitas', {
@@ -27,11 +28,17 @@ mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $u
                 }
             }})
         .state('addCita', {
-                        url: "/addCita",
-                        templateUrl: basePath+"search.html",
-                        controller: function ($scope) {
-                            $scope.search = ["Por Id", "Por Día", "Por Doctor", "Por Paciente"];
-                        }
-                    });
+                
+            
+        
+                        url: "/addCita", views: {
+                        'mainView':{
+                        controller:'citasCtrl',
+                        controllerAs: 'ctrl',
+                        templateUrl: basePath+"cita.create.html",
+                        
+                            
+                    }}});
+        }]};
 }]);
         })(window.angular);
