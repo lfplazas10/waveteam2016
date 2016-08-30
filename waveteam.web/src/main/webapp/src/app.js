@@ -3,7 +3,8 @@
     var app = ng.module("mainApp", [
         "ui.router",
         "doctorModule",
-        "ngMessages"
+        "ngMessages",
+        "patientModule"
 //        "especialidadModule",
 //        "consultorioModule", 
 //        "citaModule"

@@ -1,8 +1,8 @@
 
 
 (function (ng){
-    var mod = ng.module("patientModule", ["ngMessanges"]);
-    mod.constant("PatientContext", "api/patients");
+    var mod = ng.module("patientModule", ["ngMessages"]);
+    mod.constant("patientContext", "api/patients");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/patients/';
             $urlRouterProvider.otherwise("/patientsList");
