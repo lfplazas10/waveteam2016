@@ -1,7 +1,6 @@
 <div class="page-header">
-  <h1>Crear un nuevo médico</h1>
+  <h1 ng-model="tit">Editar al médico</h1>
 </div>
-
 <div class="col-md-6 well">
     <fieldset>
             <input id="id" class="form-control" type="hidden" ng-model="currentRecord.id"/>
@@ -33,7 +32,7 @@
               
             <button type="button" class="btn btn-danger" ui-sref='doctorsList'>Cancel</button>
                
-            <button type="submit" class="btn btn-success" ng-click="ctrl.saveDoctor()" >Save</button>   
+            <button type="submit" class="btn btn-success" ng-click="ctrl.editDoctorFinal()" >Save</button>   
             
         </fieldset>
 </div>

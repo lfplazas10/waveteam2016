@@ -15,7 +15,7 @@
         }]);
 
     app.config(['$urlRouterProvider', function ($urlRouterProvider) {
-            $urlRouterProvider.otherwise('/doctorsList');
+            $urlRouterProvider.otherwise('/');
         }]);
 
   

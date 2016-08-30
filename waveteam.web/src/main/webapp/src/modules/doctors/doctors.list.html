@@ -1,6 +1,13 @@
+<div class="row">
 <div class="page-header">
   <h1>Listado de médicos</h1>
 </div>
+    <div class="col-xs-6">
+    <div class="input-group">
+                <span class="input-group-addon">Buscar</span>
+                <input class="form-control" type="text" ng-model="searchField">
+    </div>
+        </div>
 <div class="container-fluid">
     <table class="table table-striped" class="col-md-8">
         <thead>
@@ -12,15 +19,19 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="x in doctors">
+            <tr ng-repeat="x in doctors | filter:searchField" >
                 <td>{{x.name}}</td>
                 <td>{{x.id}}</td>
                 <td>{{x.especialidad}}</td>
                 <td>{{x.consultorio}}</td>
                 <td>
-                    <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm" ng-click="ctrl.deleteRecord(record)"><span class="glyphicon glyphicon-minus"></span> Eliminar</button>
+                    <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ng-click="ctrl.editDoc(x)"><span class="glyphicon glyphicon-edit"></span> Editar</button>
+                    <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm" ng-click="ctrl.deleteRecord(x)"><span class="glyphicon glyphicon-minus"></span> Eliminar</button>
                 </td>
             </tr>
         </tbody>
     </table>
+    
+</div>
+        
 </div>

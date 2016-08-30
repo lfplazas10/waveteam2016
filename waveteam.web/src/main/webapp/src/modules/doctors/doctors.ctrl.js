@@ -1,82 +1,77 @@
 (function (ng) {
     var mod = ng.module("doctorModule");
-
+    var docIdDeleted = -1;
     mod.controller("doctorsCtrl", ['$scope', '$state', '$stateParams', '$http', 'doctorContext', function ($scope, $state, $stateParams, $http, context) {
-
-            // inicialmente el listado de ciudades está vacio
-            $scope.records = {};
-            // carga las ciudades
-            $http.get(context).then(function(response){
-                console.log(response.data);
-                $scope.doctors = response.data;    
-            }, responseError);
-
-            // el controlador recibió un cityId ??
-            // revisa los parámetros (ver el :cityId en la definición de la ruta)
-            if ($stateParams.cityId !== null && $stateParams.cityId !== undefined) {
-                
-                // toma el id del parámetro
-                id = $stateParams.cityId;
-                // obtiene el dato del recurso REST
-                $http.get(context + "/" + id)
-                    .then(function (response) {
-                        // $http.get es una promesa
-                        // cuando llegue el dato, actualice currentRecord
-                        $scope.currentRecord = response.data;
+            
+            loadDocs = function (){
+                $http.get(context).then(function(response){
+                    $scope.doctors = response.data;    
                     }, responseError);
+            }
+            
+            loadDocs();
 
-            // el controlador no recibió un cityId
-            } else
-            {
-                // el registro actual debe estar vacio
-                $scope.currentRecord = {
-                    id: undefined /*Tipo Long. El valor se asigna en el backend*/,
-                    name: '' /*Tipo String*/,
-                };
-              
-                $scope.alerts = [];
+            this.deleteRecord = function (doc){
+                return $http.delete(context+"/"+doc.id)
+                        .then(function () {
+                            loadDocs();
+                        }, responseError)
+            }
+            
+            this.saveDoctor = function () {
+                if (!$scope.nombre || !$scope.especialidad || !$scope.consultorio || !$scope.cedula) alert("No puede dejar ningún campo vacio.");
+                if (isNaN($scope.cedula)) alert("La cédula debe ser numérica.");
+                if (isNaN($scope.consultorio)) alert("El consultorio debe ser un número.");
+                else{
+                    var doc = 
+                    {
+                        "name" :  $scope.nombre,    
+                        "id" : $scope.cedula,      
+                        "especialidad" : $scope.especialidad,        
+                        "consultorio" : $scope.consultorio
+                    };
+                    doc = JSON.stringify(doc);
+                    console.log(doc);
+                    return $http.post(context, doc.toString())
+                        .then(function () {
+                            $state.go('doctorsList');
+                        }, responseError)
+                }
+            }
+            
+            this.editDoc = function(doc) {
+                $state.go('editDoctor');
+                docIdDeleted = doc.id;
+                $scope.tit = "Editar " + doc.name;
+            }
+            
+            this.editDoctorFinal = function () {
+                if (!$scope.nombre || !$scope.especialidad || !$scope.consultorio || !$scope.cedula) alert("No puede dejar ningún campo vacio.");
+                if (isNaN($scope.cedula)) alert("La cédula debe ser numérica.");
+                if (isNaN($scope.consultorio)) alert("El consultorio debe ser un número.");
+                else{
+                    var doc = 
+                    {
+                        "name" :  $scope.nombre,    
+                        "id" : $scope.cedula,      
+                        "especialidad" : $scope.especialidad,        
+                        "consultorio" : $scope.consultorio
+                    };
+                    doc = JSON.stringify(doc);
+                    console.log(doc);
+                    return $http.put(context+"/"+docIdDeleted, doc.toString())
+                        .then(function () {
+                            $state.go('doctorsList');
+                        }, responseError)
+                }
             }
 
 
-            this.saveRecord = function (id) {
-                currentRecord = $scope.currentRecord;
-                
-                // si el id es null, es un registro nuevo, entonces lo crea
-                if (id == null) {
-
-                    // ejecuta POST en el recurso REST
-                    return $http.post(context, currentRecord)
-                        .then(function () {
-                            // $http.post es una promesa
-                            // cuando termine bien, cambie de estado
-                            $state.go('citiesList');
-                        }, responseError);
-                        
-                // si el id no es null, es un registro existente entonces lo actualiza
-                } else {
-                    
-                    // ejecuta PUT en el recurso REST
-                    return $http.put(context + "/" + currentRecord.id, currentRecord)
-                        .then(function () {
-                            // $http.put es una promesa
-                            // cuando termine bien, cambie de estado
-                            $state.go('citiesList');
-                        }, responseError);
-                };
-            };
-
-
-
-            // -----------------------------------------------------------------
-            // Funciones para manejra los mensajes en la aplicación
-
-
-            //Alertas
+           
             this.closeAlert = function (index) {
                 $scope.alerts.splice(index, 1);
             };
 
-            // Función showMessage: Recibe el mensaje en String y su tipo con el fin de almacenarlo en el array $scope.alerts.
             function showMessage(msg, type) {
                 var types = ["info", "danger", "warning", "success"];
                 if (types.some(function (rc) {

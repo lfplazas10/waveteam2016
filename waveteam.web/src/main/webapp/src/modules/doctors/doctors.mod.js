@@ -10,7 +10,7 @@ mod.constant("doctorContext", "api/doctors");
 
 mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
         var basePath = 'src/modules/doctors/';
-        $urlRouterProvider.otherwise("/doctorsList");
+        $urlRouterProvider.otherwise("/");
         $stateProvider
         .state('doctorsList', {
             url:"/doctorsList",
@@ -22,11 +22,24 @@ mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $u
                 }
             }
         })
-         .state('doctors.smthng', {
-            url:"/doctors",
-            templateUrl: basePath+"doctors.html",
-            controller: function ($scope){
-                
+        .state('editDoctor', {
+            url:"/editDoctor",
+            views: {
+                'mainView': {
+                    controller: 'doctorsCtrl',
+                    controllerAs: 'ctrl',
+                    templateUrl: basePath + 'doctors.edit.html'
+                }
+            }
+        })
+         .state('addDoctor', {
+            url:"/addDoctor",
+            views: {
+                'mainView': {
+                    controller: 'doctorsCtrl',
+                    controllerAs: 'ctrl',
+                    templateUrl: basePath + 'doctors.create.html'
+                }
             }
         });
         }]);
