@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<div class="page-header">
+  <h1>Listado de médicos</h1>
+</div>
+<div class="container-fluid">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>        
+                <th>Fecha</th>
+                <th>Hora</th>
+                <th>Duración</th>
+                <th>Medico</th>
+                <th>Paciente</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="actual in citas">
+                <td>{{actual.getId()}}</td>
+                <td>{{actual.getFecha()}}</td>
+                <td>{{actual.getHora()}}</td>
+                <td>{{actual.getDuracion()}}</td>
+                <td>{{actual.getMedico()}}</td>
+                <td>{{actual.getPaciente()}}</td>
+                <td>
+                    <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm" ng-click="ctrl.deleteRecord(record)"><span class="glyphicon glyphicon-minus"></span> Eliminar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
