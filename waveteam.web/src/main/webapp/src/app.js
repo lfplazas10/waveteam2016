@@ -11,7 +11,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $compileProvider){
     
 });
 
-app.controller("appCtrl", function ($scope, $resource, $window) {
+app.controller("appCtrl", function ($scope, $http, $resource, $window) {
     
     
 });
