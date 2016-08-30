@@ -1,0 +1,48 @@
+<div class="page-header">
+  <h1 ng-model="tit">Actualizar una cita</h1>
+</div>
+<div class="col-md-6 well">
+    <fieldset>
+            <input id="id" class="form-control" type="hidden" ng-model="currentRecord.id"/>
+            <div class="form-group col-md-12" ng-class="{'has-success': form.name.$valid && form.name.$dirty, 'has-error': form.name.$invalid && (form.name.$dirty || form.$submitted)}" >
+                <label for="name" class="col-md-4 control-label">Id</label>
+                <div class="col-md-8">
+                    <input id="name" name="name" class="form-control" type="text" ng-model="id" ng-init="currentRecord.name" required />
+                </div>
+            </div>
+            <div class="form-group col-md-12" ng-class="{'has-success': form.name.$valid && form.name.$dirty, 'has-error': form.name.$invalid && (form.name.$dirty || form.$submitted)}" >
+                <label for="name" class="col-md-4 control-label">Fecha</label>
+                <div class="col-md-8">
+                    <input id="name" name="name" class="form-control" type="text" ng-model="fecha" ng-init="currentRecord.name" required />
+                </div>
+            </div>
+            <div class="form-group col-md-12" ng-class="{'has-success': form.name.$valid && form.name.$dirty, 'has-error': form.name.$invalid && (form.name.$dirty || form.$submitted)}" >
+                <label for="name" class="col-md-4 control-label">Hora</label>
+                <div class="col-md-8">
+                    <input id="name" name="name" class="form-control" type="text" ng-model="hora" ng-init="currentRecord.name" required />
+                </div>
+            </div>
+            <div class="form-group col-md-12" ng-class="{'has-success': form.name.$valid && form.name.$dirty, 'has-error': form.name.$invalid && (form.name.$dirty || form.$submitted)}" >
+                <label for="name" class="col-md-4 control-label">Duración</label>
+                <div class="col-md-8">
+                    <input id="name" name="name" class="form-control" type="text" ng-model="duracion" ng-init="currentRecord.name" required />
+                </div>
+            </div>
+             <div class="form-group col-md-12" ng-class="{'has-success': form.name.$valid && form.name.$dirty, 'has-error': form.name.$invalid && (form.name.$dirty || form.$submitted)}" >
+                <label for="name" class="col-md-4 control-label">Id Médico</label>
+                <div class="col-md-8">
+                    <input id="name" name="name" class="form-control" type="text" ng-model="idMedico" ng-init="currentRecord.name" required />
+                </div>
+            </div>
+             <div class="form-group col-md-12" ng-class="{'has-success': form.name.$valid && form.name.$dirty, 'has-error': form.name.$invalid && (form.name.$dirty || form.$submitted)}" >
+                <label for="name" class="col-md-4 control-label">Id Paciente</label>
+                <div class="col-md-8">
+                    <input id="name" name="name" class="form-control" type="text" ng-model="idPaciente" ng-init="currentRecord.name" required />
+                </div>
+            </div>
+            
+              
+           <button type="button" ui-sref='patientsList'>Cancel</button>
+            <button type="submit" >Save</button>  
+        </fieldset>
+</div>
