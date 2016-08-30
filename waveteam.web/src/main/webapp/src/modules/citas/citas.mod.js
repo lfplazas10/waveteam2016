@@ -8,10 +8,24 @@
 var mod = ng.module("citasModule", ["ui-router"]);
 
 mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
-        $stateProvider.state('citas', {
-            url: "/citas",
-            templateUrl: basePath+"citas.html"
-        })
+        $stateProvider.state('listaCitas', {
+            url: "/listaCitas",views: {
+                'mainView': {
+                    controller: 'citasCtrl',
+                    controllerAs: 'ctrl',
+                    templateUrl: basePath + 'citas.list.html'
+                }
+            }
+            
+        .state('editCita', {
+                        url: "/editCita",
+        views: {
+                'mainView': {
+                    controller: 'citasCtrl',
+                    controllerAs: 'ctrl',
+                    templateUrl: basePath + 'citas.list.html'
+                }
+            }
         .state('business.search', {
                         url: "/search",
                         templateUrl: basePath+"search.html",
