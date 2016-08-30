@@ -1,12 +1,24 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="mainApp">
     <head>
         <title>Wave Team</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="bower_components/jquery/dist/jquery.js"></script>
+        <script src="bower_components/angular/angular.js"></script>
+        <script src="bower_components/angular-messages/angular-messages.js"></script>
+        <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="src/app.js" type="text/javascript"></script>  
+        
+        <!-- CADA UNO TIENE QUE CARGAR SUS MODULOS -->
+        <script src="src/modules/doctors/doctors.mod.js" type="text/javascript"></script>
+        <script src="src/modules/doctors/doctors.ctrl.js" type="text/javascript"></script>
+        <!-- -->
+        
     </head>
     <body>
 
@@ -18,7 +30,7 @@
         <ul class="nav navbar-nav">
           <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> Médicos <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="#">Ver todos</a></li>
+              <li><a ui-sref="doctorsList">Ver</a></li>   
               <li><a href="#">Buscar</a></li>
               <li><a href="#">Crear</a></li>
               <li><a href="#">Eliminar</a></li>
@@ -61,9 +73,9 @@
     </nav>
         
     <!-- AQUI VA LA VISTA DE CADA UNO -->
-    <div class="container" ui-view>
+    <div class="container" ui-view="mainView">
             
     </div>
-
+    <script src="https://angular-ui.github.io/ui-router/release/angular-ui-router.js"></script>
     </body>
 </html>

@@ -1,17 +1,22 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+(function (ng) {
 
-var app = angular.module('mainApp', ["doctorModule", "patientModule", "especialidadModule", "consultorioModule", "citaModule"]);
+    var app = ng.module("mainApp", [
+        "ui.router",
+        "doctorModule",
+        "ngMessages" 
+//        "patientModule", 
+//        "especialidadModule",
+//        "consultorioModule", 
+//        "citaModule"
+    ]);
 
-app.config(function ($stateProvider, $urlRouterProvider, $compileProvider){
-    
-    
-});
+    app.config(['$logProvider', function ($logProvider) {
+            $logProvider.debugEnabled(true);
+        }]);
 
-app.controller("appCtrl", function ($scope, $http, $resource, $window) {
-    
-    
-});
+    app.config(['$urlRouterProvider', function ($urlRouterProvider) {
+            $urlRouterProvider.otherwise('/doctorsList');
+        }]);
+
+  
+})(window.angular);

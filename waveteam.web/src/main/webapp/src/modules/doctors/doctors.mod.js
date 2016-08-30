@@ -4,14 +4,23 @@
  * and open the template in the editor.
  */
 
-
-var mod = ng.module("doctorModule", ["ui-router"]);
+(function (ng) {
+var mod = ng.module("doctorModule", ["ngMessages"]);
+mod.constant("doctorContext", "api/doctors");
 
 mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
-$stateProvider
-        .state('doctors', {
-            url:"/doctors",
-            templateUrl: basePath+"doctors.html",
+        var basePath = 'src/modules/doctors/';
+        $urlRouterProvider.otherwise("/doctorsList");
+        $stateProvider
+        .state('doctorsList', {
+            url:"/doctorsList",
+            views: {
+                'mainView': {
+                    controller: 'doctorsCtrl',
+                    controllerAs: 'ctrl',
+                    templateUrl: basePath + 'doctors.list.html'
+                }
+            }
         })
          .state('doctors.smthng', {
             url:"/doctors",
@@ -20,6 +29,6 @@ $stateProvider
                 
             }
         });
+        }]);
         
-
-}]);
+})(window.angular);

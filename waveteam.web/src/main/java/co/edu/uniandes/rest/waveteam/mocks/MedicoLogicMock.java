@@ -33,7 +33,7 @@ public class MedicoLogicMock {
         if (doctors == null) {
             doctors = new ArrayList<>();
             doctors.add(new MedicoDTO(1L, "Pedro Pablo Jaramillo", "Cardiólogo", 301L));
-            doctors.add(new MedicoDTO(2L, "Jairo Aristizabal", "Neumólogo", 305L));
+            doctors.add(new MedicoDTO(5L, "Jairo Aristizabal", "Neumólogo", 305L));
             doctors.add(new MedicoDTO(3L, "Fernando Vallejo", "Traumatólogo", 320L));
         }
 
