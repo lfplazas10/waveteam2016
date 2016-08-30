@@ -4,10 +4,10 @@
         "ui.router",
         "doctorModule",
         "ngMessages",
-        "patientModule"
+        "patientModule",
 //        "especialidadModule",
 //        "consultorioModule", 
-//        "citaModule"
+        "citaModule"
     ]);
 
     app.config(['$logProvider', function ($logProvider) {
