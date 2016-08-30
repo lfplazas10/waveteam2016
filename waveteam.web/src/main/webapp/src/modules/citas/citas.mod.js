@@ -15,22 +15,23 @@ mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $u
                     controllerAs: 'ctrl',
                     templateUrl: basePath + 'citas.list.html'
                 }
-            }
+            }})
             
         .state('editCita', {
-                        url: "/editCita",
-        views: {
+            url: "/editCita",
+                views: {
                 'mainView': {
                     controller: 'citasCtrl',
                     controllerAs: 'ctrl',
                     templateUrl: basePath + 'citas.list.html'
                 }
-            }
-        .state('business.search', {
-                        url: "/search",
+            }})
+        .state('addCita', {
+                        url: "/addCita",
                         templateUrl: basePath+"search.html",
                         controller: function ($scope) {
                             $scope.search = ["Por Id", "Por Día", "Por Doctor", "Por Paciente"];
                         }
-                    })
+                    });
 }]);
+        })(window.angular);
