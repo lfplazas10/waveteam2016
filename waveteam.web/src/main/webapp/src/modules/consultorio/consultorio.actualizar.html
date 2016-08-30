@@ -1,0 +1,31 @@
+<div>
+
+    <form role="form" ng-submit="form.$valid && ctrl.saveRecord(currentRecord.id)">
+
+        <div ng-messages="form.$error">
+            <h2>Por favor ingrese los nuevos datos del consultorio.</h2>
+        </div>
+
+        <fieldset>
+            <input class="form-control" type="hidden" ng-model="currentRecord.id" />
+            <div class="form-group col-md-12" ng-class="{'has-success': form.name.$valid && form.name.$dirty, 'has-error': form.name.$invalid && (form.name.$dirty || form.$submitted)}">
+                <label for="id" class="col-md-2 control-label">ID</label>
+                <div class="col-md-10">
+                    <input id="id" name="id" class="form-control" type="text" ng-model="currentRecord.id" ng-init="currentRecord.id" required />
+                </div><label for="horario" class="col-md-2 control-label">Horario</label>
+                <div class="col-md-10">
+                    <input id="horario" name="horario" class="form-control" type="text" ng-model="currentRecord.horario" ng-init="currentRecord.horario" required />
+                </div><label for="atiendeUrgencias" class="col-md-2 control-label">Atencion a urgencias</label>
+                <div class="col-md-10">
+                    <input id="atiendeUrgencias" name="atiendeUrgencias" class="form-control" type="text" ng-model="currentRecord.atencionUrgencias" ng-init="currentRecord.atencionUrgencias" required />
+                </div><label for="UCI" class="col-md-2 control-label">UCI</label>
+                <div class="col-md-10">
+                    <input id="unidadCuidadosIntensivos" name="unidadCuidadosIntensivos" class="form-control" type="text" ng-model="currentRecord.unidadCuidadosIntensivos" ng-init="currentRecord.unidadCuidadosIntensivos" required />
+                </div>
+            </div>
+            <button type="button" ui-sref='citiesList'>Cancelar</button>
+            <button type="submit">Actualizar</button>
+        </fieldset>
+    </form>
+
+</div>
