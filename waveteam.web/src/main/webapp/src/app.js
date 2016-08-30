@@ -7,7 +7,7 @@
         "patientModule",
 //        "especialidadModule",
 //        "consultorioModule", 
-        "citaModule"
+        "citasModule"
     ]);
 
     app.config(['$logProvider', function ($logProvider) {

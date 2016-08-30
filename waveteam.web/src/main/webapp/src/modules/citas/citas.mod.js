@@ -5,7 +5,7 @@
  */
 
 (function (ng) {
-var mod = ng.module("citasModule", ["ui-router"]);
+var mod = ng.module("citasModule", ["ngMessages"]);
 mod.constant("citasContext", "api/citas");
 
 mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
