@@ -140,7 +140,7 @@ public class PatientDTO {
     @Override
     public String toString() {
         return "{ id : " + getId() + ", name : \"" + getName() + ", edad : \"" + getEdad() + 
-                ", sexo : \"" + getSexo() + ", tipo sangre : \""+ getTipoSAngre()+ 
+                ", sexo : \"" + getSexo() + ", tipoSangre : \""+ getTipoSAngre()+ 
                 ", eps : \""+ getEps() + "\" }";
     }
 }
