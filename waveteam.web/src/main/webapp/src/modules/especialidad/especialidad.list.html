@@ -1,0 +1,15 @@
+<div class="container-fluid" >
+   
+     <h1>Especialidades</h1>
+    <table class="table table-striped" class="col-md-4">
+        <tbody>
+            <tr ng-repeat="record in records">
+                <td id="{{$index}}-name">{{record.id}}</td>
+                <td id="{{$index}}-name" a="ui-sref=especialidadEdit({especialidadNombre: record.nombre}">{{record.nombre}}</td>
+            </tr>
+            
+        </tbody>
+    </table>
+     
+    <button type="button" ui-sref='especialidadCreate'> Create</button>
+</div>

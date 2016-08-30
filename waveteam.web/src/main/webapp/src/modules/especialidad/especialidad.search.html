@@ -1,0 +1,44 @@
+<h1>Especialidades</h1>
+      <form novalidate name="form" id="buscarEspecialidad-form" role="form" ng-submit="form.$valid && ctrl.BuscarRecord(currentRecord.nombre)">
+        <fieldset>
+          <table width="100%">
+            <tr>
+              <th align="left"> Buscar por nombre:</th>
+              <th>
+                <input id="nombre" name="nombre" class="form-control" type="text" ng-model="currentRecord.nombre" ng-init="currentRecord.nombre" required />
+              </th>
+              <th align="right">
+                <button id="buscar" class="btn btn-default btn-sm" ng-click="ctrl.buscarRecord(currentRecord.nombre)"><span class="glyphicon glyphicon-minus"></span>Buscar</button>
+              </th>
+            </tr>
+          </table>
+        </fieldset>
+      </form>
+      <br>
+        <table width ="100%">
+          <tr>
+            <th align="left">
+              Nombre:
+            </th>
+            <th align="left" id="especialidadEditarNombre">
+            </th>
+          </tr>
+          <tr>
+            <th align="left">
+              Grupos edad:
+            </th>
+            <th align="left" id="especialidadEditarGrupo">
+
+            </th>
+          </tr>
+          <tr>
+            <th align="left">
+              Tipo:
+            </th>
+            <th align="left" id="especialidadEditarTipo">
+            </th>
+          </tr>
+        </table>
+        <br>
+        <button class="btn btn-default btn-sm" ui-sref="especialidadEdit({especialidadNombre: currentRecord.nombre})"><span class="glyphicon glyphicon-edit"></span>editar</button> 
+        <button class="btn btn-default btn-sm" ng-click="ctrl.deleteRecord(currentRecord)"><span class="glyphicon glyphicon-minus"></span>borrar</button>
