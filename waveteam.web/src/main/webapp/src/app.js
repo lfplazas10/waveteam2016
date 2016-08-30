@@ -6,7 +6,7 @@
         "ngMessages",
         "patientModule",
 //        "especialidadModule",
-//        "consultorioModule", 
+        "consultorioModule", 
         "citasModule"
     ]);
 

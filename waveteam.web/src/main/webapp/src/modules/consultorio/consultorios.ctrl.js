@@ -2,40 +2,17 @@
     var mod = ng.module("consultorioModule");
     mod.controller("consultoriosCtrl", ['$scope', '$state', '$stateParams', '$http', 'consultorioContext', function ($scope, $state, $stateParams, $http, context) {
             
-            $scope.consultorios={};
-            
+//            $scope.consultorios={};
             getConsultorios = function(){
-                $https.get(context).then(function(response){
-                    $scope.consultorios = response.data;
+                $http.get(context).then(function(response){
+                    console.log(response.data);
+                    $scope.records = response.data;
                 }, responseError);
             }
             
             getConsultorios();
             
-            //Verifica si se deberia tener un consultorio seleccionado con el ID del parametro
-            if ($stateParams.cityId !== null && $stateParams.cityId !== undefined) {
-                
-                // toma el id del parámetro
-                id = $stateParams.cityId;
-                // obtiene el dato del recurso REST
-                $http.get(context + "/" + id)
-                    .then(function (response) {
-                        // $http.get es una promesa
-                        // cuando llegue el dato, actualice currentRecord
-                        $scope.currentRecord = response.data;
-                    }, responseError);
 
-            // el controlador no recibió un cityId
-            } else
-            {
-                // el registro actual debe estar vacio
-                $scope.consultorioActual = {
-                    id: undefined /*Tipo Long. El valor se asigna en el backend*/,
-                    name: '' /*Tipo String*/,
-                };
-              
-                $scope.alerts = [];
-            }
             this.guardarConsultorio = function (id) {
                 consultorioActual = $scope.consultorioActual;
                 
@@ -44,7 +21,7 @@
                     //Comando POST!
                     return $http.post(context, consultorioActual)
                         .then(function () {
-                            $state.go('citiesList');
+                            $state.go('getConsultorios');
                         }, responseError);
                         
                 //Actualizar un registro
@@ -53,7 +30,7 @@
                     //Comando PUT!
                     return $http.put(context + "/" + consultorioActual.id, consultorioActual)
                         .then(function () {
-                            $state.go('citiesList');
+                            $state.go('getConsultorios');
                         }, responseError);
                 };
             };
