@@ -5,7 +5,7 @@
         "doctorModule",
         "ngMessages",
         "patientModule",
-//        "especialidadModule",
+        "especialidadModule",
         "consultorioModule", 
         "citasModule"
     ]);

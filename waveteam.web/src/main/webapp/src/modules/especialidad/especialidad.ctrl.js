@@ -16,7 +16,6 @@
 
 
             if ($stateParams.especialidadId !== null && $stateParams.especialidadId !== undefined) {
-                
                 id = $stateParams.especialidadId;
                 
                 $http.get(context + "/" + id)

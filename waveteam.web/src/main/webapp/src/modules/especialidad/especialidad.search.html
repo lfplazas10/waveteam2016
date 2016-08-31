@@ -8,7 +8,7 @@
                 <input id="nombre" name="nombre" class="form-control" type="text" ng-model="currentRecord.nombre" ng-init="currentRecord.nombre" required />
               </th>
               <th align="right">
-                <button id="buscar" class="btn btn-default btn-sm" ng-click="ctrl.buscarRecord(currentRecord.nombre)"><span class="glyphicon glyphicon-minus"></span>Buscar</button>
+                <button type="button" ng-click="ctrl.buscarRecord(currentRecord.nombre)">Buscar</button>
               </th>
             </tr>
           </table>

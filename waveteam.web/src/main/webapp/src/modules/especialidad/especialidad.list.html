@@ -4,8 +4,8 @@
     <table class="table table-striped" class="col-md-4">
         <tbody>
             <tr ng-repeat="record in records">
-                <td id="{{$index}}-name">{{record.id}}</td>
-                <td id="{{$index}}-name" a="ui-sref=especialidadEdit({especialidadNombre: record.nombre}">{{record.nombre}}</td>
+                <td id="{{$index}}-id">{{record.id}}</td>
+                <td id="{{$index}}-name"><a ui-sref="especialidadEdit({especialidadNombre: record.nombre}">{{record.nombre}}</a></td>
             </tr>
             
         </tbody>

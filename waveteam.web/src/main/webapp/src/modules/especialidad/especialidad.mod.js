@@ -5,7 +5,9 @@
  */
  (function (ng) {
      
-var mod = ng.module("especialidadModule", ["ui-router"]);
+var mod = ng.module("especialidadModule", ["ngMessages"]);
+mod.constant("especialidadContext", "api/especialidades");
+
 mod.config(['$stateProvider', '$urlRouterProvider', function($stateProvider,$urlRouterProvider){
     var basePath = 'src/modules/especialidad/';
     $urlRouterProvider.otherwise("/especialidadList");
@@ -31,7 +33,7 @@ mod.config(['$stateProvider', '$urlRouterProvider', function($stateProvider,$url
             }).state('especialidadEdit', {
                 url: '/especialidad/:especialidadId',
                 param: {
-                    cityId: null
+                    especialidadId: null
                 },
                 views: {
                     'mainView': {
