@@ -30,6 +30,19 @@ mod.config(['$stateProvider', '$urlRouterProvider', function($stateProvider,$url
                     }
                 }
 
+            }).state('especialidadSearch', {
+                url: '/especialidad/:especialidadId',
+                param:{
+                        especialidadId: null
+                },
+                views: {
+                    'mainView': {
+                        controller: 'especialidadCtrl',
+                        controllerAs: 'ctrl',
+                        templateUrl: basePath + 'especialidad.search.html'
+                    }
+                }
+
             }).state('especialidadEdit', {
                 url: '/especialidad/:especialidadId',
                 param: {
@@ -39,7 +52,7 @@ mod.config(['$stateProvider', '$urlRouterProvider', function($stateProvider,$url
                     'mainView': {
                         controller: 'especialidadCtrl',
                         controllerAs: 'ctrl',
-                        templateUrl: basePath + 'especialidad.search.html'
+                        templateUrl: basePath + 'especialidad.create.html'
                     }
                 }
             });

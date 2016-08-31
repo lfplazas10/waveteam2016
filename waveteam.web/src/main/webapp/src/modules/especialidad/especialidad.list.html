@@ -5,11 +5,11 @@
         <tbody>
             <tr ng-repeat="record in records">
                 <td id="{{$index}}-id">{{record.id}}</td>
-                <td id="{{$index}}-name"><a ui-sref="especialidadEdit({especialidadNombre: record.nombre}">{{record.nombre}}</a></td>
+                <td id="{{$index}}-name"><a ui-sref="especialidadEdit({especialidadId: record.id })">{{record.nombre}}</a></td>
             </tr>
             
         </tbody>
     </table>
      
-    <button type="button" ui-sref='especialidadCreate'> Create</button>
+    <button type="button" ui-sref='especialidadCreate'> Crear</button>
 </div>
