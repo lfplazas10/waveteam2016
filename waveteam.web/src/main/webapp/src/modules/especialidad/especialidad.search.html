@@ -27,7 +27,7 @@
             <th align="left">
               Grupos edad:
             </th>
-            <th align="left">{{currentRecord.grupo}}
+            <th align="left">{{currentRecord.gruposEdad}}
 
             </th>
           </tr>
@@ -41,4 +41,4 @@
         </table>
         <br>
         <button class="btn btn-default btn-sm" ui-sref="especialidadEdit({especialidadId: currentRecord.id})"><span class="glyphicon glyphicon-edit"></span>editar</button> 
-        <button class="btn btn-default btn-sm" ng-click="ctrl.deleteRecord(currentRecord)"><span class="glyphicon glyphicon-minus"></span>borrar</button>
+        <button class="btn btn-default btn-sm" ng-click="ctrl.deleteRecord(currentRecord.id)"><span class="glyphicon glyphicon-minus"></span>borrar</button>
