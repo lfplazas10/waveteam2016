@@ -10,7 +10,7 @@
             $stateProvider.state('patientsList', {
                 url: 'patientsList',
                 views: {
-                    'mainView': {
+                    'mainVxiew': {
                         controller: 'patientsCtrl',
                         controllerAs: 'ctrl',
                         templateUrl: basePath + 'patients.list.html'
