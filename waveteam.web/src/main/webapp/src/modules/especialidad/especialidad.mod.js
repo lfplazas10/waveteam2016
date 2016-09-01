@@ -5,7 +5,9 @@
  */
  (function (ng) {
      
-var mod = ng.module("especialidadModule", ["ui-router"]);
+var mod = ng.module("especialidadModule", ["ngMessages"]);
+mod.constant("especialidadContext", "api/especialidades");
+
 mod.config(['$stateProvider', '$urlRouterProvider', function($stateProvider,$urlRouterProvider){
     var basePath = 'src/modules/especialidad/';
     $urlRouterProvider.otherwise("/especialidadList");
@@ -28,16 +30,29 @@ mod.config(['$stateProvider', '$urlRouterProvider', function($stateProvider,$url
                     }
                 }
 
-            }).state('especialidadEdit', {
+            }).state('especialidadSearch', {
                 url: '/especialidad/:especialidadId',
-                param: {
-                    cityId: null
+                param:{
+                        especialidadId: null
                 },
                 views: {
                     'mainView': {
                         controller: 'especialidadCtrl',
                         controllerAs: 'ctrl',
                         templateUrl: basePath + 'especialidad.search.html'
+                    }
+                }
+
+            }).state('especialidadEdit', {
+                url: '/especialidad/:especialidadId',
+                param: {
+                    especialidadId: null
+                },
+                views: {
+                    'mainView': {
+                        controller: 'especialidadCtrl',
+                        controllerAs: 'ctrl',
+                        templateUrl: basePath + 'especialidad.create.html'
                     }
                 }
             });

@@ -16,7 +16,6 @@
 
 
             if ($stateParams.especialidadId !== null && $stateParams.especialidadId !== undefined) {
-                
                 id = $stateParams.especialidadId;
                 
                 $http.get(context + "/" + id)
@@ -40,7 +39,8 @@
             this.saveRecord = function (id) {
                 currentRecord = $scope.currentRecord;
                 
-                if (id == null) {  
+                if (id==null) {  
+                    currentRecord.id=3;
                     return $http.post(context, currentRecord)
                         .then(function () {
                             $state.go('especialidadList');
@@ -52,6 +52,31 @@
                             $state.go('especialidadList');
                         }, responseError);
                 };
+            };
+            
+            
+            this.deleteRecord = function (id) {
+              currentRecord = $scope.currentRecord;
+              
+              if(id != null)
+              {
+                 $http.delete(context + "/" + id)
+                    .then(function () {
+                        $state.go('especialidadList');
+                    }, responseError); 
+              }
+            };
+            
+            this.buscarRecord = function (id) {
+              if(id != null)
+              {
+                  console.log(id);
+                $http.get(context + "/" + id)
+                    .then(function (response) {
+                        $scope.currentRecord = response.data;
+                        $state.reload('especialidadSearch({especialidadId: currentRecord.id})');
+                    }, responseError);
+              }
             };
 
 
