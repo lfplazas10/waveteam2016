@@ -40,7 +40,6 @@
                 currentRecord = $scope.currentRecord;
                 
                 if (id==null) {  
-                    currentRecord.id=3;
                     return $http.post(context, currentRecord)
                         .then(function () {
                             $state.go('especialidadList');

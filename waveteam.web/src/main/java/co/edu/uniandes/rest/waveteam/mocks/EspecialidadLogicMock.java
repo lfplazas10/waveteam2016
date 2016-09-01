@@ -127,8 +127,9 @@ public class EspecialidadLogicMock {
             }
 
         } else {
-            logger.severe("El ID suministrado es nulo");
-            throw new EspecialidadLogicException("Debe suministrar un ID válido");
+            logger.severe("El ID suministrado es nulo, se agrega con id maximo");
+            long nuevoid=(long)especialidades.size()+1;
+            newEsp.setId(nuevoid);
         }
 
         logger.info("Agregando especialidad " + newEsp);
