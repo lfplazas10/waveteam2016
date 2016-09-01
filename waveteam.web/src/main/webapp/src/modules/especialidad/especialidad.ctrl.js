@@ -40,6 +40,7 @@
                 currentRecord = $scope.currentRecord;
                 
                 if (id == null) {  
+                    console.log("Asdasd");
                     return $http.post(context, currentRecord)
                         .then(function () {
                             $state.go('especialidadList');
@@ -51,6 +52,19 @@
                             $state.go('especialidadList');
                         }, responseError);
                 };
+            };
+            
+            
+            this.deleteRecord = function (id) {
+              currentRecord = $scope.currentRecord;
+              
+              if(id != null)
+              {
+                 $http.delete(context + "/" + id)
+                    .then(function () {
+                        $state.go('especialidadList');
+                    }, responseError); 
+              }
             };
 
 
