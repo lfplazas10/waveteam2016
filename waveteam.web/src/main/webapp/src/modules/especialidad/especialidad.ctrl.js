@@ -39,8 +39,8 @@
             this.saveRecord = function (id) {
                 currentRecord = $scope.currentRecord;
                 
-                if (id == null) {  
-                    console.log("Asdasd");
+                if (id==null) {  
+                    currentRecord.id=3;
                     return $http.post(context, currentRecord)
                         .then(function () {
                             $state.go('especialidadList');
@@ -64,6 +64,18 @@
                     .then(function () {
                         $state.go('especialidadList');
                     }, responseError); 
+              }
+            };
+            
+            this.buscarRecord = function (id) {
+              if(id != null)
+              {
+                  console.log(id);
+                $http.get(context + "/" + id)
+                    .then(function (response) {
+                        $scope.currentRecord = response.data;
+                        $state.reload('especialidadSearch({especialidadId: currentRecord.id})');
+                    }, responseError);
               }
             };
 

@@ -3,12 +3,12 @@
         <fieldset>
           <table width="100%">
             <tr>
-              <th align="left"> Buscar por nombre:</th>
+              <th align="left"> Buscar por id:</th>
               <th>
-                <input id="nombre" name="nombre" class="form-control" type="text" ng-model="currentRecord.nombre" ng-init="currentRecord.nombre" required />
+                <input id="nombre" name="nombre" class="form-control" type="text" ng-model="currentRecord.id" ng-init="currentRecord.id" required />
               </th>
               <th align="right">
-                <button type="button" ng-click="ctrl.buscarRecord(currentRecord.nombre)">Buscar</button>
+                <button type="button" ng-click="ctrl.buscarRecord(currentRecord.id)">Buscar</button>
               </th>
             </tr>
           </table>
