@@ -13,7 +13,18 @@
             }
 
             getConsultorios();
-
+            
+            this.getConsultorio = function(idBusqueda){
+                console.log("probando");
+                console.log(idBusqueda);
+                $http.get(context+"/"+idBusqueda).then(function (response) {
+                    console.log(response.data);                    
+                    $scope.consultorioBusqueda = response.data;
+                    console.log($scope.consultorios);
+                    console.log("gato");
+                }, responseError);
+            };
+            
             //Comando POST!
             this.guardarConsultorio = function () {
                 consultorioActual = $scope.consultorioActual;
@@ -28,6 +39,7 @@
             
             //Comando DELETE!
             this.eliminarConsultorio = function(consultorio){
+                console.log(consultorio.id);
                 $http.delete(context+"/"+consultorio.id)
                         .then(function(response){
                             getConsultorios();
