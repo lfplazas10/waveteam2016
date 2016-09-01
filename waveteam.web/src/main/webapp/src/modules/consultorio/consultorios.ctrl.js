@@ -36,8 +36,19 @@
 
 
             //Comando PUT
-            this.editarConsultorio = function(consultorio){
-                $http.put(context+"/"+consultorio.id)
+            this.actualizarConsultorioId = function(){
+                console.log(id);
+                $scope.idBusqueda = id;
+                $state.go('actualizarConsultorio');
+            }
+            this.actualizarConsultorio = function(){
+                console.log("gato");
+                console.log($scope.idBusqueda);
+                console.log($scope.id);
+                id=$scope.idBusqueda;
+                console.log(id);
+                consultorioActual = $scope.consultorioActual;
+                $http.put(context+"/"+id, consultorioActual)
                         .then(function(response){
                             $state.go('getConsultorios');
                 }, responseError);

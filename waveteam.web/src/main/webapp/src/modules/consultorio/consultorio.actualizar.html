@@ -2,10 +2,11 @@
     <form role="form" ng-submit="form.$valid && ctrl.guardarConsultorio()">
 
         <div ng-messages="form.$error">
-            <h2>Por favor ingrese los datos del nuevo consultorio.</h2>
+            <h2>Por favor ingrese los nuevos datos del consultorio.</h2>
         </div>
 
         <fieldset>
+            <input id="id" class="form-control" type="hidden" ng-model="idBusqueda" ng-init="consultorioActual.id"/>
             <div ng-class="{'has-success': form.name.$valid && form.name.$dirty, 'has-error': form.name.$invalid && (form.name.$dirty || form.$submitted)}">
                 <label>ID</label>
                 <div>
@@ -25,7 +26,7 @@
                 </div>
             </div>
             <button type="button"  ui-sref='getConsultorios'>Cancelar</button>
-            <button type="button" ng-click="ctrl.guardarConsultorio()">Crear</button>
+            <button type="button" ng-click="ctrl.actualizarConsultorio()">Actualizar</button>
         </fieldset>
     </form>
 </div>
