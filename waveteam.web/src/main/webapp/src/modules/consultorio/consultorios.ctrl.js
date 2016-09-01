@@ -30,10 +30,11 @@ var existe = false;
             //Comando POST!
             this.guardarConsultorio = function () {
                 consultorioActual = $scope.consultorioActual;
-                return $http.post(context, consultorioActual)
-                        .then(function (response) {
-                            $state.go('getConsultorios');
-                        }, responseError);
+                    return $http.post(context, consultorioActual)
+                            .then(function (response) {
+                                $state.go('getConsultorios');
+                            }, responseError);
+                        
             }
             
             //Comando DELETE!
@@ -64,11 +65,11 @@ var existe = false;
             }
             
             //===================================
-
+            
             this.closeAlert = function (index) {
                 $scope.alerts.splice(index, 1);
             };
-
+            
             function showMessage(msg, type) {
                 var types = ["info", "danger", "warning", "success"];
                 if (types.some(function (rc) {

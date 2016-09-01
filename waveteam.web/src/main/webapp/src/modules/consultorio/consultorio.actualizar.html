@@ -1,8 +1,9 @@
 <div>
-    <form role="form" ng-submit="form.$valid && ctrl.guardarConsultorio()">
+    <h2>Por favor ingrese los nuevos datos del consultorio.</h2>
+    <form role="form" novalidate name="form" ng-submit="form.$valid && ctrl.guardarConsultorio()">
 
         <div ng-messages="form.$error">
-            <h2>Por favor ingrese los nuevos datos del consultorio.</h2>
+            <div ng-message="required">Por favor, complete todos los campos.</div>
         </div>
 
         <fieldset>
@@ -12,10 +13,13 @@
                 <div>
                     <input type="text" ng-model="consultorioActual.id" ng-init="consultorioActual.id" required />
                 </div>
+            </div>
+            <div ng-class="{'has-success': form.name.$valid && form.name.$dirty, 'has-error': form.name.$invalid && (form.name.$dirty || form.$submitted)}">
                 <label>Horario</label>
                 <div>
                     <input type="text" ng-model="consultorioActual.horario" ng-init="consultorioActual.horario" required />
                 </div>
+            </div>
                 <label>Atencion a urgencias</label> 
                 <div>
                     <input type="checkbox" ng-model="consultorioActual.atencionUrgencias" ng-init="consultorioActual.atencionUrgencias=false"/>
@@ -24,7 +28,6 @@
                 <div>
                     <input type="checkbox" ng-model="consultorioActual.unidadCuidadosIntensivos" ng-init="consultorioActual.unidadCuidadosIntensivos=false"/>
                 </div>
-            </div>
             <button type="button"  ui-sref='getConsultorios'>Cancelar</button>
             <button type="button" ng-click="ctrl.actualizarConsultorio()">Actualizar</button>
         </fieldset>
