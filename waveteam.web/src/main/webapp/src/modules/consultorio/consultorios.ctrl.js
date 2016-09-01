@@ -1,3 +1,6 @@
+
+var idEditar=1;
+var existe = false;
 (function (ng) {
     var mod = ng.module("consultorioModule");
     mod.controller("consultoriosCtrl", ['$scope', '$state', '$stateParams', '$http', 'consultorioContext', function ($scope, $state, $stateParams, $http, context) {
@@ -7,7 +10,6 @@
             //Comando GET!
             getConsultorios = function () {
                 $http.get(context).then(function (response) {
-                    console.log(response.data);
                     $scope.consultorios = response.data;
                 }, responseError);
             }
@@ -15,22 +17,19 @@
             getConsultorios();
             
             this.getConsultorio = function(idBusqueda){
-                console.log("probando");
-                console.log(idBusqueda);
-                $http.get(context+"/"+idBusqueda).then(function (response) {
-                    console.log(response.data);                    
-                    $scope.consultorioBusqueda = response.data;
-                    console.log($scope.consultorios);
-                    console.log("gato");
+                $http.get(context+"/"+idBusqueda).then(function (response) {     
+                    $scope.consultorioBusqueda = response.data;                    
+                    console.log(response.data);
+                    existe = true;
                 }, responseError);
             };
             
+            this.idValido = function(idBusqueda){
+                return existe;
+            }
             //Comando POST!
             this.guardarConsultorio = function () {
                 consultorioActual = $scope.consultorioActual;
-                console.log("gato");
-                console.log(consultorioActual);
-
                 return $http.post(context, consultorioActual)
                         .then(function (response) {
                             $state.go('getConsultorios');
@@ -39,7 +38,6 @@
             
             //Comando DELETE!
             this.eliminarConsultorio = function(consultorio){
-                console.log(consultorio.id);
                 $http.delete(context+"/"+consultorio.id)
                         .then(function(response){
                             getConsultorios();
@@ -48,19 +46,18 @@
 
 
             //Comando PUT
-            this.actualizarConsultorioId = function(){
-                console.log(id);
-                $scope.idBusqueda = id;
+            this.actualizarConsultorioId = function(id){
+                console.log("gatitoasd");
+                idEditar = id;
+                console.log(idEditar);
+                
                 $state.go('actualizarConsultorio');
             }
+            
             this.actualizarConsultorio = function(){
-                console.log("gato");
-                console.log($scope.idBusqueda);
-                console.log($scope.id);
-                id=$scope.idBusqueda;
-                console.log(id);
+                console.log(idEditar);
                 consultorioActual = $scope.consultorioActual;
-                $http.put(context+"/"+id, consultorioActual)
+                $http.put(context+"/"+idEditar, consultorioActual)
                         .then(function(response){
                             $state.go('getConsultorios');
                 }, responseError);
@@ -91,8 +88,7 @@
 
             var self = this;
             function responseError(response) {
-
-                self.showError(response.data);
+                alert(response.data);
             }
         }]);
 

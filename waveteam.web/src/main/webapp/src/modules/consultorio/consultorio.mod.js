@@ -30,6 +30,9 @@
             }
         }).state('actualizarConsultorio',{
             url:"/consultorios/actualizar",
+            param: {
+                idEditar: null
+            },
             views: {
                 'mainView':{
                     controller:'consultoriosCtrl',
