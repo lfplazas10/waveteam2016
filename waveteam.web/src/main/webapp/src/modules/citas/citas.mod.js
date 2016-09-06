@@ -9,10 +9,10 @@ var mod = ng.module("citasModule", ["ngMessages"]);
 mod.constant("citasContext", "api/citas");
 
 mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
-        var basePath = 'src/modules/citas'; 
-        $urlRouterProvider.otherwise("/listaCitas");
+        var basePath = 'src/modules/citas/'; 
+        $urlRouterProvider.otherwise("/");
         $stateProvider.state('listaCitas', {
-            url: 'listaCitas',
+            url: '/listaCitas',
             views: {
                 'mainView': {
                     controller: 'citasCtrl',

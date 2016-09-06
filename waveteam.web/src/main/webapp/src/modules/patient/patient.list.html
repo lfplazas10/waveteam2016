@@ -15,7 +15,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="x in patients">
+            <tr ng-repeat="x in patient">
                 <td>{{x.name}}</td>
                 <td>{{x.id}}</td>
                 <td>{{x.edad}}</td>
@@ -23,8 +23,8 @@
                 <td>{{x.tipoSangre}}</td>
                 <td>{{x.eps}}</td>
                 <td>
-                    <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm" ng-click="ctrl.deleteRecord(record)"><span class="glyphicon glyphicon-minus"></span> Eliminar</button>
-                    <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="cityEdit({cityId: record.id})"><span class="glyphicon glyphicon-edit"></span> Edit</button>
+                    <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm" ng-click="ctrl.deleteRecord(x)"><span class="glyphicon glyphicon-minus"></span> Eliminar</button>
+                    <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ng-click="ctrl.editPatient(x)"><span class="glyphicon glyphicon-edit"></span> Editar</button>
                 </td>
             </tr>
         </tbody>

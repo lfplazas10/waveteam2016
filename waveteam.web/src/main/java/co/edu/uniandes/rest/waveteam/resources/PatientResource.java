@@ -1,6 +1,6 @@
 /*
  * PatientResource.java
- * Clase que representa el recurso "/patients"
+ * Clase que representa el recurso "/patient"
  * Implementa varios métodos para manipular los pacientes
  */
 package co.edu.uniandes.rest.waveteam.resources;
@@ -19,7 +19,7 @@ import javax.ws.rs.DELETE;
 import javax.ws.rs.PUT;
 
 /**
- * Clase que implementa el recurso REST correspondiente a "patients".
+ * Clase que implementa el recurso REST correspondiente a "patient".
  *
  * Note que la aplicación (definida en RestConfig.java) define la ruta "/api" y
  * este recurso tiene la ruta "cities". Al ejecutar la aplicación, el recurse
@@ -27,9 +27,9 @@ import javax.ws.rs.PUT;
  *
  * @author je.ardila1501
  */
-@Path("patients")
+@Path("patient")
 @Produces("application/json")
-public class PacienteResource {
+public class PatientResource {
 
     PatientLogicMock patientLogic = new PatientLogicMock();
 

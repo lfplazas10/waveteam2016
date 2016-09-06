@@ -2,18 +2,18 @@
 
 (function (ng){
     var mod = ng.module("patientModule", ["ngMessages"]);
-    mod.constant("patientContext", "api/patients");
+    mod.constant("patientContext", "api/patient");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
-            var basePath = 'src/modules/patients/';
-            $urlRouterProvider.otherwise("/patientsList");
+            var basePath = 'src/modules/patient/';
+            $urlRouterProvider.otherwise("/patientList");
 
-            $stateProvider.state('patientsList', {
-                url: 'patientsList',
+            $stateProvider.state('patientList', {
+                url: 'patientList',
                 views: {
-                    'mainView': {
-                        controller: 'patientsCtrl',
+                    'mainVxiew': {
+                        controller: 'patientCtrl',
                         controllerAs: 'ctrl',
-                        templateUrl: basePath + 'patients.list.html'
+                        templateUrl: basePath + 'patient.list.html'
                     }
                 }
             })
@@ -22,9 +22,9 @@
             url:"/editPatient",
             views: {
                 'mainView': {
-                    controller: 'patientsCtrl',
+                    controller: 'patientCtrl',
                     controllerAs: 'ctrl',
-                    templateUrl: basePath + 'patients.edit.html'
+                    templateUrl: basePath + 'patient.edit.html'
                 }
             }
         })
@@ -32,9 +32,9 @@
             url:"/addPatient",
             views: {
                 'mainView': {
-                    controller: 'patientsCtrl',
+                    controller: 'patientCtrl',
                     controllerAs: 'ctrl',
-                    templateUrl: basePath + 'patients.create.html'
+                    templateUrl: basePath + 'patient.create.html'
                 }
             }
 

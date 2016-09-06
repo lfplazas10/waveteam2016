@@ -12,19 +12,20 @@
         <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <script src="src/app.js" type="text/javascript"></script>  
+         
         
         <!-- CADA UNO TIENE QUE CARGAR SUS MODULOS -->
         <script src="src/modules/doctors/doctors.mod.js" type="text/javascript"></script>
         <script src="src/modules/doctors/doctors.ctrl.js" type="text/javascript"></script>
-        <script src="src/modules/patients/patients.mod.js" type="text/javascript"></script>
-        <script src="src/modules/patients/patients.ctrl.js" type="text/javascript"></script>
+        <script src="src/modules/patient/patient.mod.js" type="text/javascript"></script>
+        <script src="src/modules/patient/patient.ctrl.js" type="text/javascript"></script>
         <script src="src/modules/citas/citas.mod.js" type="text/javascript"></script>
         <script src="src/modules/citas/citas.ctrl.js" type="text/javascript"></script>
         <script src="src/modules/consultorio/consultorio.mod.js" type="text/javascript"></script>
         <script src="src/modules/consultorio/consultorios.ctrl.js" type="text/javascript"></script>
         <script src="src/modules/especialidad/especialidad.mod.js" type="text/javascript"></script>
         <script src="src/modules/especialidad/especialidad.ctrl.js" type="text/javascript"></script>
+        <script src="src/app.js" type="text/javascript"></script> 
         <!-- -->
         
     </head>
@@ -58,14 +59,14 @@
           </li>
           <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> Pacientes <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a ui-sref="patientsList">Ver</a></li>   
-              <li><a ui-sref="addPatient">Crear</a></li>
+              <li><a ui-sref="patientList">Ver Pacientes</a></li>   
+              <li><a ui-sref="addPatient">Crear Paciente</a></li>
             </ul>
           </li>
           <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> Citas <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="listaCitas">Ver todas las Citas</a></li>
-              <li><a href="addCita">Crear Cita</a></li>
+              <li><a ui-sref="listaCitas">Ver todas las Citas</a></li>
+              <li><a ui-sref="addCita">Crear Cita</a></li>
              
             </ul>
           </li>

@@ -1,6 +1,6 @@
 /*
  * PatientDTO
- * Objeto de transferencia de datos de Patients.
+ * Objeto de transferencia de datos de Patient.
  */
 package co.edu.uniandes.rest.waveteam.dtos;
 
