@@ -32,9 +32,9 @@ public class PatientLogicMock {
 
         if (patients == null) {
             patients = new ArrayList<>();
-            patients.add(new PatientDTO(1L, "Pepe Pombo", 35 , "macho", "A-", "SaludCoop"));
-            patients.add(new PatientDTO(2L, "Magdalena Mejia", 28 , "hembra", "o+", "CafeSalud"));
-            patients.add(new PatientDTO(3L, "Silvio Salgar", 52 , "macho", "b-", "SonrisaSalud"));
+            patients.add(new PatientDTO(1L, "Pepe Pombo", 35 , "Hombre", "A-", "SaludCoop"));
+            patients.add(new PatientDTO(2L, "Magdalena Mejia", 28 , "Mujer", "o+", "CafeSalud"));
+            patients.add(new PatientDTO(3L, "Silvio Salgar", 52 , "Hombre", "b-", "SonrisaSalud"));
         }
 
         // indica que se muestren todos los mensajes

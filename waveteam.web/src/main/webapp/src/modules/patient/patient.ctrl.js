@@ -1,18 +1,18 @@
 (function (ng) {
     var mod = ng.module("patientModule");
     var docIdDeleted = -1;
-    mod.controller("patientsCtrl", ['$scope', '$state', '$stateParams', '$http', 'patientContext', function ($scope, $state, $stateParams, $http, context) {
+    mod.controller("patientCtrl", ['$scope', '$state', '$stateParams', '$http', 'patientContext', function ($scope, $state, $stateParams, $http, context){
 
            loadDocs = function (){
                 $http.get(context).then(function(response){
-                    $scope.patients = response.data;    
+                    $scope.patient = response.data;    
                     }, responseError);
             }
             
             loadDocs();
 
-            this.deleteRecord = function (doc){
-                return $http.delete(context+"/"+doc.id)
+            this.deleteRecord = function (ptn){
+                return $http.delete(context+"/"+ptn.id)
                         .then(function () {
                             loadDocs();
                         }, responseError)
@@ -27,7 +27,7 @@
                 if (isNaN($scope.eps)) alert("La EPS no puede ser numérica.");
                 
                 else{
-                    var doc = 
+                    var ptn = 
                     {
                         "name" :  $scope.nombre,    
                         "id" : $scope.documento,      
@@ -36,22 +36,22 @@
                         "tipoSangre" : $scope.tipoSangre,
                         "eps" : $scope.eps
                     };
-                    doc = JSON.stringify(doc);
-                    console.log(doc);
-                    return $http.post(context, doc.toString())
+                    ptn = JSON.stringify(ptn);
+                    console.log(ptn);
+                    return $http.post(context, ptn.toString())
                         .then(function () {
-                            $state.go('patientsList');
+                            $state.go('patientList');
                         }, responseError)
                 }
             }
             
-            this.editDoc = function(doc) {
+            this.editPatient = function(ptn) {
                 $state.go('editPatient');
-                docIdDeleted = doc.id;
-                $scope.tit = "Editar " + doc.name;
+                patientIdDeleted = ptn.id;
+                $scope.tit = "Editar " + ptn.name;
             }
             
-            this.editPacienteFinal = function () {
+            this.editFinalPatient = function () {
                 if (!$scope.nombre || !$scope.id || !$scope.sexo || !$scope.edad || !$scope.tipoSangre || !$scope.eps ) alert("No puede dejar ningún campo vacio.");
                 if (isNaN($scope.documento)) alert("La cédula debe ser numérica.");
                 if (isNaN($scope.edad)) alert("La edad debe ser un numérica.");
@@ -59,7 +59,7 @@
                 if (isNaN($scope.tipoSangre)) alert("El tipo de Sangre no puede ser numérico.");
                 if (isNaN($scope.eps)) alert("La EPS no puede ser numérica.");
                 else{
-                    var doc = 
+                    var ptn = 
                     {
                         "name" :  $scope.nombre,    
                         "id" : $scope.documento,      
@@ -68,11 +68,11 @@
                         "tipoSangre" : $scope.tipoSangre,
                         "eps" : $scope.eps
                     };
-                    doc = JSON.stringify(doc);
-                    console.log(doc);
-                    return $http.put(context+"/"+docIdDeleted, doc.toString())
+                    ptn = JSON.stringify(ptn);
+                    console.log(ptn);
+                    return $http.put(context+"/"+ptnIdDeleted, ptn.toString())
                         .then(function () {
-                            $state.go('patientsList');
+                            $state.go('patientList');
                         }, responseError)
                 }
             }
