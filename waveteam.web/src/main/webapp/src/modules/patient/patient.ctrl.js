@@ -5,6 +5,7 @@
 
            loadDocs = function (){
                 $http.get(context).then(function(response){
+                    console.log(response.data);
                     $scope.patient = response.data;    
                     }, responseError);
             }

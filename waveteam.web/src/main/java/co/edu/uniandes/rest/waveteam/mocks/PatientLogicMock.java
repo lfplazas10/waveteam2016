@@ -118,7 +118,7 @@ public class PatientLogicMock {
         boolean cambio=false;
         
         if (pPatient.getId()==null || pPatient.getName()==null || pPatient.getEdad()<=0 ||
-                pPatient.getSexo()==null || pPatient.getEps()==null || pPatient.getTipoSAngre()==null){
+                pPatient.getSexo()==null || pPatient.getEps()==null || pPatient.getTipoSangre()==null){
             throw  new PatientLogicException("Error: ninguno atributo del paciente puede ser null "
                     + "o su edad no pude ser menor o igual a cero");
         }
@@ -137,7 +137,7 @@ public class PatientLogicMock {
                     patient.setEdad(pPatient.getEdad());
                     patient.setSexo(pPatient.getSexo());
                     patient.setEps(pPatient.getEps());
-                    patient.setTipoSAngre(pPatient.getTipoSAngre());
+                    patient.setTipoSangre(pPatient.getTipoSangre());
                     cambio=true;
                     patientTmp=patient;
                     

@@ -106,7 +106,7 @@ public class PatientDTO {
       * 
       * @return 
       */
-     public String getTipoSAngre(){
+     public String getTipoSangre(){
          return tipoSangre;
      }
      
@@ -114,7 +114,7 @@ public class PatientDTO {
       * 
       * @param tipoSAngre 
       */
-     public void setTipoSAngre(String tipoSAngre){
+     public void setTipoSangre(String tipoSAngre){
          this.tipoSangre=tipoSAngre;
      }
      
@@ -140,7 +140,7 @@ public class PatientDTO {
     @Override
     public String toString() {
         return "{ id : " + getId() + ", name : \"" + getName() + ", edad : \"" + getEdad() + 
-                ", sexo : \"" + getSexo() + ", tipoSangre : \""+ getTipoSAngre()+ 
+                ", sexo : \"" + getSexo() + ", tipoSangre : \""+ getTipoSangre()+ 
                 ", eps : \""+ getEps() + "\" }";
     }
 }
