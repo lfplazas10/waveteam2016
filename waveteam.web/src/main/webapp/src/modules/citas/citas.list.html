@@ -30,7 +30,7 @@ and open the template in the editor.
                 <td>{{x.getPaciente()}}</td>
                 <td>
                     <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm" ng-click="ctrl.deleteRecord(record)"><span class="glyphicon glyphicon-minus"></span> Eliminar</button>
-                    <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ng-click="cityEdit({cityId: record.id})"><span class="glyphicon glyphicon-edit"></span> Edit</button>
+                    <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ng-click="editCita(x)"><span class="glyphicon glyphicon-edit"></span> Edit</button>
                 </td>
             </tr>
         </tbody>

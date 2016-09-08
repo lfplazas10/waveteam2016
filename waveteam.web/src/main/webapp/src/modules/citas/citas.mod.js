@@ -11,7 +11,8 @@ mod.constant("citasContext", "api/citas");
 mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
         var basePath = 'src/modules/citas/'; 
         $urlRouterProvider.otherwise("/");
-        $stateProvider.state('listaCitas', {
+        $stateProvider
+        .state('listaCitas', {
             url: '/listaCitas',
             views: {
                 'mainView': {

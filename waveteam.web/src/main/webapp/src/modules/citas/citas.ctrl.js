@@ -10,7 +10,7 @@
     mod.controller("citasCtrl", ['$scope', '$state', '$stateParams', '$http', 'citasContext', function ($scope, $state, $stateParams,$http, context ){
             load = function(){
             $http.get(context).then(function(response){
-                $scope.records = response.data;    
+                $scope.citas = response.data;    
             }, responseError);
         }
             
