@@ -11,7 +11,7 @@
         loadDocs();
 
         this.deleteRecord = function (doc) {
-            return $http.delete(context + "/" + doc.id)
+            return $http.delete(context + "/" + doc)
                 .then(function () {
                     loadDocs();
                 }, responseError)
