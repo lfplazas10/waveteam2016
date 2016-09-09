@@ -13,7 +13,7 @@ mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $u
         $urlRouterProvider.otherwise("/");
         $stateProvider
         .state('listaCitas', {
-            url: 'listaCitas',
+            url: '/listaCitas',
             views: {
                 'mainView': {
                     controller: 'citasCtrl',

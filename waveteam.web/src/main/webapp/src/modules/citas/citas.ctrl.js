@@ -17,6 +17,13 @@
             
             load();
             
+            this.deleteRecord = function(cita){
+                return $http.delete(context+"/"+cita.id)
+                        .then(function(){
+                            load();
+                }, responseError())
+            }
+            
             this.saveCita = function(){
                 if(!$scope.id || !$scope.fecha || !$scope.hora || !$scope.duracion || !$scope.idMedico || !$scope.idPaciente) alert ("No puede dejar ningún campo vacio.");
                 if (isNaN($scope.fecha)) alert("La fecha debe ser numérica.");
