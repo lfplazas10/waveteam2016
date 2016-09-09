@@ -21,7 +21,7 @@
                 return $http.delete(context+"/"+cita.id)
                         .then(function(){
                             load();
-                }, responseError())
+                }, responseError)
             }
             
             this.saveCita = function(){

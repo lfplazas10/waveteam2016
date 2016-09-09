@@ -23,7 +23,8 @@ mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $u
             }
         })
         .state('editDoctor', {
-            url:"/editDoctor",
+            url: '/doctors/{docID:int}/edit',
+            param: { 'docID:' : null},
             views: {
                 'mainView': {
                     controller: 'doctorsCtrl',

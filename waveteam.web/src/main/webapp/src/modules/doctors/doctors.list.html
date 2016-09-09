@@ -19,13 +19,13 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="x in doctors | filter:searchField" >
-                <td>{{x.name}}</td>
-                <td>{{x.id}}</td>
-                <td>{{x.especialidad}}</td>
-                <td>{{x.consultorio}}</td>
+            <tr ng-repeat="doc in doctors | filter:searchField" >
+                <td>{{doc.name}}</td>
+                <td>{{doc.id}}</td>
+                <td>{{doc.especialidad}}</td>
+                <td>{{doc.consultorio}}</td>
                 <td>
-                    <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ng-click="ctrl.editDoc(x)"><span class="glyphicon glyphicon-edit"></span> Editar</button>
+                    <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="editDoctor({docID: doc.id})"><span class="glyphicon glyphicon-edit"></span> Editar</button>
                     <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm" ng-click="ctrl.deleteRecord(x)"><span class="glyphicon glyphicon-minus"></span> Eliminar</button>
                 </td>
             </tr>
