@@ -21,16 +21,16 @@ and open the template in the editor.
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="x in citas">
-                <td>{{x.getId()}}</td>
-                <td>{{x.getFecha()}}</td>
-                <td>{{x.getHora()}}</td>
-                <td>{{x.getDuracion()}}</td>
-                <td>{{x.getMedico()}}</td>
-                <td>{{x.getPaciente()}}</td>
+            <tr ng-repeat="x in cita">
+                <td>{{x.id}}</td>
+                <td>{{x.fecha}}</td>
+                <td>{{x.hora}}</td>
+                <td>{{x.duracion}}</td>
+                <td>{{x.medico}}</td>
+                <td>{{x.paciente}}</td>
                 <td>
-                    <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm" ng-click="ctrl.deleteRecord(record)"><span class="glyphicon glyphicon-minus"></span> Eliminar</button>
-                    <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ng-click="editCita(x)"><span class="glyphicon glyphicon-edit"></span> Edit</button>
+                    <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm" ng-click="ctrl.deleteRecord(x)"><span class="glyphicon glyphicon-minus"></span> Eliminar</button>
+                    <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ng-click="ctrl.editCita(x)"><span class="glyphicon glyphicon-edit"></span> Edit</button>
                 </td>
             </tr>
         </tbody>

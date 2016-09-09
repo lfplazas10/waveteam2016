@@ -1,4 +1,4 @@
-/* 
+    /* 
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -10,7 +10,8 @@
     mod.controller("citasCtrl", ['$scope', '$state', '$stateParams', '$http', 'citasContext', function ($scope, $state, $stateParams,$http, context ){
             load = function(){
             $http.get(context).then(function(response){
-                $scope.citas = response.data;    
+                $scope.citas = response.data;  
+                 console.log(response.data);
             }, responseError);
         }
             

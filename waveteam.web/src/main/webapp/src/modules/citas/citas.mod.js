@@ -13,7 +13,7 @@ mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $u
         $urlRouterProvider.otherwise("/");
         $stateProvider
         .state('listaCitas', {
-            url: '/listaCitas',
+            url: 'listaCitas',
             views: {
                 'mainView': {
                     controller: 'citasCtrl',
@@ -31,14 +31,13 @@ mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $u
                     templateUrl: basePath + 'citas.edit.html'
                 }
             }})
-        .state('addCita', {
-                   
+        .state('addCita', {                   
         
                         url: "/addCita", views: {
                         'mainView':{
                         controller:'citasCtrl',
                         controllerAs: 'ctrl',
-                        templateUrl: basePath+"cita.create.html",
+                        templateUrl: basePath+"citas.create.html",
                         
                             
                     }}});
