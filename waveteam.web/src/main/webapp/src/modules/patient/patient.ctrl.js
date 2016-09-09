@@ -1,6 +1,5 @@
 (function (ng) {
     var mod = ng.module("patientModule");
-    var docIdDeleted = -1;
     mod.controller("patientCtrl", ['$scope', '$state', '$stateParams', '$http', 'patientContext', function ($scope, $state, $stateParams, $http, context){
 
            loadDocs = function (){

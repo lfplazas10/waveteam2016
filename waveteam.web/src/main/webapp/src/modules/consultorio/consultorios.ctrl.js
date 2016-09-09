@@ -87,7 +87,6 @@ var existe = false;
                 showMessage(msg, "success");
             };
 
-            var self = this;
             function responseError(response) {
                 alert(response.data);
             }
