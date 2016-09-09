@@ -24,6 +24,7 @@ mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $u
             
         .state('editCita', {
             url: "/editCita",
+            param: {'citaId':null},
             views: {
                 'mainView': {
                     controller: 'citasCtrl',

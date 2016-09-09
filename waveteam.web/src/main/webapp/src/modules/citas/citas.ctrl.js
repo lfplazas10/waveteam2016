@@ -21,23 +21,24 @@
                 return $http.delete(context+"/"+cita.id)
                         .then(function(){
                             load();
-                }, responseError())
+                }, responseError)
             }
             
             this.saveCita = function(){
-                if(!$scope.id || !$scope.fecha || !$scope.hora || !$scope.duracion || !$scope.idMedico || !$scope.idPaciente) alert ("No puede dejar ningún campo vacio.");
-                if (isNaN($scope.fecha)) alert("La fecha debe ser numérica.");
+                if(!$scope.id || !$scope.fecha || !$scope.hora || !$scope.duracion || !$scope.medico || !$scope.paciente) alert ("No puede dejar ningún campo vacio.");
+                
                 if (isNaN($scope.hora)) alert("La Hora debe ser numérica.");
                 if (isNaN($scope.duracion)) alert("La Duración debe ser numérica.");
-                if (isNaN($scope.cedula)) alert("La cédula debe ser numérica.");
+                 
                 else{
+                    console.log($scope.idMedico + " : " + $scope.idPaciente)
                     var cita = {
                         "id" :  $scope.id,    
                         "fecha" : $scope.fecha,      
                         "hora" : $scope.hora,        
                         "duracion" : $scope.duracion,
-                        "idMedico": $scope.idMedico,
-                        "idPaciente":$scope.idPaciente
+                        "medico": $scope.medico,
+                        "paciente": $scope.paciente
                     };
                     cita = JSON.stringify(cita);
                     console.log(cita);
@@ -68,8 +69,8 @@
                         "fecha" : $scope.fecha,      
                         "hora" : $scope.hora,    
                         "duracion" : $scope.duracion,
-                        "idMedico" : $scope.idMedico,
-                        "idPaciente" : $scope.idPaciente
+                        "medico" : $scope.idMedico,
+                        "paciente" : $scope.idPaciente
                     };
                     doc = JSON.stringify(cita);
                     console.log(cita);
