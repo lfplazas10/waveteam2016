@@ -45,9 +45,18 @@
         }
 
         this.saveDoctor = function () {
-            if (!$scope.nombre || !$scope.especialidad || !$scope.consultorio || !$scope.cedula) alert("No puede dejar ningún campo vacio.");
-            if (isNaN($scope.cedula)) alert("La cédula debe ser numérica.");
-            if (isNaN($scope.consultorio)) alert("El consultorio debe ser un número.");
+            if (!$scope.nombre || !$scope.especialidad || !$scope.consultorio || !$scope.cedula) {
+                alert("No puede dejar ningún campo vacio.");
+                return;
+            }
+            if (isNaN($scope.cedula)) {
+                alert("La cédula debe ser numérica.");
+                return;
+            }
+            if (isNaN($scope.consultorio)) {
+                alert("El consultorio debe ser un número.");
+                return;
+            }
             else {
                 var doc =
                 {
@@ -88,7 +97,7 @@
                 };
                 doc = JSON.stringify(doc);
                 console.log(doc);
-                return $http.put(context + "/" + $scope.cedula, doc.toString())
+                return $http.put(context + "/" + $stateParams.docID, doc.toString())
                     .then(function () {
                         $state.go('doctorsList');
                     }, responseError)
