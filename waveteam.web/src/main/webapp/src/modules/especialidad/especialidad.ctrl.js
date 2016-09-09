@@ -29,7 +29,7 @@
                     id: undefined ,
                     nombre: '',
                     grupo: '',
-                    tipo: '',
+                    tipo: ''
                 };
               
                 $scope.alerts = [];

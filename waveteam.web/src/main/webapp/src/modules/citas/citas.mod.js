@@ -38,7 +38,7 @@ mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $u
                         'mainView':{
                         controller:'citasCtrl',
                         controllerAs: 'ctrl',
-                        templateUrl: basePath+"citas.create.html",
+                        templateUrl: basePath+"citas.create.html"
                         
                             
                     }}});
