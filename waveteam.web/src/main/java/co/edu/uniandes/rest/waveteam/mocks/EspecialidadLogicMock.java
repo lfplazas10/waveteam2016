@@ -128,7 +128,17 @@ public class EspecialidadLogicMock {
 
         } else {
             logger.severe("El ID suministrado es nulo, se agrega con id maximo");
-            long nuevoid=(long)especialidades.size()+1;
+            long nuevoid=1;
+            for (EspecialidadDTO especialidad : especialidades) {
+                if (!Objects.equals(especialidad.getId(),nuevoid)) {
+                   break;
+                }
+                else
+                {
+                    nuevoid++;
+                }
+            }
+            
             newEsp.setId(nuevoid);
         }
 
