@@ -7,8 +7,10 @@ package co.edu.uniandes.rest.waveteam.resources;
 import co.edu.uniandes.rest.waveteam.exceptions.ConsultorioLogicException;
 import co.edu.uniandes.rest.waveteam.mocks.ConsultorioLogicMock;
 import co.edu.uniandes.rest.waveteam.dtos.ConsultorioDTO;
+import co.edu.uniandes.rest.waveteam.dtos.MedicoDTO;
 
 import java.util.List;
+import java.util.logging.Logger;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -29,6 +31,8 @@ import javax.ws.rs.Produces;
 @Produces("application/json")
 @Consumes("application/json")
 public class ConsultorioResource {
+        private final static Logger logger = Logger.getLogger(ConsultorioLogicMock.class.getName());
+
     ConsultorioLogicMock consultorioLogic = new ConsultorioLogicMock();
     /**
      * Devuelve la lista de los consultorios
@@ -68,6 +72,56 @@ public class ConsultorioResource {
     public ConsultorioDTO updateConsultorio(@PathParam("id") long id, ConsultorioDTO updatedConsultorio) throws ConsultorioLogicException            
     {
         return consultorioLogic.updateConsultorio(id, updatedConsultorio);
+    }
+    
+    /**
+     * Asigna un nuevo doctor al consultorio
+     * @param idConsultorio
+     * @param idDoctor
+     * @return
+     * @throws ConsultorioLogicException 
+     */
+    @POST
+    @Path("{idConsultorio: \\d+}/doctores/{idDoctor: \\d+}")
+    public ConsultorioDTO asignDoctor(@PathParam("idConsultorio") long idConsultorio, @PathParam("idDoctor") long idDoctor) throws ConsultorioLogicException
+    {
+
+        return consultorioLogic.asignDoctor(idConsultorio, idDoctor);
+    }
+    
+    @PUT
+    @Path("{idConsultorio: \\d+}/doctores")
+    public ConsultorioDTO asignDoctors(@PathParam("idConsultorio") long idConsultorio, List<Long> doctoresAsignados) throws ConsultorioLogicException
+    {
+        return consultorioLogic.asignDoctors(idConsultorio, doctoresAsignados);
+    }
+
+    
+    /**
+     * Elimina un doctor asignado de un consultorio
+     * @param idConsultorio
+     * @param idDoctor
+     * @return
+     * @throws ConsultorioLogicException 
+     */
+    @DELETE
+    @Path("{idConsultorio: \\d+}/doctores/{idDoctor: \\d+}")
+    public ConsultorioDTO unasignDoctor(@PathParam("idConsultorio") long idConsultorio, @PathParam("idDoctor") long idDoctor) throws ConsultorioLogicException
+    {
+        return consultorioLogic.unasignDoctor(idConsultorio, idDoctor);
+    }
+    
+    /**
+     * Elimina todos los doctores asignados de un consultorio
+     * @param idConsultorio
+     * @return
+     * @throws ConsultorioLogicException 
+     */
+    @DELETE
+    @Path("{idConsultorio: \\d+}/doctores")
+    public ConsultorioDTO unasignAllDoctors(@PathParam("idConsultorio") long idConsultorio) throws ConsultorioLogicException
+    {
+        return consultorioLogic.unasignAllDoctors(idConsultorio);
     }
     
     /**

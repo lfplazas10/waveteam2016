@@ -5,6 +5,10 @@
  */
 package co.edu.uniandes.rest.waveteam.dtos;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
 /**
  *
  * @author r.garcia11
@@ -16,6 +20,9 @@ public class ConsultorioDTO {
     private boolean atencionUrgencias;
     private boolean unidadCuidadosIntensivos;
     
+    // Un consultorio puede estar asignado a muchos doctores
+    private List<Long> doctoresAsignados = new ArrayList<Long>();
+
     /**
      * Constructor vacío
      */
@@ -103,6 +110,39 @@ public class ConsultorioDTO {
     public void setUnidadCuidadosIntensivos(boolean unidadCuidadosIntensivos)
     {
         this.unidadCuidadosIntensivos = unidadCuidadosIntensivos;
+    }
+    
+    /**
+     * Retorna los doctores asignados a este consultorio
+     */
+    public List<Long> getDoctoresAsignados(){
+        return doctoresAsignados;
+    }
+    
+    /**
+     * Edita la lista de doctores asignados con la lista por parámetro
+     * @param nuevosDoctores lista de doctores asignados
+     */
+    public void setDoctoresAsignados(List<Long> nuevosDoctores){
+        doctoresAsignados = nuevosDoctores;
+    }
+    
+    public void agregarDoctorAsignado(Long idDoctor)
+    {
+        doctoresAsignados.add(idDoctor);
+    }
+    
+    public boolean eliminarDoctorAsignado(Long idDoctor)
+    {
+        for (Long id: doctoresAsignados)
+        {
+            if (Objects.equals(id, idDoctor))
+            {
+                doctoresAsignados.remove(id);
+                return true;
+            }
+        }
+        return false;
     }
     
     /**
