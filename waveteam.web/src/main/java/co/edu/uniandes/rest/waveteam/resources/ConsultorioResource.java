@@ -75,56 +75,6 @@ public class ConsultorioResource {
     }
     
     /**
-     * Asigna un nuevo doctor al consultorio
-     * @param idConsultorio
-     * @param idDoctor
-     * @return
-     * @throws ConsultorioLogicException 
-     */
-    @POST
-    @Path("{idConsultorio: \\d+}/doctores/{idDoctor: \\d+}")
-    public ConsultorioDTO asignDoctor(@PathParam("idConsultorio") long idConsultorio, @PathParam("idDoctor") long idDoctor) throws ConsultorioLogicException
-    {
-
-        return consultorioLogic.asignDoctor(idConsultorio, idDoctor);
-    }
-    
-    @PUT
-    @Path("{idConsultorio: \\d+}/doctores")
-    public ConsultorioDTO asignDoctors(@PathParam("idConsultorio") long idConsultorio, List<Long> doctoresAsignados) throws ConsultorioLogicException
-    {
-        return consultorioLogic.asignDoctors(idConsultorio, doctoresAsignados);
-    }
-
-    
-    /**
-     * Elimina un doctor asignado de un consultorio
-     * @param idConsultorio
-     * @param idDoctor
-     * @return
-     * @throws ConsultorioLogicException 
-     */
-    @DELETE
-    @Path("{idConsultorio: \\d+}/doctores/{idDoctor: \\d+}")
-    public ConsultorioDTO unasignDoctor(@PathParam("idConsultorio") long idConsultorio, @PathParam("idDoctor") long idDoctor) throws ConsultorioLogicException
-    {
-        return consultorioLogic.unasignDoctor(idConsultorio, idDoctor);
-    }
-    
-    /**
-     * Elimina todos los doctores asignados de un consultorio
-     * @param idConsultorio
-     * @return
-     * @throws ConsultorioLogicException 
-     */
-    @DELETE
-    @Path("{idConsultorio: \\d+}/doctores")
-    public ConsultorioDTO unasignAllDoctors(@PathParam("idConsultorio") long idConsultorio) throws ConsultorioLogicException
-    {
-        return consultorioLogic.unasignAllDoctors(idConsultorio);
-    }
-    
-    /**
      * Crea un consultorio con la información dada
      * 
      * @param consultorioNuevo
@@ -148,5 +98,49 @@ public class ConsultorioResource {
     public void deleteConsultorio(@PathParam("id") long id) throws ConsultorioLogicException
     {
         consultorioLogic.deleteConsultorio(id);
-    }    
+    }
+    
+    //REQUERIMIENTO R8 - ASIGNAR CONSULTORIO A MEDICO
+    
+    /**
+     * Elimina todos los doctores asignados de un consultorio
+     * @param idConsultorio
+     * @return
+     * @throws ConsultorioLogicException 
+     */
+    @DELETE
+    @Path("{idConsultorio: \\d+}/doctores")
+    public ConsultorioDTO unasignAllDoctors(@PathParam("idConsultorio") long idConsultorio) throws ConsultorioLogicException
+    {
+        return consultorioLogic.unasignAllDoctors(idConsultorio);
+    }
+    
+    /**
+     * Elimina un doctor asignado de un consultorio
+     * @param idConsultorio
+     * @param idDoctor
+     * @return
+     * @throws ConsultorioLogicException 
+     */
+    @DELETE
+    @Path("{idConsultorio: \\d+}/doctores/{idDoctor: \\d+}")
+    public ConsultorioDTO unasignDoctor(@PathParam("idConsultorio") long idConsultorio, @PathParam("idDoctor") long idDoctor) throws ConsultorioLogicException
+    {
+        return consultorioLogic.unasignDoctor(idConsultorio, idDoctor);
+    }
+    
+    /**
+     * Asigna un nuevo doctor al consultorio
+     * @param idConsultorio
+     * @param idDoctor
+     * @return
+     * @throws ConsultorioLogicException 
+     */
+    @POST
+    @Path("{idConsultorio: \\d+}/doctores/{idDoctor: \\d+}")
+    public ConsultorioDTO asignDoctor(@PathParam("idConsultorio") long idConsultorio, @PathParam("idDoctor") long idDoctor) throws ConsultorioLogicException
+    {
+
+        return consultorioLogic.asignDoctor(idConsultorio, idDoctor);
+    }
 }
