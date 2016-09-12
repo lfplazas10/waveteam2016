@@ -63,7 +63,20 @@ public class MedicoResource {
     public MedicoDTO updateDoctor(@PathParam("id") Long id, MedicoDTO doctor) throws MedicoLogicException {
         return cityLogic.updateDoctor(id, doctor);
     }
-
+    
+    /**
+     * Asigna un consultorio a un médico
+     * @param idMedico
+     * @param idConsultorio
+     * @return
+     * @throws MedicoLogicException 
+     */
+    @PUT
+    @Path("{idMedico: \\d+}/{idConsultorio: \\d+}")
+    public MedicoDTO asignConsultorio(@PathParam("idMedico") Long idMedico, @PathParam("idConsultorio") Long idConsultorio) throws MedicoLogicException {
+        return cityLogic.asignConsultorio(idMedico, idConsultorio);
+    }
+    
     /**
      * Agrega un médico
      *

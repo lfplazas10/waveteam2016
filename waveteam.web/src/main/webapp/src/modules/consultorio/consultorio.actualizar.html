@@ -1,9 +1,9 @@
 <div>
     <h2>Por favor ingrese los nuevos datos del consultorio.</h2>
-    <form role="form" novalidate name="form" ng-submit="form.$valid && ctrl.guardarConsultorio()">
+    <form role="form" novalidate name="form" ng-submit="form.$valid && ctrl.actualizarConsultorio()">
 
         <div ng-messages="form.$error">
-            <div ng-message="required">Por favor, complete todos los campos.</div>
+            <div ng-message="required">Por favor complete todos los campos.</div>
         </div>
 
         <fieldset>
@@ -29,7 +29,7 @@
                     <input type="checkbox" ng-model="consultorioActual.unidadCuidadosIntensivos" ng-init="consultorioActual.unidadCuidadosIntensivos=false"/>
                 </div>
             <button type="button"  ui-sref='getConsultorios'>Cancelar</button>
-            <button type="button" ng-click="ctrl.actualizarConsultorio()">Actualizar</button>
+            <button type="submit">Actualizar</button>
         </fieldset>
     </form>
 </div>

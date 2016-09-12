@@ -109,6 +109,37 @@ public class MedicoLogicMock {
         logger.info("Retornando el doctor actualizado");
         return updatedCity;
     }
+    
+    public MedicoDTO asignConsultorio(Long idMedico, Long idConsultorio) throws MedicoLogicException {
+        if (doctors == null) {
+            logger.severe("Error interno: lista de doctores no existe.");
+            throw new MedicoLogicException("Error interno: lista de doctores no existe.");
+        }
+        MedicoDTO updatedDoctor = null;
+        boolean found = false;
+        if ( idMedico != null) {
+            for (MedicoDTO doctor : doctors) {
+                if (Objects.equals(idMedico, doctor.getId())) {
+                    logger.info("Actualizando informacion del doctor con");
+                    updatedDoctor = doctor;
+                    doctor.setConsultorio(idConsultorio);
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) {
+                logger.severe("No se encontro doctor con ese ID");
+                throw new MedicoLogicException("No existe doctor con ese ID");
+            }
+
+        } else {
+            logger.severe("El ID dado es nulo");
+            throw new MedicoLogicException("El id es nulo");
+
+        }
+        logger.info("Retornando el doctor actualizado");
+        return updatedDoctor;
+    }
 
     /**
      * Agrega un medico a la lista.
