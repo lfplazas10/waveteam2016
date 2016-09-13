@@ -23,7 +23,7 @@ mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $u
             }})
             
         .state('editCita', {
-            url: "/editCita",
+            url: "/editCita/{citaId:int}/edit",
             param: {'citaId':null},
             views: {
                 'mainView': {

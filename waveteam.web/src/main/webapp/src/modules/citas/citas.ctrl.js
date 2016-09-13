@@ -50,14 +50,9 @@
                 
             }
             
-            this.editCita = function(cita){
-                $state.got('editCita');
-                citaElim = cita.id;
-                $scope.tit = "Editar " + cita.id;
-            }
-            
+           
             this.editCitaFinal = function () {
-                if (!$scope.id || !$scope.fecha || !$scope.hora || !$scope.duracion || !$scope.idMedico || !$scope.idPaciente ) alert("No puede dejar ningún campo vacio.");
+                if (!$scope.id || !$scope.fecha || !$scope.hora || !$scope.duracion || !$scope.medico || !$scope.paciente ) alert("No puede dejar ningún campo vacio.");
                 if (isNaN($scope.fecha)) alert("La fecha debe ser numérica.");
                 if (isNaN($scope.hora)) alert("La hora debe ser un numérica.");
                 if (isNaN($scope.duracion)) alert("La duracion debe ser numérica.");
@@ -69,8 +64,8 @@
                         "fecha" : $scope.fecha,      
                         "hora" : $scope.hora,    
                         "duracion" : $scope.duracion,
-                        "medico" : $scope.idMedico,
-                        "paciente" : $scope.idPaciente
+                        "medico" : $scope.medico,
+                        "paciente" : $scope.paciente
                     };
                     doc = JSON.stringify(cita);
                     console.log(cita);
