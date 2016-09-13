@@ -15,7 +15,7 @@ public class MedicoDTO {
     private String name;
     private String especialidad;
     private Long consultorio;
-
+    
     /**
      * Constructor por defecto
      */
