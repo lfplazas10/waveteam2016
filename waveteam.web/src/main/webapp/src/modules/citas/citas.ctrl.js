@@ -52,12 +52,25 @@
             
            
             this.editCitaFinal = function () {
-                if (!$scope.id || !$scope.fecha || !$scope.hora || !$scope.duracion || !$scope.medico || !$scope.paciente ) alert("No puede dejar ningún campo vacio.");
-                if (isNaN($scope.fecha)) alert("La fecha debe ser numérica.");
-                if (isNaN($scope.hora)) alert("La hora debe ser un numérica.");
-                if (isNaN($scope.duracion)) alert("La duracion debe ser numérica.");
+                if (!$scope.id || !$scope.fecha || !$scope.hora || !$scope.duracion || !$scope.medico || !$scope.paciente ){
+                    alert("No puede dejar ningún campo vacio.");
+                    return;
+                }
+                if (isNaN($scope.fecha)){
+                    alert("La fecha debe ser numérica.");
+                    return;
+                }
+                if (isNaN($scope.hora)){
+                    alert("La hora debe ser un numérica.");
+                    return;
+                }
+                if (isNaN($scope.duracion)){
+                    alert("La duracion debe ser numérica.");
+                    return;
+                }
               
                 else{
+                    console.log("Se va a editar la cita" + $scope.id);
                     var cita = 
                     {
                         "id" :  $scope.id,    
@@ -67,14 +80,15 @@
                         "medico" : $scope.medico,
                         "paciente" : $scope.paciente
                     };
-                    doc = JSON.stringify(cita);
+                    cita = JSON.stringify(cita);
                     console.log(cita);
-                    return $http.put(context+"/"+citaElim, cita.toString())
+                    return $http.put(context+"/"+$stateParams.citaId, cita.toString())
                         .then(function () {
                             $state.go('listaCitas');
                         }, responseError)
                 }
             } 
+        
             this.closeAlert = function (index) {
                 $scope.alerts.splice(index, 1);
             };

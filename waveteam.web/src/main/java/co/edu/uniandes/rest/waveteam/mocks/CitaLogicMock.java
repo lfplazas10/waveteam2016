@@ -98,7 +98,8 @@ public class CitaLogicMock {
             throw new CitaLogicException("Error obteniendo citas, la lista no está inicializada");
             
         }      
-      
+      boolean encontro = false;
+      if(nueva.getId()!=null){
         for(CitaDTO cita : citas){
            
             if(Objects.equals(id, cita.getId())){
@@ -110,16 +111,21 @@ public class CitaLogicMock {
                 cita.setDuracion(nueva.getDuracion());
                 cita.setMedico(nueva.getMedico());
                 cita.setPaciente(nueva.getPaciente());
-               
-                return cita;
+                encontro = true;
+                break;
               }
           }
+        if(!encontro){
+            logger.severe("nNo existe una cita con ese id");
+                throw  new CitaLogicException("No existe una cita con ese id");
+        }
+      }
+        return nueva;
+      }
           
            
-            logger.severe("No se encontró una cita con el ID solicitado");
-            throw new CitaLogicException("No se encontró una cita con el ID solicitado");
-          
-      }
+            
+      
          
           
           
