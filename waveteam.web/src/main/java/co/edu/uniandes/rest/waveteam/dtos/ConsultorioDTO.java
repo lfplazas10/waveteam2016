@@ -21,7 +21,7 @@ public class ConsultorioDTO {
     private boolean unidadCuidadosIntensivos;
     
     // Un consultorio puede estar asignado a muchos doctores
-    private List<Long> doctoresAsignados = new ArrayList<Long>();
+    private List<MedicoDTO> doctoresAsignados = new ArrayList<MedicoDTO>();
 
     //Un consultorio tiene varias citas
     private List<CitaDTO> citasAsignadas = new ArrayList<CitaDTO>();
@@ -121,7 +121,7 @@ public class ConsultorioDTO {
     /**
      * Retorna los doctores asignados a este consultorio
      */
-    public List<Long> getDoctoresAsignados(){
+    public List<MedicoDTO> getDoctoresAsignados(){
         return doctoresAsignados;
     }
     
@@ -129,22 +129,22 @@ public class ConsultorioDTO {
      * Edita la lista de doctores asignados con la lista por parámetro
      * @param nuevosDoctores lista de doctores asignados
      */
-    public void setDoctoresAsignados(List<Long> nuevosDoctores){
+    public void setDoctoresAsignados(List<MedicoDTO> nuevosDoctores){
         doctoresAsignados = nuevosDoctores;
     }
     
-    public void agregarDoctorAsignado(Long idDoctor)
+    public void agregarDoctorAsignado(MedicoDTO doc)
     {
-        doctoresAsignados.add(idDoctor);
+        doctoresAsignados.add(doc);
     }
     
     public boolean eliminarDoctorAsignado(Long idDoctor)
     {
-        for (Long id: doctoresAsignados)
+        for (MedicoDTO doc: doctoresAsignados)
         {
-            if (Objects.equals(id, idDoctor))
+            if (Objects.equals(doc.getId(), idDoctor))
             {
-                doctoresAsignados.remove(id);
+                doctoresAsignados.remove(doc);
                 return true;
             }
         }

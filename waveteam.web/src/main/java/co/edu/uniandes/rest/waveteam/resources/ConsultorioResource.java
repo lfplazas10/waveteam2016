@@ -8,6 +8,7 @@ import co.edu.uniandes.rest.waveteam.dtos.CitaDTO;
 import co.edu.uniandes.rest.waveteam.exceptions.ConsultorioLogicException;
 import co.edu.uniandes.rest.waveteam.mocks.ConsultorioLogicMock;
 import co.edu.uniandes.rest.waveteam.dtos.ConsultorioDTO;
+import co.edu.uniandes.rest.waveteam.dtos.MedicoDTO;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -137,11 +138,11 @@ public class ConsultorioResource {
      * @throws ConsultorioLogicException 
      */
     @POST
-    @Path("{idConsultorio: \\d+}/doctores/{idDoctor: \\d+}")
-    public ConsultorioDTO asignDoctor(@PathParam("idConsultorio") long idConsultorio, @PathParam("idDoctor") long idDoctor) throws ConsultorioLogicException
+    @Path("{idConsultorio: \\d+}/doctores")
+    public ConsultorioDTO asignDoctor(@PathParam("idConsultorio") long idConsultorio, MedicoDTO doc) throws ConsultorioLogicException
     {
 
-        return consultorioLogic.asignDoctor(idConsultorio, idDoctor);
+        return consultorioLogic.asignDoctor(idConsultorio, doc);
     }
     
     /**
@@ -152,8 +153,8 @@ public class ConsultorioResource {
      * @throws ConsultorioLogicException 
      */
     @PUT
-    @Path("{idCosultorio: \\d+}/doctores")
-    public ConsultorioDTO asignDoctors(@PathParam("idConsultorio") long idConsultorio, List<Long> nuevaLista) throws ConsultorioLogicException
+    @Path("{idConsultorio: \\d+}/doctores")
+    public ConsultorioDTO asignDoctors(@PathParam("idConsultorio") long idConsultorio, List<MedicoDTO> nuevaLista) throws ConsultorioLogicException
     {
         return consultorioLogic.asignDoctors(idConsultorio, nuevaLista);
     }

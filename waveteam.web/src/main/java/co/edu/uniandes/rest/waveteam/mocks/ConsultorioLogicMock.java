@@ -7,6 +7,7 @@ package co.edu.uniandes.rest.waveteam.mocks;
 
 import co.edu.uniandes.rest.waveteam.dtos.CitaDTO;
 import co.edu.uniandes.rest.waveteam.dtos.ConsultorioDTO;
+import co.edu.uniandes.rest.waveteam.dtos.MedicoDTO;
 import co.edu.uniandes.rest.waveteam.exceptions.ConsultorioLogicException;
 import java.util.List;
 import java.util.ArrayList;
@@ -176,7 +177,7 @@ public class ConsultorioLogicMock {
      * @param idDoctor
      * @throws ConsultorioLogicException 
      */
-    public ConsultorioDTO asignDoctor (Long idConsultorio, Long idDoctor) throws ConsultorioLogicException
+    public ConsultorioDTO asignDoctor (Long idConsultorio, MedicoDTO doc) throws ConsultorioLogicException
     {
         logger.info("Agregando un doctor a un consultorio");
         if (consultorios == null) {
@@ -187,7 +188,7 @@ public class ConsultorioLogicMock {
         for (ConsultorioDTO consultorio : consultorios) {
             if (Objects.equals(idConsultorio, consultorio.getId())) {
                 logger.info("Se encontró consultorio con ID " + idConsultorio +", agregando idDoctor.");
-                consultorio.agregarDoctorAsignado(idDoctor);
+                consultorio.agregarDoctorAsignado(doc);
                 return consultorio;
             }
         }
@@ -202,7 +203,7 @@ public class ConsultorioLogicMock {
      * @param idDoctor
      * @throws ConsultorioLogicException 
      */
-    public ConsultorioDTO asignDoctors (Long idConsultorio, List<Long> nuevaLista) throws ConsultorioLogicException
+    public ConsultorioDTO asignDoctors (Long idConsultorio, List<MedicoDTO> nuevaLista) throws ConsultorioLogicException
     {
         logger.info("Agregando doctores a un consultorio");
         if (consultorios == null) {
@@ -265,7 +266,7 @@ public class ConsultorioLogicMock {
         for (ConsultorioDTO consultorio : consultorios) {
             if (Objects.equals(idConsultorio, consultorio.getId())) {
                 logger.info("Se encontró consultorio con ID " + idConsultorio +", eliminando todos los doctores asignados.");
-                consultorio.setDoctoresAsignados(new ArrayList<Long>());
+                consultorio.setDoctoresAsignados(new ArrayList<MedicoDTO>());
                 return consultorio;
             }
         }

@@ -99,14 +99,13 @@ public class CitaResource {
     
     
     @GET
-    @Path("{id: \\d+}")
+    @Path("/paciente/{id: \\d+}")
     public List<CitaDTO> getCitasByPaciente(@PathParam("id") Long paciente) throws CitaLogicException{
         return citaLogic.getCitasByPaciente(paciente);
     }
     
-    
     @GET
-    @Path("{id: \\d+}")
+    @Path("/doctor/{fechaInicio: \\w+}-{fechaFin: \\w+}/{id: \\d+}")
     public ArrayList<CitaDTO> getCitasByMedicoEnFecha(@PathParam("id") Long medico, @PathParam("fechaInicio") String fechaInicio, @PathParam("fechaFin") String fechaFin) throws CitaLogicException, MedicoLogicException{
         return citaLogic.getCitasByMedicoEnFecha(medico, fechaInicio, fechaFin);
     }
