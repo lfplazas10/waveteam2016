@@ -6,7 +6,7 @@
 
 (function (ng){
     var mod = ng.module("citasModule");
-    var citaElim = -1;
+    
     mod.controller("citasCtrl", ['$scope', '$state', '$stateParams', '$http', 'citasContext', function ($scope, $state, $stateParams,$http, context ){
             load = function(){
             $http.get(context).then(function(response){
