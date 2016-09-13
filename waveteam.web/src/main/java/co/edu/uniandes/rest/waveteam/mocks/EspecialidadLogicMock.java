@@ -5,7 +5,9 @@
  */
 package co.edu.uniandes.rest.waveteam.mocks;
 
+import co.edu.uniandes.rest.waveteam.dtos.CitaDTO;
 import co.edu.uniandes.rest.waveteam.dtos.EspecialidadDTO;
+import co.edu.uniandes.rest.waveteam.dtos.MedicoDTO;
 import co.edu.uniandes.rest.waveteam.exceptions.EspecialidadLogicException;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,8 +33,18 @@ public class EspecialidadLogicMock {
 
         if (especialidades == null) {
             especialidades = new ArrayList<>();
-            especialidades.add(new EspecialidadDTO(1L, "Pediatria", "0-18", "clinica"));
-            especialidades.add(new EspecialidadDTO(2L, "neurocirugia", "0-95", "quirurgica"));
+            
+            ArrayList<MedicoDTO> temp = new ArrayList<MedicoDTO>();
+            temp.add(new MedicoDTO(1L, "Pedro Pablo Jaramillo", "Cardiólogo", 301L));
+            especialidades.add(new EspecialidadDTO(1L, "Cardiologia", "0-95", "clinica",temp,new ArrayList<CitaDTO>()));
+            
+            temp= new ArrayList<MedicoDTO>();
+            temp.add(new MedicoDTO(5L, "Jairo Aristizabal", "Neumólogo", 305L));
+            especialidades.add(new EspecialidadDTO(2L, "neumologia", "0-95", "clinica",temp,new ArrayList<CitaDTO>()));
+            
+            temp= new ArrayList<MedicoDTO>();
+            temp.add(new MedicoDTO(3L, "Fernando Vallejo", "Traumatólogo", 320L));
+            especialidades.add(new EspecialidadDTO(3L, "Traumatologia", "0-95", "medico-quirurgica",temp,new ArrayList<CitaDTO>()));
         }
 
         // indica que se muestren todos los mensajes
@@ -157,6 +169,44 @@ public class EspecialidadLogicMock {
                 logger.info("Borrando la especialidad con ID "+id);
                 especialidades.remove(especialidad);
                 return;
+            }
+        }
+        logger.info("No se encontro una especialidad con ese ID");
+        throw new EspecialidadLogicException("No existe una especialidad con ese ID");
+    }
+    
+    public List<MedicoDTO> getDoctoresPorEspecialidad(Long id) throws EspecialidadLogicException{
+        
+        ArrayList<MedicoDTO> doctores=new ArrayList<MedicoDTO>();
+        
+        if (especialidades == null) {
+            logger.severe("Error interno: lista de especialidades no existe.");
+            throw new EspecialidadLogicException("Error interno: lista de especialidades no existe.");
+        }
+        for (EspecialidadDTO especialidad : especialidades) {
+            if (Objects.equals(id, especialidad.getId())) {
+                logger.info("Dando los doctores de la especialidad con ID: "+id);
+                doctores=especialidad.getDoctores();
+                return doctores;
+            }
+        }
+        logger.info("No se encontro una especialidad con ese ID");
+        throw new EspecialidadLogicException("No existe una especialidad con ese ID");
+    }
+    
+    public List<CitaDTO> getCitasPorEspecialidad(Long id) throws EspecialidadLogicException{
+        
+        ArrayList<CitaDTO> citas=new ArrayList<CitaDTO>();
+        
+        if (especialidades == null) {
+            logger.severe("Error interno: lista de especialidades no existe.");
+            throw new EspecialidadLogicException("Error interno: lista de especialidades no existe.");
+        }
+        for (EspecialidadDTO especialidad : especialidades) {
+            if (Objects.equals(id, especialidad.getId())) {
+                logger.info("Dando las citas de la especialidad con ID:"+id);
+                citas=especialidad.getCitas();
+                return citas;
             }
         }
         logger.info("No se encontro una especialidad con ese ID");

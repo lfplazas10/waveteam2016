@@ -6,8 +6,10 @@
 package co.edu.uniandes.rest.waveteam.resources;
 
 import co.edu.uniandes.rest.waveteam.dtos.EspecialidadDTO;
+import co.edu.uniandes.rest.waveteam.dtos.MedicoDTO;
 import co.edu.uniandes.rest.waveteam.exceptions.EspecialidadLogicException;
 import co.edu.uniandes.rest.waveteam.mocks.EspecialidadLogicMock;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -81,5 +83,18 @@ public class EspecialidadResource {
     @Path("{id: \\d+}")
     public void deleteEspecialidad(@PathParam("id") Long id) throws EspecialidadLogicException {
         espLogic.deleteEspecialidad(id);
+    }
+    
+    
+    @GET
+    @Path("{id: \\d+}/doctores")
+    public List<MedicoDTO> getDoctoresPorEspecialidad(@PathParam("id") Long id) throws EspecialidadLogicException {
+        return espLogic.getDoctoresPorEspecialidad(id);
+    }
+    
+     @GET
+    @Path("{id: \\d+}/citas")
+    public List<MedicoDTO> getCitasPorEspecialidad(@PathParam("id") Long id) throws EspecialidadLogicException {
+        return espLogic.getDoctoresPorEspecialidad(id);
     }
 }

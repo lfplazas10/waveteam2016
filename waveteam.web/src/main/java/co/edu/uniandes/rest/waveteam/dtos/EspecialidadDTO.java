@@ -5,6 +5,8 @@
  */
 package co.edu.uniandes.rest.waveteam.dtos;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author d.marino10
@@ -15,16 +17,20 @@ public class EspecialidadDTO {
     private String nombre;
     private String gruposEdad;
     private String tipo;
+    private ArrayList<MedicoDTO> doctores;
+    private ArrayList<CitaDTO> citas;
     
     public EspecialidadDTO(){
         
     }
     
-    public EspecialidadDTO(Long id,String nombre,String gruposEdad,String tipo){
+    public EspecialidadDTO(Long id,String nombre,String gruposEdad,String tipo, ArrayList<MedicoDTO> doctores,ArrayList<CitaDTO> citas){
         this.id=id;
         this.nombre=nombre;
         this.gruposEdad=gruposEdad;
         this.tipo=tipo;
+        this.doctores=doctores;
+        this.citas=citas;
     }
     
     	public Long getId() {
@@ -57,6 +63,22 @@ public class EspecialidadDTO {
 
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
+	}
+        
+        public ArrayList<MedicoDTO> getDoctores() {
+		return doctores;
+	}
+
+	public void setDoctores(ArrayList<MedicoDTO> doctores) {
+		this.doctores = doctores;
+	}
+        
+        public ArrayList<CitaDTO> getCitas() {
+		return citas;
+	}
+
+	public void setCitas(ArrayList<CitaDTO> citas) {
+		this.citas = citas;
 	}
         
         /**
