@@ -5,10 +5,10 @@
     mod.constant("patientContext", "api/patient");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/patient/';
-            $urlRouterProvider.otherwise("/patientList");
+            $urlRouterProvider.otherwise("/");
 
             $stateProvider.state('patientList', {
-                url: 'patientList',
+                url: '/patientList',
                 views: {
                     'mainView': {
                         controller: 'patientCtrl',
@@ -19,8 +19,9 @@
             })
             
             .state('editPatient', {
-            url:"/editPatient",
-            views: {
+            url:'/patient/{ptnID:int}/edit',
+            param: { 'ptnID:': null},
+                views: {
                 'mainView': {
                     controller: 'patientCtrl',
                     controllerAs: 'ctrl',

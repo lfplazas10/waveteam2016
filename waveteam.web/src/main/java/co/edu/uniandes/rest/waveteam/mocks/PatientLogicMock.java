@@ -114,41 +114,38 @@ public class PatientLogicMock {
      */
     
     public PatientDTO updatePatient (long id, PatientDTO pPatient) throws PatientLogicException{
-        PatientDTO patientTmp = new PatientDTO();
-        boolean cambio=false;
-        
-        if (pPatient.getId()==null || pPatient.getName()==null || pPatient.getEdad()<=0 ||
-                pPatient.getSexo()==null || pPatient.getEps()==null || pPatient.getTipoSangre()==null){
-            throw  new PatientLogicException("Error: ninguno atributo del paciente puede ser null "
-                    + "o su edad no pude ser menor o igual a cero");
-        }
         if (patients==null){
+            logger.severe("Error interno: losta de pacientes no existe");
             throw  new PatientLogicException("Error Interno: lista de pacientes no existe");
         }
-       
-            for (PatientDTO patient : patients) {
-                if(pPatient.getId().equals(patient.getId()) && (id!=pPatient.getId())){
-                    throw  new PatientLogicException("Error: el nuevo codigo de identificacion (id): "
-                            + ""+pPatient.getId()+" ya esta asiganado a otra ciudad");
-                }
-                else if(patient.getId().equals(id)){
-                    patient.setName(pPatient.getName());
+        
+        boolean encontro=false;
+        
+        if(pPatient.getId()!=null){
+            for(PatientDTO patient:patients){
+                if(Objects.equals(id,patient.getId())){
+                  patient.setName(pPatient.getName());
                     patient.setId(pPatient.getId());
                     patient.setEdad(pPatient.getEdad());
                     patient.setSexo(pPatient.getSexo());
                     patient.setEps(pPatient.getEps());
                     patient.setTipoSangre(pPatient.getTipoSangre());
-                    cambio=true;
-                    patientTmp=patient;
-                    
-                }
-                else if(!cambio){
-                    throw  new PatientLogicException("El numero de identificacion (id) ingresado: " + id +
-                            " no corresponde a ningun paciente");
+                    encontro=true;
+                    break;
                 }
             }
-        
-        return patientTmp;
+            if(!encontro){
+                logger.severe("no existe paciente con ese ide");
+                throw  new PatientLogicException("El numero de identificacion (id) ingresado: " + id +
+                            " no corresponde a ningun paciente");
+            }
+        }
+        else
+        {
+            logger.severe("el id ingresado es nulo");
+            throw  new PatientLogicException("el id ingresado es nulo");
+        }
+        return pPatient;
     }
     
     /**
@@ -166,8 +163,8 @@ public class PatientLogicMock {
 	        for (PatientDTO patient : patients) {
 	        	// si existe un paciente con ese id
 	            if (Objects.equals(patient.getId(), newPatient.getId())){
-	            	logger.severe("Ya existe una ciudad con ese id");
-	                throw new PatientLogicException("Ya existe una ciudad con ese id");
+	            	logger.severe("Ya existe un paciente con ese id");
+	                throw new PatientLogicException("Ya existe un paciente con ese id");
 	            }
 	        }
 	        
@@ -177,9 +174,9 @@ public class PatientLogicMock {
     		// genera un id para el paciente
     		logger.info("Generando id para el nuevo paciente");
     		long newId = 1;
-	        for (PatientDTO city : patients) {
-	            if (newId <= city.getId()){
-	                newId =  city.getId() + 1;
+	        for (PatientDTO patient : patients) {
+	            if (newId <= patient.getId()){
+	                newId =  patient.getId() + 1;
 	            }
 	        }
 	        newPatient.setId(newId);

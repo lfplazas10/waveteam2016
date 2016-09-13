@@ -6,7 +6,7 @@
         <thead>
             <tr>
                 <th>Nombre</th>        
-                <th>Documento</th>
+                <th>Cedula</th>
                 <th>Edad</th>
                 <th>Sexo</th>
                 <th>TipoSangre</th>
@@ -15,16 +15,17 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="x in patient">
-                <td>{{x.name}}</td>
-                <td>{{x.id}}</td>
-                <td>{{x.edad}}</td>
-                <td>{{x.sexo}}</td>
-                <td>{{x.tipoSangre}}</td>
-                <td>{{x.eps}}</td>
+            <tr ng-repeat="ptn in patient">
+                <td>{{ptn.name}}</td>
+                <td>{{ptn.id}}</td>
+                <td>{{ptn.edad}}</td>
+                <td>{{ptn.sexo}}</td>
+                <td>{{ptn.tipoSangre}}</td>
+                <td>{{ptn.eps}}</td>
                 <td>
-                    <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm" ng-click="ctrl.deleteRecord(x)"><span class="glyphicon glyphicon-minus"></span> Eliminar</button>
-                    <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ng-click="ctrl.editPatient(x)"><span class="glyphicon glyphicon-edit"></span> Editar</button>
+                    <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm" ng-click="ctrl.deleteRecord(ptn)"><span class="glyphicon glyphicon-minus"></span> Eliminar</button>
+                    <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="editPatient({ptnID: ptn.id})"><span class="glyphicon glyphicon-edit"></span> Editar</button>
+                    
                 </td>
             </tr>
         </tbody>

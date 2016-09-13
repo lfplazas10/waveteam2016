@@ -18,20 +18,59 @@
                         }, responseError)
             }
             
+            if ($stateParams.ptnID !== null && $stateParams.ptnID !== undefined) {
+
+            // toma el id del parámetro
+            id = $stateParams.ptnID;
+            // obtiene el dato del recurso REST
+            $http.get(context + "/" + id)
+                .then(function (response) {
+                    // $http.get es una promesa
+                    // cuando llegue el dato, actualice currentRecord
+                    var currentRecord = response.data;
+                    $scope.nombre = currentRecord.name;
+                    $scope.cedula = currentRecord.id;
+                    $scope.edad = currentRecord.edad;
+                    $scope.tipoSangre = currentRecord.tipoSangre;
+                    $scope.eps = currentRecord.eps;
+                    $scope.sexo = currentRecord.sexo;
+                }, responseError);
+
+            // el controlador no recibió un editorialId
+        } else {
+            // el registro actual debe estar vacio
+            $scope.currentRecord = {
+                id: undefined /*Tipo Long. El valor se asigna en el backend*/,
+                name: '' /*Tipo String*/
+            };
+
+            $scope.alerts = [];
+        }
+
+            
+            
             this.savePatient = function () {
-                if (!$scope.nombre || !$scope.id || !$scope.sexo || !$scope.edad || !$scope.tipoSangre || !$scope.eps ) alert("No puede dejar ningún campo vacio.");
-                if (isNaN($scope.documento)) alert("La cédula debe ser numérica.");
-                if (isNaN($scope.edad)) alert("La edad debe ser un numérica.");
-                if (isNaN($scope.sexo)) alert("El sexo no puede ser numérico.");
-                if (isNaN($scope.tipoSangre)) alert("El tipo de Sangre no puede ser numérico.");
-                if (isNaN($scope.eps)) alert("La EPS no puede ser numérica.");
+                if (!$scope.nombre || !$scope.cedula || !$scope.sexo || !$scope.edad || !$scope.tipoSangre || !$scope.eps )
+                {
+                    alert("No puede dejar ningún campo vacio.");
+                    return;
+                }
+                if (isNaN($scope.cedula)){
+                    alert("La cédula debe ser numérica.");
+                return;
+                }
+                if (isNaN($scope.edad)){
+                    alert("La edad debe ser un numérica.");
+                    return;
+                }
+                
                 
                 else{
                     var ptn = 
                     {
                         "name" :  $scope.nombre,    
-                        "id" : $scope.documento,      
-                        "edad" : $scope.edad,    
+                        "id" : $scope.cedula,      
+                        "edad" : $scope.edad,   
                         "sexo" : $scope.sexo,
                         "tipoSangre" : $scope.tipoSangre,
                         "eps" : $scope.eps
@@ -45,24 +84,25 @@
                 }
             }
             
-            this.editPatient = function(ptn) {
-                $state.go('editPatient');
-                patientIdDeleted = ptn.id;
-                $scope.tit = "Editar " + ptn.name;
-            }
-            
             this.editFinalPatient = function () {
-                if (!$scope.nombre || !$scope.id || !$scope.sexo || !$scope.edad || !$scope.tipoSangre || !$scope.eps ) alert("No puede dejar ningún campo vacio.");
-                if (isNaN($scope.documento)) alert("La cédula debe ser numérica.");
-                if (isNaN($scope.edad)) alert("La edad debe ser un numérica.");
-                if (isNaN($scope.sexo)) alert("El sexo no puede ser numérico.");
-                if (isNaN($scope.tipoSangre)) alert("El tipo de Sangre no puede ser numérico.");
-                if (isNaN($scope.eps)) alert("La EPS no puede ser numérica.");
+                if (!$scope.nombre || !$scope.cedula || !$scope.sexo || !$scope.edad|| !$scope.tipoSangre || !$scope.eps ){
+                    alert("No puede dejar ningún campo vacio.");
+                    return;
+                }
+                if (isNaN($scope.cedula)){
+                    alert("La cédula debe ser numérica.");
+                    return;
+                }
+                if (isNaN($scope.edad)){
+                    alert("La edad debe ser un numérica.");
+                    return;
+                }
+                
                 else{
                     var ptn = 
                     {
                         "name" :  $scope.nombre,    
-                        "id" : $scope.documento,      
+                        "id" : $scope.cedula,      
                         "edad" : $scope.edad,    
                         "sexo" : $scope.sexo,
                         "tipoSangre" : $scope.tipoSangre,
@@ -70,7 +110,7 @@
                     };
                     ptn = JSON.stringify(ptn);
                     console.log(ptn);
-                    return $http.put(context+"/"+ptnIdDeleted, ptn.toString())
+                    return $http.put(context+"/"+ $stateParams.ptnID, ptn.toString())
                         .then(function () {
                             $state.go('patientList');
                         }, responseError)
