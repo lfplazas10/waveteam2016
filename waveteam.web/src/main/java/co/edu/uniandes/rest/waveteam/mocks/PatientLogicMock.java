@@ -14,15 +14,17 @@ import java.util.logging.Logger;
 import co.edu.uniandes.rest.waveteam.dtos.PatientDTO;
 import co.edu.uniandes.rest.waveteam.exceptions.PatientLogicException;
 
+
 /*
  * CityLogicMock
  * Mock del recurso Patient (Mock del servicio REST)
  */
 public class PatientLogicMock {
 
+    
     // objeto para presentar logs de las operaciones
     private final static Logger logger = Logger.getLogger(PatientLogicMock.class.getName());
-
+private CitaLogicMock citaMock = new CitaLogicMock();
     private static ArrayList<PatientDTO> patients;
 
     /**
@@ -60,7 +62,24 @@ public class PatientLogicMock {
     	logger.info("retornando todas los pacientes");
     	return patients;
     }
-
+    
+    /**
+	 * Obtiene el listado de pacientes. 
+	 * @return lista de pacientes
+	 * @throws PatientLogicException cuando no existe la lista en memoria  
+	 */    
+    /**
+     * public List<PatientDTO> getCitas(Long id) throws PatientLogicException {
+    	if ( patients == null) {
+    		logger.severe("Error interno: lista de pacientes no existe.");
+    		throw new PatientLogicException("Error interno: lista de pacientes no existe.");    		
+    	}
+    	
+    	logger.info("retornando las citas del paciente");
+        return;
+    }
+   */ 
+   
     /**
      * obtiene un paciente de la lista
      * @param id de laciudad
