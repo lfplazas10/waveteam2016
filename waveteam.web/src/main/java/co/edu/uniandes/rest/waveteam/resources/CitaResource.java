@@ -8,9 +8,11 @@ package co.edu.uniandes.rest.waveteam.resources;
 
 import co.edu.uniandes.rest.waveteam.dtos.CitaDTO;
 import co.edu.uniandes.rest.waveteam.exceptions.CitaLogicException;
+import co.edu.uniandes.rest.waveteam.exceptions.MedicoLogicException;
 import co.edu.uniandes.rest.waveteam.mocks.CitaLogicMock;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -94,5 +96,20 @@ public class CitaResource {
     public void deleteCita(@PathParam("id") Long id) throws CitaLogicException {
         citaLogic.deleteCita(id);
     }
+    
+    
+    @GET
+    @Path("{id: \\d+}")
+    public List<CitaDTO> getCitasByPaciente(@PathParam("id") Long paciente) throws CitaLogicException{
+        return citaLogic.getCitasByPaciente(paciente);
+    }
+    
+    
+    @GET
+    @Path("{id: \\d+}")
+    public ArrayList<CitaDTO> getCitasByMedicoEnFecha(@PathParam("id") Long medico, @PathParam("fechaInicio") String fechaInicio, @PathParam("fechaFin") String fechaFin) throws CitaLogicException, MedicoLogicException{
+        return citaLogic.getCitasByMedicoEnFecha(medico, fechaInicio, fechaFin);
+    }
+    
     
 }
