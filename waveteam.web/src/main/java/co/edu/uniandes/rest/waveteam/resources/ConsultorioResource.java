@@ -4,10 +4,10 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.rest.waveteam.resources;
+import co.edu.uniandes.rest.waveteam.dtos.CitaDTO;
 import co.edu.uniandes.rest.waveteam.exceptions.ConsultorioLogicException;
 import co.edu.uniandes.rest.waveteam.mocks.ConsultorioLogicMock;
 import co.edu.uniandes.rest.waveteam.dtos.ConsultorioDTO;
-import co.edu.uniandes.rest.waveteam.dtos.MedicoDTO;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -110,9 +110,9 @@ public class ConsultorioResource {
      */
     @DELETE
     @Path("{idConsultorio: \\d+}/doctores")
-    public ConsultorioDTO unasignAllDoctors(@PathParam("idConsultorio") long idConsultorio) throws ConsultorioLogicException
+    public ConsultorioDTO unasignDoctors(@PathParam("idConsultorio") long idConsultorio) throws ConsultorioLogicException
     {
-        return consultorioLogic.unasignAllDoctors(idConsultorio);
+        return consultorioLogic.unasignDoctors(idConsultorio);
     }
     
     /**
@@ -142,5 +142,71 @@ public class ConsultorioResource {
     {
 
         return consultorioLogic.asignDoctor(idConsultorio, idDoctor);
+    }
+    
+    /**
+     * Asigna doctores al consultorio
+     * @param idConsultorio
+     * @param idDoctor
+     * @return
+     * @throws ConsultorioLogicException 
+     */
+    @PUT
+    @Path("{idCosultorio: \\d+}/doctores")
+    public ConsultorioDTO asignDoctors(@PathParam("idConsultorio") long idConsultorio, List<Long> nuevaLista) throws ConsultorioLogicException
+    {
+        return consultorioLogic.asignDoctors(idConsultorio, nuevaLista);
+    }
+    
+    
+    //REQUERIMIENTO R9 - ASIGNAR CONSULTORIO A CITA
+
+    /**
+     * Asigna una cita a un consultorio
+     * @param idConsultorio
+     * @param nuevaCita
+     * @return
+     * @throws ConsultorioLogicException 
+     */
+    @POST
+    @Path("{idConsultorio: \\d+}/citas")
+    public ConsultorioDTO asignCita(@PathParam("idConsultorio") long idConsultorio, CitaDTO nuevaCita) throws ConsultorioLogicException
+    {
+        return consultorioLogic.asignCita(idConsultorio, nuevaCita);
+    }
+    
+    /**
+     * Asigna una lista de citas a un consultorio
+     * @param idConsultorio
+     * @param nuevasCitas
+     * @return
+     * @throws ConsultorioLogicException 
+     */
+    @PUT
+    @Path("{idConsultorio: \\d+}/citas")
+    public ConsultorioDTO asignCitas(@PathParam("idConsultorio") long idConsultorio, List<CitaDTO> nuevasCitas) throws ConsultorioLogicException
+    {
+        return consultorioLogic.asignCitas(idConsultorio, nuevasCitas);
+    }
+    
+    /**
+     * Elimina una cita asignada al consultorio dadas las ID del consultorio y la cita
+     * @param idConsultorio
+     * @param idCita
+     * @return
+     * @throws ConsultorioLogicException 
+     */
+    @DELETE
+    @Path("{idConsultorio: \\d+}/citas/{idCita: \\d+}")
+    public ConsultorioDTO unasignCita(@PathParam("idConsultorio") long idConsultorio, @PathParam("idCita") long idCita) throws ConsultorioLogicException
+    {
+        return consultorioLogic.unasignCita(idConsultorio, idCita);
+    }
+    
+    @DELETE
+    @Path("{idConsultorio: \\d+}/citas")
+    public ConsultorioDTO unasignCitas(@PathParam("idConsultorio") long idConsultorio) throws ConsultorioLogicException
+    {
+        return consultorioLogic.unasignCitas(idConsultorio);
     }
 }

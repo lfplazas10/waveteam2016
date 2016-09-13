@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.rest.waveteam.mocks;
 
+import co.edu.uniandes.rest.waveteam.dtos.CitaDTO;
 import co.edu.uniandes.rest.waveteam.dtos.ConsultorioDTO;
 import co.edu.uniandes.rest.waveteam.exceptions.ConsultorioLogicException;
 import java.util.List;
@@ -166,6 +167,9 @@ public class ConsultorioLogicMock {
         throw new ConsultorioLogicException("Ingrese un consultorio con un id correcto");
     }
     
+    
+    //REQUERIMIENTO R8 - ASIGNAR DOCTORES Y CONSULTORIOS
+    
     /**
      * Asigna un doctor a un consultorio con sus respectivos ids
      * @param idConsultorio
@@ -250,7 +254,7 @@ public class ConsultorioLogicMock {
         throw new ConsultorioLogicException("Ingrese un consultorio con un id correcto");
     }
     
-    public ConsultorioDTO unasignAllDoctors (Long idConsultorio) throws ConsultorioLogicException
+    public ConsultorioDTO unasignDoctors (Long idConsultorio) throws ConsultorioLogicException
     {
         logger.info("Eliminando un doctor asignado de un consultorio");
         if (consultorios == null) {
@@ -269,4 +273,92 @@ public class ConsultorioLogicMock {
         logger.info("No se encontró un consultorio con el ID "+ idConsultorio);
         throw new ConsultorioLogicException("Ingrese un consultorio con un id correcto");
     }
+    
+    //REQUERIMIENTO R9 - ASIGNAR CONSULTORIOS Y CITAS
+    
+    public ConsultorioDTO asignCita (Long idConsultorio, CitaDTO nuevaCita) throws ConsultorioLogicException
+    {
+        logger.info("Asignando una cita a un consultorio");
+        if (consultorios == null) {
+            logger.severe("Error interno: la lista de consultorios no existe.");
+            throw new ConsultorioLogicException("Error interno: lista de consultorios no existe.");
+        }
+        
+        for (ConsultorioDTO consultorio : consultorios) {
+            if (Objects.equals(idConsultorio, consultorio.getId())) {
+                logger.info("Se encontró consultorio con ID " + idConsultorio +", asignando una cita.");
+                consultorio.agregarCitaAsignada(nuevaCita);
+                return consultorio;
+            }
+        }
+        
+        logger.info("No se encontró un consultorio con el ID "+ idConsultorio);
+        throw new ConsultorioLogicException("Ingrese un consultorio con un id correcto");
+    }
+    
+    public ConsultorioDTO unasignCita (Long idConsultorio, Long idCita) throws ConsultorioLogicException
+    {
+        logger.info("Eliminando una cita asignada de un consultorio");
+        if (consultorios == null) {
+            logger.severe("Error interno: la lista de consultorios no existe.");
+            throw new ConsultorioLogicException("Error interno: lista de consultorios no existe.");
+        }
+        
+        for (ConsultorioDTO consultorio : consultorios) {
+            if (Objects.equals(idConsultorio, consultorio.getId())) {
+                logger.info("Se encontró consultorio con ID " + idConsultorio +", eliminando una cita asignada.");
+                boolean seElimino = consultorio.eliminarCitaAsignada(idCita);
+                if (!seElimino)
+                {
+                     logger.info("No se encontró una cita asignada con el ID "+ idCita);
+                     throw new ConsultorioLogicException("Ingrese una cita con un id correcto");
+                }
+                return consultorio;
+            }
+        }
+        
+        logger.info("No se encontró un consultorio con el ID "+ idConsultorio);
+        throw new ConsultorioLogicException("Ingrese un consultorio con un id correcto");
+    }
+    
+    public ConsultorioDTO asignCitas (Long idConsultorio, List<CitaDTO> nuevasCitas) throws ConsultorioLogicException
+    {
+        logger.info("Asignando citas a un consultorio");
+        if (consultorios == null) {
+            logger.severe("Error interno: la lista de consultorios no existe.");
+            throw new ConsultorioLogicException("Error interno: lista de consultorios no existe.");
+        }
+        
+        for (ConsultorioDTO consultorio : consultorios) {
+            if (Objects.equals(idConsultorio, consultorio.getId())) {
+                logger.info("Se encontró consultorio con ID " + idConsultorio +", asignando una lista de citas.");
+                consultorio.setCitasAsignadas(nuevasCitas);
+                return consultorio;
+            }
+        }
+        
+        logger.info("No se encontró un consultorio con el ID "+ idConsultorio);
+        throw new ConsultorioLogicException("Ingrese un consultorio con un id correcto");
+    }
+    
+    public ConsultorioDTO unasignCitas (Long idConsultorio) throws ConsultorioLogicException
+    {
+        logger.info("Eliminando todas las citas asignadas de un consultorio");
+        if (consultorios == null) {
+            logger.severe("Error interno: la lista de consultorios no existe.");
+            throw new ConsultorioLogicException("Error interno: lista de consultorios no existe.");
+        }
+        
+        for (ConsultorioDTO consultorio : consultorios) {
+            if (Objects.equals(idConsultorio, consultorio.getId())) {
+                logger.info("Se encontró consultorio con ID " + idConsultorio +", asignando una lista de citas.");
+                consultorio.setCitasAsignadas(new ArrayList<CitaDTO>());
+                return consultorio;
+            }
+        }
+        
+        logger.info("No se encontró un consultorio con el ID "+ idConsultorio);
+        throw new ConsultorioLogicException("Ingrese un consultorio con un id correcto");
+    }
+    
 }
