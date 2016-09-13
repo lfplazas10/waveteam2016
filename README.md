@@ -4,7 +4,7 @@
 
 Este modelo conceptual está sujeto a cambios.
 
-![](http://i.imgur.com/Maso0qj.jpg)
+![](http://i.imgur.com/5lXMfxr.jpg)
 
 
 #Lista de integrantes y las clases a desarrollar:
