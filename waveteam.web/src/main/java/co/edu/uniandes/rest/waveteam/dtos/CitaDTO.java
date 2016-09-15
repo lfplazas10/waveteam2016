@@ -20,6 +20,7 @@ public class CitaDTO {
     private int duracion;
     private Long medico;
     private Long paciente;
+    private boolean activa;
     
     
     public CitaDTO(){
@@ -33,7 +34,7 @@ public class CitaDTO {
         this.duracion = duracion;
         this.medico = medico;
         this.paciente = paciente; 
-        
+        this.activa = true;
     }
     
     public Long getId(){
@@ -92,6 +93,14 @@ public class CitaDTO {
         this.paciente = paciente;
     }
     
+    
+    public void desactivar(){
+        this.activa = false;
+    }
+    
+    public boolean getActiva(){
+        return this.activa;
+    }
     
     
     @Override

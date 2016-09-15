@@ -48,7 +48,7 @@
                     }, responseError)
                 }
                 
-            }
+            };
             
            
             this.editCitaFinal = function () {
@@ -87,7 +87,7 @@
                             $state.go('listaCitas');
                         }, responseError)
                 }
-            } 
+            };
         
             this.closeAlert = function (index) {
                 $scope.alerts.splice(index, 1);
