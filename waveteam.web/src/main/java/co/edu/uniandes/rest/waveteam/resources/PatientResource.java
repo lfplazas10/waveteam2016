@@ -98,14 +98,14 @@ public class PatientResource {
     
     
     
-    /**
-     * informa las citas que tiene el paciente
-     * 
-     */
-    @GET
-    @Path("{id: \\d+}")
-  public List<PatientDTO> getCitas (@PathParam("id") Long id) throws PatientLogicException, CitaLogicException
-  {
-      return patientLogic.getCitas(id);
-  }
+//    /**
+//     * informa las citas que tiene el paciente
+//     * 
+//     */
+//    @GET
+//    @Path("{id: \\d+}")
+//  public List<PatientDTO> getCitas (@PathParam("id") Long id) throws PatientLogicException, CitaLogicException
+//  {
+//      return patientLogic.getCitas(id);
+//  }
 }
