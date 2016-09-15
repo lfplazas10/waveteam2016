@@ -185,4 +185,23 @@ public class MedicoLogicMock {
         logger.info("No se encontro doctor con ese ID");
         throw new MedicoLogicException("No existe doctor con ese ID");
     }
+    
+    //REQUERIMIENTOS R4 Y R7 - MEDICO Y SUS DISPONIBILIDADES
+    
+    public MedicoDTO setDisponibilidad(Long id, Long inicio, Long fin) throws MedicoLogicException
+    {
+        if (doctors == null) {
+            logger.severe("Error interno: lista de doctores no existe.");
+            throw new MedicoLogicException("Error interno: lista de doctores no existe.");
+        }
+        for (MedicoDTO doctor : doctors) {
+            if (Objects.equals(id, doctor.getId())) {
+                doctor.setDisponibilidad(inicio, fin);
+                return doctor;
+            }
+        }
+        
+        logger.info("No se encontro doctor con ese ID");
+        throw new MedicoLogicException("No existe doctor con ese ID");
+    }
 }

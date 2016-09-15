@@ -4,6 +4,7 @@
  */
 package co.edu.uniandes.rest.waveteam.dtos;
 
+import java.util.*;
 /**
  * Objeto de transferencia de datos de Ciudades.
  *
@@ -15,6 +16,9 @@ public class MedicoDTO {
     private String name;
     private String especialidad;
     private Long consultorio;
+    
+    //Un medico tiene citas
+    private List<CitaDTO> disponibilidad = new ArrayList<CitaDTO>();
     
     /**
      * Constructor por defecto
@@ -74,6 +78,23 @@ public class MedicoDTO {
         this.name = name;
     }
 
+    //REQUERIMIENTOS R4 Y R7 - MEDICO Y SUS DISPONIBILIDADES
+    
+    //Esto es una idea para la disponibilidad
+    //Podemos manejarlo con una matriz, o luego con un mapa/tablas de la base de daticos
+    public void setDisponibilidad(long inicio, long fin)
+    {
+        long rango = fin - inicio;
+        long cuenta = rango / 900000;
+        int r = (int) cuenta;
+        for (int i = 1; i <= r; i++)
+        {
+            CitaDTO cita = new CitaDTO();
+            cita.setHora(inicio+i*900000);
+            disponibilidad.add(cita);
+        }
+    }
+   
     /**
      * Convierte el objeto a una cadena
      */
