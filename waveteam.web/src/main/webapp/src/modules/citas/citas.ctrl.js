@@ -23,19 +23,50 @@
                             load();
                 }, responseError)
             }
+
+
+
+        if ($stateParams.citaID !== null && $stateParams.citaId !== undefined) {
+
+            // toma el id del parámetro
+            id = $stateParams.citaId;
+            // obtiene el dato del recurso REST
+            $http.get(context + "/" + id)
+                .then(function (response) {
+                    // $http.get es una promesa
+                    // cuando llegue el dato, actualice currentRecord
+                    var currentRecord = response.data;
+                    $scope.id = currentRecord.id;
+                    $scope.fecha = currentRecord.fecha;
+                    $scope.hora = currentRecord.hora;
+                    $scope.duracion = currentRecord.duracion;
+                    $scope.medico = currentRecord.medico;
+                    $scope.paciente = currentRecord.paciente    ;
+                }, responseError);
+
+            // el controlador no recibió un editorialId
+        } else {
+            // el registro actual debe estar vacio
+            $scope.currentRecord = {
+                id: undefined /*Tipo Long. El valor se asigna en el backend*/,
+                name: '' /*Tipo String*/
+            };
+
+            $scope.alerts = [];
+        }
             
             this.saveCita = function(){
                 if(!$scope.id || !$scope.fecha || !$scope.hora || !$scope.duracion || !$scope.medico || !$scope.paciente) alert ("No puede dejar ningún campo vacio.");
                 
-                if (isNaN($scope.hora)) alert("La Hora debe ser numérica.");
-                if (isNaN($scope.duracion)) alert("La Duración debe ser numérica.");
-                 
+                if (isNaN($scope.hora)) {alert("La Hora debe ser numérica.");}
+                if (isNaN($scope.duracion)) {alert("La Duración debe ser numérica.");}
+
                 else{
-                    console.log($scope.idMedico + " : " + $scope.idPaciente)
+                    console.log($scope.medico + " : " + $scope.paciente)
                     var cita = {
-                        "id" :  $scope.id,    
-                        "fecha" : $scope.fecha,      
-                        "hora" : $scope.hora,        
+                        "id" :  $scope.id,
+                        "fecha" : $scope.fecha,
+                        "hora" : $scope.hora,
                         "duracion" : $scope.duracion,
                         "medico": $scope.medico,
                         "paciente": $scope.paciente
@@ -47,7 +78,7 @@
                                 $state.go('listaCitas');
                     }, responseError)
                 }
-                
+
             }
             
            
@@ -56,10 +87,7 @@
                     alert("No puede dejar ningún campo vacio.");
                     return;
                 }
-                if (isNaN($scope.fecha)){
-                    alert("La fecha debe ser numérica.");
-                    return;
-                }
+
                 if (isNaN($scope.hora)){
                     alert("La hora debe ser un numérica.");
                     return;
@@ -87,7 +115,7 @@
                             $state.go('listaCitas');
                         }, responseError)
                 }
-            } 
+            }
         
             this.closeAlert = function (index) {
                 $scope.alerts.splice(index, 1);

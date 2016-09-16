@@ -25,6 +25,7 @@ public class MedicoLogicMock {
 
     private static ArrayList<MedicoDTO> doctors;
 
+
     /**
      * Constructor. Crea los datos de ejemplo.
      */
