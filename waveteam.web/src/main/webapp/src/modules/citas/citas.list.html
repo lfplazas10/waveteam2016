@@ -8,6 +8,12 @@ and open the template in the editor.
 <div class="page-header">
   <h1>Listado de citas</h1>
 </div>
+<div class="col-xs-6">
+    <div class="input-group">
+        <span class="input-group-addon">Buscar</span>
+        <input class="form-control" type="text" ng-model="searchField">
+    </div>
+</div>
 <div class="container-fluid">
     <table class="table table-striped">
         <thead>
@@ -21,7 +27,7 @@ and open the template in the editor.
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="x in citas">
+            <tr ng-repeat="x in citas| filter:searchField">
                 <td id ="{{$index}}-id">{{x.id}}</td>
                 <td id ="{{$index}}-fecha">{{x.fecha}}</td>
                 <td id ="{{$index}}-hora">{{x.hora}}</td>
