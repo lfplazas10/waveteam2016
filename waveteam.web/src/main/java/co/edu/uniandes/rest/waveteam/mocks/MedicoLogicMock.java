@@ -23,7 +23,7 @@ public class MedicoLogicMock {
     // objeto para presentar logs de las operaciones
     private final static Logger logger = Logger.getLogger(MedicoLogicMock.class.getName());
 
-    private static ArrayList<MedicoDTO> doctors;
+    private ArrayList<MedicoDTO> doctors;
 
     /**
      * Constructor. Crea los datos de ejemplo.

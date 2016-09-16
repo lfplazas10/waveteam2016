@@ -108,7 +108,7 @@ public class MedicoResource {
     public MedicoDTO setDisponibilidad(@PathParam("id") Long id,
                                   @PathParam("inicio") Long inicio, 
                                   @PathParam("fin") Long fin) throws MedicoLogicException {
-        //return MedicoLogicMock.setDisponibilidad(id, inicio, fin);
+//        return MedicoLogicMock.setDisponibilidad(id, inicio, fin);
         //Esta linea me está mandando error
         return null;
     }
