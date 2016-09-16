@@ -1,16 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.edu.uniandes.rest.waveteam.dtos;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author d.marino10
- */
 public class EspecialidadDTO {
     
     private Long id;
@@ -23,7 +14,6 @@ public class EspecialidadDTO {
     public EspecialidadDTO(){
         
     }
-    
     public EspecialidadDTO(Long id,String nombre,String gruposEdad,String tipo, ArrayList<MedicoDTO> doctores,ArrayList<CitaDTO> citas){
         this.id=id;
         this.nombre=nombre;
@@ -80,8 +70,7 @@ public class EspecialidadDTO {
 	public void setCitas(ArrayList<CitaDTO> citas) {
 		this.citas = citas;
 	}
-        
-        /**
+     /**
      * Convierte el objeto a una cadena
      */
     @Override
