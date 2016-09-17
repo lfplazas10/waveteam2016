@@ -4,14 +4,16 @@
  */
 package co.edu.uniandes.rest.waveteam.dtos;
 
-import java.util.*;
+import co.edu.uniandes.rest.waveteam.mocks.MedicoLogicMock;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Logger;
 /**
  * Objeto de transferencia de datos de Ciudades.
  *
  * @author Asistente
  */
 public class MedicoDTO {
-
     private Long id;
     private String name;
     private String especialidad;
@@ -19,7 +21,7 @@ public class MedicoDTO {
     
     //Un medico tiene citas
     private List<CitaDTO> disponibilidad = new ArrayList<CitaDTO>();
-    
+
     /**
      * Constructor por defecto
      */
@@ -32,6 +34,7 @@ public class MedicoDTO {
         this.name = name;
         this.especialidad = especialidad;
         this.consultorio = consultorio;
+        
     }
 
     public String getEspecialidad() {
@@ -87,13 +90,24 @@ public class MedicoDTO {
         long rango = fin - inicio;
         long cuenta = rango / 900000;
         int r = (int) cuenta;
-        for (int i = 1; i <= r; i++)
+        for (int i = 0; i < r; i++)
         {
             CitaDTO cita = new CitaDTO();
             cita.setHora(inicio+i*900000);
+            cita.setDuracion(15);
+            cita.setMedico(this.id);
+            cita.desactivar();
+            cita.setId(1L);
+            cita.setPaciente(1L);
             disponibilidad.add(cita);
         }
     }
+    
+    public List<CitaDTO> getDisponibilidad()
+    {
+        return disponibilidad;
+    }
+            
    
     /**
      * Convierte el objeto a una cadena
