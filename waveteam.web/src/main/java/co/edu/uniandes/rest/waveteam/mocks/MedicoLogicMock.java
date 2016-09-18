@@ -79,6 +79,26 @@ public class MedicoLogicMock {
         throw new MedicoLogicException("No existe doctor con ese ID");
     }
 
+    //REQUERIMIENTOS R4 Y R7 - MEDICO Y SUS DISPONIBILIDADES
+    public String definirHorarioMedico(Long id, Long... diasDisponible) throws MedicoLogicException {
+        if (doctors == null) {
+            logger.severe("Error interno: lista de doctores no existe.");
+            throw new MedicoLogicException("Error interno: lista de doctores no existe.");
+        }
+
+        for (MedicoDTO doctor : doctors) {
+            if (Objects.equals(id, doctor.getId())) {
+                logger.info("Agregando disponibilidad al doctor con id: " + id);
+                for (Long dia: diasDisponible){
+
+                }
+                return "DONE SUCCESFULLY";
+            }
+        }
+        logger.info("No se encontro doctor con ese ID");
+        throw new MedicoLogicException("No existe doctor con ese ID");
+    }
+
     public MedicoDTO updateDoctor(Long id, MedicoDTO updatedCity) throws MedicoLogicException {
         if (doctors == null) {
             logger.severe("Error interno: lista de doctores no existe.");
@@ -184,27 +204,6 @@ public class MedicoLogicMock {
                 return;
             }
         }
-        logger.info("No se encontro doctor con ese ID");
-        throw new MedicoLogicException("No existe doctor con ese ID");
-    }
-    
-    //REQUERIMIENTOS R4 Y R7 - MEDICO Y SUS DISPONIBILIDADES
-    
-    public MedicoDTO setDisponibilidad(Long id, Long inicio, Long fin) throws MedicoLogicException
-    {
-        if (doctors == null) {
-            logger.severe("Error interno: lista de doctores no existe.");
-            throw new MedicoLogicException("Error interno: lista de doctores no existe.");
-        }
-        for (MedicoDTO doctor : doctors) {
-            if (Objects.equals(id, doctor.getId())) {
-                logger.info(("Setting disponibilidad a un doctor"));
-                doctor.setDisponibilidad(inicio, fin);
-//                logger.info("LA LISTA DE CITAS "+doctor.getDisponibilidad());
-                return doctor;
-            }
-        }
-        
         logger.info("No se encontro doctor con ese ID");
         throw new MedicoLogicException("No existe doctor con ese ID");
     }
