@@ -1,6 +1,6 @@
 <div>
     <h1>Consultorio {{consultorioActual.nombre}} {{consultorioActual.id}}</h1>
-    <button class="btn btn-default btn-sm" ui-sref="editarConsultorio({consultorioId: consultorioActual.id})"><span class="glyphicon glyphicon-edit"></span>editar</button> 
+    <button class="btn btn-default btn-sm" ng-click="ctrl.actualizarConsultorioId(consultorioActual.id)"><span class="glyphicon glyphicon-edit"></span>editar</button> 
     <button class="btn btn-default btn-sm" ng-click="ctrl.eliminarConsultorio(consultorioActual.id)"><span class="glyphicon glyphicon-minus"></span>Eliminar consultorio</button>
     <table width ="40%">
           <tr>

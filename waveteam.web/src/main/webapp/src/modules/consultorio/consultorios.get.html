@@ -25,8 +25,8 @@
                         <td>{{consultorio.atencionUrgencias}}</td>
                         <td>{{consultorio.unidadCuidadosIntensivos}}</td>
                         <td>
-                            <button class="btn btn-default btn-sm" ng-model="idEditar" ng-init="consultorio.id" ng-click="ctrl.actualizarConsultorioId(consultorio.id)"><span class="glyphicon glyphicon-edit"></span> Editar consultorio</button>
-                            <button class="btn btn-default btn-sm" ng-click="ctrl.eliminarConsultorio(consultorio.id)"><span class="glyphicon glyphicon-minus"></span> Eliminar consultorio</button>
+                            <button class="btn btn-default btn-sm" ui-sref="buscarConsultorio({consultorioId: consultorio.id})"><span class="glyphicon glyphicon-edit"></span> Ver detalles </button>
+                            
                         </td>
                     </tr>
                 </tbody>
