@@ -1,6 +1,5 @@
 
 var idEditar=1;
-var existe = false;
 (function (ng) {
     var mod = ng.module("consultorioModule");
     mod.controller("consultoriosCtrl", ['$scope', '$state', '$stateParams', '$http', 'consultorioContext', function ($scope, $state, $stateParams, $http, context) {
@@ -8,13 +7,12 @@ var existe = false;
             $scope.consultorios = {};
             
             //Comando GET!
-            getConsultorios = function () {
                 $http.get(context).then(function (response) {
                     $scope.consultorios = response.data;
                 }, responseError);
-            }
+                
+          
 
-            getConsultorios();
             
             this.getConsultorio = function(idBusqueda){
                 $http.get(context+"/"+idBusqueda).then(function (response) {     
@@ -24,9 +22,7 @@ var existe = false;
                 }, responseError);
             };
             
-            this.idValido = function(idBusqueda){
-                return existe;
-            }
+            
             //Comando POST!
             this.guardarConsultorio = function () {
                 consultorioActual = $scope.consultorioActual;
@@ -34,14 +30,14 @@ var existe = false;
                             .then(function (response) {
                                 $state.go('getConsultorios');
                             }, responseError);
-                        
             }
             
             //Comando DELETE!
-            this.eliminarConsultorio = function(consultorio){
-                $http.delete(context+"/"+consultorio.id)
+            this.eliminarConsultorio = function(id){
+                console.log("BORRANDO "+id);
+                $http.delete(context+"/"+id)
                         .then(function(response){
-                            getConsultorios();
+                            $state.reload('getConsultorios');
                 }, responseError)
             }
 
@@ -58,6 +54,9 @@ var existe = false;
             this.actualizarConsultorio = function(){
                 console.log(idEditar);
                 consultorioActual = $scope.consultorioActual;
+                consultorioActual.id=idEditar;
+                console.log("MI ID ES "+consultorioActual.id);
+                
                 $http.put(context+"/"+idEditar, consultorioActual)
                         .then(function(response){
                             $state.go('getConsultorios');

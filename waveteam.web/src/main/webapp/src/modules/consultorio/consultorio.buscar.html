@@ -1,0 +1,36 @@
+<div>
+    <h1>Consultorio {{consultorioActual.nombre}} {{consultorioActual.id}}</h1>
+    <button class="btn btn-default btn-sm" ui-sref="editarConsultorio({consultorioId: consultorioActual.id})"><span class="glyphicon glyphicon-edit"></span>editar</button> 
+    <button class="btn btn-default btn-sm" ng-click="ctrl.eliminarConsultorio(consultorioActual.id)"><span class="glyphicon glyphicon-minus"></span>Eliminar consultorio</button>
+    <table width ="40%">
+          <tr>
+            <th align="left">
+              Nombre:
+            </th>
+            <th align="left">{{consultorioActual.nombre}}
+            </th>
+          </tr>
+          <tr>
+            <th align="left">
+              Horario:
+            </th>
+            <th align="left">{{consultorioActual.horario}}
+
+            </th>
+          </tr>
+          <tr>
+            <th align="left">
+              Atención a urgencias:
+            </th>
+            <th align="left">{{consultorioActual.atencionUrgencias}}
+            </th>
+          </tr>
+          <tr>
+            <th align="left">
+              Unidad de cuidados intensivos:
+            </th>
+            <th align="left">{{consultorioActual.unidadCuidadosIntensivos}}
+            </th>
+          </tr>
+        </table>
+</div>

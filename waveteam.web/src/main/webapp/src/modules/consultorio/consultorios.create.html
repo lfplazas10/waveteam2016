@@ -1,33 +1,43 @@
-<div>
-    <form role="form" novalidate name="form" ng-submit="form.$valid && ctrl.guardarConsultorio()">
-        <h2>Por favor, ingrese los datos del nuevo consultorio.</h2>
-        <div ng-messages="form.$error">
-            <div ng-message="required">Por favor, complete todos los campos.</div>
-        </div>
-
-        <fieldset>
-            <div ng-class="{'has-success': form.name.$valid && form.name.$dirty, 'has-error': form.name.$invalid && (form.name.$dirty || form.$submitted)}">
-                <label>ID</label>
-                <div>
-                    <input type="text" ng-model="consultorioActual.id" ng-init="consultorioActual.id" required />
-                </div>
-            </div>
-            <div ng-class="{'has-success': form.name.$valid && form.name.$dirty, 'has-error': form.name.$invalid && (form.name.$dirty || form.$submitted)}">
-                <label>Horario</label>
-                <div>
-                    <input type="text" ng-model="consultorioActual.horario" ng-init="consultorioActual.horario" required />
-                </div>
-            </div>
-            <label>Atencion a urgencias</label> 
-            <div>
-                <input type="checkbox" ng-model="consultorioActual.atencionUrgencias" ng-init="consultorioActual.atencionUrgencias = false"/>
-            </div>
-            <label>UCI</label>
-            <div>
-                <input type="checkbox" ng-model="consultorioActual.unidadCuidadosIntensivos" ng-init="consultorioActual.unidadCuidadosIntensivos = false"/>
-            </div>
-            <button type="button"  ui-sref='getConsultorios'>Cancelar</button>
-            <button type="submit" >Crear</button>
-        </fieldset>
-    </form>
-</div>
+<h1>Crear consultorio</h1>
+      <form novalidate name="form" id="especialidad-form" role="form" ng-submit="form.$valid && ctrl.guardarConsultorio()">
+        <table width ="100%">
+            <tr>
+                <input id="id" class="form-control" type="hidden" ng-model="consultorioActual.id"/>
+            </tr>
+          <tr>
+            <th align="left">
+              Nombre:
+            </th>
+            <th align="left">
+              <input id="nombre" name="nombre" class="form-control" type="text" ng-model="consultorioActual.nombre" ng-init="consultorioActual.nombre" required />
+            </th>
+          </tr>
+          <tr>
+            <th align="left">
+              Horario
+            </th>
+            <th align="left">
+              <input id="horario" name="grupo" class="form-control" type="text" ng-model="consultorioActual.horario" ng-init="consultorioActual.horario" required />
+            </th>
+          </tr>
+          <tr>
+            <th align="left">
+              Atencion a urgencias
+            </th>
+            <th align="left">
+              <input id="urgencias" name="urgencias" class="form-control" type="checkbox" ng-model="consultorioActual.atencionUrgencias" ng-init="consultorioActual.atencionUrgencias = false"/>
+            </th>
+          </tr>
+          <tr>
+            <th align="left">
+              UCI
+            </th>
+            <th align="left">
+              <input id="uci" name="uci" class="form-control" type="checkbox" ng-model="consultorioActual.unidadCuidadosIntensivos" ng-init="consultorioActual.unidadCuidadosIntensivos = false"/>
+            </th>
+          </tr>
+        </table>
+        <br>
+        <button type="submit" >Guardar consultorio</button> 
+         <button type="button" ui-sref='getConsultorios'>Cancelar</button> 
+      </form>
