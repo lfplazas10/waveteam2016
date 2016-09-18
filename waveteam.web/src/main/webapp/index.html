@@ -30,47 +30,60 @@
         
     </head>
     <body>
-        <img src="images/header.png" alt="" width="1300"> 
+        <img src="images/header.png" alt="" width="100%"> 
     <nav class="navbar navbar-inverse" style="background-color:rgb(95,210,141);border: none">
       <div class="container-fluid">
         <div class="navbar-header">
           <a class="navbar-brand" href="#"></a>
         </div>
         <ul class="nav navbar-nav">
-          <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" style="color:white"> Médicos <span class="caret"></span></a>
+            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" style="color:white"> Paciente <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a ui-sref="doctorsList">Ver</a></li>   
-              <li><a ui-sref="addDoctor">Crear</a></li>
+              <li><a ui-sref="">Ver perfil</a></li>
+              <li><a ui-sref="">Programar cita</a></li>
+              <li><a ui-sref="">Ver citas</a></li>
+              <li class="dropdown-submenu" data-toggle="dropdown" style=" position: relative">
+                  <a class="test" href="#">Buscar <span class="glyphicon glyphicon-menu-right"></span></a>
+                  <ul class="dropdown-menu" style="top: 0; left: 100%; margin-top: -1px;">
+                     <li><a ui-sref="doctorsList">Doctores</a></li>
+                     <li><a ui-sref="especialidadList">Especialidades</a></li>
+                  </ul>
+              </li>
+            </ul>
+          </li> 
+          <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" style="color:white"> Doctor <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a ui-sref="">Ver perfil</a></li> 
+              <li><a ui-sref="">Ver horario</a></li> 
+              <li><a ui-sref="">Terminar Consulta</a></li> 
             </ul>
           </li>  
-          <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" style="color:white"> Especialidades <span class="caret"></span></a>
+          <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" style="color:white"> Gerente <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a ui-sref="especialidadList">Listar</a></li>
-              <li><a ui-sref="especialidadSearch">Buscar</a></li>
-              <li><a ui-sref="especialidadCreate">Crear </a></li>
-            </ul>
-          </li>
-          <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" style="color:white"> Consultorios <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a ui-sref="getConsultorios">Ver todos</a></li>
-              <!-- <li><a href="#">Buscar</a></li>-->
-              <li><a ui-sref="crearConsultorio">Crear consultorio</a></li>
-            </ul>
-          </li>
-          <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" style="color:white"> Pacientes <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a ui-sref="patientList">Ver Pacientes</a></li>   
-              <li><a ui-sref="addPatient">Crear Paciente</a></li>
-            </ul>
-          </li>
-          <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" style="color:white"> Citas <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a ui-sref="listaCitas">Ver todas las Citas</a></li>
-              <li><a ui-sref="addCita">Crear Cita</a></li>
-             
+              <li class="dropdown-submenu" data-toggle="dropdown" style=" position: relative">
+                  <a class="test" href="#">Buscar          <span class="glyphicon glyphicon-menu-right"></span></a>
+                  <ul class="dropdown-menu" style="top: 0; left: 100%; margin-top: -1px;">
+                     <li><a ui-sref="doctorsList">Doctores</a></li>
+                     <li><a ui-sref="especialidadList">Especialidades</a></li>
+                     <li><a ui-sref="patientList">Pacientes</a></li>
+                     <li><a ui-sref="listaCitas">Citas</a></li>
+                     <li><a ui-sref="getConsultorios">Consultorios</a></li>
+                  </ul>
+              </li>
+              <li><a ui-sref="">informacion historica</a></li>
             </ul>
           </li>
         </ul>
+          
+          <script>
+            $(document).ready(function(){
+            $('.dropdown-submenu a.test').on("click", function(e){
+            $(this).next('ul').toggle();
+            e.stopPropagation();
+            e.preventDefault();
+            });
+            });
+          </script>
       </div>
     </nav>
         

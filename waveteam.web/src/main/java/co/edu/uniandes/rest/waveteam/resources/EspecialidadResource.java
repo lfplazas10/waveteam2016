@@ -9,7 +9,6 @@ import co.edu.uniandes.rest.waveteam.dtos.EspecialidadDTO;
 import co.edu.uniandes.rest.waveteam.dtos.MedicoDTO;
 import co.edu.uniandes.rest.waveteam.exceptions.EspecialidadLogicException;
 import co.edu.uniandes.rest.waveteam.mocks.EspecialidadLogicMock;
-import java.util.ArrayList;
 import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;

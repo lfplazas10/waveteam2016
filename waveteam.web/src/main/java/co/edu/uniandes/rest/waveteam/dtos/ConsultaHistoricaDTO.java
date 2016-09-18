@@ -29,6 +29,43 @@ public class ConsultaHistoricaDTO {
         this.citasLibres=citasLi;
     }
     
-    
-        
+    	public EspecialidadDTO getEspecialidad() {
+		return especialidad;
+	}
+
+	public void setEspecialidad(EspecialidadDTO especialidad) {
+		this.especialidad = especialidad;
+	}
+
+	public int getNumeroDoctores() {
+		return numeroDoctores;
+	}
+
+	public void setNumeroDoctores(int numeroDoctores) {
+		this.numeroDoctores = numeroDoctores;
+	}
+
+	public int getNumeroCitas() {
+		return numeroCitas;
+	}
+
+	public void setNumeroCitas(int numeroCitas) {
+		this.numeroCitas = numeroCitas;
+	}
+
+	public int getPromedioDuracion() {
+		return promedioDuracion;
+	}
+
+	public void setPromedioDuracion(int promedioDuracion) {
+		this.promedioDuracion = promedioDuracion;
+	}
+
+	public int getCitasLibres() {
+		return citasLibres;
+	}
+
+	public void setCitasLibres(int citasLibres) {
+		this.citasLibres = citasLibres;
+	}    
 }

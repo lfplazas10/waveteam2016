@@ -1,15 +1,22 @@
+<div class="row">
+<div class="page-header">
+  <h1>Especialidades</h1>
+</div>
+    <div class="col-xs-6">
+        <div class="input-group">
+            <span class="input-group-addon">Buscar</span>
+            <input class="form-control" type="text" ng-model="searchField">
+        </div>
+    </div>
 <div class="container-fluid" >
-   
-     <h1>Especialidades</h1>
-    <table class="table table-striped" class="col-md-4">
+    <table class="table table-striped" class="col-md-8">
         <tbody>
-            <tr ng-repeat="record in records">
+            <tr ng-repeat="record in records | filter:searchField">
                 <td id="{{$index}}-id">{{record.id}}</td>
                 <td id="{{$index}}-name"><a ui-sref="especialidadEdit({especialidadId: record.id })">{{record.nombre}}</a></td>
-            </tr>
-            
+            </tr>    
         </tbody>
     </table>
-     
     <button type="button" ui-sref='especialidadCreate'> Crear</button>
+    </div>
 </div>
