@@ -23,7 +23,7 @@ public class MedicoLogicMock {
     // objeto para presentar logs de las operaciones
     private final static Logger logger = Logger.getLogger(MedicoLogicMock.class.getName());
 
-    private ArrayList<MedicoDTO> static doctors;
+    private static List<MedicoDTO> doctors;
 
 
     /**
@@ -36,6 +36,7 @@ public class MedicoLogicMock {
             doctors = new ArrayList<>();
             doctors.add(new MedicoDTO(1L, "Pedro Pablo Jaramillo", "Cardiólogo", 301L));
             doctors.add(new MedicoDTO(5L, "Jairo Aristizabal", "Neumólogo", 305L));
+            doctors.add(new MedicoDTO(3L, "Fernando Vallejo", "Traumatólogo", 320L));
             doctors.add(new MedicoDTO(3L, "Fernando Vallejo", "Traumatólogo", 320L));
         }
 
