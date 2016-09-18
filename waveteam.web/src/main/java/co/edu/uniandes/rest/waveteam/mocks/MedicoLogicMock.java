@@ -23,7 +23,7 @@ public class MedicoLogicMock {
     // objeto para presentar logs de las operaciones
     private final static Logger logger = Logger.getLogger(MedicoLogicMock.class.getName());
 
-    private ArrayList<MedicoDTO> doctors;
+    private ArrayList<MedicoDTO> static doctors;
 
 
     /**
@@ -32,6 +32,7 @@ public class MedicoLogicMock {
     public MedicoLogicMock() {
 
         if (doctors == null) {
+            logger.info("Inicializa la lista de doctores");
             doctors = new ArrayList<>();
             doctors.add(new MedicoDTO(1L, "Pedro Pablo Jaramillo", "Cardiólogo", 301L));
             doctors.add(new MedicoDTO(5L, "Jairo Aristizabal", "Neumólogo", 305L));
@@ -41,8 +42,7 @@ public class MedicoLogicMock {
         // indica que se muestren todos los mensajes
         logger.setLevel(Level.INFO);
 
-        // muestra información 
-        logger.info("Inicializa la lista de doctores");
+        // muestra información
         logger.info("Doctores: " + doctors);
     }
 
