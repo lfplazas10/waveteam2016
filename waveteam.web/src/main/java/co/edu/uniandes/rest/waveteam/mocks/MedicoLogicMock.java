@@ -11,7 +11,7 @@ import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import co.edu.uniandes.rest.waveteam.dtos.MedicoDTO;
+import co.edu.uniandes.rest.waveteam.dtos.*;
 import co.edu.uniandes.rest.waveteam.exceptions.MedicoLogicException;
 
 /*
@@ -23,7 +23,7 @@ public class MedicoLogicMock {
     // objeto para presentar logs de las operaciones
     private final static Logger logger = Logger.getLogger(MedicoLogicMock.class.getName());
 
-    private static ArrayList<MedicoDTO> doctors;
+    private ArrayList<MedicoDTO> doctors;
 
 
     /**
@@ -197,7 +197,9 @@ public class MedicoLogicMock {
         }
         for (MedicoDTO doctor : doctors) {
             if (Objects.equals(id, doctor.getId())) {
+                logger.info(("Setting disponibilidad a un doctor"));
                 doctor.setDisponibilidad(inicio, fin);
+//                logger.info("LA LISTA DE CITAS "+doctor.getDisponibilidad());
                 return doctor;
             }
         }

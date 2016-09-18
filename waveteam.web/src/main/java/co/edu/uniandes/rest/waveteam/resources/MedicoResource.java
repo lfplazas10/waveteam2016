@@ -5,7 +5,7 @@
  */
 package co.edu.uniandes.rest.waveteam.resources;
 
-import co.edu.uniandes.rest.waveteam.dtos.MedicoDTO;
+import co.edu.uniandes.rest.waveteam.dtos.*;
 import co.edu.uniandes.rest.waveteam.exceptions.MedicoLogicException;
 import co.edu.uniandes.rest.waveteam.mocks.MedicoLogicMock;
 import java.util.Date;
@@ -105,11 +105,12 @@ public class MedicoResource {
     //la otra idea seria utilizar timestamp
     @PUT
     @Path("{id: \\d+}/disponibilidad/{inicio: \\d+}/{fin: \\d+}")
-    public MedicoDTO setDisponibilidad(@PathParam("id") Long id,
+    public List<CitaDTO> setDisponibilidad(@PathParam("id") Long id,
                                   @PathParam("inicio") Long inicio, 
                                   @PathParam("fin") Long fin) throws MedicoLogicException {
-        //return MedicoLogicMock.setDisponibilidad(id, inicio, fin);
-        //Esta linea me está mandando error
-        return null;
+        MedicoDTO doc =  cityLogic.setDisponibilidad(id, inicio, fin);
+        return doc.getDisponibilidad();
+        //Se esta retornando la lista de citas disponibles porque algo esta
+        //Ocurriendo con las citas y no se quieren guardar ni aparecer.
     }
 }

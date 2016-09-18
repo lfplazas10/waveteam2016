@@ -31,6 +31,7 @@ public class ConsultorioDTO {
      */
     public ConsultorioDTO()
     {        
+       //Este constructor esta vacio porque es el predeterminado
     }
     
     /**
@@ -184,6 +185,7 @@ public class ConsultorioDTO {
     /**
      * Devuelve un String con los parámetros del objeto
      */
+    @Override
     public String toString()
     {
         return "Id: " + id + 
