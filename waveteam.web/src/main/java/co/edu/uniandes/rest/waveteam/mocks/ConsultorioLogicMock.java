@@ -40,10 +40,10 @@ public class ConsultorioLogicMock {
             consultorios.add(new ConsultorioDTO(2L, "P315", "8:00am-6:00pm", false, false));
             consultorios.add(new ConsultorioDTO(3L, "U100", "24 horas", true, false));
             try {
-                consultorios.get(0).setDoctoresAsignados(ml.getDoctors());
+                consultorios.get(0).agregarDoctorAsignado(ml.getDoctors().get(0));
                 consultorios.get(1).agregarDoctorAsignado(ml.getDoctors().get(1));
                 consultorios.get(2).agregarDoctorAsignado(ml.getDoctors().get(2));
-                consultorios.get(0).setCitasAsignadas(cl.getCitas());
+                consultorios.get(0).agregarCitaAsignada(cl.getCitas().get(0));
                 consultorios.get(1).agregarCitaAsignada(cl.getCitas().get(1));
                 consultorios.get(2).agregarCitaAsignada(cl.getCitas().get(2));
             } catch (MedicoLogicException e) {
