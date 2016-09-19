@@ -43,7 +43,7 @@
                     return $http.post(context, currentRecord)
                         .then(function () {
                             $state.go('especialidadList');
-                        }, responseError);    
+                        }, responseError);
                 } 
                 else {
                     return $http.put(context + "/" + currentRecord.id, currentRecord)

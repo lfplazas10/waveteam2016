@@ -29,9 +29,9 @@
                 }
             }
         }).state('actualizarConsultorio',{
-            url:"/consultorios/actualizar",
+            url:"/consultorios/:consultorioId/actualizar",
             param: {
-                idEditar: null
+                consultorioId: null
             },
             views: {
                 'mainView':{
@@ -40,7 +40,22 @@
                     templateUrl:basePath+'consultorio.actualizar.html'
                 }
             }
-        });
+        }).state('buscarConsultorio',{
+            url:"/consultorios/:consultorioId",
+            param:{
+                consultorioId: null
+            },
+            views:{
+                'mainView':{
+                    controller:'consultoriosCtrl',
+                    controllerAs:'ctrl',
+                    templateUrl:basePath+'consultorio.buscar.html'
+                }                
+            }
+            
+        }
+                
+                    );
     }]);
 
 })(window.angular);

@@ -5,14 +5,17 @@
  */
 package co.edu.uniandes.rest.waveteam.dtos;
 
-import java.util.Date;
-import co.edu.uniandes.rest.waveteam.dtos.PatientDTO;
+
+import java.util.ArrayList;
 
 /**
  *
  * @author jm.lizarazo10
  */
 public class CitaDTO {
+
+    public ArrayList a = new ArrayList();
+
     
     private Long id;
     private String fecha;
@@ -35,6 +38,7 @@ public class CitaDTO {
         this.medico = medico;
         this.paciente = paciente; 
         this.activa = true;
+
     }
     
     public Long getId(){
