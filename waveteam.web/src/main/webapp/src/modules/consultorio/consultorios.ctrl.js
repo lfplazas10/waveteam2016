@@ -1,8 +1,28 @@
 var mostrarDoctores = false;
+var mostrarCitas = false;
 var idEditar = 1;
 (function (ng) {
     var mod = ng.module("consultorioModule");
     mod.controller("consultoriosCtrl", ['$scope', '$state', '$stateParams', '$http', 'consultorioContext', function ($scope, $state, $stateParams, $http, context) {
+            mostrarDoctores = false;
+            mostrarCitas = false;
+            //Prueba: citas
+            this.mostrarCitas=function(){
+                return mostrarCitas;
+            }
+            this.getCitas = function()
+            {
+                console.log("ME SOLICITAN citas")
+                $scope.citas = $scope.consultorioActual.citasAsignadas;
+                console.log("$scope.citas");
+                if (mostrarCitas === false)
+                {
+                    mostrarCitas = true;
+                }else{
+                    mostrarCitas = false;
+                }
+            }
+            
             //Prueba: doctores
             this.mostrarDoctores=function(){
                 return mostrarDoctores;
@@ -12,9 +32,14 @@ var idEditar = 1;
                 console.log("ME SOLICITAN DOCTORES")
                 $scope.doctores = $scope.consultorioActual.doctoresAsignados;
                 console.log("$scope.doctores");
-                mostrarDoctores = true;
+                if (mostrarDoctores === false)
+                {
+                    mostrarDoctores = true;
+                }else{
+                    mostrarDoctores = false;
+                }
             }
-            
+             //Funcionamiento normal de consultorios:
             $scope.consultorios = {};
             
             //Comando GET!
