@@ -1,0 +1,128 @@
+/* CSS DOCUMENT */
+
+
+/* DEFAULT SETTINGS */
+/*--------------------------------------*/
+body, h1, h2, h3, td, th, tr, a, p, table {
+    margin : 0;
+    padding: 0;
+}
+
+
+
+/* BODY */
+/*--------------------------------------*/
+body {
+    background: #ccc;
+}
+
+
+
+/* HEADER */
+/*--------------------------------------*/
+header {
+    background: #292929;
+    height: 100px;
+    text-align: center;
+    box-shadow: 0 10px 20px 5px rgba(0, 0, 0, .2);
+}
+
+header h1 {
+    font: 3.5em/1em 'Lobster';
+    line-height: 100px;
+    color: #fff;
+    text-shadow: 0 0 10px #000;
+}
+
+
+
+/* TABLE */
+/*--------------------------------------*/
+table {
+    width: 400px;
+    height: 400px;
+    background: #ebebeb;
+    margin: 50px auto;
+    border-collapse: collapse;
+    box-shadow: 0 0 50px rgba(0, 0, 0, .2);
+    -webkit-box-shadow: 0 0 50px rgba(0, 0, 0, .2);
+    -moz-box-shadow: 0 0 50px rgba(0, 0, 0, .2);
+    -o-box-shadow: 0 0 50px rgba(0, 0, 0, .2);
+}
+
+
+
+/* MONTH */
+/*--------------------------------------*/
+.month {
+    background: #FF3C31;
+    color: #fff;
+    font: 2em/1em 'Advent Pro', sans-serif;
+    height: 45px;
+    border-top: solid 10px #CF3128;
+}
+
+
+
+/* WEEKS */
+/*--------------------------------------*/
+.weeks {
+    background: #fff;
+    height: 40px;
+    font: 1em/1em 'Advent Pro', sans-serif;
+    color: #FF3C31;
+    text-align: center;
+}
+
+
+
+/* DAYS */
+/*--------------------------------------*/
+.week1 td {
+    height: 50px;
+    width: 50px;
+    text-align: center;
+    font: 500 1em/1em 'Advent Pro', sans-serif;
+    color: #212121;
+}
+
+.week2 td {
+    height: 50px;
+    width: 50px;
+    text-align: center;
+    font: 500 1em/1em 'Advent Pro', sans-serif;
+    color: #212121;
+}
+
+.week3 td {
+    height: 50px;
+    width: 50px;
+    text-align: center;
+    font: 500 1em/1em 'Advent Pro', sans-serif;
+    color: #212121;
+}
+
+.week4 td {
+    height: 50px;
+    width: 50px;
+    text-align: center;
+    font: 500 1em/1em 'Advent Pro', sans-serif;
+    color: #212121;
+}
+
+.week5 td {
+    height: 50px;
+    width: 50px;
+    text-align: center;
+    font: 500 1em/1em 'Advent Pro', sans-serif;
+    color: #212121;
+}
+
+.days:hover {
+    background: #FF3C31;
+    color: #fff;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    moz-border-radius: 50%;
+    -o-border-radius: 50%;
+}

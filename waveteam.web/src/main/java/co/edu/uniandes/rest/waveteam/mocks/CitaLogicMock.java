@@ -247,6 +247,8 @@ public class CitaLogicMock {
         }
     }
     
-
+    public static ArrayList<CitaDTO> getCityArray(){
+        return citas;
+    }
 
 }

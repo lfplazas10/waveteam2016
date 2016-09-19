@@ -4,6 +4,7 @@
  */
 package co.edu.uniandes.rest.waveteam.dtos;
 
+import co.edu.uniandes.rest.waveteam.mocks.CitaLogicMock;
 import co.edu.uniandes.rest.waveteam.mocks.MedicoLogicMock;
 
 import java.util.*;
@@ -88,6 +89,7 @@ public class MedicoDTO {
             n.setTimeInMillis(inicio);
             int fromDay = n.get(Calendar.DAY_OF_WEEK);
             int i = 0;
+            if(CitaLogicMock.getCityArray() == null) { CitaLogicMock clm = new CitaLogicMock(); }
             while ((fromDay == n.get(Calendar.DAY_OF_WEEK)) && (n.get(Calendar.HOUR_OF_DAY) <= 24)){
                 CitaDTO cita = new CitaDTO();
                 cita.setHora(inicio+(i*900000));
@@ -99,6 +101,7 @@ public class MedicoDTO {
                 cita.setPaciente(1L);
                 System.out.println(cita.toString());
                 disponibilidad.add(cita);
+                CitaLogicMock.getCityArray().add(cita);
                 i++;
             }
         }

@@ -1,6 +1,7 @@
 (function (ng) {
     var mod = ng.module("doctorModule");
     mod.controller("doctorsCtrl", ['$scope', '$state', '$stateParams', '$http', 'doctorContext', function ($scope, $state, $stateParams, $http, context) {
+
         loadDocs = function () {
             $http.get(context).then(function (response) {
                 $scope.doctors = response.data;
@@ -9,13 +10,14 @@
 
         loadDocs();
 
-
-
         $scope.$watch("selectedDoctor", function(newValue, oldValue){
-            $http.get(context+"/"+newValue.id+"/disponibilidad").then(function (response) {
+            console.log($scope.selectedDoctor.id);
+            $http.get(context+"/"+$scope.selectedDoctor.id+"/disponibilidad").then(function (response) {
                 console.log(response.data);
+                $scope.citas = response.data;
             }, responseError);
         });
+
 
         this.deleteRecord = function (doc) {
             return $http.delete(context + "/" + doc)
@@ -81,6 +83,14 @@
         }
 
         this.updateSchedule = function (){
+            if (!$scope.selectedDoctor){
+                alert("Please select a doctor first.");
+                return;
+            }
+            if (!$scope.fromDate || !$scope.toDate){
+                alert("Please select both dates.");
+                return;
+            }
             if ($scope.fromDate.getTime() > $scope.toDate.getTime() ){
                 alert("La primera fecha no puede ser mayor a la segunda");
                 return;
@@ -95,9 +105,14 @@
             }
             var doc = JSON.stringify(dates);
             console.log(doc.toString());
-            $http.post(context+"/3/disponibilidad", doc.toString()).then(function (response) {
+            $http.post(context+"/"+$scope.selectedDoctor.id+"/disponibilidad", doc.toString()).then(function (response) {
             }, responseError);
-            $http.post(context+"/3/disponibilidad", doc.toString()).then(function (response) {
+            $http.post(context+"/"+$scope.selectedDoctor.id+"/disponibilidad", doc.toString()).then(function (response) {
+            }, responseError);
+            alert("Saved succesfully");
+            $http.get(context+"/"+$scope.selectedDoctor.id+"/disponibilidad").then(function (response) {
+                $scope.citas = response.data;
+                console.log(response.data);
             }, responseError);
         }
 
