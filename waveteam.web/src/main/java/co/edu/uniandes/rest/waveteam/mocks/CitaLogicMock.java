@@ -187,7 +187,7 @@ public class CitaLogicMock {
     
     //CICLO 2 REQUERIMIENTOS
     
-    public ArrayList<CitaDTO> getCitasByPaciente(Long paciente) throws CitaLogicException{
+    public static ArrayList<CitaDTO> getCitasByPaciente(Long paciente) throws CitaLogicException{
         ArrayList<CitaDTO> lista = new ArrayList<CitaDTO>();
         if(citas==null){
             logger.severe("La lista de citas no ha sido inicializada");
