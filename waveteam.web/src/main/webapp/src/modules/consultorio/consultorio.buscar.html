@@ -3,34 +3,63 @@
     <button class="btn btn-default btn-sm" ng-click="ctrl.actualizarConsultorioId(consultorioActual.id)"><span class="glyphicon glyphicon-edit"></span>editar</button> 
     <button class="btn btn-default btn-sm" ng-click="ctrl.eliminarConsultorio(consultorioActual.id)"><span class="glyphicon glyphicon-minus"></span>Eliminar consultorio</button>
     <table width ="40%">
-          <tr>
+        <tr>
             <th align="left">
-              Nombre:
+                Nombre:
             </th>
             <th align="left">{{consultorioActual.nombre}}
             </th>
-          </tr>
-          <tr>
+        </tr>
+        <tr>
             <th align="left">
-              Horario:
+                Horario:
             </th>
             <th align="left">{{consultorioActual.horario}}
 
             </th>
-          </tr>
-          <tr>
+        </tr>
+        <tr>
             <th align="left">
-              Atención a urgencias:
+                Atención a urgencias:
             </th>
             <th align="left">{{consultorioActual.atencionUrgencias}}
             </th>
-          </tr>
-          <tr>
+        </tr>
+        <tr>
             <th align="left">
-              Unidad de cuidados intensivos:
+                Unidad de cuidados intensivos:
             </th>
             <th align="left">{{consultorioActual.unidadCuidadosIntensivos}}
             </th>
-          </tr>
-        </table>
-</div>
+        </tr>
+    </table>
+
+    <div>
+        <button class="btn btn-default btn-sm" ng-click="ctrl.getDoctores()"><span class="glyphicon glyphicon-minus"></span>Doctores</button>
+
+        <div  ng-show="ctrl.mostrarDoctores()">
+            <div class="input-group">
+                <span class="input-group-addon">Buscar</span>
+                <input class="form-control" type="text" ng-model="searchField">
+            </div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th> Nombre </th>
+                        <th> Cedula </th>
+                        <th> Especialidad </th>
+                        <th> Consultorio </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="doc in doctores| filter:searchField" >
+                        <td>{{doc.name}}</td>
+                        <td>{{doc.id}}</td>
+                        <td>{{doc.especialidad}}</td>
+                        <td>{{doc.consultorio}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>

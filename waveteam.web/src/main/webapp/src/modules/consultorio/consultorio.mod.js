@@ -50,7 +50,7 @@
                     controller:'consultoriosCtrl',
                     controllerAs:'ctrl',
                     templateUrl:basePath+'consultorio.buscar.html'
-                }
+                }                
             }
             
         }

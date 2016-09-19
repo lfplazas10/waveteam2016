@@ -1,11 +1,22 @@
-
+var mostrarDoctores = false;
 var idEditar = 1;
 (function (ng) {
     var mod = ng.module("consultorioModule");
     mod.controller("consultoriosCtrl", ['$scope', '$state', '$stateParams', '$http', 'consultorioContext', function ($scope, $state, $stateParams, $http, context) {
-
+            //Prueba: doctores
+            this.mostrarDoctores=function(){
+                return mostrarDoctores;
+            }
+            this.getDoctores = function()
+            {
+                console.log("ME SOLICITAN DOCTORES")
+                $scope.doctores = $scope.consultorioActual.doctoresAsignados;
+                console.log("$scope.doctores");
+                mostrarDoctores = true;
+            }
+            
             $scope.consultorios = {};
-
+            
             //Comando GET!
             $http.get(context).then(function (response) {
                 $scope.consultorios = response.data;
@@ -18,11 +29,17 @@ var idEditar = 1;
                 $http.get(context + "/" + id)
                         .then(function (response) {
                             $scope.consultorioActual = response.data;
+                            
+                    console.log("ME VINO UN "+$scope.consultorioActual);
                         }, responseError);
             } else
             {
                 $scope.consultorioActual = {
                     id: undefined,
+                    nombre: '',
+                    horario: '',
+                    atencionUrgencias:'',
+                    unidadCuidadosIntensivos:''
                 };
 
                 $scope.alerts = [];
@@ -69,9 +86,20 @@ var idEditar = 1;
                 console.log(idEditar);
                 consultorioActual = $scope.consultorioActual;
                 consultorioActual.id = idEditar;
+                var cons = {
+                    id:consultorioActual.id,
+                    nombre:consultorioActual.nombre,
+                    horario:consultorioActual.horario,
+                    atencionUrgencias:consultorioActual.atencionUrgencias,
+                    unidadCuidadosIntensivos:consultorioActual.unidadCuidadosIntensivos
+                }
+                
+                nuevoConsultorio = JSON.stringify(cons);
                 console.log("MI ID ES " + consultorioActual.id);
+                console.log(consultorioActual);
+                                console.log(nuevoConsultorio);
 
-                $http.put(context + "/" + idEditar, consultorioActual)
+                $http.put(context + "/" + idEditar, nuevoConsultorio)
                         .then(function (response) {
                             $state.go('getConsultorios');
                         }, responseError);
