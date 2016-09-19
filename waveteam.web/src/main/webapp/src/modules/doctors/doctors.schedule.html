@@ -1,0 +1,28 @@
+<div class="row">
+    <div class="page-header">
+        <h1>Horario</h1>
+    </div>
+
+    <div class="col-md-6">
+
+
+    </div>
+    <div class="page-header">
+        <h2>Modificar disponibilidad</h2>
+    </div>
+    <div flex-gt-xs>
+        <h4>Inicio</h4>
+        <md-datepicker ng-model="fromDate" md-placeholder="Enter date"></md-datepicker>
+    </div>
+    <div flex-gt-xs>
+        <h4>Fin</h4>
+        <md-datepicker ng-model="toDate" md-placeholder="Enter date"></md-datepicker>
+    </div>
+    <div class="col-md-6">
+    </div>
+</div>
+<div class="row">
+
+    <button type="submit" class="btn btn-success" ng-click="ctrl.updateSchedule()"> Guardar</button>
+
+</div>

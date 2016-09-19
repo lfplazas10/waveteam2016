@@ -10,7 +10,6 @@
 
         loadDocs();
 
-
         this.deleteRecord = function (doc) {
             return $http.delete(context + "/" + doc)
                 .then(function () {
@@ -73,6 +72,17 @@
                     }, responseError)
             }
         }
+
+        this.updateSchedule = function (){
+            if ($scope.fromDate.getTime() > $scope.toDate.getTime() ){
+                alert("La primera fecha no puede ser mayor a la segunda");
+                return;
+            }
+            // $http.get(context).then(function (response) {
+            //     $scope.doctors = response.data;
+            // }, responseError);
+        }
+
 
         this.editDoctorFinal = function () {
             if (!$scope.nombre || !$scope.especialidad || !$scope.consultorio || !$scope.cedula) {
