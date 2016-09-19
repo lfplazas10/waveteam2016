@@ -10,6 +10,7 @@
 
         loadDocs();
 
+
         this.deleteRecord = function (doc) {
             return $http.delete(context + "/" + doc)
                 .then(function () {
