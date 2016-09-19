@@ -116,6 +116,74 @@
                         }, responseError)
                 }
             }
+            
+//            this.savePatientForPatient = function () {
+//                if (!$scope.nombre || !$scope.cedula || !$scope.sexo || !$scope.edad || !$scope.tipoSangre || !$scope.eps )
+//                {
+//                    alert("No puede dejar ningún campo vacio.");
+//                    return;
+//                }
+//                if (isNaN($scope.cedula)){
+//                    alert("La cédula debe ser numérica.");
+//                return;
+//                }
+//                if (isNaN($scope.edad)){
+//                    alert("La edad debe ser un numérica.");
+//                    return;
+//                }
+//                
+//                
+//                else{
+//                    var ptn = 
+//                    {
+//                        "name" :  $scope.nombre,    
+//                        "id" : $scope.cedula,      
+//                        "edad" : $scope.edad,   
+//                        "sexo" : $scope.sexo,
+//                        "tipoSangre" : $scope.tipoSangre,
+//                        "eps" : $scope.eps
+//                    };
+//                    ptn = JSON.stringify(ptn);
+//                    console.log(ptn);
+//                    return $http.post(context, ptn.toString())
+//                        .then(function () {
+//                            $state.go('patientListforpatient');
+//                        }, responseError)
+//                }
+//            }
+            
+            this.editFinalPatientForPatient = function () {
+                if (!$scope.nombre || !$scope.cedula || !$scope.sexo || !$scope.edad|| !$scope.tipoSangre || !$scope.eps ){
+                    alert("No puede dejar ningún campo vacio.");
+                    return;
+                }
+                if (isNaN($scope.cedula)){
+                    alert("La cédula debe ser numérica.");
+                    return;
+                }
+                if (isNaN($scope.edad)){
+                    alert("La edad debe ser un numérica.");
+                    return;
+                }
+                
+                else{
+                    var ptn = 
+                    {
+                        "name" :  $scope.nombre,    
+                        "id" : $scope.cedula,      
+                        "edad" : $scope.edad,    
+                        "sexo" : $scope.sexo,
+                        "tipoSangre" : $scope.tipoSangre,
+                        "eps" : $scope.eps
+                    };
+                    ptn = JSON.stringify(ptn);
+                    console.log(ptn);
+                    return $http.put(context+"/"+ $stateParams.ptnID, ptn.toString())
+                        .then(function () {
+                            $state.go('patientListforpatient');
+                        }, responseError)
+                }
+            }
 
 
            
