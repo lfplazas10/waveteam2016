@@ -1,7 +1,10 @@
 <div>
     <h1>Consultorio {{consultorioActual.nombre}} {{consultorioActual.id}}</h1>
+    <br>
     <button class="btn btn-default btn-sm" ng-click="ctrl.actualizarConsultorioId(consultorioActual.id)"><span class="glyphicon glyphicon-edit"></span>editar</button> 
     <button class="btn btn-default btn-sm" ng-click="ctrl.eliminarConsultorio(consultorioActual.id)"><span class="glyphicon glyphicon-minus"></span>Eliminar consultorio</button>
+    <br>
+    
     <table width ="40%">
         <tr>
             <th align="left">
@@ -33,16 +36,13 @@
             </th>
         </tr>
     </table>
-
+    <br><br>
     <div>
         <button class="btn btn-default btn-sm" ng-click="ctrl.getDoctores()"><span class="glyphicon glyphicon-minus"></span>Doctores</button>
 
         <div  ng-show="ctrl.mostrarDoctores()">
-            <div class="input-group">
-                <span class="input-group-addon">Buscar</span>
-                <input class="form-control" type="text" ng-model="searchField">
-            </div>
-            <table class="table table-striped">
+
+            <table class="table table-striped table-hover">
                 <thead>
                     <tr>
                         <th> Nombre </th>
@@ -52,7 +52,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="doc in doctores| filter:searchField" >
+                    <tr ng-repeat="doc in doctores| filter:searchFieldd" >
                         <td>{{doc.name}}</td>
                         <td>{{doc.id}}</td>
                         <td>{{doc.especialidad}}</td>
@@ -60,6 +60,58 @@
                     </tr>
                 </tbody>
             </table>
+            <table><tr>
+                    <td>
+                        <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                Seleccione un doctor...
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <li ng-repeat="d in allDoctors"><a ng-model="doctorAsignar" ng-click="ctrl.asignarDoctor(d)">{{d.name}}</a></li>
+                            </ul>
+                        </div>
+                    </td>
+                    <td><button class="btn btn-default btn-sm" ng-click="ctrl.asignarDoctor()"><span class="glyphicon glyphicon-plus"></span>Asignar doctor</button></td>
+            </table>
+
+
+
+        </div>
+
+    </div>
+    <br><br>
+    <div>
+        <button class="btn btn-default btn-sm" ng-click="ctrl.getCitas()"><span class="glyphicon glyphicon-minus"></span>Citas</button>
+
+        <div  ng-show="ctrl.mostrarCitas()">
+
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th> </th>
+                        <th> Fecha </th>
+                        <th> Hora </th>
+                        <th> Duración </th>
+                        <th> Id. médico </th>
+                        <th> Id. paciente </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="cita in citas| filter:searchFieldc" >
+                        <td>{{cita.id}}</td>
+                        <td>{{cita.fecha}}</td>
+                        <td>{{cita.hora}}</td>
+                        <td>{{cita.duracion}}</td>
+                        <td>{{cita.medico}}</td>
+                        <td>{{cita.paciente}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="input-group">
+                <span class="input-group-addon">Buscar</span>
+                <input class="form-control" type="text" ng-model="searchFieldc">
+            </div>
         </div>
 
     </div>

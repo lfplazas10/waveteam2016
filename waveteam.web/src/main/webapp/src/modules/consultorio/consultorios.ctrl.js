@@ -1,22 +1,61 @@
 var mostrarDoctores = false;
+var mostrarCitas = false;
 var idEditar = 1;
 (function (ng) {
     var mod = ng.module("consultorioModule");
     mod.controller("consultoriosCtrl", ['$scope', '$state', '$stateParams', '$http', 'consultorioContext', function ($scope, $state, $stateParams, $http, context) {
+            mostrarDoctores = false;
+            mostrarCitas = false;
+            //Prueba: citas
+            this.mostrarCitas = function () {
+                return mostrarCitas;
+            }
+            this.getCitas = function ()
+            {
+                console.log("ME SOLICITAN citas")
+                $scope.citas = $scope.consultorioActual.citasAsignadas;
+                console.log("$scope.citas");
+                if (mostrarCitas === false)
+                {
+                    mostrarCitas = true;
+                } else {
+                    mostrarCitas = false;
+                }
+            }
+
             //Prueba: doctores
-            this.mostrarDoctores=function(){
+
+            $scope.allDoctors = {}
+            $http.get("api/doctors").then(function (response) {
+                $scope.allDoctors = response.data;
+            }, responseError);
+
+            this.asignarDoctor = function (doc) {
+                $http.post("api/consultorios/" + $scope.consultorioActual.id + "/doctores", doc)
+                        .then(function (response) {
+                            $state.reload();
+                        }, responseError);
+            }
+
+
+            this.mostrarDoctores = function () {
                 return mostrarDoctores;
             }
-            this.getDoctores = function()
+            this.getDoctores = function ()
             {
                 console.log("ME SOLICITAN DOCTORES")
                 $scope.doctores = $scope.consultorioActual.doctoresAsignados;
                 console.log("$scope.doctores");
-                mostrarDoctores = true;
+                if (mostrarDoctores === false)
+                {
+                    mostrarDoctores = true;
+                } else {
+                    mostrarDoctores = false;
+                }
             }
-            
+            //Funcionamiento normal de consultorios:
             $scope.consultorios = {};
-            
+
             //Comando GET!
             $http.get(context).then(function (response) {
                 $scope.consultorios = response.data;
@@ -25,12 +64,12 @@ var idEditar = 1;
 
             if ($stateParams.consultorioId !== null && $stateParams.consultorioId !== undefined) {
                 id = $stateParams.consultorioId;
-                console.log("BUSCANDO UN SOLO ID "+id)
+                console.log("BUSCANDO UN SOLO ID " + id)
                 $http.get(context + "/" + id)
                         .then(function (response) {
                             $scope.consultorioActual = response.data;
-                            
-                    console.log("ME VINO UN "+$scope.consultorioActual);
+
+                            console.log("ME VINO UN " + $scope.consultorioActual);
                         }, responseError);
             } else
             {
@@ -38,8 +77,8 @@ var idEditar = 1;
                     id: undefined,
                     nombre: '',
                     horario: '',
-                    atencionUrgencias:'',
-                    unidadCuidadosIntensivos:''
+                    atencionUrgencias: '',
+                    unidadCuidadosIntensivos: ''
                 };
 
                 $scope.alerts = [];
@@ -87,17 +126,17 @@ var idEditar = 1;
                 consultorioActual = $scope.consultorioActual;
                 consultorioActual.id = idEditar;
                 var cons = {
-                    id:consultorioActual.id,
-                    nombre:consultorioActual.nombre,
-                    horario:consultorioActual.horario,
-                    atencionUrgencias:consultorioActual.atencionUrgencias,
-                    unidadCuidadosIntensivos:consultorioActual.unidadCuidadosIntensivos
+                    id: consultorioActual.id,
+                    nombre: consultorioActual.nombre,
+                    horario: consultorioActual.horario,
+                    atencionUrgencias: consultorioActual.atencionUrgencias,
+                    unidadCuidadosIntensivos: consultorioActual.unidadCuidadosIntensivos
                 }
-                
+
                 nuevoConsultorio = JSON.stringify(cons);
                 console.log("MI ID ES " + consultorioActual.id);
                 console.log(consultorioActual);
-                                console.log(nuevoConsultorio);
+                console.log(nuevoConsultorio);
 
                 $http.put(context + "/" + idEditar, nuevoConsultorio)
                         .then(function (response) {

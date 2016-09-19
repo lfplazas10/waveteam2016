@@ -8,7 +8,8 @@ package co.edu.uniandes.rest.waveteam.mocks;
 import co.edu.uniandes.rest.waveteam.dtos.CitaDTO;
 import co.edu.uniandes.rest.waveteam.dtos.ConsultorioDTO;
 import co.edu.uniandes.rest.waveteam.dtos.MedicoDTO;
-import co.edu.uniandes.rest.waveteam.exceptions.ConsultorioLogicException;
+import co.edu.uniandes.rest.waveteam.exceptions.*;
+
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -26,16 +27,32 @@ public class ConsultorioLogicMock {
     private final static Logger logger = Logger.getLogger(ConsultorioLogicMock.class.getName());
 
     private static ArrayList<ConsultorioDTO> consultorios;
+    private MedicoLogicMock ml = new MedicoLogicMock();
+    private CitaLogicMock cl = new CitaLogicMock();
 
     /**
      * Constructor de los consultorios de prueba
      */
     public ConsultorioLogicMock() {
         if (consultorios == null) {
-            consultorios = new ArrayList<>();
+            consultorios = new ArrayList<ConsultorioDTO>();
             consultorios.add(new ConsultorioDTO(1L, "P202", "8:00am-6:00pm", false, true));
             consultorios.add(new ConsultorioDTO(2L, "P315", "8:00am-6:00pm", false, false));
             consultorios.add(new ConsultorioDTO(3L, "U100", "24 horas", true, false));
+            try {
+                consultorios.get(0).agregarDoctorAsignado(ml.getDoctors().get(0));
+                consultorios.get(1).agregarDoctorAsignado(ml.getDoctors().get(1));
+                consultorios.get(2).agregarDoctorAsignado(ml.getDoctors().get(2));
+                consultorios.get(0).agregarCitaAsignada(cl.getCitas().get(0));
+                consultorios.get(1).agregarCitaAsignada(cl.getCitas().get(1));
+                consultorios.get(2).agregarCitaAsignada(cl.getCitas().get(2));
+            } catch (MedicoLogicException e) {
+                logger.severe("Se produjo un error agregando médicos a los consultorios en el logic mock");
+                e.printStackTrace();
+            } catch (CitaLogicException e){
+                logger.severe("Se produjo un error agregando citas a los consultorios en el logic mock");
+            }
+
         }
 
         logger.setLevel(Level.INFO);
