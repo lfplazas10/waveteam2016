@@ -5,8 +5,8 @@
 package co.edu.uniandes.rest.waveteam.dtos;
 
 import co.edu.uniandes.rest.waveteam.mocks.MedicoLogicMock;
-import java.util.ArrayList;
-import java.util.List;
+
+import java.util.*;
 import java.util.logging.Logger;
 /**
  * Objeto de transferencia de datos de Ciudades.
@@ -18,9 +18,7 @@ public class MedicoDTO {
     private String name;
     private String especialidad;
     private Long consultorio;
-    
-    //Un medico tiene citas
-    private List<CitaDTO> disponibilidad = new ArrayList<CitaDTO>();
+    private List<CitaDTO> disponibilidad;
 
     /**
      * Constructor por defecto
@@ -34,6 +32,7 @@ public class MedicoDTO {
         this.name = name;
         this.especialidad = especialidad;
         this.consultorio = consultorio;
+        this.disponibilidad = new ArrayList<>();
         
     }
 
@@ -82,24 +81,24 @@ public class MedicoDTO {
     }
 
     //REQUERIMIENTOS R4 Y R7 - MEDICO Y SUS DISPONIBILIDADES
-    
-    //Esto es una idea para la disponibilidad
-    //Podemos manejarlo con una matriz, o luego con un mapa/tablas de la base de daticos
-    public void setDisponibilidad(long inicio, long fin)
-    {
-        long rango = fin - inicio;
-        long cuenta = rango / 900000;
-        int r = (int) cuenta;
-        for (int i = 0; i < r; i++)
-        {
-            CitaDTO cita = new CitaDTO();
-            cita.setHora(inicio+i*900000);
-            cita.setDuracion(15);
-            cita.setMedico(this.id);
-            cita.desactivar();
-            cita.setId(1L);
-            cita.setPaciente(1L);
-            disponibilidad.add(cita);
+    public void setDisponibilidad(Long... diasDisponible){
+        for (int j = 0; j < diasDisponible.length ; j++) {
+            Long inicio = diasDisponible[j];
+            Calendar n = new GregorianCalendar();
+            n.setTimeInMillis(inicio);
+            int fromDay = n.get(Calendar.DAY_OF_WEEK);
+            int i = 1;
+            while (fromDay == n.get(Calendar.DAY_OF_WEEK) && n.get(Calendar.HOUR_OF_DAY) <= 20){
+                CitaDTO cita = new CitaDTO();
+                cita.setHora(inicio+i*900000);
+                cita.setDuracion(15);
+                cita.setMedico(this.id);
+                cita.desactivar();
+                cita.setId(1L);
+                cita.setPaciente(1L);
+                disponibilidad.add(cita);
+                i++;
+            }
         }
     }
     
@@ -107,12 +106,10 @@ public class MedicoDTO {
     {
         return disponibilidad;
     }
-            
    
     /**
      * Convierte el objeto a una cadena
      */
-    @Override
     public String toString() {
         return "{ id : " + getId() + ", name : \"" + getName() + "\" }";
     }

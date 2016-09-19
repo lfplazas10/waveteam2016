@@ -66,7 +66,6 @@
                     "consultorio": $scope.consultorio
                 };
                 doc = JSON.stringify(doc);
-                console.log(doc);
                 return $http.post(context, doc.toString())
                     .then(function () {
                         $state.go('doctorsList');
@@ -96,7 +95,6 @@
                     "consultorio": $scope.consultorio
                 };
                 doc = JSON.stringify(doc);
-                console.log(doc);
                 return $http.put(context + "/" + $stateParams.docID, doc.toString())
                     .then(function () {
                         $state.go('doctorsList');
