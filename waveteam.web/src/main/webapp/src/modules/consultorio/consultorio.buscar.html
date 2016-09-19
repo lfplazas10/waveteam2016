@@ -40,7 +40,7 @@
         <button class="btn btn-default btn-sm" ng-click="ctrl.getDoctores()"><span class="glyphicon glyphicon-minus"></span>Doctores</button>
 
         <div  ng-show="ctrl.mostrarDoctores()">
-            
+
             <table class="table table-striped table-hover">
                 <thead>
                     <tr>
@@ -60,13 +60,22 @@
                 </tbody>
             </table>
             <table><tr>
-                    <td><div class="input-group">
-                            <span class="input-group-addon">Buscar</span>
-                            <input class="form-control" type="text" ng-model="searchFieldd">
-
-                        </div></td>
+                    <td>
+                        <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                Seleccione un doctor...
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <li ng-repeat="d in allDoctors"><a ng-model="doctorAsignar" ng-click="ctrl.asignarDoctor(d)">{{d.name}}</a></li>
+                            </ul>
+                        </div>
+                    </td>
                     <td><button class="btn btn-default btn-sm" ng-click="ctrl.asignarDoctor()"><span class="glyphicon glyphicon-plus"></span>Asignar doctor</button></td>
             </table>
+
+
+
         </div>
 
     </div>
@@ -75,7 +84,7 @@
         <button class="btn btn-default btn-sm" ng-click="ctrl.getCitas()"><span class="glyphicon glyphicon-minus"></span>Citas</button>
 
         <div  ng-show="ctrl.mostrarCitas()">
-            
+
             <table class="table table-striped table-hover">
                 <thead>
                     <tr>
