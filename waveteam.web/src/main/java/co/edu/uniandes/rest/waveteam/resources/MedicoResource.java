@@ -11,6 +11,7 @@ import co.edu.uniandes.rest.waveteam.mocks.MedicoLogicMock;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.ws.rs.Consumes;
@@ -21,6 +22,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
 /**
  * Clase que implementa el recurso REST correspondiente a "doctors".
@@ -104,9 +106,8 @@ public class MedicoResource {
 
     @POST
     @Path("{id: \\d+}/disponibilidad/")
-    public void setDisponibilidad(@PathParam("id") Long id, Object days) throws MedicoLogicException {
-        System.out.println("HERE I AM+ "+ days.toString());
-        System.out.println("HERE I AM2+ "+ days);
-//        return cityLogic.definirHorarioMedico(id, days);
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void setDisponibilidad(@PathParam("id") Long id, ArrayList days) throws MedicoLogicException {
+        cityLogic.definirHorarioMedico(id, days);
     }
 }

@@ -80,16 +80,18 @@ public class MedicoDTO {
     }
 
     //REQUERIMIENTOS R4 Y R7 - MEDICO Y SUS DISPONIBILIDADES
-    public void setDisponibilidad(ArrayList<Long> diasDisponible){
+    public void setDisponibilidad(ArrayList<LinkedHashMap> diasDisponible){
         for (int j = 0; j < diasDisponible.size() ; j++) {
-            Long inicio = diasDisponible.get(j);
+            LinkedHashMap lhm = diasDisponible.get(j);
+            Long inicio = (Long)lhm.get("value");
             Calendar n = new GregorianCalendar();
             n.setTimeInMillis(inicio);
             int fromDay = n.get(Calendar.DAY_OF_WEEK);
-            int i = 1;
-            while (fromDay == n.get(Calendar.DAY_OF_WEEK) && n.get(Calendar.HOUR_OF_DAY) <= 20){
+            int i = 0;
+            while ((fromDay == n.get(Calendar.DAY_OF_WEEK)) && (n.get(Calendar.HOUR_OF_DAY) <= 24)){
                 CitaDTO cita = new CitaDTO();
-                cita.setHora(inicio+i*900000);
+                cita.setHora(inicio+(i*900000));
+                n.setTimeInMillis(n.getTimeInMillis()+(i*900000));
                 cita.setDuracion(15);
                 cita.setMedico(this.id);
                 cita.desactivar();

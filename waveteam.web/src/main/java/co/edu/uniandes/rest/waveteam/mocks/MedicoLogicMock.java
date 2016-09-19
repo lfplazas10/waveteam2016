@@ -10,9 +10,8 @@ import co.edu.uniandes.rest.waveteam.dtos.CitaDTO;
 import co.edu.uniandes.rest.waveteam.dtos.MedicoDTO;
 import co.edu.uniandes.rest.waveteam.exceptions.MedicoLogicException;
 
-import javax.ws.rs.core.GenericEntity;
-import javax.ws.rs.core.Response;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Objects;
 import java.util.logging.Level;
@@ -38,9 +37,21 @@ public class MedicoLogicMock {
         if (doctors == null) {
             logger.info("Inicializa la lista de doctores");
             doctors = new ArrayList<>();
-            doctors.add(new MedicoDTO(1L, "Pedro Pablo Jaramillo", "Cardiólogo", 301L, new ArrayList<CitaDTO>()));
+            CitaDTO cita = new CitaDTO();
+            cita.setHora(90000L);
+            cita.setDuracion(15);
+            cita.setMedico(8L);
+            cita.desactivar();
+            cita.setId(1L);
+            cita.setPaciente(1L);
+            ArrayList <CitaDTO> d = new ArrayList();
+            cita.addSm(532532L);
+            cita.addSm(42353L);
+            cita.addSm(263564L);
+            d.add(cita);
+            doctors.add(new MedicoDTO(1L, "Pedro Pablo Jaramillo", "Cardiólogo", 301L, d));
             doctors.add(new MedicoDTO(5L, "Jairo Aristizabal", "Neumólogo", 305L, new ArrayList<CitaDTO>()));
-            doctors.add(new MedicoDTO(3L, "Carlos Diaz", "Pediatra", 320L, new ArrayList<CitaDTO>()));
+            doctors.add(new MedicoDTO(6L, "Carlos Diaz", "Pediatra", 320L, new ArrayList<CitaDTO>()));
             doctors.add(new MedicoDTO(3L, "Fernando Vallejo", "Traumatólogo", 320L, new ArrayList<CitaDTO>()));
         }
 
@@ -84,7 +95,7 @@ public class MedicoLogicMock {
     }
 
     //REQUERIMIENTOS R4 Y R7 - MEDICO Y SUS DISPONIBILIDADES
-    public List<CitaDTO> definirHorarioMedico(Long id, ArrayList<Long> diasDisponible) throws MedicoLogicException {
+    public List<CitaDTO> definirHorarioMedico(Long id, ArrayList<LinkedHashMap> diasDisponible) throws MedicoLogicException {
         if (doctors == null) {
             logger.severe("Error interno: lista de doctores no existe.");
             throw new MedicoLogicException("Error interno: lista de doctores no existe.");
