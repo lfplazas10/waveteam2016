@@ -210,7 +210,7 @@ public class CitaLogicMock {
     
     
     public ArrayList<CitaDTO> getCitasByMedicoEnFecha(long medico, String fechaInicio, String fechaFin) throws CitaLogicException, MedicoLogicException{
-        ArrayList<CitaDTO> lista = new ArrayList<CitaDTO>();
+        ArrayList<CitaDTO> lista = new ArrayList<>();
         String[] inicio = fechaInicio.split("/");
         String[] fin = fechaFin.split("/");
         int diaInicio = Integer.parseInt(inicio[0]);
