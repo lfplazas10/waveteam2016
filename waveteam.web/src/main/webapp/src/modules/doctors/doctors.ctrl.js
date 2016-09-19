@@ -1,7 +1,6 @@
 (function (ng) {
     var mod = ng.module("doctorModule");
     mod.controller("doctorsCtrl", ['$scope', '$state', '$stateParams', '$http', 'doctorContext', function ($scope, $state, $stateParams, $http, context) {
-
         loadDocs = function () {
             $http.get(context).then(function (response) {
                 $scope.doctors = response.data;
@@ -9,6 +8,14 @@
         }
 
         loadDocs();
+
+
+
+        $scope.$watch("selectedDoctor", function(newValue, oldValue){
+            $http.get(context+"/"+newValue.id+"/disponibilidad").then(function (response) {
+                console.log(response.data);
+            }, responseError);
+        });
 
         this.deleteRecord = function (doc) {
             return $http.delete(context + "/" + doc)
@@ -89,10 +96,8 @@
             var doc = JSON.stringify(dates);
             console.log(doc.toString());
             $http.post(context+"/3/disponibilidad", doc.toString()).then(function (response) {
-                $scope.doctors = response.data;
             }, responseError);
             $http.post(context+"/3/disponibilidad", doc.toString()).then(function (response) {
-                $scope.doctors = response.data;
             }, responseError);
         }
 
