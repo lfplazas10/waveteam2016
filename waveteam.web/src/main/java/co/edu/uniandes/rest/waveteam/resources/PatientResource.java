@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.rest.waveteam.resources;
 
+import co.edu.uniandes.rest.waveteam.dtos.CitaDTO;
 import co.edu.uniandes.rest.waveteam.dtos.PatientDTO;
 import co.edu.uniandes.rest.waveteam.exceptions.CitaLogicException;
 import co.edu.uniandes.rest.waveteam.exceptions.PatientLogicException;
@@ -96,7 +97,14 @@ public class PatientResource {
         return patientLogic.createPatient(patient);
     }
     
-    
+    /**
+     * 
+     */
+    @GET
+    @Path ("{id: \\d+}/citaspaciente")
+    public List<CitaDTO>getCitasPaciente(@PathParam("id") long id) throws PatientLogicException, CitaLogicException{
+        return patientLogic.getCitas(id);
+    }
     
 //    /**
 //     * informa las citas que tiene el paciente
