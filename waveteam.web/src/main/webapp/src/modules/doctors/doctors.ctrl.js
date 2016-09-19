@@ -78,9 +78,22 @@
                 alert("La primera fecha no puede ser mayor a la segunda");
                 return;
             }
-            // $http.get(context).then(function (response) {
-            //     $scope.doctors = response.data;
-            // }, responseError);
+            var dates = [];
+            var date1 = $scope.fromDate.getTime()+ (3600000*8);
+            while (date1 !== ($scope.toDate.getTime() + (3600000*8)) ){
+                dates.push({
+                    "value": date1
+                });
+                date1 += 3600000*24;
+            }
+            var doc = JSON.stringify(dates);
+            console.log(doc.toString());
+            $http.post(context+"/3/disponibilidad", doc.toString()).then(function (response) {
+                $scope.doctors = response.data;
+            }, responseError);
+            $http.post(context+"/3/disponibilidad", doc.toString()).then(function (response) {
+                $scope.doctors = response.data;
+            }, responseError);
         }
 
 

@@ -97,6 +97,7 @@ public class MedicoDTO {
                 cita.desactivar();
                 cita.setId(1L);
                 cita.setPaciente(1L);
+                System.out.println(cita.toString());
                 disponibilidad.add(cita);
                 i++;
             }
