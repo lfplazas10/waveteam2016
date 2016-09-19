@@ -78,6 +78,22 @@ public class MedicoLogicMock {
         return doctors;
     }
 
+    public List<CitaDTO> getDoctorSchedule(Long id) throws MedicoLogicException {
+        if (doctors == null) {
+            logger.severe("Error interno: lista de doctores no existe.");
+            throw new MedicoLogicException("Error interno: lista de doctores no existe.");
+        }
+
+        for (MedicoDTO doctor : doctors) {
+            if (Objects.equals(id, doctor.getId())) {
+                logger.info("Retornando la disponibilidad del doctor con ID " + id);
+                return doctor.getDisponibilidad();
+            }
+        }
+        logger.info("No se encontro doctor con ese ID");
+        throw new MedicoLogicException("No existe doctor con ese ID");
+    }
+
     public MedicoDTO getDoctor(Long id) throws MedicoLogicException {
         if (doctors == null) {
             logger.severe("Error interno: lista de doctores no existe.");

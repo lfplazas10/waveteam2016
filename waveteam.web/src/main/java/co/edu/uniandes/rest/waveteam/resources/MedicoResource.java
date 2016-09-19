@@ -110,4 +110,10 @@ public class MedicoResource {
     public void setDisponibilidad(@PathParam("id") Long id, ArrayList days) throws MedicoLogicException {
         cityLogic.definirHorarioMedico(id, days);
     }
+
+    @GET
+    @Path("{id: \\d+}/disponibilidad/")
+    public List<CitaDTO> getDisponibilidad(@PathParam("id") Long id) throws MedicoLogicException {
+        return cityLogic.getDoctorSchedule(id);
+    }
 }

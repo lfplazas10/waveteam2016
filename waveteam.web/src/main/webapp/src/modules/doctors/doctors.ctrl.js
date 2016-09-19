@@ -96,7 +96,6 @@
             }, responseError);
         }
 
-
         this.editDoctorFinal = function () {
             if (!$scope.nombre || !$scope.especialidad || !$scope.consultorio || !$scope.cedula) {
                 alert("No puede dejar ningún campo vacio.");
