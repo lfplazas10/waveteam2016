@@ -8,6 +8,8 @@ package co.edu.uniandes.rest.waveteam.resources;
 import co.edu.uniandes.rest.waveteam.dtos.*;
 import co.edu.uniandes.rest.waveteam.exceptions.MedicoLogicException;
 import co.edu.uniandes.rest.waveteam.mocks.MedicoLogicMock;
+
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
@@ -99,18 +101,12 @@ public class MedicoResource {
     }
     
     //REQUERIMIENTOS R4 Y R7 - MEDICO Y SUS DISPONIBILIDADES
-    
-    
-    //esta es una idea de como manejar las fechas entre front y back end
-    //la otra idea seria utilizar timestamp
-    @PUT
-    @Path("{id: \\d+}/disponibilidad/{inicio: \\d+}/{fin: \\d+}")
-    public List<CitaDTO> setDisponibilidad(@PathParam("id") Long id,
-                                  @PathParam("inicio") Long inicio, 
-                                  @PathParam("fin") Long fin) throws MedicoLogicException {
-        MedicoDTO doc =  cityLogic.setDisponibilidad(id, inicio, fin);
-        return doc.getDisponibilidad();
-        //Se esta retornando la lista de citas disponibles porque algo esta
-        //Ocurriendo con las citas y no se quieren guardar ni aparecer.
+
+    @POST
+    @Path("{id: \\d+}/disponibilidad/")
+    public void setDisponibilidad(@PathParam("id") Long id, Object days) throws MedicoLogicException {
+        System.out.println("HERE I AM+ "+ days.toString());
+        System.out.println("HERE I AM2+ "+ days);
+//        return cityLogic.definirHorarioMedico(id, days);
     }
 }

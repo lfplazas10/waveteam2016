@@ -35,15 +35,15 @@ public class EspecialidadLogicMock {
             especialidades = new ArrayList<>();
             
             ArrayList<MedicoDTO> temp = new ArrayList<MedicoDTO>();
-            temp.add(new MedicoDTO(1L, "Pedro Pablo Jaramillo", "Cardiólogo", 301L));
+            temp.add(new MedicoDTO(1L, "Pedro Pablo Jaramillo", "Cardiólogo", 301L, new ArrayList<CitaDTO>()));
             especialidades.add(new EspecialidadDTO(1L, "Cardiologia", "0-95", "clinica",temp,new ArrayList<CitaDTO>()));
             
             temp= new ArrayList<MedicoDTO>();
-            temp.add(new MedicoDTO(5L, "Jairo Aristizabal", "Neumólogo", 305L));
+            temp.add(new MedicoDTO(5L, "Jairo Aristizabal", "Neumólogo", 305L, new ArrayList<CitaDTO>()));
             especialidades.add(new EspecialidadDTO(2L, "neumologia", "0-95", "clinica",temp,new ArrayList<CitaDTO>()));
             
             temp= new ArrayList<MedicoDTO>();
-            temp.add(new MedicoDTO(3L, "Fernando Vallejo", "Traumatólogo", 320L));
+            temp.add(new MedicoDTO(3L, "Fernando Vallejo", "Traumatólogo", 320L, new ArrayList<CitaDTO>()));
             especialidades.add(new EspecialidadDTO(3L, "Traumatologia", "0-95", "medico-quirurgica",temp,new ArrayList<CitaDTO>()));
         }
 

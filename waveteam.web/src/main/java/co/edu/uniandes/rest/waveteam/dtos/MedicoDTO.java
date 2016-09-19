@@ -18,7 +18,7 @@ public class MedicoDTO {
     private String name;
     private String especialidad;
     private Long consultorio;
-    private List<CitaDTO> disponibilidad;
+    private ArrayList<CitaDTO> disponibilidad;
 
     /**
      * Constructor por defecto
@@ -27,13 +27,12 @@ public class MedicoDTO {
 
     }
 
-    public MedicoDTO(Long id, String name, String especialidad, Long consultorio) {
+    public MedicoDTO(Long id, String name, String especialidad, Long consultorio, ArrayList<CitaDTO> dispo) {
         this.id = id;
         this.name = name;
         this.especialidad = especialidad;
         this.consultorio = consultorio;
-        this.disponibilidad = new ArrayList<>();
-        
+        this.disponibilidad = dispo;
     }
 
     public String getEspecialidad() {
@@ -81,9 +80,9 @@ public class MedicoDTO {
     }
 
     //REQUERIMIENTOS R4 Y R7 - MEDICO Y SUS DISPONIBILIDADES
-    public void setDisponibilidad(Long... diasDisponible){
-        for (int j = 0; j < diasDisponible.length ; j++) {
-            Long inicio = diasDisponible[j];
+    public void setDisponibilidad(ArrayList<Long> diasDisponible){
+        for (int j = 0; j < diasDisponible.size() ; j++) {
+            Long inicio = diasDisponible.get(j);
             Calendar n = new GregorianCalendar();
             n.setTimeInMillis(inicio);
             int fromDay = n.get(Calendar.DAY_OF_WEEK);
@@ -102,14 +101,14 @@ public class MedicoDTO {
         }
     }
     
-    public List<CitaDTO> getDisponibilidad()
-    {
+    public ArrayList<CitaDTO> getDisponibilidad(){
         return disponibilidad;
     }
    
     /**
      * Convierte el objeto a una cadena
      */
+    @Override
     public String toString() {
         return "{ id : " + getId() + ", name : \"" + getName() + "\" }";
     }
