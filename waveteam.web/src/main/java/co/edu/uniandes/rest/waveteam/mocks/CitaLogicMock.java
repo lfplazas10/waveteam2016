@@ -40,13 +40,10 @@ public class CitaLogicMock {
         
         if(citas==null){
             citas = new ArrayList<>();
-            
-            citas.add(new CitaDTO(1L, "17/08/2016", 700L, 30,1L , 1L, true));
-            citas.add(new CitaDTO(2L, "18/8/2016", 900L,15, 2L, 2L, true));
-            citas.add(new CitaDTO(3L, "19/8/2016", 1100L,15, 3L,3L, true));
-            citas.add(new CitaDTO(4L, "20/8/2016", 900L,15, 3L,1L, true));
-            citas.add(new CitaDTO(5L, "21/8/2016", 1100L,15, 2L,2L, true));
-            citas.add(new CitaDTO(6L, "22/8/2016", 900L,15, 1L,3L, true));
+            citas.add(new CitaDTO(1L, "17/08/2016", 1471352400000L, 30,1L , 1L, true));
+            citas.add(new CitaDTO(2L, "18/8/2016", (1471352400000L + 86400000L) ,15, 2L, 2L, true));
+            citas.add(new CitaDTO(3L, "19/8/2016", 1471352400000L + (2*86400000L),15, 3L,3L, true));
+
         }    
         
         
