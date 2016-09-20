@@ -12,15 +12,6 @@
 
         $scope.$watch("selectedDoctor", function(newValue, oldValue){
             $http.get(context+"/"+$scope.selectedDoctor.id+"/disponibilidad").then(function (response) {
-                console.log(response.data);
-                $scope.citas = response.data;
-            }, responseError);
-        });
-
-        $scope.$watch("scheduleDay", function(newValue, oldValue){
-            console.log($scope.scheduleDay);
-            $http.get(context+"/"+$scope.selectedDoctor.id+"/disponibilidad").then(function (response) {
-                console.log(response.data);
                 $scope.citas = response.data;
             }, responseError);
         });
@@ -32,8 +23,7 @@
 
         this.turnMillisToDate = function (dateLong){
             var d = new Date(dateLong);
-            console.log("UTC "+d.getUTCDay()+" "+d.getUTCHours());
-            return d.getDay()+"/"+d.getMonth()+"/"+d.getFullYear();
+            return d.getUTCDate()+"/"+(d.getUTCMonth()+1)+"/"+d.getFullYear();
         }
 
         this.deleteRecord = function (doc) {
@@ -128,7 +118,6 @@
                 }
             }
             var doc = JSON.stringify(dates);
-            console.log(doc.toString());
             $http.post(context+"/"+$scope.selectedDoctor.id+"/disponibilidad", doc.toString()).then(function (response) {
             }, responseError);
             $http.post(context+"/"+$scope.selectedDoctor.id+"/disponibilidad", doc.toString()).then(function (response) {
@@ -136,16 +125,26 @@
             alert("Saved succesfully");
             $http.get(context+"/"+$scope.selectedDoctor.id+"/disponibilidad").then(function (response) {
                 $scope.citas = response.data;
-                console.log(response.data);
             }, responseError);
         }
 
         this.checkIfAssigned = function(cita){
-            if (!$scope.showAssigned) return true;
-            else{
-                if (cita.paciente !== -1) return true
+            if (!$scope.scheduleDay1 || !$scope.scheduleDay2){
+                if (!$scope.showAssigned) return true;
+                else{
+                    if (cita.paciente !== -1) return true
+                }
+                return false;
             }
-            return false;
+            else{
+                if (cita.hora >= $scope.scheduleDay1.getTime() && cita.hora <= $scope.scheduleDay2.getTime()){
+                    if (!$scope.showAssigned) return true;
+                    else{
+                        if (cita.paciente !== -1) return true
+                    }
+                }
+                return false;
+            }
         }
 
         this.editDoctorFinal = function () {
