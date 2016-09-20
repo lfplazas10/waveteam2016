@@ -23,7 +23,7 @@ public class CitaDTO {
     private int duracion;
     private Long medico;
     private Long paciente;
-    private boolean activa;
+    private boolean habilitada;
     
     
     public CitaDTO(){
@@ -37,7 +37,7 @@ public class CitaDTO {
         this.duracion = duracion;
         this.medico = medico;
         this.paciente = paciente; 
-        this.activa = true;
+        this.habilitada = true;
 
     }
     
@@ -99,11 +99,11 @@ public class CitaDTO {
     
     
     public void desactivar(){
-        this.activa = false;
+        this.habilitada = false;
     }
     
-    public boolean getActiva(){
-        return this.activa;
+    public boolean getHabilitada(){
+        return this.habilitada;
     }
 
     public void addSm(Long t){
@@ -113,12 +113,14 @@ public class CitaDTO {
     
     @Override
     public String toString(){
+
         return  "{ id : " + id +
                 ", fecha : " + fecha + 
                 ", hora : " +hora + 
                 ", duracion : " + duracion + 
                 ", medico : " + medico + 
-                ", paciente : " + paciente
+                ", paciente : " + paciente +
+                ", habilitada : " + habilitada
                 +" }";
     }
     
