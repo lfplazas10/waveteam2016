@@ -38,7 +38,7 @@ public class MedicoLogicMock {
             logger.info("Inicializa la lista de doctores");
             doctors = new ArrayList<>();
             CitaDTO cita = new CitaDTO();
-            cita.setHora(90000L);
+            cita.setHora(1474382871288L);
             cita.setDuracion(15);
             cita.setMedico(8L);
             cita.desactivar();
