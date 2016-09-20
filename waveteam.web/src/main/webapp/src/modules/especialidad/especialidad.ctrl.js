@@ -29,7 +29,8 @@
                     id: undefined ,
                     nombre: '',
                     grupo: '',
-                    tipo: ''
+                    tipo: '',
+                    doctores:[]
                 };
               
                 $scope.alerts = [];
