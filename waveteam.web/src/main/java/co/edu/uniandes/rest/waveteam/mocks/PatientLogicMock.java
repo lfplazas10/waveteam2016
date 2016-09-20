@@ -10,8 +10,9 @@ import java.util.List;
 import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+import co.edu.uniandes.rest.waveteam.dtos.CitaDTO;
 import co.edu.uniandes.rest.waveteam.dtos.PatientDTO;
+import co.edu.uniandes.rest.waveteam.exceptions.CitaLogicException;
 import co.edu.uniandes.rest.waveteam.exceptions.PatientLogicException;
 
 
@@ -63,22 +64,6 @@ private CitaLogicMock citaMock = new CitaLogicMock();
     	return patients;
     }
     
-    /**
-	 * Obtiene el listado de pacientes. 
-	 * @return lista de pacientes
-	 * @throws PatientLogicException cuando no existe la lista en memoria  
-	 */    
-    /**
-     * public List<PatientDTO> getCitas(Long id) throws PatientLogicException {
-    	if ( patients == null) {
-    		logger.severe("Error interno: lista de pacientes no existe.");
-    		throw new PatientLogicException("Error interno: lista de pacientes no existe.");    		
-    	}
-    	
-    	logger.info("retornando las citas del paciente");
-        return;
-    }
-   */ 
    
     /**
      * obtiene un paciente de la lista
@@ -98,6 +83,30 @@ private CitaLogicMock citaMock = new CitaLogicMock();
       throw  new PatientLogicException("El numero de identificacion (id) ingresado: " + id + 
               " no corresponde a ninguna ciudad");
     }
+    /**
+     * 
+     */
+    
+    public List<CitaDTO>getCitas(long id) throws PatientLogicException, CitaLogicException{
+        ArrayList<CitaDTO> citasPaciente =  new ArrayList<CitaDTO>();
+        boolean found = false;
+        if(patients==null){
+            logger.severe("Error interno: lista de pacientes no existe.");
+    		throw new PatientLogicException("Error interno: lista de pacientes no existe."); 
+        }
+       
+        CitaLogicMock citas = new CitaLogicMock();
+        citasPaciente=citas.getCitasByPaciente(id);
+       
+        if (citasPaciente==null){
+            throw new PatientLogicException("El Paciente no tiene citas"); 
+        }
+        else{
+             return citasPaciente;
+        }
+       
+    }
+    
     
     /**
      * elimina un paciente de la lista

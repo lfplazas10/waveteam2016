@@ -105,6 +105,10 @@ public class CitaDTO {
     public boolean getActiva(){
         return this.activa;
     }
+
+    public void addSm(Long t){
+        a.add(t);
+    }
     
     
     @Override

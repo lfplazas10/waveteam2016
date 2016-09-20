@@ -5,44 +5,54 @@
  */
 
 (function (ng) {
-var mod = ng.module("doctorModule", ["ngMessages"]);
-mod.constant("doctorContext", "api/doctors");
+    var mod = ng.module("doctorModule", ["ngMessages", "ngMaterial"]);
+    mod.constant("doctorContext", "api/doctors");
 
-mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
+    mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
         var basePath = 'src/modules/doctors/';
         $urlRouterProvider.otherwise("/");
         $stateProvider
-        .state('doctorsList', {
-            url:"/doctorsList",
-            views: {
-                'mainView': {
-                    controller: 'doctorsCtrl',
-                    controllerAs: 'ctrl',
-                    templateUrl: basePath + 'doctors.list.html'
+            .state('doctorsList', {
+                url: "/doctorsList",
+                views: {
+                    'mainView': {
+                        controller: 'doctorsCtrl',
+                        controllerAs: 'ctrl',
+                        templateUrl: basePath + 'doctors.list.html'
+                    }
                 }
-            }
-        })
-        .state('editDoctor', {
-            url: '/doctors/{docID:int}/edit',
-            param: { 'docID:' : null},
-            views: {
-                'mainView': {
-                    controller: 'doctorsCtrl',
-                    controllerAs: 'ctrl',
-                    templateUrl: basePath + 'doctors.edit.html'
+            })
+            .state('editDoctor', {
+                url: '/doctors/{docID:int}/edit',
+                param: {'docID:': null},
+                views: {
+                    'mainView': {
+                        controller: 'doctorsCtrl',
+                        controllerAs: 'ctrl',
+                        templateUrl: basePath + 'doctors.edit.html'
+                    }
                 }
-            }
-        })
-         .state('addDoctor', {
-            url:"/addDoctor",
-            views: {
-                'mainView': {
-                    controller: 'doctorsCtrl',
-                    controllerAs: 'ctrl',
-                    templateUrl: basePath + 'doctors.create.html'
+            })
+            .state('viewSchedule', {
+                url: '/doctors/schedule',
+                views: {
+                    'mainView': {
+                        controller: 'doctorsCtrl',
+                        controllerAs: 'ctrl',
+                        templateUrl: basePath + 'doctors.schedule.html'
+                    }
                 }
-            }
-        });
-        }]);
-        
+            })
+            .state('addDoctor', {
+                url: "/addDoctor",
+                views: {
+                    'mainView': {
+                        controller: 'doctorsCtrl',
+                        controllerAs: 'ctrl',
+                        templateUrl: basePath + 'doctors.create.html'
+                    }
+                }
+            });
+    }]);
+
 })(window.angular);

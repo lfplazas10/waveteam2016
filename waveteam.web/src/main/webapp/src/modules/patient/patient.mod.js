@@ -18,6 +18,29 @@
                 }
             })
             
+            $stateProvider.state('patientListforpatient', {
+                url: '/patientListforpatient',
+                views: {
+                    'mainView': {
+                        controller: 'patientCtrl',
+                        controllerAs: 'ctrl',
+                        templateUrl: basePath + 'patientforpatient.list.html'
+                    }
+                }
+            })
+            
+             .state('editPatientforpatient', {
+            url:'/patientforpatient/{ptnID:int}/edit',
+            param: { 'ptnID:': null},
+                views: {
+                'mainView': {
+                    controller: 'patientCtrl',
+                    controllerAs: 'ctrl',
+                    templateUrl: basePath + 'patientforpatient.edit.html'
+                }
+            }
+        })
+            
             .state('editPatient', {
             url:'/patient/{ptnID:int}/edit',
             param: { 'ptnID:': null},

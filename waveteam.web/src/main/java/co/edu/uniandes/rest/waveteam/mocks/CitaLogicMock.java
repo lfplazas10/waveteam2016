@@ -187,14 +187,14 @@ public class CitaLogicMock {
     
     //CICLO 2 REQUERIMIENTOS
     
-    public ArrayList<CitaDTO> getCitasByPaciente(Long paciente) throws CitaLogicException{
+    public static ArrayList<CitaDTO> getCitasByPaciente(Long paciente) throws CitaLogicException{
         ArrayList<CitaDTO> lista = new ArrayList<CitaDTO>();
         if(citas==null){
             logger.severe("La lista de citas no ha sido inicializada");
             throw new CitaLogicException("La lista de citas no ha sido inicializada");
         }
         for(CitaDTO cita : citas){
-            if(paciente.equals(cita.getPaciente())){
+            if(paciente.equals(cita.getPaciente())&& cita.getActiva()==true){
                 logger.info("Se encuentra una cita con el paciente (id) : " + paciente);
                 if(cita.getActiva()==true) {
                     lista.add(cita);
@@ -212,7 +212,7 @@ public class CitaLogicMock {
     
     
     public ArrayList<CitaDTO> getCitasByMedicoEnFecha(long medico, String fechaInicio, String fechaFin) throws CitaLogicException, MedicoLogicException{
-        ArrayList<CitaDTO> lista = new ArrayList<CitaDTO>();
+        ArrayList<CitaDTO> lista = new ArrayList<>();
         String[] inicio = fechaInicio.split("/");
         String[] fin = fechaFin.split("/");
         int diaInicio = Integer.parseInt(inicio[0]);
@@ -249,6 +249,8 @@ public class CitaLogicMock {
         }
     }
     
-
+    public static ArrayList<CitaDTO> getCityArray(){
+        return citas;
+    }
 
 }

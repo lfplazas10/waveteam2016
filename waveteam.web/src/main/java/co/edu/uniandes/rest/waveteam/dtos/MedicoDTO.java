@@ -4,6 +4,7 @@
  */
 package co.edu.uniandes.rest.waveteam.dtos;
 
+import co.edu.uniandes.rest.waveteam.mocks.CitaLogicMock;
 import co.edu.uniandes.rest.waveteam.mocks.MedicoLogicMock;
 
 import java.util.*;
@@ -18,7 +19,7 @@ public class MedicoDTO {
     private String name;
     private String especialidad;
     private Long consultorio;
-    private List<CitaDTO> disponibilidad;
+    private ArrayList<CitaDTO> disponibilidad;
 
     /**
      * Constructor por defecto
@@ -27,13 +28,12 @@ public class MedicoDTO {
 
     }
 
-    public MedicoDTO(Long id, String name, String especialidad, Long consultorio) {
+    public MedicoDTO(Long id, String name, String especialidad, Long consultorio, ArrayList<CitaDTO> dispo) {
         this.id = id;
         this.name = name;
         this.especialidad = especialidad;
         this.consultorio = consultorio;
-        this.disponibilidad = new ArrayList<>();
-        
+        this.disponibilidad = dispo;
     }
 
     public String getEspecialidad() {
@@ -81,35 +81,40 @@ public class MedicoDTO {
     }
 
     //REQUERIMIENTOS R4 Y R7 - MEDICO Y SUS DISPONIBILIDADES
-    public void setDisponibilidad(Long... diasDisponible){
-        for (int j = 0; j < diasDisponible.length ; j++) {
-            Long inicio = diasDisponible[j];
+    public void setDisponibilidad(ArrayList<LinkedHashMap> diasDisponible){
+        for (int j = 0; j < diasDisponible.size() ; j++) {
+            LinkedHashMap lhm = diasDisponible.get(j);
+            Long inicio = (Long)lhm.get("value");
             Calendar n = new GregorianCalendar();
             n.setTimeInMillis(inicio);
             int fromDay = n.get(Calendar.DAY_OF_WEEK);
-            int i = 1;
-            while (fromDay == n.get(Calendar.DAY_OF_WEEK) && n.get(Calendar.HOUR_OF_DAY) <= 20){
+            int i = 0;
+            if(CitaLogicMock.getCityArray() == null) { CitaLogicMock clm = new CitaLogicMock(); }
+            while ((fromDay == n.get(Calendar.DAY_OF_WEEK)) && (n.get(Calendar.HOUR_OF_DAY) <= 24)){
                 CitaDTO cita = new CitaDTO();
-                cita.setHora(inicio+i*900000);
+                cita.setHora(inicio+(i*900000));
+                n.setTimeInMillis(n.getTimeInMillis()+(i*900000));
                 cita.setDuracion(15);
                 cita.setMedico(this.id);
                 cita.desactivar();
                 cita.setId(1L);
                 cita.setPaciente(1L);
+                System.out.println(cita.toString());
                 disponibilidad.add(cita);
+                CitaLogicMock.getCityArray().add(cita);
                 i++;
             }
         }
     }
     
-    public List<CitaDTO> getDisponibilidad()
-    {
+    public ArrayList<CitaDTO> getDisponibilidad(){
         return disponibilidad;
     }
    
     /**
      * Convierte el objeto a una cadena
      */
+    @Override
     public String toString() {
         return "{ id : " + getId() + ", name : \"" + getName() + "\" }";
     }

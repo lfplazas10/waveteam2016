@@ -10,6 +10,15 @@
 
         loadDocs();
 
+        $scope.$watch("selectedDoctor", function(newValue, oldValue){
+            console.log($scope.selectedDoctor.id);
+            $http.get(context+"/"+$scope.selectedDoctor.id+"/disponibilidad").then(function (response) {
+                console.log(response.data);
+                $scope.citas = response.data;
+            }, responseError);
+        });
+
+
         this.deleteRecord = function (doc) {
             return $http.delete(context + "/" + doc)
                 .then(function () {
@@ -71,6 +80,40 @@
                         $state.go('doctorsList');
                     }, responseError)
             }
+        }
+
+        this.updateSchedule = function (){
+            if (!$scope.selectedDoctor){
+                alert("Please select a doctor first.");
+                return;
+            }
+            if (!$scope.fromDate || !$scope.toDate){
+                alert("Please select both dates.");
+                return;
+            }
+            if ($scope.fromDate.getTime() > $scope.toDate.getTime() ){
+                alert("La primera fecha no puede ser mayor a la segunda");
+                return;
+            }
+            var dates = [];
+            var date1 = $scope.fromDate.getTime()+ (3600000*8);
+            while (date1 !== ($scope.toDate.getTime() + (3600000*8)) ){
+                dates.push({
+                    "value": date1
+                });
+                date1 += 3600000*24;
+            }
+            var doc = JSON.stringify(dates);
+            console.log(doc.toString());
+            $http.post(context+"/"+$scope.selectedDoctor.id+"/disponibilidad", doc.toString()).then(function (response) {
+            }, responseError);
+            $http.post(context+"/"+$scope.selectedDoctor.id+"/disponibilidad", doc.toString()).then(function (response) {
+            }, responseError);
+            alert("Saved succesfully");
+            $http.get(context+"/"+$scope.selectedDoctor.id+"/disponibilidad").then(function (response) {
+                $scope.citas = response.data;
+                console.log(response.data);
+            }, responseError);
         }
 
         this.editDoctorFinal = function () {

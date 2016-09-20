@@ -4,6 +4,8 @@
  */
 package co.edu.uniandes.rest.waveteam.dtos;
 
+import java.util.List;
+
 /**
  * Objeto de transferencia de datos de Ciudades.
  * @author je.ardila1501
@@ -16,7 +18,8 @@ public class PatientDTO {
     private int edad;
     private String tipoSangre;
     private String eps;
-
+//    private String correo;
+//    private List<CitaDTO> citas;
     /**
      * Constructor por defecto
      */
@@ -32,6 +35,8 @@ public class PatientDTO {
      * @param edad
      * @param tipoSangre
      * @param eps 
+     * @param pcorreo
+     * @param pcitas 
      */
     public PatientDTO(Long id, String name,int edad, String sexo , String tipoSangre, String eps) {
         this.id = id;
@@ -40,6 +45,9 @@ public class PatientDTO {
         this.sexo=sexo;
         this.tipoSangre=tipoSangre;
         this.eps=eps;
+//        this.correo = correo;
+//        this.citas=pcitas;
+        
     }
 
     /**
@@ -133,14 +141,53 @@ public class PatientDTO {
      public void setEps(String eps){
          this.eps=eps;
      }
+     
+//     /**
+//      * 
+//      */
+//     public String getCorreo(){
+//         return this.correo;
+//     }
+//     
+//     /**
+//      * 
+//      */
+//     public void setCorreo(String pcorreo){
+//         this.correo=pcorreo;
+//     }
+     
+//     /**
+//      * 
+//      */
+//     public List<CitaDTO> getCitas(){
+//         return this.citas;
+//     }
+//     
+//     /**
+//      * 
+//      */
+//     public void setCitas(List<CitaDTO> pcitas){
+//         this.citas=pcitas;
+//     }
     
-    /**
+     /**
      * Convierte el objeto a una cadena
      */
     @Override
     public String toString() {
         return "{ id : " + getId() + ", name : \"" + getName() + ", edad : \"" + getEdad() + 
                 ", sexo : \"" + getSexo() + ", tipoSangre : \""+ getTipoSangre()+ 
-                ", eps : \""+ getEps() + "\" }";
+                ", eps : \""+ getEps()+ "\" }";
     }
+     
+     
+//    /**
+//     * Convierte el objeto a una cadena
+//     */
+//    @Override
+//    public String toString() {
+//        return "{ id : " + getId() + ", name : \"" + getName() + ", edad : \"" + getEdad() + 
+//                ", sexo : \"" + getSexo() + ", tipoSangre : \""+ getTipoSangre()+ 
+//                ", eps : \""+ getEps()+ ", correo : \""+ getCorreo()+ "\" }";
+//    }
 }

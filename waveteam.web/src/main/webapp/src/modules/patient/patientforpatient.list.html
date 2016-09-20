@@ -1,0 +1,33 @@
+<div class="page-header">
+  <h1>Lista Pacientes</h1>
+</div>
+<div class="container-fluid">
+    <table class="table table-striped" class="col-md-8">
+        <thead>
+            <tr>
+                <th>Nombre</th>        
+                <th>Cedula</th>
+                <th>Edad</th>
+                <th>Sexo</th>
+                <th>TipoSangre</th>
+                <th>Eps</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="ptn in patient">
+                <td>{{ptn.name}}</td>
+                <td>{{ptn.id}}</td>
+                <td>{{ptn.edad}}</td>
+                <td>{{ptn.sexo}}</td>
+                <td>{{ptn.tipoSangre}}</td>
+                <td>{{ptn.eps}}</td>
+                <td>
+                    
+                    <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="editPatientforpatient({ptnID: ptn.id})"><span class="glyphicon glyphicon-edit"></span> Editar</button>
+                    <button type="button" ui-sref='patientListforpatient'>Citas Programadas</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

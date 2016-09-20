@@ -16,6 +16,7 @@ import java.util.Objects;
 public class ConsultorioDTO {
     
     private Long id;
+    private String nombre;
     private String horario;
     private boolean atencionUrgencias;
     private boolean unidadCuidadosIntensivos;
@@ -37,9 +38,10 @@ public class ConsultorioDTO {
     /**
      * Constructor con parámetros
      */
-    public ConsultorioDTO(Long id, String horario, boolean atencionUrgencias, boolean unidadCuidadosIntensivos)
+    public ConsultorioDTO(Long id, String nombre, String horario, boolean atencionUrgencias, boolean unidadCuidadosIntensivos)
     {
         this.id = id;
+        this.nombre = nombre;
         this.horario = horario;
         this.atencionUrgencias = atencionUrgencias;
         this.unidadCuidadosIntensivos = unidadCuidadosIntensivos;
@@ -63,6 +65,16 @@ public class ConsultorioDTO {
         this.id = id;
     }
     
+    public String getNombre()
+    {
+        return nombre;
+    }
+    
+    public void setNombre(String nombre)
+    {
+        this.nombre = nombre;
+    }
+        
     /**
      * Devuelve el horario
      */
@@ -189,6 +201,7 @@ public class ConsultorioDTO {
     public String toString()
     {
         return "Id: " + id + 
+                ", nombre: " + nombre + 
                 ", horario: " + horario + 
                 ", atiende urgencias: " + (atencionUrgencias?"Si":"No") + 
                 ", UCI: " + (unidadCuidadosIntensivos?"Si":"No");
