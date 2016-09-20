@@ -31,14 +31,14 @@ public class CitaDTO {
         
     }
     
-    public CitaDTO(Long id, String fecha, Long hora, int duracion, Long medico, Long paciente){
+    public CitaDTO(Long id, String fecha, Long hora, int duracion, Long medico, Long paciente, boolean habilitada){
         this.id = id;
         this.fecha = fecha;
         this.hora = hora;
         this.duracion = duracion;
         this.medico = medico;
         this.paciente = paciente; 
-        this.habilitada = true;
+        this.habilitada = habilitada;
         this.termino = false;
 
     }
@@ -108,6 +108,10 @@ public class CitaDTO {
         return this.habilitada;
     }
 
+    public void setHabilitada(boolean habilitada){
+        this.habilitada = habilitada;
+    }
+
     public void addSm(Long t){
         a.add(t);
     }
@@ -131,7 +135,8 @@ public class CitaDTO {
                 ", medico : " + medico + 
                 ", paciente : " + paciente +
                 ", habilitada : " + habilitada +
-                ", termino : " + termino
+                ", termino : " + termino +
+                ", habilitada : " + habilitada
                 +" }";
     }
     

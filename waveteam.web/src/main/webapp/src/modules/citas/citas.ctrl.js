@@ -42,6 +42,7 @@
                     $scope.duracion = currentRecord.duracion;
                     $scope.medico = currentRecord.medico;
                     $scope.paciente = currentRecord.paciente;
+                    $scope.habilitada = currentRecord.habilitada;
 
                 }, responseError);
 
@@ -70,7 +71,8 @@
                         "hora" : $scope.hora,
                         "duracion" : $scope.duracion,
                         "medico": $scope.medico,
-                        "paciente": $scope.paciente
+                        "paciente": $scope.paciente,
+                        "habilitada": $scope.habilitada
 
                     };
                     cita = JSON.stringify(cita);
