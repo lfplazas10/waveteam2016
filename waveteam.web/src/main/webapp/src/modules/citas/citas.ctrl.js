@@ -41,7 +41,8 @@
                     $scope.hora = currentRecord.hora;
                     $scope.duracion = currentRecord.duracion;
                     $scope.medico = currentRecord.medico;
-                    $scope.paciente = currentRecord.paciente    ;
+                    $scope.paciente = currentRecord.paciente;
+
                 }, responseError);
 
             // el controlador no recibió un editorialId
@@ -70,6 +71,7 @@
                         "duracion" : $scope.duracion,
                         "medico": $scope.medico,
                         "paciente": $scope.paciente
+
                     };
                     cita = JSON.stringify(cita);
                     console.log(cita);
@@ -106,7 +108,8 @@
                         "hora" : $scope.hora,    
                         "duracion" : $scope.duracion,
                         "medico" : $scope.medico,
-                        "paciente" : $scope.paciente
+                        "paciente" : $scope.paciente,
+                        "habilitada" : $scope.habilitada
                     };
                     cita = JSON.stringify(cita);
                     console.log(cita);
