@@ -44,6 +44,9 @@ and open the template in the editor.
                      <button class="btn btn-default btn-sm" ng-click="ctrl.terminarCita(x)"> terminar Cita</button>
                 </td>
             </tr>
+        <tr>
+            <button id="{{$index}}-create-btn" class="btn btn-default btn-sm" ui-sref="addCita"><span class="glyphicon glyphicon-minus"></span> Agendar cita</button>
+        </tr>
         </tbody>
     </table>
 </div>
