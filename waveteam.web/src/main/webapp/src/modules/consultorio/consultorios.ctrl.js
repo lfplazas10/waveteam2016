@@ -10,12 +10,10 @@ var idEditar = 1;
             this.mostrarCitas = function () {
                 return mostrarCitas;
             }
-            $scope.citas=[];
+            $scope.citas = [];
             this.getCitas = function ()
             {
-                console.log("ME SOLICITAN citas")
                 $scope.citas = $scope.consultorioActual.citasAsignadas;
-                console.log("$scope.citas");
                 if (mostrarCitas === false)
                 {
                     mostrarCitas = true;
@@ -31,36 +29,55 @@ var idEditar = 1;
                 $scope.allDoctors = response.data;
             }, responseError);
 
+            this.desasignarDoctor = function(id){
+                console.log("me pusieron a eliminar "+id)
+                $http.delete("api/consultorios/" + $scope.consultorioActual.id + "/doctores/"+id)
+                            .then(function (response) {
+                                $state.reload();
+                                mostrarDoctores = true;
+                            }, responseError);
+            }
             this.asignarDoctor = function () {
-                if (!$scope.selectedDoctor){
+                var yaExiste = false;
+                if (!$scope.selectedDoctor) {
                     alert("Please select a doctor first.");
                     return;
                 }
-            var selectedDoctor = $scope.selectedDoctor;
-            var doc = {
-                id: selectedDoctor.id,
-                name: selectedDoctor.name,
-                especialidad: selectedDoctor.especialidad,
-                consultorio: selectedDoctor.consultorio
-            }
-            var nuevoDoc = JSON.stringify(doc);
-            console.log(nuevoDoc+"INTENTANDO AGREGAL");
-                $http.post("api/consultorios/" + $scope.consultorioActual.id + "/doctores", nuevoDoc)
-                        .then(function (response) {
-                            $state.reload();
-                            mostrarDoctores = true;
-                        }, responseError);
+
+                var selectedDoctor = $scope.selectedDoctor;
+                var doc = {
+                    id: selectedDoctor.id,
+                    name: selectedDoctor.name,
+                    especialidad: selectedDoctor.especialidad,
+                    consultorio: selectedDoctor.consultorio
+                }
+                $scope.doctores = $scope.consultorioActual.doctoresAsignados;
+                console.log("gatote" + $scope.doctores[1]);
+                angular.forEach($scope.doctores, function (value, index) {
+                    if (value.id === doc.id) {
+                        alert("Ese doctor ya se encuentra asignado.");
+                        yaExiste = true;
+                    }
+                })
+                if (!yaExiste)
+                {
+                    var nuevoDoc = JSON.stringify(doc);
+                    $http.post("api/consultorios/" + $scope.consultorioActual.id + "/doctores", nuevoDoc)
+                            .then(function (response) {
+                                $state.reload();
+                                mostrarDoctores = true;
+                            }, responseError);
+                }
             }
 
 
             this.mostrarDoctores = function () {
                 return mostrarDoctores;
             }
+
             this.getDoctores = function ()
             {
-                console.log("ME SOLICITAN DOCTORES")
                 $scope.doctores = $scope.consultorioActual.doctoresAsignados;
-                console.log("$scope.doctores");
                 if (mostrarDoctores === false)
                 {
                     mostrarDoctores = true;
@@ -79,12 +96,9 @@ var idEditar = 1;
 
             if ($stateParams.consultorioId !== null && $stateParams.consultorioId !== undefined) {
                 id = $stateParams.consultorioId;
-                console.log("BUSCANDO UN SOLO ID " + id)
                 $http.get(context + "/" + id)
                         .then(function (response) {
                             $scope.consultorioActual = response.data;
-
-                            console.log("ME VINO UN " + $scope.consultorioActual);
                         }, responseError);
             } else
             {
@@ -102,7 +116,6 @@ var idEditar = 1;
             this.getConsultorio = function (idBusqueda) {
                 $http.get(context + "/" + idBusqueda).then(function (response) {
                     $scope.consultorioBusqueda = response.data;
-                    console.log(response.data);
                     existe = true;
                 }, responseError);
             };
@@ -119,7 +132,6 @@ var idEditar = 1;
 
             //Comando DELETE!
             this.eliminarConsultorio = function (id) {
-                console.log("BORRANDO " + id);
                 $http.delete(context + "/" + id)
                         .then(function (response) {
                             $state.go('getConsultorios');
@@ -129,9 +141,7 @@ var idEditar = 1;
 
             //Comando PUT
             this.actualizarConsultorioId = function (id) {
-                console.log("gatitoasd");
                 idEditar = id;
-                console.log(idEditar);
 
                 $state.go('actualizarConsultorio');
             }
@@ -147,11 +157,8 @@ var idEditar = 1;
                     atencionUrgencias: consultorioActual.atencionUrgencias,
                     unidadCuidadosIntensivos: consultorioActual.unidadCuidadosIntensivos
                 }
-
+                
                 nuevoConsultorio = JSON.stringify(cons);
-                console.log("MI ID ES " + consultorioActual.id);
-                console.log(consultorioActual);
-                console.log(nuevoConsultorio);
 
                 $http.put(context + "/" + idEditar, nuevoConsultorio)
                         .then(function (response) {
