@@ -14,7 +14,6 @@ var idEditar = 1;
             this.getCitas = function ()
             {
                 $scope.doctores = $scope.consultorioActual.doctoresAsignados;
-                console.log("gatote" + $scope.doctores[1]);
                 angular.forEach($scope.doctores, function (value, index) {
                     $http.get("api/doctors/" + value.id + "/disponibilidad").then(function (response) {
                         $scope.citas = $scope.citas.concat(response.data);
@@ -36,7 +35,6 @@ var idEditar = 1;
             }, responseError);
 
             this.desasignarDoctor = function (id) {
-                console.log("me pusieron a eliminar " + id)
                 $http.delete("api/consultorios/" + $scope.consultorioActual.id + "/doctores/" + id)
                         .then(function (response) {
                             $state.reload();
@@ -58,7 +56,6 @@ var idEditar = 1;
                     consultorio: selectedDoctor.consultorio
                 }
                 $scope.doctores = $scope.consultorioActual.doctoresAsignados;
-                console.log("gatote" + $scope.doctores[1]);
                 angular.forEach($scope.doctores, function (value, index) {
                     if (value.id === doc.id) {
                         alert("Ese doctor ya se encuentra asignado.");
