@@ -5,6 +5,7 @@
     mod.constant("patientContext", "api/patient");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/patient/';
+            var citasbasePath = 'src/modules/citas/';
             $urlRouterProvider.otherwise("/");
 
             $stateProvider.state('patientList', {
@@ -62,6 +63,16 @@
                 }
             }
 
+            })
+             .state('citasList', {
+                url: '/citas/citasList',
+                views: {
+                    'mainView': {
+                        controller: 'citasCtrl',
+                    controllerAs: 'ctrl',
+                    templateUrl: citasbasePath + 'citas.list.html'
+                    }
+                }
             });
         }]);
 })(window.angular);

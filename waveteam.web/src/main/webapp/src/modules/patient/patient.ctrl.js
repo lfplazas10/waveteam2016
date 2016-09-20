@@ -185,19 +185,19 @@
                 }
             }
 
-             this.getCitasPaciente = function (){
-                 if(!$scope.cedula)
-                 {
-                    alert("La Cedula no puede ser vacia.");
-                    return;
-                 }
-                 else{
-                     return $http.put(context+"/"+ $stateParams.ptnID, ptn.toString())
-                        .then(function () {
-                            $state.go('patientListforpatient');
-                        }, responseError)
-                 }
-             }   
+//             this.getCitasPaciente = function (){
+//                 if(!$scope.cedula)
+//                 {
+//                    alert("La Cedula no puede ser vacia.");
+//                    return;
+//                 }
+//                 else{
+//                     return $http.put(context+"/"+ $stateParams.ptnID, ptn.toString())
+//                        .then(function () {
+//                            $state.go('patientListforpatient');
+//                        }, responseError)
+//                 }
+//             }   
            
             this.closeAlert = function (index) {
                 $scope.alerts.splice(index, 1);
