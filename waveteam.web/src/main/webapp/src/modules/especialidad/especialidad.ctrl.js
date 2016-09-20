@@ -9,7 +9,7 @@
 
     mod.controller("especialidadCtrl", ['$scope', '$state', '$stateParams', '$http', 'especialidadContext', function ($scope, $state, $stateParams, $http, context) {
 
-            $scope.records = {};
+            $scope.records = [];
             $http.get(context).then(function(response){
                 $scope.records = response.data;    
             }, responseError);

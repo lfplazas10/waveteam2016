@@ -10,6 +10,7 @@ var idEditar = 1;
             this.mostrarCitas = function () {
                 return mostrarCitas;
             }
+            $scope.citas=[];
             this.getCitas = function ()
             {
                 console.log("ME SOLICITAN citas")
@@ -25,15 +26,29 @@ var idEditar = 1;
 
             //Prueba: doctores
 
-            $scope.allDoctors = {}
+            $scope.allDoctors = [];
             $http.get("api/doctors").then(function (response) {
                 $scope.allDoctors = response.data;
             }, responseError);
 
-            this.asignarDoctor = function (doc) {
-                $http.post("api/consultorios/" + $scope.consultorioActual.id + "/doctores", doc)
+            this.asignarDoctor = function () {
+                if (!$scope.selectedDoctor){
+                    alert("Please select a doctor first.");
+                    return;
+                }
+            var selectedDoctor = $scope.selectedDoctor;
+            var doc = {
+                id: selectedDoctor.id,
+                name: selectedDoctor.name,
+                especialidad: selectedDoctor.especialidad,
+                consultorio: selectedDoctor.consultorio
+            }
+            var nuevoDoc = JSON.stringify(doc);
+            console.log(nuevoDoc+"INTENTANDO AGREGAL");
+                $http.post("api/consultorios/" + $scope.consultorioActual.id + "/doctores", nuevoDoc)
                         .then(function (response) {
                             $state.reload();
+                            mostrarDoctores = true;
                         }, responseError);
             }
 
@@ -54,7 +69,7 @@ var idEditar = 1;
                 }
             }
             //Funcionamiento normal de consultorios:
-            $scope.consultorios = {};
+            $scope.consultorios = [];
 
             //Comando GET!
             $http.get(context).then(function (response) {
