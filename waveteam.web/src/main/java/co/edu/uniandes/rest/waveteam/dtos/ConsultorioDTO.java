@@ -23,9 +23,6 @@ public class ConsultorioDTO {
     
     // Un consultorio puede estar asignado a muchos doctores
     private List<MedicoDTO> doctoresAsignados = new ArrayList<MedicoDTO>();
-
-    //Un consultorio tiene varias citas
-    private List<CitaDTO> citasAsignadas = new ArrayList<CitaDTO>();
     
     /**
      * Constructor vacío
@@ -158,36 +155,6 @@ public class ConsultorioDTO {
             if (Objects.equals(doc.getId(), idDoctor))
             {
                 doctoresAsignados.remove(doc);
-                return true;
-            }
-        }
-        return false;
-    }
-    
-    //REQUERIMIENTO R9 - ASIGNAR CONSULTORIOS A CITAS
-    
-    public List<CitaDTO> getCitasAsignadas()
-    {
-        return citasAsignadas;
-    }
-    
-    public void setCitasAsignadas(List<CitaDTO> nuevasCitas)
-    {
-        citasAsignadas = nuevasCitas;
-    }
-    
-    public void agregarCitaAsignada(CitaDTO nuevaCita)
-    {
-        citasAsignadas.add(nuevaCita);
-    }
-    
-    public boolean eliminarCitaAsignada(Long citaEliminada)
-    {
-        for (CitaDTO citaAsignada: citasAsignadas)
-        {
-            if (Objects.equals(citaAsignada.getId(), citaEliminada))
-            {
-                citasAsignadas.remove(citaAsignada);
                 return true;
             }
         }
