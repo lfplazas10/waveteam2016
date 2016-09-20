@@ -3,11 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+(function (ng) {
+    var mod = ng.module("consultaHistoricaModule");
 
- (function (ng) {
-    var mod = ng.module("especialidadModule");
-
-    mod.controller("especialidadCtrl", ['$scope', '$state', '$stateParams', '$http', 'especialidadContext', function ($scope, $state, $stateParams, $http, context) {
+    mod.controller("consultaHistoricaCtrl", ['$scope', '$state', '$stateParams', '$http', 'consultaHistoricaContext', function ($scope, $state, $stateParams, $http, context) {
 
             $scope.records = [];
             $http.get(context).then(function(response){
@@ -15,10 +14,10 @@
             }, responseError);
 
 
-            if ($stateParams.especialidadId !== null && $stateParams.especialidadId !== undefined) {
-                id = $stateParams.especialidadId;
+            if ($stateParams.especialidad.nombre !== null && $stateParams.especialidad.nombre !== undefined) {
+                especialidad = $stateParams.especialidad;
                 
-                $http.get(context + "/" + id)
+                $http.get(context + "/" + especialidad.nombre)
                     .then(function (response) {
                         $scope.currentRecord = response.data;
                     }, responseError);
@@ -26,58 +25,36 @@
             else
             {
                 $scope.currentRecord = {
-                    id: undefined ,
-                    nombre: '',
-                    grupo: '',
-                    tipo: '',
-                    doctores:[]
+                    especialidad: undefined ,
+                    numeroDoctores: '',
+                    numeroCitas: '',
+                    promedioDuracion: '',
+                    citasLibres: '',
+                    citasCanceladas: '',
+                    citasTerminadas: ''
                 };
               
                 $scope.alerts = [];
             }
 
 
-            this.saveRecord = function (id) {
+            this.saveRecord = function (especialidad) {
                 currentRecord = $scope.currentRecord;
                 
-                if (id==null) {  
-                    return $http.post(context, currentRecord)
+                if (especialidad==null) {  
+                    return $http.post(context, especialidad)
                         .then(function () {
                             $state.go('especialidadList');
                         }, responseError);
                 } 
                 else {
-                    return $http.put(context + "/" + currentRecord.id, currentRecord)
+                    return $http.put(context + "/" + especialidad.nombre, especialidad)
                         .then(function () {
                             $state.go('especialidadList');
                         }, responseError);
                 };
             };
             
-            
-            this.deleteRecord = function (id) {
-              currentRecord = $scope.currentRecord;
-              
-              if(id != null)
-              {
-                 $http.delete(context + "/" + id)
-                    .then(function () {
-                        $state.go('especialidadList');
-                    }, responseError); 
-              }
-            };
-            
-            this.buscarRecord = function (id) {
-              if(id != null)
-              {
-                  console.log(id);
-                $http.get(context + "/" + id)
-                    .then(function (response) {
-                        $scope.currentRecord = response.data;
-                        $state.reload('especialidadSearch({especialidadId: currentRecord.id})');
-                    }, responseError);
-              }
-            };
 
 
 
@@ -115,3 +92,4 @@
         }]);
 
 })(window.angular);
+

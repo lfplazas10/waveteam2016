@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+ <table class="table table-striped" class="col-md-8">
+        <thead>
+            <tr align="left"><button class="btn" ng-click="ctrl.editGenerarConsultas()" >Generar consultas</button> 
+            </tr>
+            <tr>
+                <th>Especialidad</th>        
+                <th>Doctores</th>
+                <th>Citas totales</th>
+                <th>Promedio duracion en cita</th>
+                <th>Citas libres</th>
+                <th>Citas canceladas</th>
+                <th>Citas terminadas</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="record in records" >
+                <td>{{record.especialidad.nombre}}</td>
+                <td>{{record.numeroDoctores}}</td>
+                <td>{{record.numeroCitas}}</td>
+                <td>{{record.promedioDuracion}}</td>
+                <td>{{record.citasLibre}}</td>
+                <td>{{record.citasCanceladas}}</td>
+                <td>{{record.citasTerminadas}}</td>
+            </tr>
+        </tbody>
+    </table>

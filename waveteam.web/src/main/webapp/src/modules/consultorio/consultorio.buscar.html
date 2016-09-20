@@ -49,6 +49,7 @@
                         <th> Cedula </th>
                         <th> Especialidad </th>
                         <th> Consultorio </th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -57,6 +58,9 @@
                         <td>{{doc.id}}</td>
                         <td>{{doc.especialidad}}</td>
                         <td>{{doc.consultorio}}</td>
+                         <td>
+                            <button class="btn btn-default btn-sm" ng-click="ctrl.desasignarDoctor(doc.id)"><span class="glyphicon glyphicon-minus"></span>Desasignar doctor</button>
+                        </td>
                     </tr>
                 </tbody>
             </table>

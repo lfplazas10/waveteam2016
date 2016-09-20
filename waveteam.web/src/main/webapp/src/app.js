@@ -7,6 +7,7 @@
         "patientModule",
         "especialidadModule",
         "consultorioModule", 
+        "consultaHistoricaModule", 
         "citasModule"
     ]);
 

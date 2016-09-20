@@ -41,6 +41,7 @@
                     $scope.duracion = currentRecord.duracion;
                     $scope.medico = currentRecord.medico;
                     $scope.paciente = currentRecord.paciente;
+                    $scope.terminado = currentRecord.terminado;
 
                 }, responseError);
 
