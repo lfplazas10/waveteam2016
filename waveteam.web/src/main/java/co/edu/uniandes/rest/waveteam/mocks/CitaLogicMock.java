@@ -196,7 +196,9 @@ public class CitaLogicMock {
         for(CitaDTO cita : citas){
             if(paciente.equals(cita.getPaciente())){
                 logger.info("Se encuentra una cita con el paciente (id) : " + paciente);
-                lista.add(cita);
+                if(cita.getActiva()==true) {
+                    lista.add(cita);
+                }
             }
         }
         if(lista.isEmpty()){
