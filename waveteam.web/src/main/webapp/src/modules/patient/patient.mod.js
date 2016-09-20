@@ -18,8 +18,8 @@
                     }
                 }
             })
-            
-            $stateProvider.state('patientListforpatient', {
+
+            .state('patientListforpatient', {
                 url: '/patientListforpatient',
                 views: {
                     'mainView': {
@@ -29,7 +29,7 @@
                     }
                 }
             })
-            
+
              .state('editPatientforpatient', {
             url:'/patientforpatient/{ptnID:int}/edit',
             param: { 'ptnID:': null},
@@ -41,7 +41,7 @@
                 }
             }
         })
-            
+
             .state('editPatient', {
             url:'/patient/{ptnID:int}/edit',
             param: { 'ptnID:': null},
@@ -75,17 +75,14 @@
 //                }
 //            })
             .state('citasList', {
-                
+
                 url: '/patient/{ptnID:int}/getcitas',
             param: { 'ptnID:': null},
                 views: {
                     'mainView': {
                          controller: 'patientCtrl',
-                    controllerAs: 'ctrl',
-                    
-                    templateUrl: basePath + 'patientcitas.list.html'
-                   
-                    
+                         controllerAs: 'ctrl',
+                        templateUrl: basePath + 'patientcitas.list.html'
                     }
                 }
             })

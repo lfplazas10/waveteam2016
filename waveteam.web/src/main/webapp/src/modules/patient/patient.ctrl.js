@@ -9,9 +9,9 @@
                     }, responseError);
             }
             loadDocsCitas = function(){
-                $http.get(context+"/"+$scope.cedula+"/citaspaciente"). then(function(response){
+                $http.get(context+"/"+$stateParams.ptnID+"/citaspaciente"). then(function(response){
                     console.log(response.data);
-                    $scope.patient = response.data;    
+                    $scope.citas = response.data;
                     }, responseError);
             }
             
