@@ -26,9 +26,9 @@ var idEditar = 1;
                     mostrarCitas = false;
                 }
             }
-
+            
             //Prueba: doctores
-
+            
             $scope.allDoctors = [];
             $http.get("api/doctors").then(function (response) {
                 $scope.allDoctors = response.data;
