@@ -23,6 +23,11 @@
             return d.getHours() +":"+d.getMinutes();
         }
 
+        this.turnMillisToDate = function (dateLong){
+            var d = new Date(dateLong);
+            return d.getDay()+"/"+d.getMonth()+"/"+d.getFullYear();
+        }
+
         this.deleteRecord = function (doc) {
             return $http.delete(context + "/" + doc)
                 .then(function () {
