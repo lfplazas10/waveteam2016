@@ -10,6 +10,7 @@ import co.edu.uniandes.rest.waveteam.dtos.ConsultaHistoricaDTO;
 import co.edu.uniandes.rest.waveteam.dtos.EspecialidadDTO;
 import co.edu.uniandes.rest.waveteam.exceptions.ConsultaHistoricaLogicException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 import java.util.logging.Level;
@@ -30,7 +31,8 @@ public class ConsultaHistoricaLogicMock {
     {
         if (consultasHistoricas == null) {
             consultasHistoricas = new ArrayList<ConsultaHistoricaDTO>();
-            consultasHistoricas.add(new ConsultaHistoricaDTO(new EspecialidadDTO(1L, "Cardiologia", "0-95", "clinica",new ArrayList(),new ArrayList<CitaDTO>()),0,0,0,0));
+            consultasHistoricas.add(new ConsultaHistoricaDTO(new EspecialidadDTO(1L, "Cardiologia", "0-95", "clinica",new ArrayList(6),new ArrayList<CitaDTO>()),0,0,0,0,0,0));
+            consultasHistoricas.add(new ConsultaHistoricaDTO(new EspecialidadDTO(1L, "Neurologia", "0-95", "clinica",new ArrayList(5),new ArrayList<CitaDTO>()),4,0,3,0,2,0));
         }
         
         // indica que se muestren todos los mensajes
@@ -73,22 +75,54 @@ public class ConsultaHistoricaLogicMock {
         throw new ConsultaHistoricaLogicException("No existe consultaHistorica con esa especialidad");
     }
 
-    public ConsultaHistoricaDTO updateConsultaHistorica(String nombreEsp, ConsultaHistoricaDTO updated) throws ConsultaHistoricaLogicException {
+    public ConsultaHistoricaDTO updateConsultaHistorica(EspecialidadDTO esp) throws ConsultaHistoricaLogicException {
         if (consultasHistoricas == null) {
             logger.severe("Error interno: lista de consultasHistoricas no existe.");
             throw new ConsultaHistoricaLogicException("Error interno: lista de consultasHistoricas no existe.");
         }
-
+        
+        ConsultaHistoricaDTO updated=null;
         boolean found = false;
-        if (updated.getEspecialidad() != null) {
+        if (esp.getNombre() != null) {
             for (ConsultaHistoricaDTO consulta : consultasHistoricas) {
-                if (Objects.equals(nombreEsp, consulta.getEspecialidad().getNombre())) {
+                if (Objects.equals(esp.getNombre(), consulta.getEspecialidad().getNombre())) {
                     logger.info("Actualizando informacion de la consultaHistorica con");
-                    consulta.setEspecialidad(updated.getEspecialidad());
-                    consulta.setNumeroDoctores(updated.getNumeroDoctores());
-                    consulta.setNumeroCitas(updated.getNumeroCitas());
-                    consulta.setPromedioDuracion(updated.getPromedioDuracion());
-                    consulta.setCitasLibres(updated.getCitasLibres());
+                    consulta.setEspecialidad(esp);
+                    consulta.setNumeroDoctores(esp.getDoctores().size());
+                    consulta.setNumeroCitas(esp.getCitas().size());
+                    
+                    int promedio=0;
+                    int canceladas=0;
+                    int libres=0;
+                    int terminadas=0;
+                    for (Iterator<CitaDTO> it = esp.getCitas().iterator(); it.hasNext();) {
+                        CitaDTO c = it.next();
+                        promedio+=c.getDuracion();
+                        
+                        if(c.getPaciente()==0)
+                        {
+                            libres++;
+                        }
+                        if(!c.getHabilitada())
+                        {
+                            canceladas++;
+                        }
+                        if(c.getTermino())
+                        {
+                            terminadas++;
+                        }
+                    }
+                    if(esp.getCitas().size()!=0)
+                    {
+                        promedio=(int)(promedio/esp.getCitas().size());
+                    }
+                    consulta.setPromedioDuracion(promedio);
+                    consulta.setCitasLibres(libres);
+                    consulta.setCitasCanceladas(canceladas);
+                    consulta.setCitasCanceladas(terminadas);
+                    
+                    updated=consulta;
+                    
                     found = true;
                     break;
                 }
@@ -115,14 +149,14 @@ public class ConsultaHistoricaLogicMock {
      * suministrado
      * @return Especialidad agregada
      */
-    public ConsultaHistoricaDTO createConsultaHistorica(ConsultaHistoricaDTO newEsp) throws ConsultaHistoricaLogicException {
-        logger.info("Recibiendo solicitud de agregar consultaHistorica " + newEsp);
+    public ConsultaHistoricaDTO createConsultaHistorica(EspecialidadDTO esp) throws ConsultaHistoricaLogicException {
+        logger.info("Recibiendo solicitud de agregar consultaHistorica de especialidad " + esp.getNombre());
 
-        if (newEsp.getEspecialidad() != null) {
+        if (esp.getNombre() != null) {
             for (ConsultaHistoricaDTO consulta : consultasHistoricas) {
-                if (Objects.equals(consulta.getEspecialidad().getNombre(), newEsp.getEspecialidad().getNombre())) {
+                if (Objects.equals(consulta.getEspecialidad().getNombre(), esp.getNombre())) {
                     logger.severe("Ya existe una consultaHistorica para esa especialidad, se borra la consulta historica anterior");
-                    deleteConsultaHistorica(consulta.getEspecialidad().getNombre());
+                    deleteConsultaHistorica(esp.getNombre());
                 }
             }
 
@@ -131,9 +165,45 @@ public class ConsultaHistoricaLogicMock {
             throw new ConsultaHistoricaLogicException("no se puede crear una consutaHistorica sin una especialidad");
         }
 
-        logger.info("Agregando consultaHistorica " + newEsp);
-        consultasHistoricas.add(newEsp);
-        return newEsp;
+        ConsultaHistoricaDTO nueva= new ConsultaHistoricaDTO();
+        
+        nueva.setEspecialidad(esp);
+        nueva.setNumeroDoctores(esp.getDoctores().size());
+        nueva.setNumeroCitas(esp.getCitas().size());
+        
+        int promedio=0;
+        int canceladas=0;
+        int libres=0;
+        int terminadas=0;
+        for (Iterator<CitaDTO> it = esp.getCitas().iterator(); it.hasNext();) {
+            CitaDTO c = it.next();
+            promedio+=c.getDuracion();
+                        
+            if(c.getPaciente()==0)
+            {
+                libres++;
+            }
+            if(!c.getHabilitada())
+            {
+                canceladas++;
+            }
+            if(c.getTermino())
+            {
+                terminadas++;
+            }
+        }
+        if(esp.getCitas().size()!=0)
+        {
+           promedio=(int)(promedio/esp.getCitas().size());
+        }
+        nueva.setPromedioDuracion(promedio);
+        nueva.setCitasLibres(libres);
+        nueva.setCitasCanceladas(canceladas);
+        nueva.setCitasCanceladas(terminadas);
+        
+        logger.info("Agregando consultaHistorica " + nueva);
+        consultasHistoricas.add(nueva);
+        return nueva;
     }
     
     public void deleteConsultaHistorica(String nombreEsp) throws ConsultaHistoricaLogicException{

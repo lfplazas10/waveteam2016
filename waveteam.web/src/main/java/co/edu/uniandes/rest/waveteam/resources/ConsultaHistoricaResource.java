@@ -6,6 +6,7 @@
 package co.edu.uniandes.rest.waveteam.resources;
 
 import co.edu.uniandes.rest.waveteam.dtos.ConsultaHistoricaDTO;
+import co.edu.uniandes.rest.waveteam.dtos.EspecialidadDTO;
 import co.edu.uniandes.rest.waveteam.exceptions.ConsultaHistoricaLogicException;
 import co.edu.uniandes.rest.waveteam.mocks.ConsultaHistoricaLogicMock;
 import java.util.List;
@@ -48,13 +49,13 @@ public class ConsultaHistoricaResource {
 
     @PUT
     @Path("{nombre: }")
-    public ConsultaHistoricaDTO updateConsultaHistorica(@PathParam("nombre") String nombreEsp, ConsultaHistoricaDTO consulta) throws ConsultaHistoricaLogicException {
-        return logic.updateConsultaHistorica(nombreEsp, consulta);
+    public ConsultaHistoricaDTO updateConsultaHistorica(@PathParam("nombre") String nombreEsp, EspecialidadDTO esp) throws ConsultaHistoricaLogicException {
+        return logic.updateConsultaHistorica(esp);
     }
 
     @POST
-    public ConsultaHistoricaDTO createEspecialidad(ConsultaHistoricaDTO consulta) throws ConsultaHistoricaLogicException {
-        return logic.createConsultaHistorica(consulta);
+    public ConsultaHistoricaDTO createEspecialidad(EspecialidadDTO esp) throws ConsultaHistoricaLogicException {
+        return logic.createConsultaHistorica(esp);
     }
 
     /**
