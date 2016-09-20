@@ -25,6 +25,7 @@ and open the template in the editor.
                 <th>Medico</th>
                 <th>Paciente</th>
                 <th>Habilitada</th>
+                <th>Terminado</th>
             </tr>
         </thead>
         <tbody>
@@ -36,9 +37,11 @@ and open the template in the editor.
                 <td id ="{{$index}}-medico">{{x.medico}}</td>
                 <td id ="{{$index}}-paciente">{{x.paciente}}</td>
                 <td>id ="{{$index}}-paciente">{{x.habilitada}}</td>
+                <td>{{x.terminado}}</td>
                 <td>
                     <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm" ng-click="ctrl.deleteRecord(x)"><span class="glyphicon glyphicon-minus"></span> Eliminar</button>
                     <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="editCita({citaId: x.id})"><span class="glyphicon glyphicon-edit"></span> Edit</button>
+                     <button class="btn btn-default btn-sm" ng-click="ctrl.terminarCita(x)"> terminar Cita</button>
                 </td>
             </tr>
         </tbody>
