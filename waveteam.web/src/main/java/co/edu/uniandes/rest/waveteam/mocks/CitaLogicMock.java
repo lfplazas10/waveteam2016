@@ -185,9 +185,9 @@ public class CitaLogicMock {
             throw new CitaLogicException("La lista de citas no ha sido inicializada");
         }
         for(CitaDTO cita : citas){
-            if(paciente.equals(cita.getPaciente())&& cita.getActiva()==true){
+            if(paciente.equals(cita.getPaciente())&& cita.getHabilitada()==true){
                 logger.info("Se encuentra una cita con el paciente (id) : " + paciente);
-                if(cita.getActiva()==true) {
+                if(cita.getHabilitada()==true) {
                     lista.add(cita);
                 }
             }

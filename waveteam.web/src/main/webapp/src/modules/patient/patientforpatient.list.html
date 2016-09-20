@@ -25,7 +25,7 @@
                 <td>
                     
                     <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="editPatientforpatient({ptnID: ptn.id})"><span class="glyphicon glyphicon-edit"></span> Editar</button>
-                    <button type="button" ui-sref='patientListforpatient'>Citas Programadas</button>
+                    <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="getCitasPaciente({ptnID: ptn.id})"><span class="glyphicon glyphicon-edit"></span> Citas Programadas</button>
                 </td>
             </tr>
         </tbody>
