@@ -11,7 +11,14 @@
         loadDocs();
 
         $scope.$watch("selectedDoctor", function(newValue, oldValue){
-            console.log($scope.selectedDoctor.id);
+            $http.get(context+"/"+$scope.selectedDoctor.id+"/disponibilidad").then(function (response) {
+                console.log(response.data);
+                $scope.citas = response.data;
+            }, responseError);
+        });
+
+        $scope.$watch("scheduleDay", function(newValue, oldValue){
+            console.log($scope.scheduleDay);
             $http.get(context+"/"+$scope.selectedDoctor.id+"/disponibilidad").then(function (response) {
                 console.log(response.data);
                 $scope.citas = response.data;
@@ -25,6 +32,7 @@
 
         this.turnMillisToDate = function (dateLong){
             var d = new Date(dateLong);
+            console.log("UTC "+d.getUTCDay()+" "+d.getUTCHours());
             return d.getDay()+"/"+d.getMonth()+"/"+d.getFullYear();
         }
 
@@ -106,7 +114,7 @@
             }
             var dates = [];
             var date1 = $scope.fromDate.getTime()+ (3600000*8);
-            if (date1 == ($scope.toDate.getTime() + (3600000*8)) ){
+            if (date1 === ($scope.toDate.getTime() + (3600000*8)) ){
                 dates.push({
                     "value": date1
                 });
@@ -135,7 +143,7 @@
         this.checkIfAssigned = function(cita){
             if (!$scope.showAssigned) return true;
             else{
-                if (cita.paciente != -1) return true
+                if (cita.paciente !== -1) return true
             }
             return false;
         }
