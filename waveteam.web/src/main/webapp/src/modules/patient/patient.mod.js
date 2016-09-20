@@ -64,15 +64,31 @@
             }
 
             })
-             .state('citasList', {
-                url: '/citas/citasList',
+//             .state('citasList', {
+//                url: '/citas/citasList',
+//                views: {
+//                    'mainView': {
+//                        controller: 'citasCtrl',
+//                    controllerAs: 'ctrl',
+//                    templateUrl: citasbasePath + 'citas.list.html'
+//                    }
+//                }
+//            })
+            .state('citasList', {
+                
+                url: '/patient/{ptnID:int}/getcitas',
+            param: { 'ptnID:': null},
                 views: {
                     'mainView': {
-                        controller: 'citasCtrl',
+                         controller: 'patientCtrl',
                     controllerAs: 'ctrl',
-                    templateUrl: citasbasePath + 'citas.list.html'
+                    
+                    templateUrl: basePath + 'patientcitas.list.html'
+                   
+                    
                     }
                 }
-            });
+            })
+            ;
         }]);
 })(window.angular);

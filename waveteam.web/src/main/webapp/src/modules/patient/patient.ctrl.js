@@ -8,8 +8,16 @@
                     $scope.patient = response.data;    
                     }, responseError);
             }
+            loadDocsCitas = function(){
+                $http.get(context+"/"+$scope.cedula+"/citaspaciente"). then(function(response){
+                    console.log(response.data);
+                    $scope.patient = response.data;    
+                    }, responseError);
+            }
+            
             
             loadDocs();
+            loadDocsCitas();
 
             this.deleteRecord = function (ptn){
                 return $http.delete(context+"/"+ptn.id)
@@ -79,7 +87,7 @@
                     console.log(ptn);
                     return $http.post(context, ptn.toString())
                         .then(function () {
-                            $state.go('patientList');
+                            $state.go('patientListforpatient');
                         }, responseError)
                 }
             }
@@ -185,19 +193,20 @@
                 }
             }
 
-//             this.getCitasPaciente = function (){
+             this.getCitasPaciente = function (x){
 //                 if(!$scope.cedula)
 //                 {
 //                    alert("La Cedula no puede ser vacia.");
 //                    return;
 //                 }
 //                 else{
-//                     return $http.put(context+"/"+ $stateParams.ptnID, ptn.toString())
-//                        .then(function () {
-//                            $state.go('patientListforpatient');
-//                        }, responseError)
+                     return $http.get(context+"/"+"citaspaciente"+ "/"+x.paciente)
+                     
+                        .then(function () {
+                            $state.go('patientListforpatient');
+                        }, responseError)
 //                 }
-//             }   
+             }   
            
             this.closeAlert = function (index) {
                 $scope.alerts.splice(index, 1);
