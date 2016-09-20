@@ -18,6 +18,7 @@ and open the template in the editor.
     <table class="table table-striped">
         <thead>
             <tr>
+                <th>Estado</th>  
                 <th>Id</th>        
                 <th>Fecha</th>
                 <th>Hora</th>
@@ -28,6 +29,7 @@ and open the template in the editor.
         </thead>
         <tbody>
             <tr ng-repeat="x in citas| filter:searchField">
+                <td>{{x.habilitada + "ACTIVA"}}</td>
                 <td id ="{{$index}}-id">{{x.id}}</td>
                 <td id ="{{$index}}-fecha">{{x.fecha}}</td>
                 <td id ="{{$index}}-hora">{{x.hora}}</td>
@@ -35,9 +37,10 @@ and open the template in the editor.
                 <td id ="{{$index}}-medico">{{x.medico}}</td>
                 <td id ="{{$index}}-paciente">{{x.paciente}}</td>
                 <td>
-                    <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm" ng-click="ctrl.deleteRecord(x)"><span class="glyphicon glyphicon-minus"></span> Eliminar</button>
+<!--                    <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm" ng-click="ctrl.deleteRecord(x)"><span class="glyphicon glyphicon-minus"></span> Eliminar</button>-->
 <!--                    <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="editCita({citaId: x.id})"><span class="glyphicon glyphicon-edit"></span> Edit</button>-->
-                <button type="submit" ng-click="ctrl.getCitasPaciente(x)" >Save</button>
+<!--                <button type="submit" ng-click="ctrl.getCitasPaciente(x)" >Save</button>-->
+                <button type="button" ui-sref='patientListforpatient'>Regresar</button>
                 </td>
             </tr>
         </tbody>

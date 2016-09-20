@@ -13,7 +13,13 @@ var idEditar = 1;
             $scope.citas = [];
             this.getCitas = function ()
             {
-                $scope.citas = $scope.consultorioActual.citasAsignadas;
+                $scope.doctores = $scope.consultorioActual.doctoresAsignados;
+                console.log("gatote" + $scope.doctores[1]);
+                angular.forEach($scope.doctores, function (value, index) {
+                    $http.get("api/doctors/" + value.id + "/disponibilidad").then(function (response) {
+                        $scope.citas = $scope.citas.concat(response.data);
+                    }, responseError);
+                })
                 if (mostrarCitas === false)
                 {
                     mostrarCitas = true;
@@ -29,13 +35,13 @@ var idEditar = 1;
                 $scope.allDoctors = response.data;
             }, responseError);
 
-            this.desasignarDoctor = function(id){
-                console.log("me pusieron a eliminar "+id)
-                $http.delete("api/consultorios/" + $scope.consultorioActual.id + "/doctores/"+id)
-                            .then(function (response) {
-                                $state.reload();
-                                mostrarDoctores = true;
-                            }, responseError);
+            this.desasignarDoctor = function (id) {
+                console.log("me pusieron a eliminar " + id)
+                $http.delete("api/consultorios/" + $scope.consultorioActual.id + "/doctores/" + id)
+                        .then(function (response) {
+                            $state.reload();
+                            mostrarDoctores = true;
+                        }, responseError);
             }
             this.asignarDoctor = function () {
                 var yaExiste = false;
@@ -157,7 +163,7 @@ var idEditar = 1;
                     atencionUrgencias: consultorioActual.atencionUrgencias,
                     unidadCuidadosIntensivos: consultorioActual.unidadCuidadosIntensivos
                 }
-                
+
                 nuevoConsultorio = JSON.stringify(cons);
 
                 $http.put(context + "/" + idEditar, nuevoConsultorio)
