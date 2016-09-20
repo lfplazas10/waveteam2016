@@ -52,7 +52,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="doc in doctores| filter:searchFieldd" >
+                    <tr ng-repeat="doc in doctores" >
                         <td>{{doc.name}}</td>
                         <td>{{doc.id}}</td>
                         <td>{{doc.especialidad}}</td>
@@ -62,14 +62,8 @@
             </table>
             <table><tr>
                     <td>
-                        <div class="dropdown">
-                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                Seleccione un doctor...
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                <li ng-repeat="d in allDoctors"><a ng-model="doctorAsignar" ng-click="ctrl.asignarDoctor(d)">{{d.name}}</a></li>
-                            </ul>
+                        <div class="dropdown">     
+                            <select ng-model="selectedDoctor" ng-options="x.name for x in allDoctors"></select>
                         </div>
                     </td>
                     <td><button class="btn btn-default btn-sm" ng-click="ctrl.asignarDoctor()"><span class="glyphicon glyphicon-plus"></span>Asignar doctor</button></td>

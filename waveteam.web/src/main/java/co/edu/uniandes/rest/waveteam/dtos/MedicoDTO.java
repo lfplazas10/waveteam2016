@@ -89,8 +89,9 @@ public class MedicoDTO {
             n.setTimeInMillis(inicio);
             int fromDay = n.get(Calendar.DAY_OF_WEEK);
             int i = 0;
-            if(CitaLogicMock.getCityArray() == null) { CitaLogicMock clm = new CitaLogicMock(); }
+            if(CitaLogicMock.getCityArray() == null) { CitaLogicMock clm = new CitaLogicMock();}
             while ((fromDay == n.get(Calendar.DAY_OF_WEEK)) && (n.get(Calendar.HOUR_OF_DAY) <= 24)){
+                if (i == 4) break;
                 CitaDTO cita = new CitaDTO();
                 cita.setHora(inicio+(i*900000));
                 n.setTimeInMillis(n.getTimeInMillis()+(i*900000));
@@ -98,7 +99,7 @@ public class MedicoDTO {
                 cita.setMedico(this.id);
                 cita.desactivar();
                 cita.setId(1L);
-                cita.setPaciente(1L);
+                cita.setPaciente(-1L);
                 System.out.println(cita.toString());
                 disponibilidad.add(cita);
                 CitaLogicMock.getCityArray().add(cita);
