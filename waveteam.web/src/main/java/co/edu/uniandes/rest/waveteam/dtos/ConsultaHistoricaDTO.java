@@ -16,17 +16,19 @@ public class ConsultaHistoricaDTO {
     private int numeroCitas;
     private int promedioDuracion;
     private int citasLibres;
+    private int citasCanceladas;
     
     public ConsultaHistoricaDTO(){
         
     }
     
-    public ConsultaHistoricaDTO(EspecialidadDTO es,int numDoc,int numCitas,int prom,int citasLi){
+    public ConsultaHistoricaDTO(EspecialidadDTO es,int numDoc,int numCitas,int prom,int citasLi,int citasCan){
         this.especialidad=es;
         this.numeroDoctores=numDoc;
         this.numeroCitas=numCitas;
         this.promedioDuracion=prom;
         this.citasLibres=citasLi;
+        this.citasCanceladas=citasCan;
     }
     
     	public EspecialidadDTO getEspecialidad() {
@@ -67,5 +69,13 @@ public class ConsultaHistoricaDTO {
 
 	public void setCitasLibres(int citasLibres) {
 		this.citasLibres = citasLibres;
+	}    
+        
+        public int getCitasCanceladas() {
+		return citasCanceladas;
+	}
+
+	public void setCitasCanceladas(int citasCanceladas) {
+		this.citasCanceladas = citasCanceladas;
 	}    
 }
