@@ -121,16 +121,7 @@ public class CitaLogicMock {
       }
         return nueva;
       }
-          
-           
-            
-      
-         
-          
-          
-      
-    
-    
+
     public CitaDTO crearCita(CitaDTO nueva) throws CitaLogicException {
         
         logger.info("Se trata de agregar una nueva cita: " + nueva);

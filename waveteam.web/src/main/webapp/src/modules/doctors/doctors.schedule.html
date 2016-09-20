@@ -8,20 +8,19 @@
         </select>
         <h1>  </h1>
         <h1>  </h1>
-        Seleccione una fecha: <md-datepicker layout-align="center center" ng-model="scheduleDay" md-placeholder="Enter date"></md-datepicker>
-        <div class="col-xs-3">
-            <div class="input-group">
-                <span class="input-group-addon">Advanced options</span>
-                <span class="input-group-addon">
-                <input type="checkbox" ng-model="showDetail">
-            </span>
-            </div>
-            <form ng-show="showDetail" ng-submit="refresh()">
-                <div class="input-group">
-                    <span class="input-group-addon">Limit</span>
-                    <input class="form-control" type="number" ng-model="quantity">
-                </div>
-            </form>
+    </div>
+    <div class="col-xs-12">
+        Seleccione una fecha: <md-datepicker ng-model="scheduleDay" md-placeholder="Enter date"></md-datepicker>
+    </div>
+    <div class="col-xs-12">
+    </div>
+    <div class="col-xs-7">
+    </div>
+        <div class="input-group">
+            <span class="input-group-addon">Mostrar sólo citas asignadas</span>
+            <span class="input-group-addon">
+                <input type="checkbox" ng-model="showAssigned">
+                </span>
         </div>
         <div class="container-fluid">
             <table class="table table-striped" class="col-md-8">
@@ -34,11 +33,11 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="c in citas| filter:searchField" >
+                    <tr ng-repeat="c in citas" ng-show="ctrl.checkIfAssigned(c)" >
                     <td>{{c.paciente}}</td>
-                    <td>{{c.hora}}</td>
+                    <td>{{ctrl.turnMillisToHour(c.hora)}}</td>
                     <td>{{c.duracion}}</td>
-                    <td>{{c.consultorio}}</td>
+                    <td>{{selectedDoctor.consultorio}}</td>
                     <td>
                         <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="editDoctor({docID: doc.id})"><span class="glyphicon glyphicon-edit"></span> Cancelar</button>
                     </td>
@@ -46,7 +45,7 @@
                 </tbody>
             </table>
         </div>
-    </div>
+
     <div class="page-header">
         <h2>Modificar disponibilidad</h2>
     </div>

@@ -18,6 +18,10 @@
             }, responseError);
         });
 
+        this.turnMillisToHour = function (dateLong){
+            var d = new Date(dateLong);
+            return d.getHours() +":"+d.getMinutes();
+        }
 
         this.deleteRecord = function (doc) {
             return $http.delete(context + "/" + doc)
@@ -97,11 +101,18 @@
             }
             var dates = [];
             var date1 = $scope.fromDate.getTime()+ (3600000*8);
-            while (date1 !== ($scope.toDate.getTime() + (3600000*8)) ){
+            if (date1 == ($scope.toDate.getTime() + (3600000*8)) ){
                 dates.push({
                     "value": date1
                 });
-                date1 += 3600000*24;
+            }
+            else{
+                while (date1 !== ($scope.toDate.getTime() + (3600000*8)) ){
+                    dates.push({
+                        "value": date1
+                    });
+                    date1 += 3600000*24;
+                }
             }
             var doc = JSON.stringify(dates);
             console.log(doc.toString());
@@ -114,6 +125,14 @@
                 $scope.citas = response.data;
                 console.log(response.data);
             }, responseError);
+        }
+
+        this.checkIfAssigned = function(cita){
+            if (!$scope.showAssigned) return true;
+            else{
+                if (cita.paciente != -1) return true
+            }
+            return false;
         }
 
         this.editDoctorFinal = function () {
@@ -144,7 +163,6 @@
                     }, responseError)
             }
         }
-
 
         this.closeAlert = function (index) {
             $scope.alerts.splice(index, 1);
