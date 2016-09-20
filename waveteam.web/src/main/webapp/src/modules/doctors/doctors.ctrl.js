@@ -16,9 +16,6 @@
             }, responseError);
         });
 
-        this.test = function () {
-            console.log("TEST");
-        }
         this.turnMillisToHour = function (dateLong){
             var d = new Date(dateLong);
             return d.getHours() +":"+d.getMinutes();
@@ -26,7 +23,7 @@
 
         this.turnMillisToDate = function (dateLong){
             var d = new Date(dateLong);
-            return d.getDay()+"/"+d.getMonth()+"/"+d.getFullYear();
+            return d.getUTCDate()+"/"+(d.getUTCMonth()+1)+"/"+d.getFullYear();
         }
 
         this.deleteRecord = function (doc) {
@@ -132,7 +129,7 @@
         }
 
         this.checkIfAssigned = function(cita){
-            if (!$scope.scheduleDay){
+            if (!$scope.scheduleDay1 || !$scope.scheduleDay2){
                 if (!$scope.showAssigned) return true;
                 else{
                     if (cita.paciente !== -1) return true
@@ -140,14 +137,13 @@
                 return false;
             }
             else{
-                console.log("First "+cita.hora)
-                var d = new Date(cita.hora);
-                d.setHours(1);
-                console.log("Last "+d.getMilliseconds())
-                // while (d.getDay() == cita.fecha.getDay()){
-                //
-                // }
-                if (!$scope.showAssigned) return true;
+                if (cita.hora >= $scope.scheduleDay1.getTime() && cita.hora <= $scope.scheduleDay2.getTime()){
+                    if (!$scope.showAssigned) return true;
+                    else{
+                        if (cita.paciente !== -1) return true
+                    }
+                }
+                return false;
             }
         }
 
