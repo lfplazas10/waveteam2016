@@ -44,7 +44,7 @@ public class MedicoLogicMock {
             cita.desactivar();
             cita.setId(1L);
             cita.setPaciente(1L);
-            cita.setHabilitada(true);
+            cita.setHabilitada("Habilitada");
             ArrayList <CitaDTO> d = new ArrayList();
             cita.addSm(532532L);
             cita.addSm(42353L);

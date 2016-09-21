@@ -40,9 +40,9 @@ public class CitaLogicMock {
         
         if(citas==null){
             citas = new ArrayList<>();
-            citas.add(new CitaDTO(1L, "17/08/2016", 1471352400000L, 30,1L , 1L, true));
-            citas.add(new CitaDTO(2L, "18/8/2016", (1471352400000L + 86400000L) ,15, 2L, 2L, true));
-            citas.add(new CitaDTO(3L, "19/8/2016", 1471352400000L + (2*86400000L),15, 3L,3L, true));
+            citas.add(new CitaDTO(1L, "17/08/2016", 1471352400000L, 30,1L , 1L, "Habilitada"));
+            citas.add(new CitaDTO(2L, "18/8/2016", (1471352400000L + 86400000L) ,15, 2L, 2L, "Habilitada"));
+            citas.add(new CitaDTO(3L, "19/8/2016", 1471352400000L + (2*86400000L),15, 3L,3L, "Habilitada"));
 
         }    
         
@@ -186,9 +186,9 @@ public class CitaLogicMock {
             throw new CitaLogicException("La lista de citas no ha sido inicializada");
         }
         for(CitaDTO cita : citas){
-            if(paciente.equals(cita.getPaciente())&& cita.getHabilitada()==true){
+            if(paciente.equals(cita.getPaciente())&& cita.getHabilitada().compareToIgnoreCase("habilitada")==1){
                 logger.info("Se encuentra una cita con el paciente (id) : " + paciente);
-                if(cita.getHabilitada()==true) {
+                if(cita.getHabilitada().compareToIgnoreCase("habilitada")==1) {
                     lista.add(cita);
                 }
             }

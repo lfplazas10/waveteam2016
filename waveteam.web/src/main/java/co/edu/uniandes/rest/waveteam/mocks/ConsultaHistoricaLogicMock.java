@@ -103,7 +103,7 @@ public class ConsultaHistoricaLogicMock {
                         {
                             libres++;
                         }
-                        if(!c.getHabilitada())
+                        if(c.getHabilitada().compareToIgnoreCase("deshabilitada")==1)
                         {
                             canceladas++;
                         }
@@ -183,7 +183,7 @@ public class ConsultaHistoricaLogicMock {
             {
                 libres++;
             }
-            if(!c.getHabilitada())
+            if(c.getHabilitada().compareToIgnoreCase("habilitada")==1)
             {
                 canceladas++;
             }
