@@ -26,6 +26,8 @@ public class EspecialidadLogicMock {
 
     private static ArrayList<EspecialidadDTO> especialidades;
     
+    private MedicoLogicMock medicos;
+    
     /**
      * Constructor. Crea los datos de ejemplo.
      */
@@ -33,18 +35,32 @@ public class EspecialidadLogicMock {
 
         if (especialidades == null) {
             especialidades = new ArrayList<>();
+            especialidades.add(new EspecialidadDTO(1L, "Pediatría", "0-18", "clinica",new ArrayList<MedicoDTO>(),new ArrayList<CitaDTO>()));
+            especialidades.add(new EspecialidadDTO(1L, "Cardiologia", "0-95", "clinica",new ArrayList<MedicoDTO>(),new ArrayList<CitaDTO>()));
+            especialidades.add(new EspecialidadDTO(2L, "Neumologia", "0-95", "clinica",new ArrayList<MedicoDTO>(),new ArrayList<CitaDTO>()));
+            especialidades.add(new EspecialidadDTO(3L, "Traumatologia", "0-95", "medico-quirurgica",new ArrayList<MedicoDTO>(),new ArrayList<CitaDTO>()));
             
-            ArrayList<MedicoDTO> temp = new ArrayList<MedicoDTO>();
-            temp.add(new MedicoDTO(1L, "Pedro Pablo Jaramillo", "Cardiólogo", 301L, new ArrayList<CitaDTO>()));
-            especialidades.add(new EspecialidadDTO(1L, "Cardiologia", "0-95", "clinica",temp,new ArrayList<CitaDTO>()));
+            medicos=new MedicoLogicMock();
             
-            temp= new ArrayList<MedicoDTO>();
-            temp.add(new MedicoDTO(5L, "Jairo Aristizabal", "Neumólogo", 305L, new ArrayList<CitaDTO>()));
-            especialidades.add(new EspecialidadDTO(2L, "neumologia", "0-95", "clinica",temp,new ArrayList<CitaDTO>()));
-            
-            temp= new ArrayList<MedicoDTO>();
-            temp.add(new MedicoDTO(3L, "Fernando Vallejo", "Traumatólogo", 320L, new ArrayList<CitaDTO>()));
-            especialidades.add(new EspecialidadDTO(3L, "Traumatologia", "0-95", "medico-quirurgica",temp,new ArrayList<CitaDTO>()));
+            try {
+                for(int i=0;i<especialidades.size();i++)
+                {
+                    ArrayList<MedicoDTO> docs=new ArrayList<>();
+                    ArrayList<CitaDTO> citas=new ArrayList<>();
+                    for(int j=0;j<medicos.getDoctors().size();j++)
+                    {
+                        if(medicos.getDoctors().get(j).getEspecialidad().equals(especialidades.get(i).getNombre()))
+                        {
+                            docs.add(medicos.getDoctors().get(j));
+                            citas.addAll(medicos.getDoctorSchedule(medicos.getDoctors().get(j).getId()));
+                        }
+                    }
+                    especialidades.get(i).setDoctores(docs);
+                    especialidades.get(i).setCitas(citas);
+                }
+            } catch (Exception ex) {
+                logger.severe("Error interno: problemas con el mock de doctores");
+            }
         }
 
         // indica que se muestren todos los mensajes
@@ -211,5 +227,18 @@ public class EspecialidadLogicMock {
         }
         logger.info("No se encontro una especialidad con ese ID");
         throw new EspecialidadLogicException("No existe una especialidad con ese ID");
+    }
+    
+    public void agregarDoctorEspecialidad(MedicoDTO doc)
+    {
+         for(int i=0;i<especialidades.size();i++)
+         {
+             if(doc.getEspecialidad().equals(especialidades.get(i).getNombre()))
+             {
+                 ArrayList<MedicoDTO> docs = especialidades.get(i).getDoctores();
+                 docs.add(doc);
+                 especialidades.get(i).setDoctores(docs);
+             }
+         }
     }
 }

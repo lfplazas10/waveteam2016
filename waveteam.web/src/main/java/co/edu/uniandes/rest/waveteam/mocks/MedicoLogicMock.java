@@ -27,8 +27,7 @@ public class MedicoLogicMock {
     private final static Logger logger = Logger.getLogger(MedicoLogicMock.class.getName());
 
     private static List<MedicoDTO> doctors;
-
-
+    
     /**
      * Constructor. Crea los datos de ejemplo.
      */
@@ -50,10 +49,11 @@ public class MedicoLogicMock {
             cita.addSm(42353L);
             cita.addSm(263564L);
             d.add(cita);
-            doctors.add(new MedicoDTO(1L, "Pedro Pablo Jaramillo", "Cardiólogo", 301L, d));
-            doctors.add(new MedicoDTO(5L, "Jairo Aristizabal", "Neumólogo", 305L, new ArrayList<CitaDTO>()));
-            doctors.add(new MedicoDTO(6L, "Carlos Diaz", "Pediatra", 320L, new ArrayList<CitaDTO>()));
-            doctors.add(new MedicoDTO(3L, "Fernando Vallejo", "Traumatólogo", 320L, new ArrayList<CitaDTO>()));
+            doctors.add(new MedicoDTO(1L, "Pedro Pablo Jaramillo", "Cardiologia", 301L, d));
+            doctors.add(new MedicoDTO(5L, "Jairo Aristizabal", "Neumologia", 305L, new ArrayList<CitaDTO>()));
+            doctors.add(new MedicoDTO(6L, "Carlos Diaz", "Pediatría", 320L, new ArrayList<CitaDTO>()));
+            doctors.add(new MedicoDTO(3L, "Fernando Vallejo", "Traumatologia", 320L, new ArrayList<CitaDTO>()));
+        
         }
 
         // indica que se muestren todos los mensajes
@@ -219,6 +219,8 @@ public class MedicoLogicMock {
         }
 
         logger.info("Agregando doctor " + newDoctor);
+        EspecialidadLogicMock esp = new EspecialidadLogicMock();
+        esp.agregarDoctorEspecialidad(newDoctor);
         doctors.add(newDoctor);
         return newDoctor;
     }
