@@ -24,7 +24,6 @@ public class CitaDTO {
     private Long medico;
     private Long paciente;
     private String habilitada;
-    private boolean termino;
     
     
     public CitaDTO(){
@@ -39,7 +38,6 @@ public class CitaDTO {
         this.medico = medico;
         this.paciente = paciente; 
         this.habilitada = habilitada;
-        this.termino = false;
 
     }
     
@@ -116,15 +114,6 @@ public class CitaDTO {
         a.add(t);
     }
     
-    public Boolean getTermino(){
-        return termino;
-    }
-    
-    
-    public void terminar(){
-        termino=true;
-    }
-    
     @Override
     public String toString(){
 
@@ -134,9 +123,7 @@ public class CitaDTO {
                 ", duracion : " + duracion + 
                 ", medico : " + medico + 
                 ", paciente : " + paciente +
-                ", habilitada : " + habilitada +
-                ", termino : " + termino +
-                ", habilitada : " + habilitada
+                ", habilitada : " + habilitada 
                 +" }";
     }
     

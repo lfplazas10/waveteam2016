@@ -14,7 +14,7 @@
             }, responseError);
 
 
-            if ($stateParams.especialidad.nombre !== null && $stateParams.especialidad.nombre !== undefined) {
+            if ($stateParams.especialidad !== null && $stateParams.especialidad!== undefined) {
                 especialidad = $stateParams.especialidad;
                 
                 $http.get(context + "/" + especialidad.nombre)
@@ -36,26 +36,6 @@
               
                 $scope.alerts = [];
             }
-
-
-            this.saveRecord = function (especialidad) {
-                currentRecord = $scope.currentRecord;
-                
-                if (especialidad==null) {  
-                    return $http.post(context, especialidad)
-                        .then(function () {
-                            $state.go('especialidadList');
-                        }, responseError);
-                } 
-                else {
-                    return $http.put(context + "/" + especialidad.nombre, especialidad)
-                        .then(function () {
-                            $state.go('especialidadList');
-                        }, responseError);
-                };
-            };
-            
-
 
 
             // -----------------------------------------------------------------

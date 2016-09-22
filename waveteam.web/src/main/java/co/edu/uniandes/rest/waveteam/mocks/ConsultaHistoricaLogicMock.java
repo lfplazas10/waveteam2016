@@ -27,13 +27,13 @@ public class ConsultaHistoricaLogicMock {
      // objeto para presentar logs de las operaciones
     private final static Logger logger = Logger.getLogger(EspecialidadLogicMock.class.getName());
     private static ArrayList<ConsultaHistoricaDTO> consultasHistoricas;
-    private EspecialidadLogicMock especialidades;
     
     public ConsultaHistoricaLogicMock()
     {
         if (consultasHistoricas == null) {
             
-            especialidades= new EspecialidadLogicMock();
+            
+            EspecialidadLogicMock especialidades= new EspecialidadLogicMock();
             consultasHistoricas = new ArrayList<ConsultaHistoricaDTO>();
                 
             try {
@@ -65,7 +65,6 @@ public class ConsultaHistoricaLogicMock {
             logger.severe("Error interno: lista de consultasHistoricas no existe.");
             throw new ConsultaHistoricaLogicException("Error interno: lista de consultasHistoricas no existe.");
         }
-
         logger.info("Retornando todas las consultasHistoricas");
         return consultasHistoricas;
     }
@@ -98,6 +97,7 @@ public class ConsultaHistoricaLogicMock {
             
             EspecialidadDTO esp=null;
             try {
+                EspecialidadLogicMock especialidades = new EspecialidadLogicMock();
                 for(EspecialidadDTO especialidad: especialidades.getEspecialidades())
                 {
                     if(Objects.equals(nombreEspecialidad, especialidad.getNombre()))
@@ -131,11 +131,11 @@ public class ConsultaHistoricaLogicMock {
                         {
                             libres++;
                         }
-                        if(c.getHabilitada().equals("Disponible"))
+                        if(c.getHabilitada().equals("Cancelada"))
                         {
                             canceladas++;
                         }
-                        if(c.getTermino())
+                        if(c.getHabilitada().equals("Termino"))
                         {
                             terminadas++;
                         }
@@ -198,6 +198,7 @@ public class ConsultaHistoricaLogicMock {
         ConsultaHistoricaDTO nueva=new ConsultaHistoricaDTO();
         EspecialidadDTO esp=null;
             try {
+                EspecialidadLogicMock especialidades = new EspecialidadLogicMock();
                 for(EspecialidadDTO especialidad: especialidades.getEspecialidades())
                 {
                     if(Objects.equals(nombreEsp, especialidad.getNombre()))
@@ -232,7 +233,7 @@ public class ConsultaHistoricaLogicMock {
             {
                 canceladas++;
             }
-            if(c.getTermino())
+            if(c.getHabilitada().equals("Termino"))
             {
                 terminadas++;
             }            
@@ -265,5 +266,24 @@ public class ConsultaHistoricaLogicMock {
         }
         logger.info("No se encontro una  consultaHistorica para esa especialidad");
         throw new ConsultaHistoricaLogicException("No existe una  consultaHistorica para esa especialidad");
+    }
+    
+        public List<ConsultaHistoricaDTO> generarTodas() throws ConsultaHistoricaLogicException {
+        if (consultasHistoricas == null) {
+            logger.severe("Error interno: lista de consultasHistoricas no existe.");
+            throw new ConsultaHistoricaLogicException("Error interno: lista de consultasHistoricas no existe.");
+        }
+        try {
+            EspecialidadLogicMock especialidades = new EspecialidadLogicMock();
+            for(EspecialidadDTO esp : especialidades.getEspecialidades())
+            {
+                createConsultaHistorica(esp.getNombre());
+            }
+        } catch (EspecialidadLogicException ex) {
+            logger.severe("Error interno: " + ex.getMessage());
+            throw new ConsultaHistoricaLogicException("Error interno: " + ex.getMessage());
+        }
+        logger.info("Retornando todas las consultasHistoricas");
+        return consultasHistoricas;
     }
 }

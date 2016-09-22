@@ -51,20 +51,21 @@ public class ConsultaHistoricaResource {
     public ConsultaHistoricaDTO updateConsultaHistorica(@PathParam("nombre") String nombreEsp) throws ConsultaHistoricaLogicException {
         return logic.updateConsultaHistorica(nombreEsp);
     }
+    
+    @GET
+    @Path("editAll")
+    public List<ConsultaHistoricaDTO> generarTodas() throws ConsultaHistoricaLogicException {
+        return logic.generarTodas();
+    }
 
     @POST
-    public ConsultaHistoricaDTO createEspecialidad(String nombreEsp) throws ConsultaHistoricaLogicException {
+    public ConsultaHistoricaDTO createConsultaHistorica(String nombreEsp) throws ConsultaHistoricaLogicException {
         return logic.createConsultaHistorica(nombreEsp);
     }
 
-    /**
-     * 
-     * @param id
-     * @throws EspecialidadLogicException 
-     */
     @DELETE
     @Path("{nombre: }")
-    public void deleteEspecialidad(@PathParam("nombre") String nombreEsp) throws ConsultaHistoricaLogicException {
+    public void deleteConsultaHistorica(@PathParam("nombre") String nombreEsp) throws ConsultaHistoricaLogicException {
         logic.deleteConsultaHistorica(nombreEsp);
     }
 }
