@@ -18,6 +18,11 @@
             
             loadDocs();
             loadDocsCitas();
+            
+            this.turnMillisToHour = function (dateLong) {
+            var d = new Date(dateLong);
+            return d.getHours() + ":" + d.getMinutes();
+        }
 
             this.deleteRecord = function (ptn){
                 return $http.delete(context+"/"+ptn.id)
