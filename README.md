@@ -201,8 +201,7 @@ La comunicación entre el cliente y el servidor se realiza intercambiando objeto
     "nombre" : 'Pediatria'           /* Tipo String */
     "gruposEdad" : '0-18'            /* Tipo String*/
     "tipo" : 'clinica'               /* tipo String*/
-    "doctores" : 		     /* Tipo Doctor*/
-    "consultorios" : 		     /* Tipo Consultorio*/
+    "doctores" : []		     /* Tipo List de Doctor*/
 }
 ```
 Si se solicita una lista de las especialidades, el servidor retorna dichos objetos en el siguiente formato:
@@ -214,15 +213,13 @@ Si se solicita una lista de las especialidades, el servidor retorna dichos objet
          "nombre" : 'Pediatria'           /* Tipo String */
          "gruposEdad" : '0-18'            /* Tipo String*/
          "tipo" : 'clinica'               /* tipo String*/
-         "doctores" : 		          /* Tipo Doctor*/
-         "consultorios" : 	          /* Tipo Consultorio*/
+         "doctores" : [] 		  /* Tipo List de Doctor*/
       }, {
          "id" : 2                         /* Tipo Long */
          "nombre" : 'Neurocirugia'        /* Tipo String */
          "gruposEdad" : '0-95'            /* Tipo String*/
          "tipo" : 'quirurgica'            /* tipo String*/
-         "doctores" : 		          /* Tipo Doctor*/
-         "consultorios" : 	          /* Tipo Consultorio*/
+         "doctores" : []		  /* Tipo List de Doctor*/
       } /*... otras especialidades */
 ]
 ```
@@ -230,7 +227,7 @@ Si se solicita una lista de las especialidades, el servidor retorna dichos objet
 
 Al ejecutarlo en su propia máquina, el recurso REST estará disponible en:
 
- • xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+ • http://localhost:8080/waveteam.web/api/especialidades
  
 La descripción del API REST se presenta a continuación:
 
@@ -238,6 +235,7 @@ La descripción del API REST se presenta a continuación:
 |:-----------|:-----------|:------------------------------------------------------|:-----------------|:-------------|:-----------------------------------------|
 |    GET     | /Especialidades     | Da la lista de especialidades(READ)  |    |   |Colección de las especialidades del hospital   |
 |    GET     | /Especialidades/:id | Da los parámetros de una especialidad (READ)|**@PathParam id:** id de la especialidad |     |Atributos de la especialidad  |
+|    GET     | /Especialidades/:id/doctores | Da los doctores de una especialidad(READ)|**@PathParam id:** id de la especialidad |     |doctores de la especialidad  |
 |    POST    | /Especialidades     | Crea una nueva especialidad segun la información suministrada(CREATE)|    | Atributos    |Nueva especialidad creada  |
 |   PUT   | /Especialidades/:id|Actualiza una especialidad (UPDATE)|**@PathParam id:** id de la especialidad | Objeto JSON de la especialidad|Se actualiza la especialidad |
 |   DELETE   | /Especialidades/:id | Borra una especialidad según su ID (DELETE) |**@PathParam id:** id de la especialidad |      |Se borra la especialidad de la lista  |
@@ -257,6 +255,7 @@ La comunicación entre el cliente y el servidos se realiza intercambiando objeto
          "Duracion_cita" : '' /* Tipo int */
          "Medico_cita" : ''   /* Tipo Medico */
          "Paciente_cita" : '' /* Tipo Paciente */
+         "habilitada": ' '    /*tipo string*/
       }
 ]
 ```
@@ -272,6 +271,7 @@ Si se solicita una lista de las citas en el calendario, el servidor retorna dich
          "Duracion_cita":''    /* Tipo int*/
          "Medico_cita" : ''   /* Tipo Medico */
          "Paciente_cita" : '' /* Tipo Paciente */
+         "habilitada": ' '    /*tipo string*/
       }, {
          "id" : 2             /* Tipo Long */
          "Fecha_cita" : ''    /* Tipo Date */
@@ -279,6 +279,7 @@ Si se solicita una lista de las citas en el calendario, el servidor retorna dich
          "Duracion_cita" : '' /* Tipo int */
          "Medico_cita" : ''   /* Tipo Medico */
          "Paciente_cita" : '' /* Tipo Paciente */
+         "habilitada": ' '    /*tipo string*/         
       } /*... otros pacientes */
 ]
 ```
@@ -295,5 +296,94 @@ Si se solicita una lista de las citas en el calendario, el servidor retorna dich
 |    PUT    | /Citas     | actualiza una cita segun la información suministrada | ID: id de la cita, Param: parametros de la nueva cita                 |     |Cita actualizada       |
 |    POST    | /Citas     | Crea una nueva cita segun la información suministrada |                  | Atributos    |Nueva cita creada                         |
 |   DELETE   | /Citas/:id | Borra una cita según su ID                            |ID: id de la cita |              |Se borra la cita de la lista (cancela)    |
+|    PUT    | /Citas/:id/terminar     |  se actualiza el estado de la cita y su duracion |           |     |Cita actualizada       |
 
 
+## Entidad ConsultaHistorica
+
+La comunicación entre el cliente y el servidor se realiza intercambiando objetos JSON que siguen el siguiente formato:
+
+```javascript
+{
+    "citasCanceladas": 0,    //tipo int
+    "citasLibres": 0,        //tipo int
+    "citasTerminadas": 0,    //tipo int
+    "especialidad": {
+      "citas": [],
+      "doctores": [],
+      "gruposEdad": "0-18",
+      "id": 1,
+      "nombre": "Pediatría",
+      "tipo": "clinica"
+    },                                  //tipo especialidad
+    "fecha": "2016/09/22 08:43:47",     //tipo string
+    "numeroCitas": 0,                   //tipo int
+    "numeroDoctores": 1,                //tipo int
+    "promedioDuracion": 0               //tipo double 
+  }/*... otras consultas Historicas */
+]
+```
+Si se solicita una lista de las consultas historicas, el servidor retorna dichos objetos en el siguiente formato:
+
+```javascript
+[
+  {
+    "citasCanceladas": 0,
+    "citasLibres": 0,
+    "citasTerminadas": 0,
+    "especialidad": {
+      "citas": [],
+      "doctores": [],
+      "gruposEdad": "0-18",
+      "id": 1,
+      "nombre": "Pediatría",
+      "tipo": "clinica"
+    },
+    "fecha": "2016/09/22 08:43:47",
+    "numeroCitas": 0,
+    "numeroDoctores": 1,
+    "promedioDuracion": 0
+  },
+  {
+    "citasCanceladas": 0,
+    "citasLibres": 0,
+    "citasTerminadas": 0,
+    "especialidad": {
+      "citas": [],
+      "doctores": [
+        {
+          "consultorio": 305,
+          "disponibilidad": [],
+          "especialidad": "Neumologia",
+          "id": 5,
+          "name": "Jairo Aristizabal"
+        }
+      ],
+      "gruposEdad": "0-95",
+      "id": 3,
+      "nombre": "Neumologia",
+      "tipo": "clinica"
+    },
+    "fecha": "2016/09/22 08:43:47",
+    "numeroCitas": 0,
+    "numeroDoctores": 1,
+    "promedioDuracion": 0
+  },
+]
+```
+### Servicios Rest:
+
+Al ejecutarlo en su propia máquina, el recurso REST estará disponible en:
+
+ • http://localhost:8080/waveteam.web/api/consultasHistoricas
+ 
+La descripción del API REST se presenta a continuación:
+
+|   Método   |   URL      |     Acción                                            |   Parámetros     |    Cuerpo    |    Retorno                               |
+|:-----------|:-----------|:------------------------------------------------------|:-----------------|:-------------|:-----------------------------------------|
+|    GET     | /consultasHistoricas     | Da la lista de consultas historicas(READ)  |    |   |Colección de las consultas historicas del hospital   |
+|    GET     | /consultasHistoricas/:nombre | Da los parámetros de una consulta historica(READ)|**@PathParam nombre:** nombre de la especialidad |     |Atributos de la consulta historica |
+|    GET     | /consultasHistoricas/generateAll | genera las consultas historicas de toas las especialidades y las devuelve(CREATE)(READ)| |     |coleccion de consultas historicas |
+|    POST    | /consultasHistoricas/:nombre | Crea una nueva consulta historica sobre la especialidad con ese nombre, si ya existe otra consulta se borra(DELETE)(CREATE)|    | |Nueva consulta historica de la especialidad |
+|   PUT   | /consultasHistoricas/:nombre|Actualiza una consulta historica(UPDATE)|**@PathParam nombre:** nombre de la especialidad | |Se actualiza la consulta historica |
+|   DELETE   | /consultasHistoricas/:nombre | Borra una consulta historica segun su especialidad (DELETE) |**@PathParam nombre:** nombre de la especialidad|      |Se borra la consulta historica de la lista  |
