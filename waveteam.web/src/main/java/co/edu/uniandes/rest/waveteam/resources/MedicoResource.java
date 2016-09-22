@@ -106,7 +106,6 @@ public class MedicoResource {
 
     @POST
     @Path("{id: \\d+}/disponibilidad/")
-    @Consumes(MediaType.APPLICATION_JSON)
     public void setDisponibilidad(@PathParam("id") Long id, ArrayList days) throws MedicoLogicException {
         cityLogic.definirHorarioMedico(id, days);
     }

@@ -8,12 +8,23 @@
             }, responseError);
         }
 
+        loadCitas = function () {
+            if($scope.selectedDoctor !== undefined){
+                $http.get(context+"/"+$scope.selectedDoctor.id+"/disponibilidad").then(function (response) {
+                    $scope.citas = response.data;
+                }, responseError);
+            }
+        }
+
         loadDocs();
+        loadCitas()
 
         $scope.$watch("selectedDoctor", function(newValue, oldValue){
-            $http.get(context+"/"+$scope.selectedDoctor.id+"/disponibilidad").then(function (response) {
-                $scope.citas = response.data;
-            }, responseError);
+            if($scope.selectedDoctor !== undefined){
+                $http.get(context+"/"+$scope.selectedDoctor.id+"/disponibilidad").then(function (response) {
+                    $scope.citas = response.data;
+                }, responseError);
+            }
         });
 
         this.turnMillisToHour = function (dateLong){
@@ -119,13 +130,12 @@
             }
             var doc = JSON.stringify(dates);
             $http.post(context+"/"+$scope.selectedDoctor.id+"/disponibilidad", doc.toString()).then(function (response) {
+                loadCitas();
             }, responseError);
             $http.post(context+"/"+$scope.selectedDoctor.id+"/disponibilidad", doc.toString()).then(function (response) {
+                loadCitas();
             }, responseError);
             alert("Saved succesfully");
-            $http.get(context+"/"+$scope.selectedDoctor.id+"/disponibilidad").then(function (response) {
-                $scope.citas = response.data;
-            }, responseError);
         }
 
         this.checkIfAssigned = function(cita){
