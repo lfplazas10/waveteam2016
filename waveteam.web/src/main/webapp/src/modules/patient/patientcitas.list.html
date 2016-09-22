@@ -32,7 +32,7 @@ and open the template in the editor.
             <td id ="{{$index}}-id">{{x.habilitada}}</td>
             <td id ="{{$index}}-id">{{x.id}}</td>
             <td id ="{{$index}}-fecha">{{x.fecha}}</td>
-            <td id ="{{$index}}-hora">{{x.hora}}</td>
+            <td id ="{{$index}}-hora">{{ctrl.turnMillisToHour(x.hora)}}</td>
             <td id ="{{$index}}-duracion">{{x.duracion}}</td>
             <td id ="{{$index}}-medico">{{x.medico}}</td>
             <td id ="{{$index}}-paciente">{{x.paciente}}</td>
