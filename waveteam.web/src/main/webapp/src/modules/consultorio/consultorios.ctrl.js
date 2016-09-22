@@ -81,6 +81,13 @@ var idEditar = 1;
             this.getDoctores = function ()
             {
                 $scope.doctores = $scope.consultorioActual.doctoresAsignados;
+                //HAY QUE COMPLETAR!!
+                angular.forEach($scope.doctores, function (value, index) {
+                    if (value.id === doc.id) {
+                        alert("Ese doctor ya se encuentra asignado.");
+                        yaExiste = true;
+                    }
+                })
                 if (mostrarDoctores === false)
                 {
                     mostrarDoctores = true;
