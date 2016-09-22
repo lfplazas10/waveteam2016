@@ -29,7 +29,7 @@ and open the template in the editor.
         </thead>
         <tbody>
             <tr ng-repeat="x in citas| filter:searchField">
-                <td>{{x.habilitada + "ACTIVA"}}</td>
+                <td>id ="{{$index}}-habilitada">{{x.habilitada}}</td>
                 <td id ="{{$index}}-id">{{x.id}}</td>
                 <td id ="{{$index}}-fecha">{{x.fecha}}</td>
                 <td id ="{{$index}}-hora">{{x.hora}}</td>
