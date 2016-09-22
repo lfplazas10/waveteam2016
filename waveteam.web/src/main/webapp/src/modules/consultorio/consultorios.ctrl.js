@@ -13,7 +13,8 @@ var idEditar = 1;
             $scope.citas = [];
             this.getCitas = function ()
             {
-                $scope.doctores = $scope.consultorioActual.doctoresAsignados;
+                this.getDoctores();
+                mostrarDoctores = false;
                 angular.forEach($scope.doctores, function (value, index) {
                     $http.get("api/doctors/" + value.id + "/disponibilidad").then(function (response) {
                         $scope.citas = $scope.citas.concat(response.data);
@@ -33,8 +34,11 @@ var idEditar = 1;
             $http.get("api/doctors").then(function (response) {
                 $scope.allDoctors = response.data;
             }, responseError);
-
-            this.desasignarDoctor = function (id) {
+            
+            this.desasignarDoctor = function(id){
+                desasignarDoctor(id);
+            }
+            desasignarDoctor = function (id) {
                 $http.delete("api/consultorios/" + $scope.consultorioActual.id + "/doctores/" + id)
                         .then(function (response) {
                             $state.reload();
@@ -77,17 +81,28 @@ var idEditar = 1;
             this.mostrarDoctores = function () {
                 return mostrarDoctores;
             }
-
-            this.getDoctores = function ()
+            
+            this.getDoctores = function(){
+                getDoctores();
+            }
+            
+            getDoctores = function ()
             {
                 $scope.doctores = $scope.consultorioActual.doctoresAsignados;
                 //HAY QUE COMPLETAR!!
-//                angular.forEach($scope.doctores, function (value, index) {
-//                    if (value.id === doc.id) {
-//                        alert("Ese doctor ya se encuentra asignado.");
-//                        yaExiste = true;
-//                    }
-//                })
+                angular.forEach($scope.doctores, function (value, index) {
+                    var existe = false;
+                    angular.forEach($scope.allDoctors, function (value2, index2) {
+                        if(value.id === value2.id){
+                            existe = true;
+                        }
+                    })
+                    if (!existe)
+                    {
+                        $scope.doctores.splice(index,1);
+                        desasignarDoctor(value.id);
+                    }
+                })
                 if (mostrarDoctores === false)
                 {
                     mostrarDoctores = true;
@@ -157,7 +172,6 @@ var idEditar = 1;
             }
 
             this.actualizarConsultorio = function () {
-                console.log(idEditar);
                 consultorioActual = $scope.consultorioActual;
                 consultorioActual.id = idEditar;
                 var cons = {
