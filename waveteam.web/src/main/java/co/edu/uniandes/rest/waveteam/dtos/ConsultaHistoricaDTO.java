@@ -12,9 +12,10 @@ package co.edu.uniandes.rest.waveteam.dtos;
 public class ConsultaHistoricaDTO {
     
     private EspecialidadDTO especialidad;
+    private String fecha;
     private int numeroDoctores;
     private int numeroCitas;
-    private int promedioDuracion;
+    private long promedioDuracion;
     private int citasLibres;
     private int citasCanceladas;
     private int citasTerminadas;
@@ -23,7 +24,7 @@ public class ConsultaHistoricaDTO {
         
     }
     
-    public ConsultaHistoricaDTO(EspecialidadDTO es,int numDoc,int numCitas,int prom,int citasLi,int citasCan,int citasTer){
+    public ConsultaHistoricaDTO(EspecialidadDTO es,int numDoc,int numCitas,int prom,int citasLi,int citasCan,int citasTer, String fecha){
         this.especialidad=es;
         this.numeroDoctores=numDoc;
         this.numeroCitas=numCitas;
@@ -31,6 +32,7 @@ public class ConsultaHistoricaDTO {
         this.citasLibres=citasLi;
         this.citasCanceladas=citasCan;
         this.citasTerminadas=citasTer;
+        this.fecha=fecha;
     }
     
     	public EspecialidadDTO getEspecialidad() {
@@ -57,11 +59,11 @@ public class ConsultaHistoricaDTO {
 		this.numeroCitas = numeroCitas;
 	}
 
-	public int getPromedioDuracion() {
+	public long getPromedioDuracion() {
 		return promedioDuracion;
 	}
 
-	public void setPromedioDuracion(int promedioDuracion) {
+	public void setPromedioDuracion(long promedioDuracion) {
 		this.promedioDuracion = promedioDuracion;
 	}
 
@@ -88,4 +90,12 @@ public class ConsultaHistoricaDTO {
 	public void setCitasTerminadas(int citasTerminadas) {
 		this.citasTerminadas = citasTerminadas;
 	}    
+        
+        public String getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(String fecha) {
+		this.fecha=fecha;
+	}   
 }

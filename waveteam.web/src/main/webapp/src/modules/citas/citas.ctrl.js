@@ -24,6 +24,12 @@
                 }, responseError)
         }
 
+        this.terminarCita = function (cita) {
+            return $http.get(context + "/" + cita.id+"/terminar")
+                .then(function () {
+                    load();
+                }, responseError)
+        }
 
         if ($stateParams.citaID !== null && $stateParams.citaId !== undefined) {
 
@@ -99,6 +105,7 @@
             var d = new Date(dateLong);
             return d.getHours() + ":" + d.getMinutes();
         }
+        
 
         this.editCitaFinal = function () {
             if (!$scope.id || !$scope.fecha || !$scope.hora || !$scope.duracion || !$scope.medico || !$scope.paciente) {

@@ -110,5 +110,10 @@ public class CitaResource {
         return citaLogic.getCitasByMedicoEnFecha(medico, fechaInicio, fechaFin);
     }
     
+    @PUT
+    @Path("{id: \\d+}/terminar")
+    public CitaDTO terminarCita(@PathParam("id") Long id) throws CitaLogicException{
+        return citaLogic.terminarCita(id);
+    }
     
 }

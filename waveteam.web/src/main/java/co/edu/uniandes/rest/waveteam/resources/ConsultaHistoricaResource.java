@@ -53,7 +53,7 @@ public class ConsultaHistoricaResource {
     }
     
     @GET
-    @Path("editAll")
+    @Path("generateAll")
     public List<ConsultaHistoricaDTO> generarTodas() throws ConsultaHistoricaLogicException {
         return logic.generarTodas();
     }

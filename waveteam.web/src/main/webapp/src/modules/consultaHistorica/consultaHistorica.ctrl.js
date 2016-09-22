@@ -31,11 +31,19 @@
                     promedioDuracion: '',
                     citasLibres: '',
                     citasCanceladas: '',
-                    citasTerminadas: ''
+                    citasTerminadas: '',
+                    fecha:''
                 };
               
                 $scope.alerts = [];
             }
+            
+            this.generarTodas = function () {
+                $http.get(context + "/generateAll")
+                    .then(function () {
+                        $state.reload("consultaHistoricaList")
+                    }, responseError); 
+            };
 
 
             // -----------------------------------------------------------------

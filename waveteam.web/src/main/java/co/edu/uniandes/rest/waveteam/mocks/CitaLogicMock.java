@@ -175,11 +175,6 @@ public class CitaLogicMock {
         throw new CitaLogicException("No se encontró una cita con ese ID");
     }
     
-    
-    
-    
-    
-    
     //CICLO 2 REQUERIMIENTOS
     
     public static ArrayList<CitaDTO> getCitasByPaciente(Long paciente) throws CitaLogicException{
@@ -247,5 +242,22 @@ public class CitaLogicMock {
     public static ArrayList<CitaDTO> getCityArray(){
         return citas;
     }
-
+    
+    public CitaDTO terminarCita(Long id)
+    {
+        CitaDTO c=null;
+        for(CitaDTO cita: citas)
+        {
+            if(cita.getId()==id)
+            {
+                cita.setHabilitada("Termino");
+                int duracion=(int)(cita.getHora()-System.currentTimeMillis());
+                cita.setDuracion(duracion);
+                c=cita;
+                break;
+            }
+        }
+        return c;
+    }
+    
 }

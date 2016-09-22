@@ -10,10 +10,14 @@ import co.edu.uniandes.rest.waveteam.dtos.ConsultaHistoricaDTO;
 import co.edu.uniandes.rest.waveteam.dtos.EspecialidadDTO;
 import co.edu.uniandes.rest.waveteam.exceptions.ConsultaHistoricaLogicException;
 import co.edu.uniandes.rest.waveteam.exceptions.EspecialidadLogicException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -186,7 +190,6 @@ public class ConsultaHistoricaLogicMock {
             for (ConsultaHistoricaDTO consulta : consultasHistoricas) {
                 if (Objects.equals(consulta.getEspecialidad().getNombre(), nombreEsp)) {
                     logger.severe("Ya existe una consultaHistorica para esa especialidad, se borra la consulta historica anterior");
-                    deleteConsultaHistorica(nombreEsp);
                 }
             }
 
@@ -246,6 +249,10 @@ public class ConsultaHistoricaLogicMock {
           nueva.setCitasLibres(libres);
           nueva.setCitasCanceladas(canceladas);
           nueva.setCitasCanceladas(terminadas);
+          DateFormat d= new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+          String fecha=d.format(new Date());
+          nueva.setFecha(fecha);
+          
         }
         logger.info("Agregando consultaHistorica " + nueva.getEspecialidad().getNombre());
         consultasHistoricas.add(nueva);
@@ -273,6 +280,7 @@ public class ConsultaHistoricaLogicMock {
             logger.severe("Error interno: lista de consultasHistoricas no existe.");
             throw new ConsultaHistoricaLogicException("Error interno: lista de consultasHistoricas no existe.");
         }
+        consultasHistoricas=new ArrayList();
         try {
             EspecialidadLogicMock especialidades = new EspecialidadLogicMock();
             for(EspecialidadDTO esp : especialidades.getEspecialidades())
