@@ -36,9 +36,9 @@ public class EspecialidadLogicMock {
         if (especialidades == null) {
             especialidades = new ArrayList<>();
             especialidades.add(new EspecialidadDTO(1L, "Pediatría", "0-18", "clinica",new ArrayList<MedicoDTO>(),new ArrayList<CitaDTO>()));
-            especialidades.add(new EspecialidadDTO(1L, "Cardiologia", "0-95", "clinica",new ArrayList<MedicoDTO>(),new ArrayList<CitaDTO>()));
-            especialidades.add(new EspecialidadDTO(2L, "Neumologia", "0-95", "clinica",new ArrayList<MedicoDTO>(),new ArrayList<CitaDTO>()));
-            especialidades.add(new EspecialidadDTO(3L, "Traumatologia", "0-95", "medico-quirurgica",new ArrayList<MedicoDTO>(),new ArrayList<CitaDTO>()));
+            especialidades.add(new EspecialidadDTO(2L, "Cardiologia", "0-95", "clinica",new ArrayList<MedicoDTO>(),new ArrayList<CitaDTO>()));
+            especialidades.add(new EspecialidadDTO(3L, "Neumologia", "0-95", "clinica",new ArrayList<MedicoDTO>(),new ArrayList<CitaDTO>()));
+            especialidades.add(new EspecialidadDTO(4L, "Traumatologia", "0-95", "medico-quirurgica",new ArrayList<MedicoDTO>(),new ArrayList<CitaDTO>()));
             
             medicos=new MedicoLogicMock();
             
@@ -158,16 +158,18 @@ public class EspecialidadLogicMock {
             logger.severe("El ID suministrado es nulo, se agrega con id maximo");
             long nuevoid=1;
             for (EspecialidadDTO especialidad : especialidades) {
-                if (!Objects.equals(especialidad.getId(),nuevoid)) {
-                   break;
+                if (Objects.equals(especialidad.getId(),nuevoid)) {
+                    nuevoid++;
                 }
                 else
                 {
-                    nuevoid++;
+                   break;
                 }
             }
             
             newEsp.setId(nuevoid);
+            newEsp.setDoctores(new ArrayList());
+            newEsp.setCitas(new ArrayList());
         }
 
         logger.info("Agregando especialidad " + newEsp);

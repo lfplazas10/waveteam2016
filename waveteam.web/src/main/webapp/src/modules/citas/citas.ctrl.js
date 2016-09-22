@@ -24,13 +24,6 @@
                 }, responseError)
         }
 
-        this.terminarCita = function (cita) {
-            return $http.get(context + "/" + cita.id+"/terminar")
-                .then(function () {
-                    load();
-                }, responseError)
-        }
-
         if ($stateParams.citaID !== null && $stateParams.citaId !== undefined) {
 
             // toma el id del parámetro
@@ -106,7 +99,7 @@
             return d.getHours() + ":" + d.getMinutes();
         }
         
-
+        
         this.editCitaFinal = function () {
             if (!$scope.id || !$scope.fecha || !$scope.hora || !$scope.duracion || !$scope.medico || !$scope.paciente) {
                 alert("No puede dejar ningún campo vacio.");
@@ -141,7 +134,16 @@
                         $state.go('listaCitas');
                     }, responseError)
             }
-        }
+        };
+        
+        this.terminarCita = function (cita) {
+            console.log("llego");
+            $http.put(context + "/" + cita.id+"/terminar")
+                .then(function () {
+                    $state.reload('listaCitas');
+                }, responseError)
+        };
+
 
         this.closeAlert = function (index) {
             $scope.alerts.splice(index, 1);

@@ -10,13 +10,25 @@
     </div>
 <div class="container-fluid" >
     <table class="table table-striped" class="col-md-8" width="80%">
+        <thead>
+            <tr>
+                <th> Id </th>
+                <th> Nombre </th>
+                <th> Grupo edad</th>
+                <th> Tipo</th>
+                <th>  </th>
+            </tr>
+        </thead>
         <tbody>
             <tr ng-repeat="record in records | filter:searchField">
                 <td id="{{$index}}-id">{{record.id}}</td>
-                <td id="{{$index}}-name"><a ui-sref="especialidadEdit({especialidadId: record.id })">{{record.nombre}}</a></td>
+                <td id="{{$index}}-name">{{record.nombre}}</td>
+                <td id="{{$index}}-grupo">{{record.gruposEdad}}</td>
+                <td id="{{$index}}-tipo">{{record.tipo}}</td>
+                <td><button class="btn btn-default btn-sm" ui-sref="especialidadEdit({especialidadId: record.id })"><span class="glyphicon glyphicon-edit"></span> Ver detalles </button></td>
             </tr>    
         </tbody>
     </table>
-    <button type="button" ui-sref='especialidadCreate'> Crear</button>
+    <button class="btn btn-default btn-sm"  ui-sref='especialidadCreate'> Crear</button>
     </div>
 </div>

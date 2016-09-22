@@ -243,7 +243,7 @@ public class CitaLogicMock {
         return citas;
     }
     
-    public CitaDTO terminarCita(Long id)
+    public CitaDTO terminarCita(Long id) throws CitaLogicException
     {
         CitaDTO c=null;
         for(CitaDTO cita: citas)
@@ -256,6 +256,11 @@ public class CitaLogicMock {
                 c=cita;
                 break;
             }
+        }
+        if(c==null)
+        {
+            logger.info("No se encontro cita");
+            throw new CitaLogicException("No se encontro cita");
         }
         return c;
     }

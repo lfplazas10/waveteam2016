@@ -285,6 +285,7 @@ public class ConsultaHistoricaLogicMock {
             EspecialidadLogicMock especialidades = new EspecialidadLogicMock();
             for(EspecialidadDTO esp : especialidades.getEspecialidades())
             {
+                logger.severe("creando para: " + esp.getNombre());
                 createConsultaHistorica(esp.getNombre());
             }
         } catch (EspecialidadLogicException ex) {
