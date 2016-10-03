@@ -10,7 +10,7 @@
     </parent>
     <artifactId>SistemaHospital-back</artifactId>
     <packaging>jar</packaging>
-    <name>WaveTeam-back</name>	
+    <name>waveteam-back</name>	
     <dependencies>
         <dependency>
             <groupId>org.eclipse.persistence</groupId>
