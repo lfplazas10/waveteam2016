@@ -8,8 +8,8 @@
     <packaging>pom</packaging>
     
 	<modules>
-        <module>SistemaHospital.back</module>
-        <module>SistemaHospital.web</module>
+        <module>SistemaHospital-back</module>
+        <module>SistemaHospital-web</module>
     </modules>
 	
     <properties>
