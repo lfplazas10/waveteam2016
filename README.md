@@ -56,13 +56,15 @@ Si se solicta al servidor una lista de médcios, el servidor retorna un arreglo 
 
 La descripción del API REST se presenta a continuación:
 
-Método|URI|Acción|Parámetros|Cuerpo|Retorno
-:--:|:--:|:--:|:--:|:--:|:--:
-**GET**|/doctors|Lista los registros de Médico (READ)|||Colección de registros de Médico 
-**GET**|/doctors/*:cedula*|Obtener los atributos de una instancia de Médico (READ)|**@PathParam cédula**: Número de cédula del doctor a consultar||Atributos de la instancia de Médico
-**POST**|/doctors|Crear una nueva instancia de la entidad Médico (CREATE)||Atributos de la instancia de Médico a crear|Instancia de Médico creada, incluyendo su cédula
-**PUT**|/doctors/*:cedula*|Actualiza una instancia de la entidad Médico (UPDATE)|**@PathParam cédula**: Identificador del registro|Objeto JSON de Médico|Instancia de Médico actualizada
-**DELETE**|/doctors/*:cedula*|Borra instancia de Médico en el servidor (DELETE)|**@PathParam cédula**: Identificador del registro||
+  Método|URI|Acción|Parámetros|Cuerpo|Retorno
+  :--:|:--:|:--:|:--:|:--:|:--:
+  **GET**|/doctors|Lista los registros de Médico (READ)|||Colección de registros de Médico 
+  **GET**|/doctors/*:cedula*|Obtener los atributos de una instancia de Médico (READ)|**@PathParam cédula**: Número de cédula del doctor a consultar||Atributos de la instancia de Médico
+  **POST**|/doctors|Crear una nueva instancia de la entidad Médico (CREATE)||Atributos de la instancia de Médico a crear|Instancia de Médico creada, incluyendo su cédula
+  **PUT**|/doctors/*:cedula*|Actualiza una instancia de la entidad Médico (UPDATE)|**@PathParam cédula**: Identificador del registro|Objeto JSON de Médico|Instancia de Médico 
+  **POST**|*:cedula/disponibilidad*|Define la disponibilidad de una instancia ya creada de la entidad Médico (CREATE)|**@PathParam cédula**: Identificador del registro|ArrayList en formato JSON de objetos de clase Long que indican la fecha y hora exacta en la cual el médico está disponible.|
+  **GET**|*:cedula/disponibilidad*|Listar la disponibilidad de una entidad Médico  (READ)|**@PathParam cédula**: Identificador del registro|ArrayList en formato JSON de objetos de clase Long que indican la fecha y hora exacta en la cual el médico está disponible.|
+  **DELETE**|/doctors/*:cedula*|Borra instancia de Médico en el servidor (DELETE)|**@PathParam cédula**: Identificador del registro||
 
 ## Entidad Paciente
 
