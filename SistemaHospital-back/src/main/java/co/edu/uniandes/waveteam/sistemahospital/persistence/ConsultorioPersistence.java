@@ -23,7 +23,7 @@ public class ConsultorioPersistence {
 
     @PersistenceContext(unitName = "WaveteamPU")
     protected EntityManager em;
-
+    
     public ConsultorioEntity find(Long id) {
         LOGGER.log(Level.INFO, "Consultando consultorio con id={0}", id);
         return em.find(ConsultorioEntity.class, id);
