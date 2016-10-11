@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.uniandes.waveteam.sistemahospital.persistence;
+package co.edu.uniandes.waveteam.sistemahospital.test.logic;
 
 /**
  *
- * @author felipeplazas
+ * @author jm.lizarazo10
  */
-public class Hello {
+public class CitaLogicTest {
     
 }
