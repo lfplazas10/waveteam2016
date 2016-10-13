@@ -19,7 +19,7 @@ public class PatientDTO {
     private String tipoSangre;
     private String eps;
 //    private String correo;
-//    private List<CitaDTO> citas;
+    private List<CitaDTO> citas;
     /**
      * Constructor por defecto
      */
@@ -48,6 +48,14 @@ public class PatientDTO {
 //        this.correo = correo;
 //        this.citas=pcitas;
         
+    }
+
+    public List<CitaDTO> getCitas() {
+        return citas;
+    }
+
+    public void setCitas(List<CitaDTO> citas) {
+        this.citas = citas;
     }
 
     /**
