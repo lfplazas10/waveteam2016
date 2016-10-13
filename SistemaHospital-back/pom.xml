@@ -4,7 +4,7 @@
     
     <parent>
         <groupId>co.edu.uniandes.waveteam</groupId>
-        <artifactId>sistemahospital</artifactId>
+        <artifactId>waveteam</artifactId>
         <version>1.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
