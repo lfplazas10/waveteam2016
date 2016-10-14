@@ -61,7 +61,7 @@ public class CitaEntity extends BaseEntity implements Serializable{
     }
     
     public void setMedico(DoctorEntity medico){
-        this.medico = medico;
+        this.medico = medico; 
     }
     
     public PacienteEntity getPaciente(){
