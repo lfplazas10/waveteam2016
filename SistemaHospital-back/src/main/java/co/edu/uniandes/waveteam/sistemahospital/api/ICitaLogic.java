@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.uniandes.waveteam.sistemahospital.logic;
+package co.edu.uniandes.waveteam.sistemahospital.api;
 
 import co.edu.uniandes.waveteam.sistemahospital.entities.CitaEntity;
 import java.util.List;
