@@ -5,10 +5,19 @@
  */
 package co.edu.uniandes.waveteam.sistemahospital.api;
 
+import co.edu.uniandes.waveteam.sistemahospital.entities.CitaEntity;
+import java.util.List;
+
 /**
  *
  * @author jm.lizarazo10
  */
-public class ICitaLogic {
+public interface ICitaLogic {
+    
+    public List<CitaEntity> getCitas();
+    public CitaEntity getCita(Long id);
+    public CitaEntity createCita(CitaEntity entity);
+    public CitaEntity updateCita(CitaEntity entity);
+    public void deleteCita(Long id);
     
 }
