@@ -20,8 +20,8 @@ public class CitaEntity extends BaseEntity implements Serializable{
     private String fecha;
     private Long hora;
     private int duracion;
-    private Long medico;
-    private Long paciente;
+    private DoctorEntity medico;
+    private PacienteEntity paciente;
     private String habilitada;
     
     public Long getId(){
@@ -56,19 +56,19 @@ public class CitaEntity extends BaseEntity implements Serializable{
         this.duracion = duracion;
     }
     
-    public Long getMedico(){
+    public DoctorEntity getMedico(){
         return medico;
     }
     
-    public void setMedico(Long medico){
+    public void setMedico(DoctorEntity medico){
         this.medico = medico;
     }
     
-    public Long getPaciente(){
+    public PacienteEntity getPaciente(){
         return paciente;
     }
     
-    public void setPaciente(Long paciente){
+    public void setPaciente(PacienteEntity paciente){
         this.paciente = paciente;
     }
     
