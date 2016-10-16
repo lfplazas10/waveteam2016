@@ -19,6 +19,9 @@ import javax.persistence.OneToOne;
  */
 @Entity
 public class EspecialidadEntity extends BaseEntity implements Serializable {
+    
+    @OneToMany(mappedBy = "especialidad")
+    private List <DoctorEntity> doctors = new ArrayList<>();
 
     @OneToOne
     private ConsultaHistoricaEntity consultaActual;
@@ -34,24 +37,24 @@ public class EspecialidadEntity extends BaseEntity implements Serializable {
     
     
     public String getGruposEdad() {
-		return gruposEdad;
-	}
+        return gruposEdad;
+    }
 
     public void setGruposEdad(String gruposEdad) {
-		this.gruposEdad = gruposEdad;
-	}
+        this.gruposEdad = gruposEdad;
+    }
     
     public String getTipo() {
-		return tipo;
-	}
+        return tipo;
+    }
 
     public void setTipo(String tipo) {
-		this.tipo = tipo;
-	}
+        this.tipo = tipo;
+    }
     
     public ConsultaHistoricaEntity getConsultaActual() {
-		return consultaActual;
-	}
+        return consultaActual;
+    }
 
     public void setConsultActual(ConsultaHistoricaEntity consultaActual) {
 		this.consultaActual = consultaActual;
