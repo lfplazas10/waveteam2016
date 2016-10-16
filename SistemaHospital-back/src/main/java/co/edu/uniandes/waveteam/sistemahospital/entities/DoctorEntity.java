@@ -18,21 +18,21 @@ import javax.persistence.*;
 public class DoctorEntity extends BaseEntity implements Serializable{
     
     @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Object> disponibilidad = new ArrayList<>();
+    private List<CitaEntity> disponibilidadCitas = new ArrayList<>();
     
-    @ManyToOne
+    @OneToOne
     private EspecialidadEntity especialidad;
     
     private Long id;
     private String name;
     private Long consultorio;
 
-    public List<Object> getDisponibilidad() {
-        return disponibilidad;
+    public List<CitaEntity> getDisponibilidadCitas() {
+        return disponibilidadCitas;
     }
 
-    public void setDisponibilidad(List<Object> disponibilidad) {
-        this.disponibilidad = disponibilidad;
+    public void setDisponibilidadCitas(List<CitaEntity> disponibilidad) {
+        this.disponibilidadCitas = disponibilidad;
     }
 
     public Long getId() {

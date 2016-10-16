@@ -7,6 +7,7 @@ package co.edu.uniandes.waveteam.sistemahospital.entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -15,12 +16,13 @@ import javax.persistence.Entity;
 @Entity
 public class CitaEntity extends BaseEntity implements Serializable{
     
+    @ManyToOne
+    private DoctorEntity doctor;
     
     private Long id;
     private String fecha;
     private Long hora;
     private int duracion;
-    private DoctorEntity medico;
     private PacienteEntity paciente;
     private String habilitada;
     
@@ -56,12 +58,12 @@ public class CitaEntity extends BaseEntity implements Serializable{
         this.duracion = duracion;
     }
     
-    public DoctorEntity getMedico(){
-        return medico;
+    public DoctorEntity getDoctor(){
+        return doctor;
     }
     
-    public void setMedico(DoctorEntity medico){
-        this.medico = medico; 
+    public void setDoctor(DoctorEntity medico){
+        this.doctor = medico; 
     }
     
     public PacienteEntity getPaciente(){
