@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -17,10 +18,12 @@ import javax.persistence.*;
 @Entity
 public class DoctorEntity extends BaseEntity implements Serializable{
     
+    @PodamExclude
     @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CitaEntity> disponibilidadCitas = new ArrayList<>();
     
-    @OneToOne
+    @PodamExclude
+    @ManyToOne
     private EspecialidadEntity especialidad;
     
     private Long id;
