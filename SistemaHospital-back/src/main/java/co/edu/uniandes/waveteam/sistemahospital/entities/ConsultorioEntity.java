@@ -6,7 +6,10 @@
 package co.edu.uniandes.waveteam.sistemahospital.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -15,10 +18,10 @@ import javax.persistence.Entity;
 @Entity
 public class ConsultorioEntity extends BaseEntity implements Serializable{
     
-//    @OneToMany
-//    private List<DoctorEntity> doctoresAsignados = new ArrayList<DoctorEntity>;
+    @OneToMany
+    private List<DoctorEntity> doctoresAsignados = new ArrayList<DoctorEntity>();
     
-//    private String nombre;
+    private String nombre;
     private String horario;
     private boolean atencionUrgencias;
     private boolean unidadCuidadosIntensivos;
