@@ -6,12 +6,14 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.ejb.Stateless;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 /**
  * Created by felipeplazas on 10/11/16.
  */
+@Stateless
 public class DoctorPersistence {
 
     private static final Logger LOGGER = Logger.getLogger(DoctorPersistence.class.getName());

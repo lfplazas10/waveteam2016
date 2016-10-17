@@ -24,6 +24,8 @@ public class CitaEntity extends BaseEntity implements Serializable{
     private String fecha;
     private Long hora;
     private int duracion;
+    
+    @ManyToOne
     private PacienteEntity paciente;
     private String habilitada;
     
