@@ -5,10 +5,8 @@
  */
 package co.edu.uniandes.waveteam.sistemahospital.test.persistence;
 
-import apple.laf.JRSUIConstants;
 import co.edu.uniandes.waveteam.sistemahospital.entities.DoctorEntity;
 import co.edu.uniandes.waveteam.sistemahospital.persistence.DoctorPersistence;
-import com.google.common.base.Objects;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
