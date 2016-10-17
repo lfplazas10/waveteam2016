@@ -8,6 +8,7 @@ package co.edu.uniandes.waveteam.sistemahospital.entities;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -16,6 +17,7 @@ import javax.persistence.ManyToOne;
 @Entity
 public class CitaEntity extends BaseEntity implements Serializable{
     
+    @PodamExclude
     @ManyToOne
     private DoctorEntity doctor;
     
