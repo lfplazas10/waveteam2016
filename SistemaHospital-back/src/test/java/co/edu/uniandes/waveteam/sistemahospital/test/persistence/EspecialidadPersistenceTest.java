@@ -80,7 +80,7 @@ public class EspecialidadPersistenceTest {
     
     private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 5; i++) {
             EspecialidadEntity entity = factory.manufacturePojo(EspecialidadEntity.class);
             em.persist(entity);
             data.add(entity);
@@ -92,6 +92,10 @@ public class EspecialidadPersistenceTest {
      */
     @Test
     public void testFind() throws Exception {
+        EspecialidadEntity entity = data.get(0);
+        EspecialidadEntity newEntity = persistence.find(entity.getId());
+        Assert.assertNotNull(newEntity);
+        Assert.assertEquals(entity.getName(), newEntity.getName());
     }
 
     /**
@@ -99,6 +103,17 @@ public class EspecialidadPersistenceTest {
      */
     @Test
     public void testFindAll() throws Exception {
+        List<EspecialidadEntity> list = persistence.findAll();
+        Assert.assertEquals(data.size(), list.size());
+        for (EspecialidadEntity ent : list) {
+            boolean found = false;
+            for (EspecialidadEntity entity : data) {
+                if (ent.getId().equals(entity.getId())) {
+                    found = true;
+                }
+            }
+            Assert.assertTrue(found);
+        }
     }
 
     /**
@@ -117,4 +132,19 @@ public class EspecialidadPersistenceTest {
         Assert.assertEquals(newEntity.getName(), entity.getName());
     }
     
+    @Test
+    public void testDelete() {
+        EspecialidadEntity entity = data.get(0);
+        persistence.delete(entity.getId());
+        EspecialidadEntity deleted = em.find(EspecialidadEntity.class, entity.getId());
+        Assert.assertNull(deleted);
+    }
+    
+    @Test
+    public void testFindByName() {
+        EspecialidadEntity entity = data.get(0);
+        EspecialidadEntity newEntity = persistence.findByName(entity.getName());
+        Assert.assertNotNull(newEntity);
+        Assert.assertEquals(entity.getName(), newEntity.getName());
+    }
 }
