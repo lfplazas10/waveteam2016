@@ -133,10 +133,35 @@ public class DoctorPersistenceTest {
                     Assert.assertEquals(entity2.getConsultorio(), entity.getConsultorio());
                     Assert.assertEquals(entity2.getDisponibilidadCitas().size(), entity.getDisponibilidadCitas().size());
                     Assert.assertEquals(entity2.getEspecialidad(), entity.getEspecialidad());
+                    break;
                 }
             }
             Assert.assertTrue(found);
         }
     }
+    
+    @Test
+    public void getDoctorTest(){
+        DoctorEntity entity = data.get(2);
+        DoctorEntity newEntity = em.find(DoctorEntity.class, entity.getId());
+        DoctorEntity newEntity2 = doctorPersistence.find(entity.getId());
+        
+        Assert.assertNotNull(newEntity);
+        Assert.assertEquals(entity.getName(), newEntity.getName());
+        Assert.assertEquals(entity.getConsultorio(), newEntity.getConsultorio());
+        Assert.assertEquals(entity.getDisponibilidadCitas().size(), newEntity.getDisponibilidadCitas().size());
+        Assert.assertEquals(entity.getEspecialidad(), newEntity.getEspecialidad());
+        
+        Assert.assertNotNull(newEntity2);
+        Assert.assertEquals(entity.getName(), newEntity2.getName());
+        Assert.assertEquals(entity.getConsultorio(), newEntity2.getConsultorio());
+        Assert.assertEquals(entity.getDisponibilidadCitas().size(), newEntity2.getDisponibilidadCitas().size());
+        Assert.assertEquals(entity.getEspecialidad(), newEntity2.getEspecialidad());
+    }
+    
+//    @Test
+//    public void getDoctorByNameTest(){
+//        
+//    }
     
 }
