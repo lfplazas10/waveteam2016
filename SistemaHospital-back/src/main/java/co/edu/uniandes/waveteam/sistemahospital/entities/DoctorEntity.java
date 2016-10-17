@@ -18,6 +18,7 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class DoctorEntity extends BaseEntity implements Serializable{
     
+    @PodamExclude
     @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CitaEntity> disponibilidadCitas = new ArrayList<>();
     

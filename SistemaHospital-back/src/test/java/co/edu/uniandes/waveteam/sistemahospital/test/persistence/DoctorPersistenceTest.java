@@ -5,8 +5,10 @@
  */
 package co.edu.uniandes.waveteam.sistemahospital.test.persistence;
 
+import apple.laf.JRSUIConstants;
 import co.edu.uniandes.waveteam.sistemahospital.entities.DoctorEntity;
 import co.edu.uniandes.waveteam.sistemahospital.persistence.DoctorPersistence;
+import com.google.common.base.Objects;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -97,16 +99,44 @@ public class DoctorPersistenceTest {
 
         DoctorEntity entity = em.find(DoctorEntity.class, result.getId());
         Assert.assertNotNull(entity);
-
         Assert.assertEquals(docEntity.getName(), entity.getName());
         Assert.assertEquals(docEntity.getConsultorio(), entity.getConsultorio());
-//        Assert.assertEquals(docEntity.getDisponibilidadCitas(), entity.getDisponibilidadCitas());
-
+        Assert.assertEquals(docEntity.getDisponibilidadCitas().size(), entity.getDisponibilidadCitas().size());
+        Assert.assertEquals(docEntity.getEspecialidad(), entity.getEspecialidad());
     }
     
     @Test
     public void updateDoctorTest(){
-        Assert.assertTrue(true);
+        DoctorEntity entity = data.get(1);
+        PodamFactory factory = new PodamFactoryImpl();
+        DoctorEntity newEntity = factory.manufacturePojo(DoctorEntity.class);
+        newEntity.setId(entity.getId());
+        doctorPersistence.update(newEntity);
+        
+        DoctorEntity result = em.find(DoctorEntity.class, entity.getId());
+        Assert.assertNotNull(result);
+        Assert.assertEquals(newEntity.getName(), result.getName());
+        Assert.assertEquals(newEntity.getConsultorio(), result.getConsultorio());
+        Assert.assertEquals(newEntity.getEspecialidad(), result.getEspecialidad());
+    }
+    
+    @Test
+    public void getDoctorsTest(){
+        List<DoctorEntity> list = doctorPersistence.findAll();
+        Assert.assertEquals(data.size(), list.size());
+        for (DoctorEntity entity: list){
+            boolean found = false;
+            for (DoctorEntity entity2: data){
+                if ( entity.getId().equals(entity2.getId() ) ){ 
+                    found = true;
+                    Assert.assertEquals(entity2.getName(), entity.getName());
+                    Assert.assertEquals(entity2.getConsultorio(), entity.getConsultorio());
+                    Assert.assertEquals(entity2.getDisponibilidadCitas().size(), entity.getDisponibilidadCitas().size());
+                    Assert.assertEquals(entity2.getEspecialidad(), entity.getEspecialidad());
+                }
+            }
+            Assert.assertTrue(found);
+        }
     }
     
 }
