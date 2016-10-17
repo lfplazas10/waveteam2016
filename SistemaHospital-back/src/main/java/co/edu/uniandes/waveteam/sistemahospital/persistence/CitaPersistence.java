@@ -24,7 +24,7 @@ public class CitaPersistence {
     
     private static final Logger LOGGER = Logger.getLogger(CitaPersistence.class.getName());
     
-    @PersistenceContext(unitName = "WaveTeamPU")
+    @PersistenceContext(unitName = "WaveteamPU")
     protected EntityManager em;
     
     public CitaEntity find(long id){

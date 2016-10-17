@@ -16,7 +16,7 @@ public class DoctorPersistence {
 
     private static final Logger LOGGER = Logger.getLogger(DoctorPersistence.class.getName());
 
-    @PersistenceContext(unitName = "WaveteamPU")
+        @PersistenceContext(unitName = "WaveteamPU")
     protected EntityManager em;
 
     public DoctorEntity find(Long id) {
