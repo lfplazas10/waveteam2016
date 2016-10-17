@@ -22,8 +22,6 @@ public class PacienteEntity extends BaseEntity implements Serializable{
     @OneToMany(mappedBy = "paciente")
     private List<CitaEntity> citas = new ArrayList();
     
-    private Long id;
-    private String name;
     private String sexo;
     private int edad;
     private String tipoSangre;
@@ -35,22 +33,6 @@ public class PacienteEntity extends BaseEntity implements Serializable{
 
     public void setCitas(List<CitaEntity> citas) {
         this.citas = citas;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getSexo() {

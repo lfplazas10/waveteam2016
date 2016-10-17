@@ -6,16 +6,19 @@
 package co.edu.uniandes.waveteam.sistemahospital.persistence;
 
 import co.edu.uniandes.waveteam.sistemahospital.entities.EspecialidadEntity;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
  * @author d.marino10
  */
+
 @Stateless
 public class EspecialidadPersistence {
     
@@ -29,4 +32,16 @@ public class EspecialidadPersistence {
         return em.find(EspecialidadEntity.class, id);
     }
     
+    public List<EspecialidadEntity> findAll() {
+        LOGGER.info("Consultando todas las especialidad");
+        Query q = em.createQuery("select u from EspecialidadEntity u");
+        return q.getResultList();
+    }
+    
+     public EspecialidadEntity create(EspecialidadEntity entity) {
+        LOGGER.info("Creando una especialidad nueva");
+        em.persist(entity);
+        LOGGER.info("Especialidad creada");
+        return entity;
+    }
 }

@@ -25,8 +25,6 @@ public class DoctorEntity extends BaseEntity implements Serializable{
     @ManyToOne
     private EspecialidadEntity especialidad;
     
-    private Long id;
-    private String name;
     private Long consultorio;
 
     public List<CitaEntity> getDisponibilidadCitas() {
@@ -35,22 +33,6 @@ public class DoctorEntity extends BaseEntity implements Serializable{
 
     public void setDisponibilidadCitas(List<CitaEntity> disponibilidad) {
         this.disponibilidadCitas = disponibilidad;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public EspecialidadEntity getEspecialidad() {
