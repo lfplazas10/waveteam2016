@@ -40,7 +40,7 @@ public class DoctorPersistenceTest {
     }
     
     @Inject
-    private DoctorPersistence employeePersistence;
+    private DoctorPersistence doctorPersistence;
     
     @PersistenceContext
     private EntityManager em;
@@ -49,7 +49,7 @@ public class DoctorPersistenceTest {
     UserTransaction utx;
     
     /**
-     * Initial test conf
+     * Initial test configuration
      */
     @Before
     public void setUp() {
@@ -87,9 +87,9 @@ public class DoctorPersistenceTest {
         }
     }
     
-//    @Test
-//    public void createDoctorTest(){
-//        
-//    }
+    @Test
+    public void createDoctorTest(){
+        
+    }
     
 }
