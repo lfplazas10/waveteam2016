@@ -56,4 +56,3 @@ public class DoctorPersistence {
         em.remove(entity);
     }
 }
-
