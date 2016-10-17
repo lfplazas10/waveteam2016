@@ -92,24 +92,16 @@ public class DoctorPersistenceTest {
     public void createDoctorTest(){
         PodamFactory factory = new PodamFactoryImpl();
         DoctorEntity docEntity = factory.manufacturePojo(DoctorEntity.class);
-        System.out.println("INFORMATION1: "+docEntity.getName());
-        try{
-            DoctorEntity result = doctorPersistence.create(docEntity);
-            System.out.println("INFORMATION2: "+result.getName());
-            Assert.assertNotNull(result);
-            
-            DoctorEntity entity = em.find(DoctorEntity.class, result.getId());
-            Assert.assertNotNull(entity);
+        DoctorEntity result = doctorPersistence.create(docEntity);
+        Assert.assertNotNull(result);
 
-            Assert.assertEquals(docEntity.getName(), entity.getName());
-            Assert.assertEquals(docEntity.getConsultorio(), entity.getConsultorio());
-    //        Assert.assertEquals(docEntity.getDisponibilidadCitas(), entity.getDisponibilidadCitas());
-            Assert.assertTrue(true);
-        } catch (Exception e) {
-            System.out.println("HERE STARTS THE ERROR.");
-            e.printStackTrace();
-        }
-        
+        DoctorEntity entity = em.find(DoctorEntity.class, result.getId());
+        Assert.assertNotNull(entity);
+
+        Assert.assertEquals(docEntity.getName(), entity.getName());
+        Assert.assertEquals(docEntity.getConsultorio(), entity.getConsultorio());
+//        Assert.assertEquals(docEntity.getDisponibilidadCitas(), entity.getDisponibilidadCitas());
+
     }
     
     @Test

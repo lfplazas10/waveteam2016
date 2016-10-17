@@ -17,8 +17,7 @@ import uk.co.jemos.podam.common.PodamExclude;
  */
 @Entity
 public class PacienteEntity extends BaseEntity implements Serializable{
-    
-    @PodamExclude 
+        
     @OneToMany(mappedBy = "paciente")
     private List<CitaEntity> citas = new ArrayList();
     
@@ -66,9 +65,5 @@ public class PacienteEntity extends BaseEntity implements Serializable{
     public void setEps(String eps) {
         this.eps = eps;
     }
-    
-    
-
-   
-    
+  
 }

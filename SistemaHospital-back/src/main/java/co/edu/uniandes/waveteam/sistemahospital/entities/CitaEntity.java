@@ -21,12 +21,13 @@ public class CitaEntity extends BaseEntity implements Serializable{
     @ManyToOne
     private DoctorEntity doctor;
     
+    @PodamExclude
+    @ManyToOne
+    private PacienteEntity paciente;
+    
     private String fecha;
     private Long hora;
     private int duracion;
-    
-    @ManyToOne
-    private PacienteEntity paciente;
     private String habilitada;
     
     public String getFecha(){
