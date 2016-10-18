@@ -161,7 +161,6 @@ public class DoctorPersistenceTest {
     public void getDoctorByNameTest(){
         DoctorEntity entity = data.get(0);
         DoctorEntity newEntity = doctorPersistence.findByName(entity.getName());
-        
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getName(), newEntity.getName());
         Assert.assertEquals(entity.getConsultorio(), newEntity.getConsultorio());

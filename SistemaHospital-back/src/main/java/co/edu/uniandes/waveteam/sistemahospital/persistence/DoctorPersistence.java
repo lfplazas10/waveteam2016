@@ -1,6 +1,7 @@
 package co.edu.uniandes.waveteam.sistemahospital.persistence;
 
 import co.edu.uniandes.waveteam.sistemahospital.entities.DoctorEntity;
+import co.edu.uniandes.waveteam.sistemahospital.entities.EspecialidadEntity;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -22,21 +23,29 @@ public class DoctorPersistence {
     protected EntityManager em;
 
     public DoctorEntity find(Long id) {
-        LOGGER.log(Level.INFO, "Consultando especialidad con id={0}", id);
+        LOGGER.log(Level.INFO, "Consultando doctor con id={0}", id);
         return em.find(DoctorEntity.class, id);
+    }
+        
+    public List<DoctorEntity> findByEspecialidad(EspecialidadEntity especialidad){
+        LOGGER.log(Level.INFO, "Consultando doctores con la dada especialidad");
+        Query q = em.createQuery("select d from DoctorEntity d where d.especialidad.name LIKE :especialidadName")
+                .setParameter("especialidadName", especialidad.getName());
+        LOGGER.log(Level.INFO, "Retornando doctores de la dada especialidad");
+        return q.getResultList();
     }
     
     public DoctorEntity findByName(String name){
         LOGGER.log(Level.INFO, "Consultando doctor con name= ", name);
         TypedQuery<DoctorEntity> q
-                = em.createQuery("select u from DoctorEntity u where u.name = :name", DoctorEntity.class);
+                = em.createQuery("select d from DoctorEntity d where d.name = :name", DoctorEntity.class);
         q = q.setParameter("name", name);
         return q.getSingleResult();
     }
     
     public List<DoctorEntity> findAll() {
         LOGGER.info("Consultando todos los doctores");
-        Query q = em.createQuery("select u from DoctorEntity u");
+        Query q = em.createQuery("select d from DoctorEntity d");
         return q.getResultList();
     }
     
@@ -57,4 +66,5 @@ public class DoctorPersistence {
         DoctorEntity entity = em.find(DoctorEntity.class, id);
         em.remove(entity);
     }
+
 }

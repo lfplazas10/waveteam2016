@@ -22,7 +22,6 @@ public class DoctorEntity extends BaseEntity implements Serializable{
     @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CitaEntity> disponibilidadCitas = new ArrayList<>();
     
-    @PodamExclude
     @ManyToOne
     private EspecialidadEntity especialidad;
     
