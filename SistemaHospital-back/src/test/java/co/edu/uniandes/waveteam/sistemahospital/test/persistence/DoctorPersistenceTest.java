@@ -169,10 +169,15 @@ public class DoctorPersistenceTest {
         Assert.assertEquals(entity.getEspecialidad(), newEntity.getEspecialidad());
     }
     
-//    @Test
-//    public void deleteDoctorTest(){
-//        DoctorEntity entity = data.get(data.size()-1);
-//        doctorPersistence
-//    }
+    @Test
+    public void deleteDoctorTest(){
+        DoctorEntity entity = data.get(data.size()-1);
+        doctorPersistence.delete(entity.getId());
+        DoctorEntity deleted = doctorPersistence.find(entity.getId());
+        DoctorEntity deleted2 = em.find(DoctorEntity.class, entity.getId());
+        
+        Assert.assertNull(deleted);
+        Assert.assertNull(deleted2);
+    }
     
 }
