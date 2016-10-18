@@ -6,6 +6,7 @@
 package co.edu.uniandes.waveteam.sistemahospital.persistence;
 
 import co.edu.uniandes.waveteam.sistemahospital.entities.CitaEntity;
+import co.edu.uniandes.waveteam.sistemahospital.entities.DoctorEntity;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -34,11 +35,10 @@ public class CitaPersistence {
     }
     
     
-    public CitaEntity findByMedico(Long medico) {
-        LOGGER.log(Level.INFO, "Consultando cita con medico = {0}", medico);
-        TypedQuery<CitaEntity> q
-                = em.createQuery("select u from CitaEntity u where u.medico = :name", CitaEntity.class);
-        q = q.setParameter("medico", medico); 
+    public CitaEntity findByMedico(DoctorEntity doctor) {
+        LOGGER.log(Level.INFO, "Consultando cita con medico = {0}", doctor.getId());
+        TypedQuery<CitaEntity> q = em.createQuery("select u from CitaEntity u where u.medico.id = :id", CitaEntity.class);
+        q = q.setParameter("doctor", doctor); 
         return q.getSingleResult();
     }
     
@@ -64,7 +64,7 @@ public class CitaPersistence {
     
     
     public void delete(Long id) {
-        LOGGER.log(Level.INFO, "Borrando company con id={0}", id);
+        LOGGER.log(Level.INFO, "Borrando cita con id={0}", id);
         CitaEntity entity = em.find(CitaEntity.class, id);
         em.remove(entity);
     }
