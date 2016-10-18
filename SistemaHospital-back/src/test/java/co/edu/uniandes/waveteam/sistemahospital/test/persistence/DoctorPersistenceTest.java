@@ -157,9 +157,22 @@ public class DoctorPersistenceTest {
         Assert.assertEquals(entity.getEspecialidad(), newEntity2.getEspecialidad());
     }
     
+    @Test
+    public void getDoctorByNameTest(){
+        DoctorEntity entity = data.get(0);
+        DoctorEntity newEntity = doctorPersistence.findByName(entity.getName());
+        
+        Assert.assertNotNull(newEntity);
+        Assert.assertEquals(entity.getName(), newEntity.getName());
+        Assert.assertEquals(entity.getConsultorio(), newEntity.getConsultorio());
+        Assert.assertEquals(entity.getDisponibilidadCitas().size(), newEntity.getDisponibilidadCitas().size());
+        Assert.assertEquals(entity.getEspecialidad(), newEntity.getEspecialidad());
+    }
+    
 //    @Test
-//    public void getDoctorByNameTest(){
-//        
+//    public void deleteDoctorTest(){
+//        DoctorEntity entity = data.get(data.size()-1);
+//        doctorPersistence
 //    }
     
 }
