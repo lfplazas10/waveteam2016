@@ -11,16 +11,15 @@ import java.util.List;
 import javax.persistence.*;
 import uk.co.jemos.podam.common.PodamExclude;
 
-/**
- *
- * @author felipeplazas
- */
+
 @Entity
 public class PacienteEntity extends BaseEntity implements Serializable{
-        
+      
+    @PodamExclude
     @OneToMany(mappedBy = "paciente")
     private List<CitaEntity> citas = new ArrayList();
     
+    private String tipoDocumento;
     private String sexo;
     private int edad;
     private String tipoSangre;
@@ -64,6 +63,14 @@ public class PacienteEntity extends BaseEntity implements Serializable{
 
     public void setEps(String eps) {
         this.eps = eps;
+    }
+
+    public String getTipoDocumento() {
+        return tipoDocumento;
+    }
+
+    public void setTipoDocumento(String tipoDocumento) {
+        this.tipoDocumento = tipoDocumento;
     }
   
 }
