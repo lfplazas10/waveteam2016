@@ -5,8 +5,9 @@
  */
 package co.edu.uniandes.waveteam.sistemahospital.test.persistence;
 
+import co.edu.uniandes.waveteam.sistemahospital.entities.ConsultaHistoricaEntity;
 import co.edu.uniandes.waveteam.sistemahospital.entities.EspecialidadEntity;
-import co.edu.uniandes.waveteam.sistemahospital.persistence.EspecialidadPersistence;
+import co.edu.uniandes.waveteam.sistemahospital.persistence.ConsultaHistoricaPersistence;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -18,6 +19,7 @@ import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Assert;
+import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -29,19 +31,22 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  * @author d.marino10
  */
 @RunWith(Arquillian.class)
-public class EspecialidadPersistenceTest {
+public class ConsultaHistoricaPersistenceTest {
     
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
+                .addPackage(ConsultaHistoricaEntity.class.getPackage())
+                .addPackage(ConsultaHistoricaPersistence.class.getPackage())
                 .addPackage(EspecialidadEntity.class.getPackage())
-                .addPackage(EspecialidadPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
 
+    EspecialidadEntity padre;
+    
     @Inject
-    private EspecialidadPersistence persistence;
+    private ConsultaHistoricaPersistence persistence;
 
     @PersistenceContext
     private EntityManager em;
@@ -49,7 +54,7 @@ public class EspecialidadPersistenceTest {
     @Inject
     UserTransaction utx;
 
-    private List<EspecialidadEntity> data = new ArrayList<EspecialidadEntity>();
+    private List<ConsultaHistoricaEntity> data = new ArrayList<>();
     
     
     @Before
@@ -71,76 +76,81 @@ public class EspecialidadPersistenceTest {
     }
     
     private void clearData() {
-        em.createQuery("delete from EspecialidadEntity").executeUpdate();
+        em.createQuery("delete from ConsultaHistoricaEntity").executeUpdate();
     }
     
     private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
-        for (int i = 0; i < 5; i++) {
-            EspecialidadEntity entity = factory.manufacturePojo(EspecialidadEntity.class);
-            em.persist(entity);
+        padre = factory.manufacturePojo(EspecialidadEntity.class);
+        padre.setId(1L);
+        em.persist(padre);
+        for (int i = 0; i < 4; i++) {
+            ConsultaHistoricaEntity entity = factory.manufacturePojo(ConsultaHistoricaEntity.class);
+            entity.setEspecialidad(padre);
             data.add(entity);
+            em.persist(entity);
         }
     }
 
+
     /**
-     * Test of find method, of class EspecialidadPersistence.
+     * Test of find method, of class ConsultaHistoricaPersistence.
      */
     @Test
     public void testFind() throws Exception {
-        EspecialidadEntity entity = data.get(0);
-        EspecialidadEntity newEntity = persistence.find(entity.getId());
+        ConsultaHistoricaEntity entity = data.get(0);
+        ConsultaHistoricaEntity newEntity = persistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getName(), newEntity.getName());
     }
-
-    /**
-     * Test of findAll method, of class EspecialidadPersistence.
-     */
+    
     @Test
-    public void testFindAll() throws Exception {
-        List<EspecialidadEntity> list = persistence.findAll();
+    public void testCreate() {
+        PodamFactory factory = new PodamFactoryImpl();
+        ConsultaHistoricaEntity newEntity = factory.manufacturePojo(ConsultaHistoricaEntity.class);
+        newEntity.setEspecialidad(padre);
+        ConsultaHistoricaEntity result = persistence.create(newEntity);
+        Assert.assertNotNull(result);
+
+        ConsultaHistoricaEntity entity = em.find(ConsultaHistoricaEntity.class, result.getId());
+        Assert.assertEquals(newEntity.getName(), entity.getName());
+    }
+    
+    @Test
+    public void testFindAllInEspeciaildad() {
+        List<ConsultaHistoricaEntity> list = persistence.findAllInEspecialidad(padre.getId());
         Assert.assertEquals(data.size(), list.size());
-        for (EspecialidadEntity ent : list) {
+        for (ConsultaHistoricaEntity ent : list) {
             boolean found = false;
-            for (EspecialidadEntity entity : data) {
+            for (ConsultaHistoricaEntity entity : data) {
                 if (ent.getId().equals(entity.getId())) {
                     found = true;
                 }
             }
             Assert.assertTrue(found);
         }
-    }
-
-    /**
-     * Test of create method, of class EspecialidadPersistence.
-     */
-    @Test
-    public void testCreate() throws Exception {
-         PodamFactory factory = new PodamFactoryImpl();
-        EspecialidadEntity newEntity = factory.manufacturePojo(EspecialidadEntity.class);
-
-        EspecialidadEntity result = persistence.create(newEntity);
-
-        Assert.assertNotNull(result);
-        EspecialidadEntity entity = em.find(EspecialidadEntity.class, result.getId());
-        Assert.assertNotNull(entity);
-        Assert.assertEquals(newEntity.getName(), entity.getName());
-    }
+    } 
     
     @Test
     public void testDelete() {
-        EspecialidadEntity entity = data.get(0);
+        ConsultaHistoricaEntity entity = data.get(0);
         persistence.delete(entity.getId());
-        EspecialidadEntity deleted = em.find(EspecialidadEntity.class, entity.getId());
+        ConsultaHistoricaEntity deleted = em.find(ConsultaHistoricaEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
     
     @Test
-    public void testFindByName() {
-        EspecialidadEntity entity = data.get(0);
-        EspecialidadEntity newEntity = persistence.findByName(entity.getName());
-        Assert.assertNotNull(newEntity);
-        Assert.assertEquals(entity.getName(), newEntity.getName());
+    public void testUpdate() {
+        ConsultaHistoricaEntity entity = data.get(0);
+        PodamFactory factory = new PodamFactoryImpl();
+        ConsultaHistoricaEntity newEntity = factory.manufacturePojo(ConsultaHistoricaEntity.class);
+
+        newEntity.setId(entity.getId());
+
+        persistence.update(newEntity);
+
+        ConsultaHistoricaEntity resp = em.find(ConsultaHistoricaEntity.class, entity.getId());
+
+        Assert.assertEquals(newEntity.getName(), resp.getName());
     }
 }

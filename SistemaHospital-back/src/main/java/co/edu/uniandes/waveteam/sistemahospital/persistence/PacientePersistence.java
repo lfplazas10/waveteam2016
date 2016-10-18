@@ -13,6 +13,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 @Stateless
 public class PacientePersistence {
@@ -26,10 +27,17 @@ public class PacientePersistence {
         return em.find(PacienteEntity.class, id);
     }
     
+    public PacienteEntity findByName(String pname) {
+        LOGGER.log(Level.INFO, "Consultando paciente con name={}", pname);
+        TypedQuery<PacienteEntity> query = em.createQuery("select u from PacienteEntity u where u.name=:pname", PacienteEntity.class);
+        query = query.setParameter("pname", pname);
+        return query.getSingleResult();
+    }
+    
     public List<PacienteEntity> findAll()
     {
       LOGGER.info("Consultando todos los pacientes");
-      Query q = em.createQuery("select from PacienteEntity u");
+      Query q = em.createQuery("select u from PacienteEntity u");
       return q.getResultList();
     }
     public PacienteEntity create(PacienteEntity entity)
