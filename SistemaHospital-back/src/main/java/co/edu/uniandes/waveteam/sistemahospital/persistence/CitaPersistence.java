@@ -7,6 +7,7 @@ package co.edu.uniandes.waveteam.sistemahospital.persistence;
 
 import co.edu.uniandes.waveteam.sistemahospital.entities.CitaEntity;
 import co.edu.uniandes.waveteam.sistemahospital.entities.DoctorEntity;
+import co.edu.uniandes.waveteam.sistemahospital.entities.PacienteEntity;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -35,10 +36,17 @@ public class CitaPersistence {
     }
     
     
-    public CitaEntity findByMedico(DoctorEntity doctor) {
-        LOGGER.log(Level.INFO, "Consultando cita con medico = {0}", doctor.getId());
-        TypedQuery<CitaEntity> q = em.createQuery("select u from CitaEntity u where u.medico.id = :id", CitaEntity.class);
+    public CitaEntity findByDoctor(DoctorEntity doctor) {
+        LOGGER.log(Level.INFO, "Consultando cita con doctor = {0}", doctor.getId());
+        TypedQuery<CitaEntity> q = em.createQuery("select u, m from CitaEntity u, DoctorEntity m where u.doctor = m", CitaEntity.class);
         q = q.setParameter("doctor", doctor); 
+        return q.getSingleResult();
+    }
+    
+    public CitaEntity findByPaciente(PacienteEntity paciente){
+        LOGGER.log(Level.INFO, "Consultando cita con paciente = {0}", paciente.getId());
+        TypedQuery<CitaEntity> q = em.createQuery("select u, p from CitaEntity u, PacienteEntity p where u.paciente = p", CitaEntity.class);
+        q = q.setParameter("paciente", paciente);
         return q.getSingleResult();
     }
     

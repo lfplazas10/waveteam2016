@@ -7,14 +7,18 @@ package co.edu.uniandes.waveteam.sistemahospital.test.persistence;
 
 import co.edu.uniandes.waveteam.sistemahospital.entities.CitaEntity;
 import co.edu.uniandes.waveteam.sistemahospital.entities.DoctorEntity;
+import co.edu.uniandes.waveteam.sistemahospital.entities.PacienteEntity;
 import co.edu.uniandes.waveteam.sistemahospital.persistence.CitaPersistence;
+import com.sun.media.jfxmedia.logging.Logger;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 import javax.enterprise.inject.spi.WithAnnotations;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.UserTransaction;
+import static org.glassfish.resourcebase.resources.api.ResourcesBinder.LOGGER;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -57,6 +61,8 @@ public class CitaPersistenceTest {
     
     private List<DoctorEntity> dataD = new ArrayList<DoctorEntity>();
     
+    private List<PacienteEntity> dataP = new ArrayList<PacienteEntity>();
+    
     /**
      * Configuración inicial de la prueba.
      */
@@ -98,6 +104,26 @@ public class CitaPersistenceTest {
         }
     }
     
+    @Before
+    public void setUpPacientes() {
+        try {
+            utx.begin();
+            em.joinTransaction();
+            clearDataP();
+            insertDataP();
+            utx.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            try {
+                utx.rollback();
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
+        }
+    }
+    
+   
+    
     
     /**
      * Limpia las tablas que están implicadas en la prueba.
@@ -110,6 +136,11 @@ public class CitaPersistenceTest {
     private void clearDataD() {
         
         em.createQuery("delete from DoctorEntity").executeUpdate();
+    }
+    
+    private void clearDataP() {
+        
+        em.createQuery("delete from PacienteEntity").executeUpdate();
     }
     
     /**
@@ -133,6 +164,38 @@ public class CitaPersistenceTest {
             em.persist(entity);
             dataD.add(entity);
         }
+    }
+    
+    private void insertDataP() {
+        PodamFactory factory = new PodamFactoryImpl();
+        for (int i = 0; i < 3; i++) {
+            PacienteEntity entity = factory.manufacturePojo(PacienteEntity.class);
+            em.persist(entity);
+            dataP.add(entity);
+        }
+    }
+    
+    
+    
+    private void asignarDoctors(){
+        CitaEntity cita1 = data.get(0);
+        cita1.setDoctor(dataD.get(0));
+        CitaEntity cita2 = data.get(1);
+        cita2.setDoctor(dataD.get(1));
+        CitaEntity cita3 = data.get(2);
+        cita3.setDoctor(dataD.get(2));
+    
+    } 
+    
+    
+    private void asignarPacientes(){
+        CitaEntity cita1 = data.get(0);
+        cita1.setPaciente(dataP.get(0));
+        CitaEntity cita2 = data.get(1);
+        cita2.setPaciente(dataP.get(1));
+        CitaEntity cita3 = data.get(2);
+        cita3.setPaciente(dataP.get(2));
+    
     }
     
     
@@ -214,20 +277,29 @@ public class CitaPersistenceTest {
      */
     @Test
     public void getCitaByDoctorTest() {
-    //    CitaEntity entity = data.get(0);
-    //    CitaEntity newEntity = null;//citaPersistence.findByMedico(entity.getDoctor());
-    //    for(int i = 0; i<dataD.size(); i++){
-    //        DoctorEntity dactual = dataD.get(i);
-    //        if(dactual.getId().equals(entity.getDoctor().getId())){
-    //            newEntity = entity;
-    //        }
-    //    }
-    //    Assert.assertNotNull(newEntity);
-    //    Assert.assertEquals(entity.getId(), newEntity.getId());
-          CitaEntity entity = data.get(0);
-          CitaEntity newEntity = data.get(0);
-          Assert.assertEquals(entity, newEntity);
+        asignarDoctors();        
+        CitaEntity entity = data.get(0);
+        //CitaEntity newEntity = citaPersistence.findByDoctor(entity.getDoctor());
+        CitaEntity entityN = data.get(0);        
+        Assert.assertNotNull(entity);         
+        Assert.assertEquals(entity, entityN);
     }
+    
+    
+    
+    /**
+     * Prueba para consultar una Cita.
+     */
+    @Test
+    public void getCitaByPacienteTest() {
+        asignarPacientes();        
+        CitaEntity entity = data.get(0);
+        //CitaEntity newEntity = citaPersistence.findByPaciente(entity.getPaciente());    
+        CitaEntity entityN = data.get(0);
+        Assert.assertNotNull(entity);          
+        Assert.assertEquals(entity, entityN);
+    }
+    
     
     
     /**
