@@ -11,7 +11,6 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -22,8 +21,8 @@ import uk.co.jemos.podam.common.PodamExclude;
 public class EspecialidadEntity extends BaseEntity implements Serializable {
     
     @PodamExclude
-    @OneToOne
-    private ConsultaHistoricaEntity consultaActual;
+    @OneToMany(mappedBy = "especialidad", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ConsultaHistoricaEntity> consultas;
     
     @PodamExclude
     @OneToMany(mappedBy = "especialidad", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -54,12 +53,12 @@ public class EspecialidadEntity extends BaseEntity implements Serializable {
 		this.tipo = tipo;
 	}
     
-    public ConsultaHistoricaEntity getConsultaActual() {
-		return consultaActual;
+    public List<ConsultaHistoricaEntity> getConsultaActual() {
+		return consultas;
 	}
 
-    public void setConsultActual(ConsultaHistoricaEntity consultaActual) {
-		this.consultaActual = consultaActual;
+    public void setConsultActual(ArrayList<ConsultaHistoricaEntity> consultas) {
+		this.consultas = consultas;
 	}
     
     public List<DoctorEntity> getDoctores() {
