@@ -43,15 +43,10 @@ public class CitaPersistenceTest {
         return ShrinkWrap.create(JavaArchive.class)
                 .addPackage(CitaEntity.class.getPackage())
                 .addPackage(CitaPersistence.class.getPackage())
-                .addPackage(DoctorEntity.class.getPackage())
-                .addPackage(PacienteEntity.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
     
-    DoctorEntity doctor;
-    
-    PacienteEntity paciente;
     
     @Inject
     private CitaPersistence citaPersistence;
