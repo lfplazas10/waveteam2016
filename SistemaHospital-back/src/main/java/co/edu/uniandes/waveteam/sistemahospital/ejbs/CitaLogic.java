@@ -1,9 +1,11 @@
+package co.edu.uniandes.waveteam.sistemahospital.ejbs;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.uniandes.waveteam.sistemashospital.ejbs;
+
 
 import co.edu.uniandes.waveteam.sistemahospital.api.ICitaLogic;
 import co.edu.uniandes.waveteam.sistemahospital.entities.CitaEntity;
