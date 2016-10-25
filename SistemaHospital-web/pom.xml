@@ -69,13 +69,6 @@
                        </goals>
                    </execution>
                </executions>
-               <configuration>
-                   <executable>bower</executable>
-                   <arguments>
-                       <argument>install</argument>
-                   </arguments>
-                   <workingDirectory>${basedir}</workingDirectory>
-               </configuration>
            </plugin>
            <plugin>
                <groupId>org.apache.maven.plugins</groupId>
