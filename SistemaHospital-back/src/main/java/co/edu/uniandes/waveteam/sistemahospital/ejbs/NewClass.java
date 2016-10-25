@@ -9,6 +9,6 @@ package co.edu.uniandes.waveteam.sistemahospital.ejbs;
  *
  * @author je.ardila1501
  */
-public class temporal {
+public class NewClass {
     
 }
