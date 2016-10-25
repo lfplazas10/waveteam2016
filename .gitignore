@@ -9,7 +9,6 @@ tmp/
 
 # Binaries produced by Maven
 target/
-/SistemaHospital-web/target/
 /SistemaHospital-back/target/
 
 # Package Files
@@ -24,8 +23,6 @@ hs_err_pid*
 # -- From Javascript
 
 # Bower
-bower_components/
-/SistemaHospital-web/src/main/webapp/bower_components/
 
 # Grunt 
 .grunt
