@@ -24,18 +24,31 @@ import javax.ejb.ApplicationException;
 @ApplicationException(rollback = true)
 public class BusinessLogicException extends Exception {
 
+    /**
+     * 
+     */
     public BusinessLogicException() {
         super();
     }
-
+    /**
+     * 
+     * @param message 
+     */
     public BusinessLogicException(String message) {
         super(message);
     }
-
+    /**
+     * 
+     * @param cause 
+     */
     public BusinessLogicException(Throwable cause) {
         super(cause);
     }
-
+    /**
+     * 
+     * @param message
+     * @param cause 
+     */
     public BusinessLogicException(String message, Throwable cause) {
         super(message, cause);
     }
